@@ -1,80 +1,83 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feliz primer mes</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz Primer Mes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Sacramento&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(to bottom right, #ffe0f0, #ffd6e0);
-      color: #4a4a4a;
+      background: linear-gradient(to bottom right, #e9c6f2, #fce1ff);
+      color: #4a3a4d;
       text-align: center;
       transition: background 0.4s, color 0.4s;
     }
 
-    body.dark-mode {
-      background: #1f1f1f;
-      color: #f1f1f1;
-    }
-
-    header {
-      padding: 2rem 1rem 1rem;
-    }
-
     h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    p.desc {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
+      font-family: 'Sacramento', cursive;
+      font-size: 3em;
+      margin-top: 1em;
     }
 
     .button-container {
+      margin-top: 2em;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      max-width: 400px;
-      margin: 0 auto;
+      gap: 1em;
+      align-items: center;
     }
 
     a.button {
-      padding: 1rem;
-      border: none;
-      border-radius: 12px;
-      background-color: #ff7ca8;
-      color: white;
+      padding: 0.8em 1.5em;
       text-decoration: none;
+      background-color: #c28ae6;
+      color: white;
+      border-radius: 10px;
       font-weight: bold;
+      box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
       transition: background 0.3s;
     }
 
     a.button:hover {
-      background-color: #ff4f90;
+      background-color: #a96dd2;
     }
 
-    .toggle-dark {
-      margin-top: 2rem;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 8px;
-      background: #333;
-      color: white;
+    .dark-mode {
+      background: #1f1f1f;
+      color: #f1f1f1;
+    }
+
+    .dark-mode a.button {
+      background-color: #5a5a5a;
+    }
+
+    .dark-mode a.button:hover {
+      background-color: #444;
+    }
+
+    .toggle-mode {
+      margin-top: 2em;
+      padding: 0.5em 1em;
+      font-size: 1em;
       cursor: pointer;
+      background-color: #b276e8;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .toggle-mode:hover {
+      background-color: #955ccc;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Feliz primer mes</h1>
-    <p class="desc">Un pequeño rincón donde te dedico cada palabra, cada recuerdo y cada promesa.</p>
-  </header>
+  <h1>Feliz primer mes</h1>
+  <p>Gracias por este tiempo tan bonito, te hice esto con mucho amor 💜</p>
 
   <div class="button-container">
     <a href="enamore.html" class="button">Cómo me enamoré de ti</a>
@@ -84,9 +87,12 @@
     <a href="frases.html" class="button">Frases que me recuerdan a ti</a>
   </div>
 
-  <button class="toggle-dark" onclick="
-    document.body.classList.toggle('dark-mode');
-    this.textContent = document.body.classList.contains('dark-mode') ? 'Modo claro' : 'Modo oscuro';
-  ">Modo oscuro</button>
+  <button class="toggle-mode" onclick="toggleMode()">Cambiar modo</button>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
 </body>
 </html>
