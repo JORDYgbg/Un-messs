@@ -13,7 +13,12 @@
       background: linear-gradient(to bottom right, #ffe0f0, #ffd6e0);
       color: #4a4a4a;
       text-align: center;
-      animation: fadeIn 2s ease-in;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    body.dark-mode {
+      background: #1f1f1f;
+      color: #f1f1f1;
     }
 
     h1 {
@@ -37,26 +42,31 @@
       margin: 0 auto;
     }
 
-    button {
+    .link-button {
       background-color: #ff6f91;
       color: white;
-      border: none;
+      text-decoration: none;
       padding: 15px 25px;
       font-size: 1em;
       border-radius: 30px;
-      cursor: pointer;
       transition: transform 0.3s ease, background-color 0.3s ease;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    button:hover {
+    .link-button:hover {
       background-color: #ff4e73;
       transform: scale(1.05);
     }
 
-    @keyframes fadeIn {
-      0% {opacity: 0;}
-      100% {opacity: 1;}
+    #darkModeBtn {
+      margin-top: 50px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      background-color: #444;
+      color: #fff;
     }
   </style>
 </head>
@@ -65,11 +75,21 @@
   <p>He creado este pequeño rincón en internet solo para ti...</p>
 
   <div class="button-container">
-    <button onclick="alert('Aquí escribiré cómo me enamoré de ti...')">Cómo me enamoré de ti</button>
-    <button onclick="alert('Este es un poema que nunca te mostré, pero siempre sentí...')">Poema que nunca te mostré</button>
-    <button onclick="alert('Si te sientes mal, solo recuerda que siempre estaré para ti ❤️')">Si te sientes mal, aplasta aquí</button>
-    <button onclick="alert('Mis promesas para ti: amor, cuidado, lealtad y ternura por siempre 💕')">Mis promesas para ti</button>
-    <button onclick="alert('“Eres mi lugar favorito del mundo”')">Frases que me recuerdan a ti</button>
+    <a class="link-button" href="enamore.html">Cómo me enamoré de ti</a>
+    <a class="link-button" href="poema.html">Poema que nunca te mostré</a>
+    <a class="link-button" href="sentir.html">Si te sientes mal, aplasta aquí</a>
+    <a class="link-button" href="promesas.html">Mis promesas para ti</a>
+    <a class="link-button" href="frases.html">Frases que me recuerdan a ti</a>
   </div>
+
+  <button id="darkModeBtn">🌙 Modo oscuro</button>
+
+  <script>
+    const btn = document.getElementById("darkModeBtn");
+    btn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      btn.textContent = document.body.classList.contains("dark-mode") ? "☀️ Modo claro" : "🌙 Modo oscuro";
+    });
+  </script>
 </body>
 </html>
