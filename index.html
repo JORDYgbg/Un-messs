@@ -22,7 +22,7 @@
     }
 
     body.dark-mode {
-      background: #1e1e1e;
+      background: linear-gradient(to bottom right, #000000, #222222);
       color: #f0f0f0;
     }
 
@@ -48,7 +48,6 @@
       font-family: 'Pacifico', cursive;
       font-size: 3rem;
       color: #a259ff;
-      text-shadow: none;
     }
 
     p {
@@ -107,12 +106,12 @@
       border-radius: 20px;
       padding: 20px;
       text-align: center;
-      width: 250px;
+      width: 260px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
 
     .reproductor.dark-mode {
-      background: rgba(0,0,0,0.2);
+      background: rgba(0,0,0,0.3);
     }
 
     .reproductor img {
@@ -133,8 +132,10 @@
     .controles {
       display: flex;
       justify-content: center;
-      gap: 15px;
+      align-items: center;
+      gap: 10px;
       margin-top: 10px;
+      flex-wrap: wrap;
     }
 
     .controles button {
@@ -146,15 +147,18 @@
     }
 
     .volumen {
-      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
 
-    .volumen input {
-      display: block;
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
+    #volRange {
+      width: 70px;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      background: #a259ff;
+      border-radius: 50%;
     }
   </style>
 </head>
@@ -176,7 +180,7 @@
   <div class="reproductor" id="reproductor">
     <img src="audio/cover.jpg" alt="Portada">
     <div class="titulo">Es Por Ti<br><small>Juanes</small></div>
-    <input class="barra" type="range" value="0">
+    <input class="barra" type="range" value="0" id="progress">
     <div class="controles">
       <button id="play"><i class="fa-solid fa-play"></i></button>
       <button id="stop"><i class="fa-solid fa-stop"></i></button>
@@ -197,9 +201,11 @@
     const stopBtn = document.getElementById('stop');
     const muteBtn = document.getElementById('mute');
     const volRange = document.getElementById('volRange');
+    const progress = document.getElementById('progress');
 
     let audio = new Audio('audio/esporti.mp3');
     let isMuted = false;
+    let isPlaying = false;
 
     modoBtn.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
@@ -208,12 +214,21 @@
     });
 
     playBtn.addEventListener('click', () => {
-      audio.play();
+      if (isPlaying) {
+        audio.pause();
+        playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+      } else {
+        audio.play();
+        playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+      }
+      isPlaying = !isPlaying;
     });
 
     stopBtn.addEventListener('click', () => {
       audio.pause();
       audio.currentTime = 0;
+      playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+      isPlaying = false;
     });
 
     muteBtn.addEventListener('click', () => {
@@ -224,6 +239,14 @@
 
     volRange.addEventListener('input', () => {
       audio.volume = volRange.value;
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      progress.value = (audio.currentTime / audio.duration) * 100 || 0;
+    });
+
+    progress.addEventListener('input', () => {
+      audio.currentTime = (progress.value / 100) * audio.duration;
     });
   </script>
 </body>
