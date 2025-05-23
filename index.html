@@ -2,10 +2,74 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Feliz Primer Mes ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz primer mes ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to bottom right, #ffe0f0, #ffd6e0);
+      color: #4a4a4a;
+      text-align: center;
+      animation: fadeIn 2s ease-in;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3em;
+      color: #d6336c;
+      margin-top: 40px;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 40px;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    button {
+      background-color: #ff6f91;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      font-size: 1em;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    button:hover {
+      background-color: #ff4e73;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+  </style>
 </head>
 <body>
   <h1>¡Feliz primer mes, mi amor! 💖</h1>
-  <p>Esta es nuestra página especial.</p>
+  <p>He creado este pequeño rincón en internet solo para ti...</p>
+
+  <div class="button-container">
+    <button onclick="alert('Aquí escribiré cómo me enamoré de ti...')">Cómo me enamoré de ti</button>
+    <button onclick="alert('Este es un poema que nunca te mostré, pero siempre sentí...')">Poema que nunca te mostré</button>
+    <button onclick="alert('Si te sientes mal, solo recuerda que siempre estaré para ti ❤️')">Si te sientes mal, aplasta aquí</button>
+    <button onclick="alert('Mis promesas para ti: amor, cuidado, lealtad y ternura por siempre 💕')">Mis promesas para ti</button>
+    <button onclick="alert('“Eres mi lugar favorito del mundo”')">Frases que me recuerdan a ti</button>
+  </div>
 </body>
 </html>
