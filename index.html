@@ -15,19 +15,15 @@
 
     body {
       font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(to bottom right, #eac8ff, #d8aefc, #c49aff);
+      background-color: #eac8ff;
       color: #333;
       transition: background 0.3s, color 0.3s;
       overflow-x: hidden;
     }
 
     body.dark-mode {
-      background: linear-gradient(to bottom right, #1a1a1a, #2c2c2c);
+      background-color: #121212;
       color: #f0f0f0;
-    }
-
-    .corazones {
-      display: none;
     }
 
     header {
@@ -109,6 +105,12 @@
       width: 100px;
       border-radius: 50%;
       margin-bottom: 10px;
+      animation: girar 5s linear infinite;
+    }
+
+    @keyframes girar {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     .titulo {
@@ -160,15 +162,15 @@
   </header>
 
   <div class="botones">
-    <button>Cómo me enamoré de ti</button>
-    <button>Poema que nunca te mostré</button>
-    <button>Si te sientes mal, aplasta aquí</button>
-    <button>Mis promesas para ti</button>
-    <button>Frases que me recuerdan a ti</button>
+    <button onclick="alert('Aquí irá tu historia de amor.')">Cómo me enamoré de ti</button>
+    <button onclick="alert('Aquí irá tu poema.')">Poema que nunca te mostré</button>
+    <button onclick="alert('Todo va a estar bien, mi amor ❤️')">Si te sientes mal, aplasta aquí</button>
+    <button onclick="alert('Promesas para ti, solo para ti.')">Mis promesas para ti</button>
+    <button onclick="alert('Siempre pienso en ti con estas frases.')">Frases que me recuerdan a ti</button>
   </div>
 
   <div class="reproductor" id="reproductor">
-    <img src="audio/cover.jpg" alt="Portada">
+    <img src="audio/cover.jpg" alt="Portada" id="portada">
     <div class="titulo">Es Por Ti<br><small>Juanes</small></div>
     <input class="barra" type="range" value="0" id="progress">
     <div class="controles">
@@ -187,6 +189,7 @@
     const body = document.body;
     const modoBtn = document.getElementById('modo-btn');
     const reproductor = document.getElementById('reproductor');
+    const portada = document.getElementById('portada');
     const playBtn = document.getElementById('play');
     const stopBtn = document.getElementById('stop');
     const muteBtn = document.getElementById('mute');
@@ -207,9 +210,11 @@
       if (isPlaying) {
         audio.pause();
         playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        portada.style.animationPlayState = 'paused';
       } else {
         audio.play();
         playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        portada.style.animationPlayState = 'running';
       }
       isPlaying = !isPlaying;
     });
@@ -219,6 +224,7 @@
       audio.currentTime = 0;
       playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
       isPlaying = false;
+      portada.style.animationPlayState = 'paused';
     });
 
     muteBtn.addEventListener('click', () => {
