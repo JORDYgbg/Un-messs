@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Para ti ♥</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-b...a=" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     body {
       margin: 0;
@@ -104,23 +104,40 @@
     .music-controls {
       display: flex;
       align-items: center;
-      gap: 1em;
-      margin: 1em 0 0.5em;
+      gap: 0.8em;
+      justify-content: center;
     }
 
-    .music-controls button {
-      background: #fff;
+    .control-button {
+      background: #ffffffcc;
       border: none;
-      padding: 0.5em;
+      padding: 0.6em;
       border-radius: 50%;
-      font-size: 1.4em;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      font-size: 1.2em;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: background 0.3s, transform 0.2s;
     }
 
-    .music-controls button:hover {
+    .control-button:hover {
+      background: #f0e6ff;
       transform: scale(1.1);
+    }
+
+    .volume-control {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .volume-slider {
+      width: 100px;
+      margin-left: 0.5em;
+      appearance: none;
+      height: 4px;
+      border-radius: 5px;
+      background: #a64dff;
+      outline: none;
     }
 
     .track-info {
@@ -143,28 +160,6 @@
       width: 0%;
     }
 
-    .volume-control {
-      position: relative;
-    }
-
-    .volume-slider {
-      width: 100px;
-      appearance: none;
-      height: 4px;
-      border-radius: 5px;
-      background: #a64dff;
-      outline: none;
-      display: none;
-      position: absolute;
-      top: -40px;
-      left: -30px;
-    }
-
-    .volume-control:hover .volume-slider {
-      display: block;
-    }
-
-    /* Responsive */
     @media (max-width: 600px) {
       .music-player {
         width: 90%;
@@ -195,10 +190,16 @@
       <div class="progress" id="progress-bar"></div>
     </div>
     <div class="music-controls">
-      <button onclick="togglePlayPause()"><i class="fas fa-play" id="play-icon"></i></button>
-      <button onclick="stopMusic()"><i class="fas fa-stop"></i></button>
+      <button onclick="togglePlayPause()" class="control-button">
+        <i class="fas fa-play" id="play-icon"></i>
+      </button>
+      <button onclick="stopMusic()" class="control-button">
+        <i class="fas fa-stop"></i>
+      </button>
       <div class="volume-control">
-        <i class="fas fa-volume-up"></i>
+        <button onclick="toggleMute()" class="control-button">
+          <i class="fas fa-volume-up" id="volume-icon"></i>
+        </button>
         <input type="range" min="0" max="1" step="0.01" value="0.5" id="volume-slider" class="volume-slider">
       </div>
     </div>
@@ -226,6 +227,8 @@
     const albumArt = document.getElementById("album-art");
     const progressBar = document.getElementById("progress-bar");
     const volumeSlider = document.getElementById("volume-slider");
+    const volumeIcon = document.getElementById("volume-icon");
+    let lastVolume = audio.volume;
 
     function togglePlayPause() {
       if (audio.paused) {
@@ -246,6 +249,21 @@
       albumArt.style.animationPlayState = 'paused';
     }
 
+    function toggleMute() {
+      if (audio.muted || audio.volume === 0) {
+        audio.muted = false;
+        audio.volume = lastVolume;
+        volumeSlider.value = lastVolume;
+        volumeIcon.classList.replace("fa-volume-mute", "fa-volume-up");
+      } else {
+        audio.muted = true;
+        lastVolume = audio.volume;
+        audio.volume = 0;
+        volumeSlider.value = 0;
+        volumeIcon.classList.replace("fa-volume-up", "fa-volume-mute");
+      }
+    }
+
     audio.ontimeupdate = () => {
       const progress = (audio.currentTime / audio.duration) * 100;
       progressBar.style.width = progress + "%";
@@ -253,6 +271,12 @@
 
     volumeSlider.addEventListener("input", (e) => {
       audio.volume = e.target.value;
+      audio.muted = false;
+      if (audio.volume == 0) {
+        volumeIcon.classList.replace("fa-volume-up", "fa-volume-mute");
+      } else {
+        volumeIcon.classList.replace("fa-volume-mute", "fa-volume-up");
+      }
     });
 
     function toggleMode() {
