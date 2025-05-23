@@ -3,301 +3,232 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para ti ♥</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <title>Feliz primer mes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(to bottom right, #e7c6ff, #f6d9ff);
-      color: #5c2a7b;
-      text-align: center;
-      transition: background 0.5s, color 0.5s;
+      background: linear-gradient(to bottom right, #f3d9fa, #e8c8f8);
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+      overflow-x: hidden;
     }
 
-    .dark-mode {
-      background: linear-gradient(to bottom right, #1a1a1a, #333);
-      color: #fff;
+    body.dark-mode {
+      background: #1e1e1e;
+      color: #f0f0f0;
     }
 
-    h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 4em;
-      margin: 1.5em 0 0.2em;
-      color: #a64dff;
-      text-shadow: 3px 3px 6px #dfbfff;
-    }
-
-    p {
-      font-size: 1.2em;
-      margin: 1em 2em;
-      color: #6a2c91;
-      text-shadow: 1px 1px 2px #f3d9ff;
-    }
-
-    .button-container {
-      margin-top: 2em;
-      display: flex;
-      flex-direction: column;
-      gap: 1em;
-      align-items: center;
-    }
-
-    a.button {
-      padding: 0.9em 1.6em;
-      text-decoration: none;
-      background-color: #c586e3;
-      color: white;
-      border-radius: 12px;
-      font-weight: bold;
-      box-shadow: 0px 6px 12px rgba(150, 90, 190, 0.5);
-      transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
-    }
-
-    a.button:hover {
-      background-color: #b372d4;
-      transform: scale(1.05);
-      box-shadow: 0px 8px 14px rgba(150, 90, 190, 0.6);
-    }
-
-    .toggle-mode {
-      position: fixed;
-      bottom: 1em;
-      right: 1em;
-      padding: 0.6em 1.2em;
-      font-size: 1em;
-      cursor: pointer;
-      background-color: #b276e8;
-      border: none;
-      color: white;
-      border-radius: 50%;
-      box-shadow: 0px 4px 6px rgba(178, 118, 232, 0.4);
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    .toggle-mode:hover {
-      background-color: #955ccc;
-      transform: scale(1.05);
-    }
-
-    .music-player {
-      position: fixed;
-      top: 1em;
-      right: 1em;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 1em;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 280px;
-      z-index: 999;
-    }
-
-    .music-player img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      animation: spin 4s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .music-controls {
-      display: flex;
-      align-items: center;
-      gap: 1em;
-      margin: 1em 0 0.5em;
-    }
-
-    .music-controls button {
-      background: #fff;
-      border: none;
-      padding: 0.5em;
-      border-radius: 50%;
-      font-size: 1.4em;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    .music-controls button:hover {
-      transform: scale(1.1);
-    }
-
-    .track-info {
-      font-size: 0.9em;
-      margin-bottom: 0.5em;
-    }
-
-    .progress-container {
-      width: 100%;
-      height: 6px;
-      background: #ddd;
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 0.5em;
-    }
-
-    .progress {
-      height: 100%;
-      background: #a64dff;
-      width: 0%;
-    }
-
-    .volume-control {
-      position: relative;
-    }
-
-    .volume-control input[type="range"] {
-      display: none;
-      position: absolute;
-      top: -40px;
-      left: -30px;
-      width: 100px;
-      appearance: none;
-      height: 4px;
-      border-radius: 5px;
-      background: #a64dff;
-    }
-
-    .volume-control:hover input[type="range"] {
-      display: block;
-    }
-
-    .hearts {
+    .corazones {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
-      background-image: url('https://i.imgur.com/6R5ZDbp.png');
+      background-image: url('https://i.imgur.com/6Y6Pf1L.png');
       background-repeat: repeat;
-      opacity: 0.1;
+      opacity: 0.05;
       z-index: -1;
     }
 
-    @media (max-width: 600px) {
-      .music-player {
-        width: 90%;
-        bottom: 1em;
-        top: auto;
-        right: 5%;
-        flex-direction: row;
-        justify-content: space-around;
-      }
-      .music-player img {
-        width: 60px;
-        height: 60px;
-      }
-      .music-controls {
-        flex-direction: row;
-      }
+    header {
+      text-align: center;
+      padding: 50px 20px 20px;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      color: #a259ff;
+      text-shadow: none;
+    }
+
+    p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
+
+    .botones {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 30px 0;
+    }
+
+    .botones button {
+      background-color: #d291fa;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      padding: 15px 25px;
+      margin: 10px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .botones button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .modo-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #d291fa;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .reproductor {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      width: 250px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .reproductor.dark-mode {
+      background: rgba(0,0,0,0.2);
+    }
+
+    .reproductor img {
+      width: 100px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .titulo {
+      font-weight: bold;
+    }
+
+    .barra {
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    .controles {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .controles button {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    .volumen {
+      position: relative;
+    }
+
+    .volumen input {
+      display: none;
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .volumen:hover input {
+      display: block;
     }
   </style>
 </head>
 <body>
-  <div class="hearts"></div>
+  <div class="corazones"></div>
+  <header>
+    <h1>Feliz primer mes</h1>
+    <p>Gracias por este tiempo tan bonito mi amor <i class="fa-solid fa-heart"></i></p>
+  </header>
 
-  <div class="music-player">
-    <img src="audio/cover.jpg" alt="Portada" id="album-art">
-    <div class="track-info">
-      <strong>Es Por Ti</strong> <br> Juanes
-    </div>
-    <div class="progress-container">
-      <div class="progress" id="progress-bar"></div>
-    </div>
-    <div class="music-controls">
-      <button onclick="togglePlayPause()"><i class="fas fa-play" id="play-icon"></i></button>
-      <button onclick="stopMusic()"><i class="fas fa-stop"></i></button>
-      <div class="volume-control">
-        <i class="fas fa-volume-up" id="volume-icon" onclick="toggleMute()"></i>
-        <input type="range" min="0" max="1" step="0.01" value="0.5" id="volume-slider">
+  <div class="botones">
+    <button>Cómo me enamoré de ti</button>
+    <button>Poema que nunca te mostré</button>
+    <button>Si te sientes mal, aplasta aquí</button>
+    <button>Mis promesas para ti</button>
+    <button>Frases que me recuerdan a ti</button>
+  </div>
+
+  <div class="reproductor" id="reproductor">
+    <img src="https://i.imgur.com/Vz0T1ao.png" alt="Portada">
+    <div class="titulo">Es Por Ti<br><small>Juanes</small></div>
+    <input class="barra" type="range" value="0">
+    <div class="controles">
+      <button id="play"><i class="fa-solid fa-play"></i></button>
+      <button id="stop"><i class="fa-solid fa-stop"></i></button>
+      <div class="volumen">
+        <button id="mute"><i class="fa-solid fa-volume-high"></i></button>
+        <input type="range" min="0" max="1" step="0.01" value="1" id="volRange">
       </div>
     </div>
-    <audio id="background-music" loop>
-      <source src="audio/esporti.mp3" type="audio/mp3">
-    </audio>
   </div>
 
-  <h1>Feliz primer mes</h1>
-  <p>Gracias por este tiempo tan bonito mi amor 💜</p>
-
-  <div class="button-container">
-    <a href="enamore.html" class="button">Cómo me enamoré de ti</a>
-    <a href="poema.html" class="button">Poema que nunca te mostré</a>
-    <a href="sentir.html" class="button">Si te sientes mal, aplasta aquí</a>
-    <a href="promesas.html" class="button">Mis promesas para ti</a>
-    <a href="frases.html" class="button">Frases que me recuerdan a ti</a>
-  </div>
-
-  <button class="toggle-mode" onclick="toggleMode()">
-    <i class="fas fa-moon" id="mode-icon"></i>
-  </button>
+  <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
 
   <script>
-    const audio = document.getElementById("background-music");
-    const playIcon = document.getElementById("play-icon");
-    const albumArt = document.getElementById("album-art");
-    const progressBar = document.getElementById("progress-bar");
-    const volumeSlider = document.getElementById("volume-slider");
-    const volumeIcon = document.getElementById("volume-icon");
-    const modeIcon = document.getElementById("mode-icon");
+    const body = document.body;
+    const modoBtn = document.getElementById('modo-btn');
+    const reproductor = document.getElementById('reproductor');
+    const playBtn = document.getElementById('play');
+    const stopBtn = document.getElementById('stop');
+    const muteBtn = document.getElementById('mute');
+    const volRange = document.getElementById('volRange');
 
+    let audio = new Audio('audio/tu-cancion.mp3');
     let isMuted = false;
 
-    function togglePlayPause() {
-      if (audio.paused) {
-        audio.play();
-        playIcon.classList.replace("fa-play", "fa-pause");
-        albumArt.style.animationPlayState = 'running';
-      } else {
-        audio.pause();
-        playIcon.classList.replace("fa-pause", "fa-play");
-        albumArt.style.animationPlayState = 'paused';
-      }
-    }
-
-    function stopMusic() {
-      audio.pause();
-      audio.currentTime = 0;
-      playIcon.classList.replace("fa-pause", "fa-play");
-      albumArt.style.animationPlayState = 'paused';
-    }
-
-    audio.ontimeupdate = () => {
-      const progress = (audio.currentTime / audio.duration) * 100;
-      progressBar.style.width = progress + "%";
-    };
-
-    volumeSlider.addEventListener("input", (e) => {
-      audio.volume = e.target.value;
-      if (audio.volume === 0) {
-        volumeIcon.classList.replace("fa-volume-up", "fa-volume-mute");
-      } else {
-        volumeIcon.classList.replace("fa-volume-mute", "fa-volume-up");
-      }
+    modoBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      reproductor.classList.toggle('dark-mode');
+      modoBtn.innerHTML = body.classList.contains('dark-mode') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
     });
 
-    function toggleMute() {
+    playBtn.addEventListener('click', () => {
+      audio.play();
+    });
+
+    stopBtn.addEventListener('click', () => {
+      audio.pause();
+      audio.currentTime = 0;
+    });
+
+    muteBtn.addEventListener('click', () => {
       isMuted = !isMuted;
       audio.muted = isMuted;
-      volumeIcon.classList.toggle("fa-volume-mute", isMuted);
-      volumeIcon.classList.toggle("fa-volume-up", !isMuted);
-    }
+      muteBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
+    });
 
-    function toggleMode() {
-      document.body.classList.toggle('dark-mode');
-      modeIcon.classList.toggle('fa-moon');
-      modeIcon.classList.toggle('fa-sun');
-    }
+    volRange.addEventListener('input', () => {
+      audio.volume = volRange.value;
+    });
   </script>
 </body>
 </html>
