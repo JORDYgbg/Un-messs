@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feliz Primer Mes</title>
-  <!-- Tipografías -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
     body {
@@ -57,11 +56,6 @@
       box-shadow: 0px 8px 14px rgba(150, 90, 190, 0.6);
     }
 
-    a.button:active {
-      transform: scale(0.97);
-      box-shadow: 0px 4px 8px rgba(150, 90, 190, 0.4);
-    }
-
     .toggle-mode {
       margin-top: 3em;
       padding: 0.6em 1.2em;
@@ -80,11 +74,6 @@
       transform: scale(1.05);
     }
 
-    .toggle-mode:active {
-      transform: scale(0.97);
-    }
-
-    /* Dark mode */
     .dark-mode {
       background: #1f1f1f;
       color: #f1f1f1;
@@ -95,43 +84,26 @@
       text-shadow: 2px 2px 6px #000;
     }
 
-    .dark-mode p {
-      color: #e6ccff;
-      text-shadow: 1px 1px 4px #000;
-    }
-
-    .dark-mode a.button {
-      background-color: #5a5a5a;
-      box-shadow: 0px 4px 8px rgba(0,0,0,0.5);
-    }
-
-    .dark-mode a.button:hover {
-      background-color: #444;
-      box-shadow: 0px 6px 12px rgba(0,0,0,0.6);
-    }
-
-    /* Reproductor musical elegante */
     .music-player {
       position: fixed;
       top: 1em;
       right: 1em;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      padding: 1em;
+      border-radius: 20px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+      z-index: 999;
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color: rgba(255, 255, 255, 0.2);
-      padding: 1em;
-      border-radius: 15px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(8px);
-      z-index: 999;
     }
 
     .music-player img {
-      width: 80px;
-      height: 80px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       animation: spin 4s linear infinite;
-      margin-bottom: 0.5em;
     }
 
     @keyframes spin {
@@ -139,59 +111,83 @@
       100% { transform: rotate(360deg); }
     }
 
+    .track-info {
+      margin-top: 0.5em;
+      text-align: center;
+      font-size: 0.9em;
+      color: #6a2c91;
+    }
+
     .music-controls {
       display: flex;
+      align-items: center;
       gap: 0.5em;
-    }
-
-    .music-controls button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1.2em;
-      color: #5c2a7b;
-      transition: transform 0.2s;
-    }
-
-    .music-controls button:hover {
-      transform: scale(1.2);
-    }
-
-    .volume-control {
       margin-top: 0.5em;
     }
 
-    input[type=range] {
+    .music-controls button {
+      background: #e0b3ff;
+      border: none;
+      border-radius: 50%;
+      padding: 0.5em 0.7em;
+      font-size: 1.2em;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .music-controls button:hover {
+      transform: scale(1.1);
+      background: #c88aff;
+    }
+
+    .volume-wrapper {
+      position: relative;
+    }
+
+    .volume-slider {
+      display: none;
+      position: absolute;
+      bottom: -1.5em;
+      right: 0;
       width: 100px;
     }
 
-    .dark-mode .music-player {
-      background-color: rgba(50, 50, 50, 0.5);
+    .volume-wrapper:hover .volume-slider {
+      display: block;
     }
 
-    .dark-mode .music-controls button {
-      color: #e6ccff;
+    .progress-container {
+      width: 100%;
+      margin-top: 0.5em;
     }
 
-    .dark-mode input[type=range] {
-      background-color: #aaa;
+    input[type="range"] {
+      width: 100%;
     }
   </style>
 </head>
 <body>
-
-  <!-- Reproductor musical elegante -->
   <div class="music-player">
-    <img src="https://i.imgur.com/4M34hi2.png" alt="Disco girando" id="album-art" />
+    <img src="audio/cover.jpg" alt="Portada de la canción" id="album-art">
+    <div class="track-info">
+      <strong>Es Por Ti</strong><br>
+      Juanes
+    </div>
     <div class="music-controls">
-      <button onclick="togglePlayPause()">⏯</button>
+      <button onclick="togglePlayPause()">▶️</button>
       <button onclick="stopMusic()">⏹</button>
+      <div class="volume-wrapper">
+        <button>🔊</button>
+        <input type="range" min="0" max="1" step="0.01" id="volumeSlider" class="volume-slider">
+      </div>
     </div>
-    <div class="volume-control">
-      <input type="range" id="volumeRange" min="0" max="1" step="0.01" value="1">
+    <div class="progress-container">
+      <input type="range" id="progress" value="0" step="1">
     </div>
-    <audio id="background-music" loop>
-      <source src="audio/esporti.mp3" type="audio/mp3">
+    <audio id="background-music">
+      <source src="audio/Juanes - Es Por Ti (Letra).mp3" type="audio/mp3">
       Tu navegador no soporta audio HTML5.
     </audio>
   </div>
@@ -216,7 +212,8 @@
 
     const audio = document.getElementById("background-music");
     const albumArt = document.getElementById("album-art");
-    const volumeRange = document.getElementById("volumeRange");
+    const progress = document.getElementById("progress");
+    const volumeSlider = document.getElementById("volumeSlider");
 
     function togglePlayPause() {
       if (audio.paused) {
@@ -234,8 +231,17 @@
       albumArt.style.animationPlayState = 'paused';
     }
 
-    volumeRange.addEventListener('input', () => {
-      audio.volume = volumeRange.value;
+    audio.addEventListener("timeupdate", () => {
+      progress.max = audio.duration;
+      progress.value = audio.currentTime;
+    });
+
+    progress.addEventListener("input", () => {
+      audio.currentTime = progress.value;
+    });
+
+    volumeSlider.addEventListener("input", () => {
+      audio.volume = volumeSlider.value;
     });
   </script>
 </body>
