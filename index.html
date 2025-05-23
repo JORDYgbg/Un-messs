@@ -1,298 +1,185 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para ti ♥</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-1YCn9ZzFE6JzOxD7mBLvP2ECtQqz+UY2ohDylmxXezPZoy8xq0Ph/6dfyD4gV8zF6p6JP6Y/sB56oV7xgrrL8A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Feliz primer mes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(to bottom right, #e7c6ff, #f6d9ff);
-      color: #5c2a7b;
-      text-align: center;
-      transition: background 0.3s, color 0.3s;
+      background: linear-gradient(135deg, #f3e7ff, #fbeeff);
+      color: #333;
+      transition: background 0.5s, color 0.5s;
+      overflow-x: hidden;
     }
 
     .dark-mode {
-      background: #1e1e1e;
-      color: #f0e6f6;
+      background: linear-gradient(135deg, #1a1a2e, #2c2c54);
+      color: #fff;
     }
 
-    h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 4em;
-      margin: 1.5em 0 0.2em;
-      color: #a64dff;
-      text-shadow: 3px 3px 6px #dfbfff;
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: darkred;
+      clip-path: polygon(50% 0%, 61% 10%, 70% 20%, 75% 30%, 78% 40%, 80% 50%, 78% 60%, 75% 70%, 70% 80%, 61% 90%, 50% 100%, 39% 90%, 30% 80%, 25% 70%, 22% 60%, 20% 50%, 22% 40%, 25% 30%, 30% 20%, 39% 10%);
+      opacity: 0.2;
     }
 
-    p {
-      font-size: 1.2em;
-      margin: 1em 2em;
-      color: #6a2c91;
-      text-shadow: 1px 1px 2px #f3d9ff;
+    .titulo {
+      text-align: center;
+      font-size: 3rem;
+      font-family: 'Pacifico', cursive;
+      margin-top: 20px;
+      color: #9b59b6;
     }
 
-    .button-container {
-      margin-top: 2em;
-      display: flex;
-      flex-direction: column;
-      gap: 1em;
-      align-items: center;
+    .subtitulo {
+      text-align: center;
+      margin-bottom: 20px;
     }
 
-    a.button {
-      padding: 0.9em 1.6em;
-      text-decoration: none;
-      background-color: #c586e3;
-      color: white;
-      border-radius: 12px;
-      font-weight: bold;
-      box-shadow: 0px 6px 12px rgba(150, 90, 190, 0.5);
-      transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
-    }
-
-    a.button:hover {
-      background-color: #b372d4;
-      transform: scale(1.05);
-      box-shadow: 0px 8px 14px rgba(150, 90, 190, 0.6);
-    }
-
-    .toggle-mode {
-      position: fixed;
-      bottom: 1em;
-      right: 1em;
-      padding: 0.6em 1.2em;
-      font-size: 1em;
-      cursor: pointer;
-      background-color: #b276e8;
+    .boton {
+      display: block;
+      margin: 10px auto;
+      padding: 15px 25px;
       border: none;
-      color: white;
-      border-radius: 8px;
-      box-shadow: 0px 4px 6px rgba(178, 118, 232, 0.4);
-      transition: background 0.3s, transform 0.2s;
-      z-index: 9999;
-    }
-
-    .toggle-mode:hover {
-      background-color: #955ccc;
-      transform: scale(1.05);
-    }
-
-    .music-player {
-      position: fixed;
-      top: 1em;
-      right: 1em;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 1em;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 280px;
-      z-index: 998;
-    }
-
-    .dark-mode .music-player {
-      background: rgba(30, 30, 30, 0.4);
-    }
-
-    .music-player img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      animation: spin 4s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .music-controls {
-      display: flex;
-      align-items: center;
-      gap: 1em;
-      margin-top: 1em;
-    }
-
-    .music-controls button {
-      background: transparent;
-      border: none;
-      font-size: 1.4em;
-      cursor: pointer;
-      color: #5c2a7b;
-    }
-
-    .dark-mode .music-controls button {
-      color: white;
-    }
-
-    .track-info {
-      font-size: 0.9em;
-      margin-top: 0.6em;
-    }
-
-    .progress-container {
-      width: 100%;
-      height: 6px;
-      background: #ddd;
       border-radius: 10px;
-      overflow: hidden;
-      margin-top: 0.6em;
-    }
-
-    .progress {
-      height: 100%;
-      background: #a64dff;
-      width: 0%;
-    }
-
-    input[type=range] {
-      -webkit-appearance: none;
-      width: 100px;
-      height: 4px;
-      background: #a64dff;
-      border-radius: 5px;
-      outline: none;
-    }
-
-    input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 12px;
-      height: 12px;
-      background: #fff;
-      border-radius: 50%;
+      background-color: #d49bf5;
+      color: white;
+      font-size: 16px;
       cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s;
     }
 
-    .volume-control {
+    .boton:hover {
+      background-color: #c084e3;
+    }
+
+    .player {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 250px;
+      background: white;
+      border-radius: 20px;
+      padding: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      z-index: 10;
+    }
+
+    .player img {
+      width: 100px;
+      border-radius: 50%;
+    }
+
+    .controles {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      color: #555;
+    }
+
+    .volumen-slider {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    #modo-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #e0b3ff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
       display: flex;
       align-items: center;
-      gap: 0.5em;
-    }
-
-    @media (max-width: 600px) {
-      .music-player {
-        width: 90%;
-        bottom: 1em;
-        top: auto;
-        right: 5%;
-        flex-direction: row;
-        justify-content: space-around;
-      }
-
-      .music-player img {
-        width: 60px;
-        height: 60px;
-      }
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     }
   </style>
 </head>
+
 <body>
+  <div class="titulo">Feliz primer mes</div>
+  <div class="subtitulo">Gracias por este tiempo tan bonito mi amor 💜</div>
 
-  <div class="music-player">
-    <img src="audio/cover.jpg" alt="Portada" id="album-art">
-    <div class="track-info">
-      <strong>Es Por Ti</strong><br>Juanes
+  <button class="boton">Cómo me enamoré de ti</button>
+  <button class="boton">Poema que nunca te mostré</button>
+  <button class="boton">Si te sientes mal, aplasta aquí</button>
+  <button class="boton">Mis promesas para ti</button>
+  <button class="boton">Frases que me recuerdan a ti</button>
+
+  <div class="player">
+    <img src="https://upload.wikimedia.org/wikipedia/en/e/ed/Juanes_Es_Por_Ti.jpg" alt="cover">
+    <div>Es Por Ti</div>
+    <div>Juanes</div>
+    <div class="controles">
+      <button class="icon-btn" onclick="audio.play()"><i class="fas fa-play"></i></button>
+      <button class="icon-btn" onclick="audio.pause()"><i class="fas fa-stop"></i></button>
+      <button id="mute-btn" class="icon-btn"><i class="fas fa-volume-up"></i></button>
     </div>
-    <div class="progress-container">
-      <div class="progress" id="progress-bar"></div>
-    </div>
-    <div class="music-controls">
-      <button onclick="togglePlayPause()"><i class="fas fa-play" id="play-icon"></i></button>
-      <button onclick="stopMusic()"><i class="fas fa-stop"></i></button>
-      <div class="volume-control">
-        <button onclick="toggleMute()" id="mute-button"><i class="fas fa-volume-up"></i></button>
-        <input type="range" min="0" max="1" step="0.01" value="0.5" id="volume-slider">
-      </div>
-    </div>
-    <audio id="background-music" loop>
-      <source src="audio/esporti.mp3" type="audio/mp3">
-    </audio>
+    <input type="range" class="volumen-slider" id="volume" min="0" max="1" step="0.01">
+    <audio id="audio" src="audio/esporti.mp3"></audio>
   </div>
 
-  <h1>Feliz primer mes</h1>
-  <p>Gracias por este tiempo tan bonito mi amor 💜</p>
-
-  <div class="button-container">
-    <a href="enamore.html" class="button">Cómo me enamoré de ti</a>
-    <a href="poema.html" class="button">Poema que nunca te mostré</a>
-    <a href="sentir.html" class="button">Si te sientes mal, aplasta aquí</a>
-    <a href="promesas.html" class="button">Mis promesas para ti</a>
-    <a href="frases.html" class="button">Frases que me recuerdan a ti</a>
-  </div>
-
-  <button class="toggle-mode" onclick="toggleMode()">🌙</button>
+  <button id="modo-btn"><i class="fas fa-moon"></i></button>
 
   <script>
-    const audio = document.getElementById("background-music");
-    const playIcon = document.getElementById("play-icon");
-    const albumArt = document.getElementById("album-art");
-    const progressBar = document.getElementById("progress-bar");
-    const volumeSlider = document.getElementById("volume-slider");
-    const muteButton = document.getElementById("mute-button");
-    let isMuted = false;
-    let lastVolume = volumeSlider.value;
+    const body = document.body;
+    const modoBtn = document.getElementById("modo-btn");
+    const audio = document.getElementById("audio");
+    const volumeSlider = document.getElementById("volume");
+    const muteBtn = document.getElementById("mute-btn");
+    const muteIcon = muteBtn.querySelector("i");
 
-    function togglePlayPause() {
-      if (audio.paused) {
-        audio.play();
-        playIcon.classList.replace("fa-play", "fa-pause");
-        albumArt.style.animationPlayState = 'running';
-      } else {
-        audio.pause();
-        playIcon.classList.replace("fa-pause", "fa-play");
-        albumArt.style.animationPlayState = 'paused';
-      }
-    }
-
-    function stopMusic() {
-      audio.pause();
-      audio.currentTime = 0;
-      playIcon.classList.replace("fa-pause", "fa-play");
-      albumArt.style.animationPlayState = 'paused';
-    }
-
-    function toggleMute() {
-      if (!isMuted) {
-        lastVolume = volumeSlider.value;
-        audio.volume = 0;
-        volumeSlider.value = 0;
-        muteButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
-        isMuted = true;
-      } else {
-        audio.volume = lastVolume;
-        volumeSlider.value = lastVolume;
-        muteButton.innerHTML = '<i class="fas fa-volume-up"></i>';
-        isMuted = false;
-      }
-    }
-
-    volumeSlider.addEventListener("input", (e) => {
-      audio.volume = e.target.value;
-      if (e.target.value == 0) {
-        muteButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
-        isMuted = true;
-      } else {
-        muteButton.innerHTML = '<i class="fas fa-volume-up"></i>';
-        isMuted = false;
-      }
+    modoBtn.addEventListener("click", () => {
+      body.classList.toggle("dark-mode");
+      modoBtn.innerHTML = body.classList.contains("dark-mode")
+        ? '<i class="fas fa-sun"></i>'
+        : '<i class="fas fa-moon"></i>';
     });
 
-    audio.ontimeupdate = () => {
-      const progress = (audio.currentTime / audio.duration) * 100;
-      progressBar.style.width = progress + "%";
-    };
+    volumeSlider.addEventListener("input", () => {
+      audio.volume = volumeSlider.value;
+    });
 
-    function toggleMode() {
-      document.body.classList.toggle('dark-mode');
+    muteBtn.addEventListener("click", () => {
+      audio.muted = !audio.muted;
+      muteIcon.className = audio.muted ? "fas fa-volume-mute" : "fas fa-volume-up";
+    });
+
+    // Agrega corazones decorativos
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.top = Math.random() * 100 + "%";
+      heart.style.left = Math.random() * 100 + "%";
+      document.body.appendChild(heart);
     }
   </script>
 </body>
+
 </html>
