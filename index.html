@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feliz Primer Mes</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     body {
       margin: 0;
@@ -13,7 +14,6 @@
       background: linear-gradient(to bottom right, #e7c6ff, #f6d9ff);
       color: #5c2a7b;
       text-align: center;
-      transition: background 0.4s, color 0.4s;
     }
 
     h1 {
@@ -74,29 +74,19 @@
       transform: scale(1.05);
     }
 
-    .dark-mode {
-      background: #1f1f1f;
-      color: #f1f1f1;
-    }
-
-    .dark-mode h1 {
-      color: #d3b3ff;
-      text-shadow: 2px 2px 6px #000;
-    }
-
     .music-player {
       position: fixed;
       top: 1em;
       right: 1em;
-      background: rgba(255,255,255,0.2);
-      backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.2);
       padding: 1em;
       border-radius: 20px;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-      z-index: 999;
+      backdrop-filter: blur(10px);
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 280px;
+      z-index: 999;
     }
 
     .music-player img {
@@ -111,84 +101,109 @@
       100% { transform: rotate(360deg); }
     }
 
-    .track-info {
-      margin-top: 0.5em;
-      text-align: center;
-      font-size: 0.9em;
-      color: #6a2c91;
-    }
-
     .music-controls {
       display: flex;
       align-items: center;
-      gap: 0.5em;
-      margin-top: 0.5em;
+      gap: 1em;
+      margin: 1em 0 0.5em;
     }
 
     .music-controls button {
-      background: #e0b3ff;
+      background: #fff;
       border: none;
+      padding: 0.5em;
       border-radius: 50%;
-      padding: 0.5em 0.7em;
-      font-size: 1.2em;
-      color: white;
+      font-size: 1.4em;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       cursor: pointer;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-      transition: transform 0.2s, background 0.3s;
+      transition: transform 0.2s;
     }
 
     .music-controls button:hover {
       transform: scale(1.1);
-      background: #c88aff;
     }
 
-    .volume-wrapper {
-      position: relative;
-    }
-
-    .volume-slider {
-      display: none;
-      position: absolute;
-      bottom: -1.5em;
-      right: 0;
-      width: 100px;
-    }
-
-    .volume-wrapper:hover .volume-slider {
-      display: block;
+    .track-info {
+      font-size: 0.9em;
+      margin-bottom: 0.5em;
     }
 
     .progress-container {
       width: 100%;
-      margin-top: 0.5em;
+      height: 6px;
+      background: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 0.5em;
     }
 
-    input[type="range"] {
-      width: 100%;
+    .progress {
+      height: 100%;
+      background: #a64dff;
+      width: 0%;
+    }
+
+    .volume-control {
+      position: relative;
+    }
+
+    .volume-slider {
+      width: 100px;
+      appearance: none;
+      height: 4px;
+      border-radius: 5px;
+      background: #a64dff;
+      outline: none;
+      display: none;
+      position: absolute;
+      top: -40px;
+      left: -30px;
+    }
+
+    .volume-control:hover .volume-slider {
+      display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .music-player {
+        width: 90%;
+        bottom: 1em;
+        top: auto;
+        right: 5%;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+      .music-player img {
+        width: 60px;
+        height: 60px;
+      }
+      .music-controls {
+        flex-direction: row;
+      }
     }
   </style>
 </head>
 <body>
+
   <div class="music-player">
-    <img src="audio/cover.jpg" alt="Portada de la canción" id="album-art">
+    <img src="cover/portada.jpg" alt="Portada" id="album-art">
     <div class="track-info">
-      <strong>Es Por Ti</strong><br>
-      Juanes
-    </div>
-    <div class="music-controls">
-      <button onclick="togglePlayPause()">▶️</button>
-      <button onclick="stopMusic()">⏹</button>
-      <div class="volume-wrapper">
-        <button>🔊</button>
-        <input type="range" min="0" max="1" step="0.01" id="volumeSlider" class="volume-slider">
-      </div>
+      <strong>Es Por Ti</strong> <br> Juanes
     </div>
     <div class="progress-container">
-      <input type="range" id="progress" value="0" step="1">
+      <div class="progress" id="progress-bar"></div>
     </div>
-    <audio id="background-music">
+    <div class="music-controls">
+      <button onclick="togglePlayPause()"><i class="fas fa-play" id="play-icon"></i></button>
+      <button onclick="stopMusic()"><i class="fas fa-stop"></i></button>
+      <div class="volume-control">
+        <i class="fas fa-volume-up"></i>
+        <input type="range" min="0" max="1" step="0.01" value="0.5" id="volume-slider" class="volume-slider">
+      </div>
+    </div>
+    <audio id="background-music" loop>
       <source src="audio/esporti.mp3" type="audio/mp3">
-      Tu navegador no soporta audio HTML5.
     </audio>
   </div>
 
@@ -206,21 +221,20 @@
   <button class="toggle-mode" onclick="toggleMode()">Cambiar modo</button>
 
   <script>
-    function toggleMode() {
-      document.body.classList.toggle('dark-mode');
-    }
-
     const audio = document.getElementById("background-music");
+    const playIcon = document.getElementById("play-icon");
     const albumArt = document.getElementById("album-art");
-    const progress = document.getElementById("progress");
-    const volumeSlider = document.getElementById("volumeSlider");
+    const progressBar = document.getElementById("progress-bar");
+    const volumeSlider = document.getElementById("volume-slider");
 
     function togglePlayPause() {
       if (audio.paused) {
         audio.play();
+        playIcon.classList.replace("fa-play", "fa-pause");
         albumArt.style.animationPlayState = 'running';
       } else {
         audio.pause();
+        playIcon.classList.replace("fa-pause", "fa-play");
         albumArt.style.animationPlayState = 'paused';
       }
     }
@@ -228,21 +242,23 @@
     function stopMusic() {
       audio.pause();
       audio.currentTime = 0;
+      playIcon.classList.replace("fa-pause", "fa-play");
       albumArt.style.animationPlayState = 'paused';
     }
 
-    audio.addEventListener("timeupdate", () => {
-      progress.max = audio.duration;
-      progress.value = audio.currentTime;
+    audio.ontimeupdate = () => {
+      const progress = (audio.currentTime / audio.duration) * 100;
+      progressBar.style.width = progress + "%";
+    };
+
+    volumeSlider.addEventListener("input", (e) => {
+      audio.volume = e.target.value;
     });
 
-    progress.addEventListener("input", () => {
-      audio.currentTime = progress.value;
-    });
-
-    volumeSlider.addEventListener("input", () => {
-      audio.volume = volumeSlider.value;
-    });
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
   </script>
+
 </body>
 </html>
