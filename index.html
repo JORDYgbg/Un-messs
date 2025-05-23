@@ -15,14 +15,14 @@
 
     body {
       font-family: 'Quicksand', sans-serif;
-      background-color: #eac8ff;
+      background: linear-gradient(135deg, #eac8ff, #d291fa);
       color: #333;
       transition: background 0.3s, color 0.3s;
       overflow-x: hidden;
     }
 
     body.dark-mode {
-      background-color: #121212;
+      background: linear-gradient(135deg, #000000, #2e2e2e);
       color: #f0f0f0;
     }
 
@@ -153,6 +153,24 @@
       background: #a259ff;
       border-radius: 50%;
     }
+
+    section {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    section h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #a259ff;
+    }
+
+    section p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
   </style>
 </head>
 <body>
@@ -162,13 +180,35 @@
   </header>
 
   <div class="botones">
-    <button onclick="alert('Aquí irá tu historia de amor.')">Cómo me enamoré de ti</button>
-    <button onclick="alert('Aquí irá tu poema.')">Poema que nunca te mostré</button>
-    <button onclick="alert('Todo va a estar bien, mi amor ❤️')">Si te sientes mal, aplasta aquí</button>
-    <button onclick="alert('Promesas para ti, solo para ti.')">Mis promesas para ti</button>
-    <button onclick="alert('Siempre pienso en ti con estas frases.')">Frases que me recuerdan a ti</button>
+    <button onclick="location.href='#seccion1'">Cómo me enamoré de ti</button>
+    <button onclick="location.href='#seccion2'">Poema que nunca te mostré</button>
+    <button onclick="location.href='#seccion3'">Si te sientes mal, aplasta aquí</button>
+    <button onclick="location.href='#seccion4'">Mis promesas para ti</button>
+    <button onclick="location.href='#seccion5'">Frases que me recuerdan a ti</button>
   </div>
 
+  <section id="seccion1">
+    <h2>Cómo me enamoré de ti</h2>
+    <p>Desde el primer momento que hablamos, supe que eras especial. Cada día contigo ha sido una aventura hermosa.</p>
+  </section>
+  <section id="seccion2">
+    <h2>Poema que nunca te mostré</h2>
+    <p>Tu risa es mi melodía, tu mirada mi sol. Con cada latido, mi amor por ti es mayor.</p>
+  </section>
+  <section id="seccion3">
+    <h2>Si te sientes mal</h2>
+    <p>Recuerda que aquí estoy para ti, en las buenas y en las malas. Te amo y siempre lo haré ❤️</p>
+  </section>
+  <section id="seccion4">
+    <h2>Mis promesas para ti</h2>
+    <p>Prometo cuidarte, escucharte, apoyarte y amarte en cada etapa de nuestras vidas.</p>
+  </section>
+  <section id="seccion5">
+    <h2>Frases que me recuerdan a ti</h2>
+    <p>“Contigo, todo es mejor.” – “Eres mi lugar favorito.” – “Cada día contigo es un regalo.”</p>
+  </section>
+
+  <!-- reproductor y modo-btn se mantienen igual -->
   <div class="reproductor" id="reproductor">
     <img src="audio/cover.jpg" alt="Portada" id="portada">
     <div class="titulo">Es Por Ti<br><small>Juanes</small></div>
