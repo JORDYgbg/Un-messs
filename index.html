@@ -57,6 +57,11 @@
       box-shadow: 0px 8px 14px rgba(150, 90, 190, 0.6);
     }
 
+    a.button:active {
+      transform: scale(0.97);
+      box-shadow: 0px 4px 8px rgba(150, 90, 190, 0.4);
+    }
+
     .toggle-mode {
       margin-top: 3em;
       padding: 0.6em 1.2em;
@@ -75,7 +80,11 @@
       transform: scale(1.05);
     }
 
-    /* Dark Mode */
+    .toggle-mode:active {
+      transform: scale(0.97);
+    }
+
+    /* Dark mode */
     .dark-mode {
       background: #1f1f1f;
       color: #f1f1f1;
@@ -96,7 +105,12 @@
       box-shadow: 0px 4px 8px rgba(0,0,0,0.5);
     }
 
-    /* Music player */
+    .dark-mode a.button:hover {
+      background-color: #444;
+      box-shadow: 0px 6px 12px rgba(0,0,0,0.6);
+    }
+
+    /* Reproductor musical elegante */
     .music-player {
       position: fixed;
       top: 1em;
@@ -128,7 +142,6 @@
     .music-controls {
       display: flex;
       gap: 0.5em;
-      margin-top: 0.5em;
     }
 
     .music-controls button {
@@ -144,7 +157,11 @@
       transform: scale(1.2);
     }
 
-    .music-controls input[type="range"] {
+    .volume-control {
+      margin-top: 0.5em;
+    }
+
+    input[type=range] {
       width: 100px;
     }
 
@@ -155,18 +172,25 @@
     .dark-mode .music-controls button {
       color: #e6ccff;
     }
+
+    .dark-mode input[type=range] {
+      background-color: #aaa;
+    }
   </style>
 </head>
 <body>
 
+  <!-- Reproductor musical elegante -->
   <div class="music-player">
     <img src="https://i.imgur.com/4M34hi2.png" alt="Disco girando" id="album-art" />
     <div class="music-controls">
       <button onclick="togglePlayPause()">⏯</button>
       <button onclick="stopMusic()">⏹</button>
-      <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.5">
-    <div>
-    <audio id="audioPlayer" controls style="width: 80%;">
+    </div>
+    <div class="volume-control">
+      <input type="range" id="volumeRange" min="0" max="1" step="0.01" value="1">
+    </div>
+    <audio id="background-music" loop>
       <source src="audio/esporti.mp3" type="audio/mp3">
       Tu navegador no soporta audio HTML5.
     </audio>
@@ -192,7 +216,7 @@
 
     const audio = document.getElementById("background-music");
     const albumArt = document.getElementById("album-art");
-    const volumeControl = document.getElementById("volumeControl");
+    const volumeRange = document.getElementById("volumeRange");
 
     function togglePlayPause() {
       if (audio.paused) {
@@ -210,14 +234,9 @@
       albumArt.style.animationPlayState = 'paused';
     }
 
-    volumeControl.addEventListener('input', () => {
-      audio.volume = volumeControl.value;
+    volumeRange.addEventListener('input', () => {
+      audio.volume = volumeRange.value;
     });
-
-    // Inicia en pausa para evitar errores de autoplay
-    audio.volume = 0.5;
-    albumArt.style.animationPlayState = 'paused';
   </script>
-
 </body>
 </html>
