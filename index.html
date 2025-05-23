@@ -7,6 +7,60 @@
   <!-- Tipografías -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
+.music-player {
+      position: fixed;
+      top: 1em;
+      right: 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 1em;
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(8px);
+      z-index: 999;
+    }
+
+      .music-player img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      animation: spin 4s linear infinite;
+      margin-bottom: 0.5em;
+    }
+
+      @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+      .music-controls {
+      display: flex;
+      gap: 0.5em;
+    }
+
+      .music-controls button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2em;
+      color: #5c2a7b;
+      transition: transform 0.2s;
+    }
+
+      .music-controls button:hover {
+      transform: scale(1.2);
+    }
+
+      .dark-mode .music-player {
+      background-color: rgba(50, 50, 50, 0.5);
+    }
+
+      .dark-mode .music-controls button {
+      color: #e6ccff;
+    }
+
     body {
       margin: 0;
       padding: 0;
@@ -145,5 +199,42 @@
       document.body.classList.toggle('dark-mode');
     }
   </script>
+  <script>
+  function toggleMode() {
+    document.body.classList.toggle('dark-mode');
+  }
+
+  const audio = document.getElementById("background-music");
+  const albumArt = document.getElementById("album-art");
+
+  function togglePlayPause() {
+    if (audio.paused) {
+      audio.play();
+      albumArt.style.animationPlayState = 'running';
+    } else {
+      audio.pause();
+      albumArt.style.animationPlayState = 'paused';
+    }
+  }
+
+  function stopMusic() {
+    audio.pause();
+    audio.currentTime = 0;
+    albumArt.style.animationPlayState = 'paused';
+  }
+</script>
+
+  <div class="music-player">
+  <img src="https://i.imgur.com/4M34hi2.png" alt="Disco girando" id="album-art" />
+  <div class="music-controls">
+    <button onclick="togglePlayPause()">⏯</button>
+    <button onclick="stopMusic()">⏹</button>
+  </div>
+  <audio id="background-music" loop>
+    <source src="https://www.dropbox.com/s/tu3r91cbn8lo1n6/Es%20Por%20Ti%20-%20Juanes.mp3?dl=1" type="audio/mp3">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+</div>
+
 </body>
 </html>
