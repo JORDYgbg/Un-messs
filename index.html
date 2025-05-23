@@ -4,24 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feliz Primer Mes</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Tipografías -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(to bottom right, #f3d1ff, #fbe4ff);
+      background: linear-gradient(to bottom right, #e7c6ff, #f6d9ff);
       color: #5c2a7b;
       text-align: center;
       transition: background 0.4s, color 0.4s;
     }
 
     h1 {
-      font-family: 'Quicksand', sans-serif;
-      font-size: 3em;
-      margin-top: 1em;
+      font-family: 'Dancing Script', cursive;
+      font-size: 4em;
+      margin: 1.5em 0 0.2em;
       color: #a64dff;
-      text-shadow: 2px 2px 4px #e8c7ff;
+      text-shadow: 3px 3px 6px #dfbfff;
     }
 
     p {
@@ -40,27 +41,50 @@
     }
 
     a.button {
-      padding: 0.8em 1.5em;
+      padding: 0.9em 1.6em;
       text-decoration: none;
-      background-color: #b066d1;
+      background-color: #c586e3;
       color: white;
-      border-radius: 10px;
+      border-radius: 12px;
       font-weight: bold;
-      box-shadow: 0px 4px 8px rgba(176, 102, 209, 0.5);
+      box-shadow: 0px 6px 12px rgba(150, 90, 190, 0.5);
       transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
     }
 
     a.button:hover {
-      background-color: #9d4cc2;
+      background-color: #b372d4;
       transform: scale(1.05);
-      box-shadow: 0px 6px 12px rgba(157, 76, 194, 0.6);
+      box-shadow: 0px 8px 14px rgba(150, 90, 190, 0.6);
     }
 
     a.button:active {
-      transform: scale(0.98);
-      box-shadow: 0px 2px 6px rgba(157, 76, 194, 0.6);
+      transform: scale(0.97);
+      box-shadow: 0px 4px 8px rgba(150, 90, 190, 0.4);
     }
 
+    .toggle-mode {
+      margin-top: 3em;
+      padding: 0.6em 1.2em;
+      font-size: 1em;
+      cursor: pointer;
+      background-color: #b276e8;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0px 4px 6px rgba(178, 118, 232, 0.4);
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .toggle-mode:hover {
+      background-color: #955ccc;
+      transform: scale(1.05);
+    }
+
+    .toggle-mode:active {
+      transform: scale(0.97);
+    }
+
+    /* Dark mode */
     .dark-mode {
       background: #1f1f1f;
       color: #f1f1f1;
@@ -86,30 +110,23 @@
       box-shadow: 0px 6px 12px rgba(0,0,0,0.6);
     }
 
-    .toggle-mode {
-      margin-top: 2em;
-      padding: 0.5em 1em;
-      font-size: 1em;
-      cursor: pointer;
-      background-color: #b276e8;
-      border: none;
-      color: white;
-      border-radius: 8px;
-      box-shadow: 0px 4px 6px rgba(178, 118, 232, 0.4);
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    .toggle-mode:hover {
-      background-color: #955ccc;
-      transform: scale(1.05);
-    }
-
-    .toggle-mode:active {
-      transform: scale(0.98);
+    /* Reproductor música */
+    .audio-player {
+      position: absolute;
+      top: 1em;
+      right: 1em;
     }
   </style>
 </head>
 <body>
+  <!-- Reproductor musical -->
+  <div class="audio-player">
+    <audio controls autoplay loop>
+      <source src="tu-cancion.mp3" type="audio/mp3">
+      Tu navegador no soporta audio HTML5.
+    </audio>
+  </div>
+
   <h1>Feliz primer mes</h1>
   <p>Gracias por este tiempo tan bonito, te hice esto con mucho amor 💜</p>
 
