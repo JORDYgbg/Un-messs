@@ -4,10 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feliz Primer Mes</title>
-  <!-- Tipografías -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
-.music-player {
+    .music-player {
       position: fixed;
       top: 1em;
       right: 1em;
@@ -22,7 +21,7 @@
       z-index: 999;
     }
 
-      .music-player img {
+    .music-player img {
       width: 80px;
       height: 80px;
       border-radius: 50%;
@@ -30,17 +29,18 @@
       margin-bottom: 0.5em;
     }
 
-      @keyframes spin {
+    @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
 
-      .music-controls {
+    .music-controls {
       display: flex;
       gap: 0.5em;
+      margin-bottom: 0.5em;
     }
 
-      .music-controls button {
+    .music-controls button {
       background: none;
       border: none;
       cursor: pointer;
@@ -49,16 +49,32 @@
       transition: transform 0.2s;
     }
 
-      .music-controls button:hover {
+    .music-controls button:hover {
       transform: scale(1.2);
     }
 
-      .dark-mode .music-player {
-      background-color: rgba(50, 50, 50, 0.5);
+    .volume-slider {
+      width: 100px;
+      -webkit-appearance: none;
+      height: 6px;
+      background: #b276e8;
+      border-radius: 5px;
+      outline: none;
+      margin-top: 0.5em;
     }
 
-      .dark-mode .music-controls button {
-      color: #e6ccff;
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #5c2a7b;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .volume-slider::-webkit-slider-thumb:hover {
+      background: #a64dff;
     }
 
     body {
@@ -138,7 +154,7 @@
       transform: scale(0.97);
     }
 
-    /* Dark mode */
+    /* Modo oscuro */
     .dark-mode {
       background: #1f1f1f;
       color: #f1f1f1;
@@ -163,24 +179,9 @@
       background-color: #444;
       box-shadow: 0px 6px 12px rgba(0,0,0,0.6);
     }
-
-    /* Reproductor música */
-    .audio-player {
-      position: absolute;
-      top: 1em;
-      right: 1em;
-    }
   </style>
 </head>
 <body>
-  <!-- Reproductor musical -->
-  <div class="audio-player">
-    <audio controls autoplay loop>
-      <source src="tu-cancion.mp3" type="audio/mp3">
-      Tu navegador no soporta audio HTML5.
-    </audio>
-  </div>
-
   <h1>Feliz primer mes</h1>
   <p>Gracias por este tiempo tan bonito, te hice esto con mucho amor 💜</p>
 
@@ -194,47 +195,51 @@
 
   <button class="toggle-mode" onclick="toggleMode()">Cambiar modo</button>
 
+  <div class="music-player">
+    <img src="https://i.imgur.com/4M34hi2.png" alt="Disco girando" id="album-art" />
+    <div class="music-controls">
+      <button onclick="togglePlayPause()">⏯</button>
+      <button onclick="stopMusic()">⏹</button>
+    </div>
+    <input type="range" min="0" max="1" step="0.01" class="volume-slider" id="volumeSlider" />
+    <audio id="background-music" loop autoplay>
+      <source src="audio/esporti.mp3" type="audio/mp3">
+      Tu navegador no soporta audio HTML5.
+    </audio>
+  </div>
+
   <script>
     function toggleMode() {
       document.body.classList.toggle('dark-mode');
     }
-  </script>
-  <script>
-  function toggleMode() {
-    document.body.classList.toggle('dark-mode');
-  }
 
-  const audio = document.getElementById("background-music");
-  const albumArt = document.getElementById("album-art");
+    const audio = document.getElementById("background-music");
+    const albumArt = document.getElementById("album-art");
+    const volumeSlider = document.getElementById("volumeSlider");
 
-  function togglePlayPause() {
-    if (audio.paused) {
-      audio.play();
-      albumArt.style.animationPlayState = 'running';
-    } else {
+    function togglePlayPause() {
+      if (audio.paused) {
+        audio.play();
+        albumArt.style.animationPlayState = 'running';
+      } else {
+        audio.pause();
+        albumArt.style.animationPlayState = 'paused';
+      }
+    }
+
+    function stopMusic() {
       audio.pause();
+      audio.currentTime = 0;
       albumArt.style.animationPlayState = 'paused';
     }
-  }
 
-  function stopMusic() {
-    audio.pause();
-    audio.currentTime = 0;
-    albumArt.style.animationPlayState = 'paused';
-  }
-</script>
+    volumeSlider.addEventListener("input", function () {
+      audio.volume = this.value;
+    });
 
-  <div class="music-player">
-  <img src="https://i.imgur.com/4M34hi2.png" alt="Disco girando" id="album-art" />
-  <div class="music-controls">
-    <button onclick="togglePlayPause()">⏯</button>
-    <button onclick="stopMusic()">⏹</button>
-  </div>
-  <audio id="background-music" loop>
-    <source src="https://www.dropbox.com/s/tu3r91cbn8lo1n6/Es%20Por%20Ti%20-%20Juanes.mp3?dl=1" type="audio/mp3">
-    Tu navegador no soporta audio HTML5.
-  </audio>
-</div>
-
+    // Inicializar volumen
+    audio.volume = 0.5;
+    volumeSlider.value = 0.5;
+  </script>
 </body>
 </html>
