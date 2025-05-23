@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feliz Primer Mes</title>
-  <!-- Tipografías -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     body {
       margin: 0;
@@ -14,7 +14,6 @@
       background: linear-gradient(to bottom right, #e7c6ff, #f6d9ff);
       color: #5c2a7b;
       text-align: center;
-      transition: background 0.4s, color 0.4s;
     }
 
     h1 {
@@ -57,11 +56,6 @@
       box-shadow: 0px 8px 14px rgba(150, 90, 190, 0.6);
     }
 
-    a.button:active {
-      transform: scale(0.97);
-      box-shadow: 0px 4px 8px rgba(150, 90, 190, 0.4);
-    }
-
     .toggle-mode {
       margin-top: 3em;
       padding: 0.6em 1.2em;
@@ -80,58 +74,26 @@
       transform: scale(1.05);
     }
 
-    .toggle-mode:active {
-      transform: scale(0.97);
-    }
-
-    /* Dark mode */
-    .dark-mode {
-      background: #1f1f1f;
-      color: #f1f1f1;
-    }
-
-    .dark-mode h1 {
-      color: #d3b3ff;
-      text-shadow: 2px 2px 6px #000;
-    }
-
-    .dark-mode p {
-      color: #e6ccff;
-      text-shadow: 1px 1px 4px #000;
-    }
-
-    .dark-mode a.button {
-      background-color: #5a5a5a;
-      box-shadow: 0px 4px 8px rgba(0,0,0,0.5);
-    }
-
-    .dark-mode a.button:hover {
-      background-color: #444;
-      box-shadow: 0px 6px 12px rgba(0,0,0,0.6);
-    }
-
-    /* Reproductor musical elegante */
     .music-player {
       position: fixed;
       top: 1em;
       right: 1em;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 1em;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color: rgba(255, 255, 255, 0.2);
-      padding: 1em;
-      border-radius: 15px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(8px);
+      width: 280px;
       z-index: 999;
     }
 
     .music-player img {
-      width: 80px;
-      height: 80px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       animation: spin 4s linear infinite;
-      margin-bottom: 0.5em;
     }
 
     @keyframes spin {
@@ -141,58 +103,107 @@
 
     .music-controls {
       display: flex;
-      gap: 0.5em;
+      align-items: center;
+      gap: 1em;
+      margin: 1em 0 0.5em;
     }
 
     .music-controls button {
-      background: none;
+      background: #fff;
       border: none;
+      padding: 0.5em;
+      border-radius: 50%;
+      font-size: 1.4em;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       cursor: pointer;
-      font-size: 1.2em;
-      color: #5c2a7b;
       transition: transform 0.2s;
     }
 
     .music-controls button:hover {
-      transform: scale(1.2);
+      transform: scale(1.1);
+    }
+
+    .track-info {
+      font-size: 0.9em;
+      margin-bottom: 0.5em;
+    }
+
+    .progress-container {
+      width: 100%;
+      height: 6px;
+      background: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 0.5em;
+    }
+
+    .progress {
+      height: 100%;
+      background: #a64dff;
+      width: 0%;
     }
 
     .volume-control {
-      margin-top: 0.5em;
+      position: relative;
     }
 
-    input[type=range] {
+    .volume-slider {
       width: 100px;
+      appearance: none;
+      height: 4px;
+      border-radius: 5px;
+      background: #a64dff;
+      outline: none;
+      display: none;
+      position: absolute;
+      top: -40px;
+      left: -30px;
     }
 
-    .dark-mode .music-player {
-      background-color: rgba(50, 50, 50, 0.5);
+    .volume-control:hover .volume-slider {
+      display: block;
     }
 
-    .dark-mode .music-controls button {
-      color: #e6ccff;
-    }
-
-    .dark-mode input[type=range] {
-      background-color: #aaa;
+    /* Responsive */
+    @media (max-width: 600px) {
+      .music-player {
+        width: 90%;
+        bottom: 1em;
+        top: auto;
+        right: 5%;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+      .music-player img {
+        width: 60px;
+        height: 60px;
+      }
+      .music-controls {
+        flex-direction: row;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Reproductor musical elegante -->
   <div class="music-player">
-    <img src="https://i.imgur.com/4M34hi2.png" alt="Disco girando" id="album-art" />
-    <div class="music-controls">
-      <button onclick="togglePlayPause()">⏯</button>
-      <button onclick="stopMusic()">⏹</button>
+    <img src="cover/portada.jpg" alt="Portada" id="album-art">
+    <div class="track-info">
+      <strong>Es Por Ti</strong> <br> Juanes
     </div>
-    <div class="volume-control">
-      <input type="range" id="volumeRange" min="0" max="1" step="0.01" value="1">
+    <div class="progress-container">
+      <div class="progress" id="progress-bar"></div>
+    </div>
+    <div class="music-controls">
+      <button onclick="togglePlayPause()"><i class="fas fa-play" id="play-icon"></i></button>
+      <button onclick="stopMusic()"><i class="fas fa-stop"></i></button>
+      <div class="volume-control">
+        <i class="fas fa-volume-up"></i>
+        <input type="range" min="0" max="1" step="0.01" value="0.5" id="volume-slider" class="volume-slider">
+      </div>
     </div>
     <audio id="background-music" loop>
       <source src="audio/esporti.mp3" type="audio/mp3">
-      Tu navegador no soporta audio HTML5.
     </audio>
   </div>
 
@@ -210,20 +221,20 @@
   <button class="toggle-mode" onclick="toggleMode()">Cambiar modo</button>
 
   <script>
-    function toggleMode() {
-      document.body.classList.toggle('dark-mode');
-    }
-
     const audio = document.getElementById("background-music");
+    const playIcon = document.getElementById("play-icon");
     const albumArt = document.getElementById("album-art");
-    const volumeRange = document.getElementById("volumeRange");
+    const progressBar = document.getElementById("progress-bar");
+    const volumeSlider = document.getElementById("volume-slider");
 
     function togglePlayPause() {
       if (audio.paused) {
         audio.play();
+        playIcon.classList.replace("fa-play", "fa-pause");
         albumArt.style.animationPlayState = 'running';
       } else {
         audio.pause();
+        playIcon.classList.replace("fa-pause", "fa-play");
         albumArt.style.animationPlayState = 'paused';
       }
     }
@@ -231,12 +242,23 @@
     function stopMusic() {
       audio.pause();
       audio.currentTime = 0;
+      playIcon.classList.replace("fa-pause", "fa-play");
       albumArt.style.animationPlayState = 'paused';
     }
 
-    volumeRange.addEventListener('input', () => {
-      audio.volume = volumeRange.value;
+    audio.ontimeupdate = () => {
+      const progress = (audio.currentTime / audio.duration) * 100;
+      progressBar.style.width = progress + "%";
+    };
+
+    volumeSlider.addEventListener("input", (e) => {
+      audio.volume = e.target.value;
     });
+
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
   </script>
+
 </body>
 </html>
