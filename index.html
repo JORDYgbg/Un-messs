@@ -42,28 +42,18 @@
       font-size: 1.2rem;
     }
 
-    .botones {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 30px 0;
-    }
-
-    .botones button {
+    .triste-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
       background-color: #d291fa;
       border: none;
       color: white;
       font-size: 1rem;
       padding: 15px 25px;
-      margin: 10px;
       border-radius: 12px;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .botones button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
     .modo-btn {
@@ -179,13 +169,7 @@
     <p>Gracias por este tiempo tan bonito mi amor <i class="fa-solid fa-heart"></i></p>
   </header>
 
-  <div class="botones">
-    <button onclick="location.href='#seccion1'">Cómo me enamoré de ti</button>
-    <button onclick="location.href='#seccion2'">Poema que nunca te mostré</button>
-    <button onclick="location.href='#seccion3'">Si te sientes mal, aplasta aquí</button>
-    <button onclick="location.href='#seccion4'">Mis promesas para ti</button>
-    <button onclick="location.href='#seccion5'">Frases que me recuerdan a ti</button>
-  </div>
+  <button class="triste-btn" onclick="location.href='triste.html'">Si te sientes triste, presiona aquí</button>
 
   <section id="seccion1">
     <h2>Cómo me enamoré de ti</h2>
@@ -194,10 +178,6 @@
   <section id="seccion2">
     <h2>Poema que nunca te mostré</h2>
     <p>Tu risa es mi melodía, tu mirada mi sol. Con cada latido, mi amor por ti es mayor.</p>
-  </section>
-  <section id="seccion3">
-    <h2>Si te sientes mal</h2>
-    <p>Recuerda que aquí estoy para ti, en las buenas y en las malas. Te amo y siempre lo haré ❤️</p>
   </section>
   <section id="seccion4">
     <h2>Mis promesas para ti</h2>
@@ -208,7 +188,6 @@
     <p>“Contigo, todo es mejor.” – “Eres mi lugar favorito.” – “Cada día contigo es un regalo.”</p>
   </section>
 
-  <!-- reproductor y modo-btn se mantienen igual -->
   <div class="reproductor" id="reproductor">
     <img src="audio/cover.jpg" alt="Portada" id="portada">
     <div class="titulo">Es Por Ti<br><small>Juanes</small></div>
