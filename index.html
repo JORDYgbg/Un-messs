@@ -150,15 +150,11 @@
     }
 
     .volumen input {
-      display: none;
+      display: block;
       position: absolute;
       bottom: 30px;
       left: 50%;
       transform: translateX(-50%);
-    }
-
-    .volumen:hover input {
-      display: block;
     }
   </style>
 </head>
@@ -178,7 +174,7 @@
   </div>
 
   <div class="reproductor" id="reproductor">
-    <img src="https://i.imgur.com/Vz0T1ao.png" alt="Portada">
+    <img src="audio/cover.jpg" alt="Portada">
     <div class="titulo">Es Por Ti<br><small>Juanes</small></div>
     <input class="barra" type="range" value="0">
     <div class="controles">
@@ -202,7 +198,7 @@
     const muteBtn = document.getElementById('mute');
     const volRange = document.getElementById('volRange');
 
-    let audio = new Audio('audio/tu-cancion.mp3');
+    let audio = new Audio('audio/esporti.mp3');
     let isMuted = false;
 
     modoBtn.addEventListener('click', () => {
