@@ -3,261 +3,217 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Feliz Primer Mes</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    body {
+  <title>Para ti 💜</title>
+  <style>
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(to bottom right, #e7c6ff, #f6d9ff);
-      color: #5c2a7b;
-      text-align: center;
     }
 
-    h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 4em;
-      margin: 1.5em 0 0.2em;
-      color: #a64dff;
-      text-shadow: 3px 3px 6px #dfbfff;
-    }
-
-    p {
-      font-size: 1.2em;
-      margin: 1em 2em;
-      color: #6a2c91;
-      text-shadow: 1px 1px 2px #f3d9ff;
-    }
-
-    .button-container {
-      margin-top: 2em;
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5e9ff;
       display: flex;
       flex-direction: column;
-      gap: 1em;
       align-items: center;
+      justify-content: center;
+      padding: 2rem;
     }
 
-    a.button {
-      padding: 0.9em 1.6em;
-      text-decoration: none;
-      background-color: #c586e3;
-      color: white;
-      border-radius: 12px;
-      font-weight: bold;
-      box-shadow: 0px 6px 12px rgba(150, 90, 190, 0.5);
-      transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
-    }
-
-    a.button:hover {
-      background-color: #b372d4;
-      transform: scale(1.05);
-      box-shadow: 0px 8px 14px rgba(150, 90, 190, 0.6);
-    }
-
-    .toggle-mode {
-      margin-top: 3em;
-      padding: 0.6em 1.2em;
-      font-size: 1em;
-      cursor: pointer;
-      background-color: #b276e8;
-      border: none;
-      color: white;
-      border-radius: 8px;
-      box-shadow: 0px 4px 6px rgba(178, 118, 232, 0.4);
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    .toggle-mode:hover {
-      background-color: #955ccc;
-      transform: scale(1.05);
-    }
-
-    .music-player {
-      position: fixed;
-      top: 1em;
-      right: 1em;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 1em;
+    .player {
+      background: white;
       border-radius: 20px;
-      backdrop-filter: blur(10px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 280px;
-      z-index: 999;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      padding: 2rem;
+      width: 320px;
+      text-align: center;
+      position: relative;
     }
 
-    .music-player img {
-      width: 100px;
-      height: 100px;
+    .cover {
+      width: 220px;
+      height: 220px;
       border-radius: 50%;
-      animation: spin 4s linear infinite;
+      margin: 0 auto;
+      overflow: hidden;
+      animation: spin 12s linear infinite;
+      border: 5px solid #d1b3ff;
+    }
+
+    .cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
-    .music-controls {
+    .info {
+      margin-top: 1rem;
+    }
+
+    .title {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .artist {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .controls {
       display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 1em;
-      margin: 1em 0 0.5em;
+      gap: 1rem;
+      margin-top: 1.5rem;
     }
 
-    .music-controls button {
-      background: #fff;
+    button {
+      background: #6f42c1;
+      color: white;
       border: none;
-      padding: 0.5em;
       border-radius: 50%;
-      font-size: 1.4em;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: background 0.3s;
     }
 
-    .music-controls button:hover {
-      transform: scale(1.1);
-    }
-
-    .track-info {
-      font-size: 0.9em;
-      margin-bottom: 0.5em;
+    button:hover {
+      background: #4e2a99;
     }
 
     .progress-container {
       width: 100%;
-      height: 6px;
+      height: 8px;
       background: #ddd;
-      border-radius: 10px;
+      border-radius: 4px;
       overflow: hidden;
-      margin-bottom: 0.5em;
+      margin-top: 1rem;
     }
 
     .progress {
       height: 100%;
-      background: #a64dff;
       width: 0%;
+      background: #6f42c1;
     }
 
-    .volume-control {
+    .volume-container {
       position: relative;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
+    .volume-icon {
+      cursor: pointer;
+      font-size: 1.2rem;
     }
 
     .volume-slider {
-      width: 100px;
-      appearance: none;
-      height: 4px;
-      border-radius: 5px;
-      background: #a64dff;
-      outline: none;
-      display: none;
       position: absolute;
-      top: -40px;
-      left: -30px;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
     }
 
-    .volume-control:hover .volume-slider {
+    .volume-container:hover .volume-slider {
       display: block;
     }
 
+    input[type=range] {
+      appearance: none;
+      height: 4px;
+      background: #ccc;
+      border-radius: 2px;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      appearance: none;
+      height: 12px;
+      width: 12px;
+      border-radius: 50%;
+      background: #6f42c1;
+      cursor: pointer;
+    }
+
     /* Responsive */
-    @media (max-width: 600px) {
-      .music-player {
+    @media (max-width: 480px) {
+      .player {
         width: 90%;
-        bottom: 1em;
-        top: auto;
-        right: 5%;
-        flex-direction: row;
-        justify-content: space-around;
+        padding: 1.5rem;
       }
-      .music-player img {
-        width: 60px;
-        height: 60px;
-      }
-      .music-controls {
-        flex-direction: row;
+
+      .cover {
+        width: 180px;
+        height: 180px;
       }
     }
   </style>
 </head>
 <body>
-
-  <div class="music-player">
-    <img src="audio/cover.jpg" alt="Portada" id="album-art">
-    <div class="track-info">
-      <strong>Es Por Ti</strong> <br> Juanes
+  <div class="player">
+    <div class="cover">
+      <img src="portada.jpg" alt="Portada de la canción">
+    </div>
+    <div class="info">
+      <div class="title">Es Por Ti</div>
+      <div class="artist">Juanes</div>
+    </div>
+    <div class="controls">
+      <button id="play">▶️</button>
+      <button id="pause">⏹️</button>
     </div>
     <div class="progress-container">
-      <div class="progress" id="progress-bar"></div>
+      <div class="progress" id="progress"></div>
     </div>
-    <div class="music-controls">
-      <button onclick="togglePlayPause()"><i class="fas fa-play" id="play-icon"></i></button>
-      <button onclick="stopMusic()"><i class="fas fa-stop"></i></button>
-      <div class="volume-control">
-        <i class="fas fa-volume-up"></i>
-        <input type="range" min="0" max="1" step="0.01" value="0.5" id="volume-slider" class="volume-slider">
-      </div>
+    <div class="volume-container">
+      <span class="volume-icon">🔊</span>
+      <input type="range" id="volume" class="volume-slider" min="0" max="1" step="0.01" value="1">
     </div>
-    <audio id="background-music" loop>
-      <source src="audio/esporti.mp3" type="audio/mp3">
-    </audio>
+    <audio id="audio" src="esporti.mp3"></audio>
   </div>
 
-  <h1>Feliz primer mes</h1>
-  <p>Gracias por este tiempo tan bonito, te hice esto con mucho amor 💜</p>
-
-  <div class="button-container">
-    <a href="enamore.html" class="button">Cómo me enamoré de ti</a>
-    <a href="poema.html" class="button">Poema que nunca te mostré</a>
-    <a href="sentir.html" class="button">Si te sientes mal, aplasta aquí</a>
-    <a href="promesas.html" class="button">Mis promesas para ti</a>
-    <a href="frases.html" class="button">Frases que me recuerdan a ti</a>
+  <div style="margin-top: 2rem; text-align: center; max-width: 600px;">
+    <h2>Feliz primer mes</h2>
+    <p>Gracias por este tiempo tan bonito, te hice esto con mucho amor 💜</p>
+    <p><a href="#">Cómo me enamoré de ti</a> | <a href="#">Poema que nunca te mostré</a> | <a href="#">Si te sientes mal, aplasta aquí</a> | <a href="#">Mis promesas para ti</a> | <a href="#">Frases que me recuerdan a ti</a></p>
   </div>
-
-  <button class="toggle-mode" onclick="toggleMode()">Cambiar modo</button>
 
   <script>
-    const audio = document.getElementById("background-music");
-    const playIcon = document.getElementById("play-icon");
-    const albumArt = document.getElementById("album-art");
-    const progressBar = document.getElementById("progress-bar");
-    const volumeSlider = document.getElementById("volume-slider");
+    const playBtn = document.getElementById('play');
+    const pauseBtn = document.getElementById('pause');
+    const audio = document.getElementById('audio');
+    const volumeSlider = document.getElementById('volume');
+    const progressBar = document.getElementById('progress');
 
-    function togglePlayPause() {
-      if (audio.paused) {
-        audio.play();
-        playIcon.classList.replace("fa-play", "fa-pause");
-        albumArt.style.animationPlayState = 'running';
-      } else {
-        audio.pause();
-        playIcon.classList.replace("fa-pause", "fa-play");
-        albumArt.style.animationPlayState = 'paused';
-      }
-    }
-
-    function stopMusic() {
-      audio.pause();
-      audio.currentTime = 0;
-      playIcon.classList.replace("fa-pause", "fa-play");
-      albumArt.style.animationPlayState = 'paused';
-    }
-
-    audio.ontimeupdate = () => {
-      const progress = (audio.currentTime / audio.duration) * 100;
-      progressBar.style.width = progress + "%";
-    };
-
-    volumeSlider.addEventListener("input", (e) => {
-      audio.volume = e.target.value;
+    playBtn.addEventListener('click', () => {
+      audio.play();
     });
 
-    function toggleMode() {
-      document.body.classList.toggle('dark-mode');
-    }
-  </script>
+    pauseBtn.addEventListener('click', () => {
+      audio.pause();
+    });
 
+    volumeSlider.addEventListener('input', () => {
+      audio.volume = volumeSlider.value;
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      const progressPercent = (audio.currentTime / audio.duration) * 100;
+      progressBar.style.width = progressPercent + '%';
+    });
+  </script>
 </body>
 </html>
