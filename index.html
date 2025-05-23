@@ -3,217 +3,166 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para ti 💜</title>
+  <title>Feliz primer mes</title>
   <style>
-    * {
-      box-sizing: border-box;
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #fbd3e9, #bb377d);
+      color: #333;
+      text-align: center;
       margin: 0;
       padding: 0;
     }
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f5e9ff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-top: 20px;
+    }
+
+    audio {
+      margin-top: 20px;
+      width: 100%;
     }
 
     .player {
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      padding: 2rem;
-      width: 320px;
-      text-align: center;
-      position: relative;
+      margin-top: 20px;
     }
 
-    .cover {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
+    .disco {
+      width: 200px;
+      height: 200px;
       margin: 0 auto;
-      overflow: hidden;
-      animation: spin 12s linear infinite;
-      border: 5px solid #d1b3ff;
-    }
-
-    .cover img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      background-image: url('portada.jpg');
+      background-size: cover;
+      border-radius: 50%;
+      animation: spin 4s linear infinite;
     }
 
     @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
-    .info {
-      margin-top: 1rem;
+    .song-info {
+      margin: 15px 0;
     }
 
-    .title {
-      font-size: 1.2rem;
-      font-weight: bold;
+    .volume-control {
+      position: relative;
+      display: inline-block;
+      margin-top: 10px;
     }
 
-    .artist {
-      color: #666;
-      font-size: 0.9rem;
+    .volume-control input[type="range"] {
+      display: none;
+      position: absolute;
+      left: 25px;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
-    .controls {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      margin-top: 1.5rem;
+    .volume-control:hover input[type="range"] {
+      display: inline;
     }
 
-    button {
-      background: #6f42c1;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    button:hover {
-      background: #4e2a99;
-    }
-
-    .progress-container {
+    .duration-bar {
       width: 100%;
       height: 8px;
-      background: #ddd;
+      background: #eee;
       border-radius: 4px;
       overflow: hidden;
-      margin-top: 1rem;
+      margin: 10px 0;
     }
 
     .progress {
       height: 100%;
       width: 0%;
-      background: #6f42c1;
+      background: #800080;
     }
 
-    .volume-container {
-      position: relative;
-      display: inline-block;
-      margin-top: 1rem;
-    }
-
-    .volume-icon {
-      cursor: pointer;
-      font-size: 1.2rem;
-    }
-
-    .volume-slider {
-      position: absolute;
-      bottom: 125%;
-      left: 50%;
-      transform: translateX(-50%);
-      display: none;
-    }
-
-    .volume-container:hover .volume-slider {
-      display: block;
-    }
-
-    input[type=range] {
-      appearance: none;
-      height: 4px;
-      background: #ccc;
-      border-radius: 2px;
-    }
-
-    input[type=range]::-webkit-slider-thumb {
-      appearance: none;
-      height: 12px;
-      width: 12px;
+    .controls button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      border: none;
       border-radius: 50%;
-      background: #6f42c1;
+      background: #fff;
       cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
-    /* Responsive */
-    @media (max-width: 480px) {
-      .player {
-        width: 90%;
-        padding: 1.5rem;
+    @media (max-width: 600px) {
+      .disco {
+        width: 150px;
+        height: 150px;
       }
-
-      .cover {
-        width: 180px;
-        height: 180px;
+      .controls button {
+        padding: 8px 16px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="player">
-    <div class="cover">
-      <img src="portada.jpg" alt="Portada de la canción">
+  <div class="container">
+    <div class="disco" id="cover"></div>
+
+    <div class="song-info">
+      <h2>Es Por Ti</h2>
+      <p>Juanes</p>
     </div>
-    <div class="info">
-      <div class="title">Es Por Ti</div>
-      <div class="artist">Juanes</div>
-    </div>
-    <div class="controls">
-      <button id="play">▶️</button>
-      <button id="pause">⏹️</button>
-    </div>
-    <div class="progress-container">
+
+    <div class="duration-bar">
       <div class="progress" id="progress"></div>
     </div>
-    <div class="volume-container">
-      <span class="volume-icon">🔊</span>
-      <input type="range" id="volume" class="volume-slider" min="0" max="1" step="0.01" value="1">
-    </div>
-    <audio id="audio" src="esporti.mp3"></audio>
-  </div>
 
-  <div style="margin-top: 2rem; text-align: center; max-width: 600px;">
-    <h2>Feliz primer mes</h2>
+    <div class="controls">
+      <button onclick="playAudio()">▶️</button>
+      <button onclick="pauseAudio()">⏸️</button>
+    </div>
+
+    <div class="volume-control">
+      🔊<input type="range" min="0" max="1" step="0.01" onchange="setVolume(this.value)" />
+    </div>
+
+    <audio id="audio" src="esporti.mp3"></audio>
+
+    <h1>Feliz primer mes</h1>
     <p>Gracias por este tiempo tan bonito, te hice esto con mucho amor 💜</p>
-    <p><a href="#">Cómo me enamoré de ti</a> | <a href="#">Poema que nunca te mostré</a> | <a href="#">Si te sientes mal, aplasta aquí</a> | <a href="#">Mis promesas para ti</a> | <a href="#">Frases que me recuerdan a ti</a></p>
+
+    <p><a href="poema.html">Cómo me enamoré de ti</a> <a href="poema2.html">Poema que nunca te mostré</a> <a href="sentirse_mal.html">Si te sientes mal, aplasta aquí</a> <a href="promesas.html">Mis promesas para ti</a> <a href="frases.html">Frases que me recuerdan a ti</a></p>
+
+    <button onclick="toggleMode()">Cambiar modo</button>
   </div>
 
   <script>
-    const playBtn = document.getElementById('play');
-    const pauseBtn = document.getElementById('pause');
-    const audio = document.getElementById('audio');
-    const volumeSlider = document.getElementById('volume');
-    const progressBar = document.getElementById('progress');
+    const audio = document.getElementById("audio");
+    const progress = document.getElementById("progress");
 
-    playBtn.addEventListener('click', () => {
+    function playAudio() {
       audio.play();
-    });
+    }
 
-    pauseBtn.addEventListener('click', () => {
+    function pauseAudio() {
       audio.pause();
-    });
+    }
 
-    volumeSlider.addEventListener('input', () => {
-      audio.volume = volumeSlider.value;
-    });
+    function setVolume(value) {
+      audio.volume = value;
+    }
 
-    audio.addEventListener('timeupdate', () => {
-      const progressPercent = (audio.currentTime / audio.duration) * 100;
-      progressBar.style.width = progressPercent + '%';
-    });
+    audio.ontimeupdate = function () {
+      const percentage = (audio.currentTime / audio.duration) * 100;
+      progress.style.width = percentage + "%";
+    };
+
+    function toggleMode() {
+      document.body.classList.toggle("dark-mode");
+    }
   </script>
 </body>
 </html>
