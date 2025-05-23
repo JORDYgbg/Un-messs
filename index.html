@@ -1,12 +1,90 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feliz Primer Mes</title>
+  <!-- Tipografías -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
-    /* Estilos base */
+    .music-player {
+      position: fixed;
+      top: 1em;
+      right: 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 1em;
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(8px);
+      z-index: 999;
+    }
+
+    .music-player img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      animation: spin 4s linear infinite;
+      margin-bottom: 0.5em;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .music-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5em;
+    }
+
+    .music-controls button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2em;
+      color: #5c2a7b;
+      transition: transform 0.2s;
+    }
+
+    .music-controls button:hover {
+      transform: scale(1.2);
+    }
+
+    .volume-slider {
+      -webkit-appearance: none;
+      width: 100px;
+      height: 6px;
+      background: #d4a5ff;
+      border-radius: 5px;
+      outline: none;
+      transition: background 0.3s;
+    }
+
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      background: #5c2a7b;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 4px #00000066;
+    }
+
+    .dark-mode .music-player {
+      background-color: rgba(50, 50, 50, 0.5);
+    }
+
+    .dark-mode .music-controls button {
+      color: #e6ccff;
+    }
+
     body {
       margin: 0;
       padding: 0;
@@ -108,68 +186,6 @@
       background-color: #444;
       box-shadow: 0px 6px 12px rgba(0,0,0,0.6);
     }
-
-    /* Reproductor musical */
-    .music-player {
-      position: fixed;
-      top: 1em;
-      right: 1em;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: rgba(255, 255, 255, 0.2);
-      padding: 1em;
-      border-radius: 15px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(8px);
-      z-index: 999;
-    }
-
-    .music-player img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      animation: spin 4s linear infinite;
-      margin-bottom: 0.5em;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .music-controls {
-      display: flex;
-      align-items: center;
-      gap: 0.5em;
-    }
-
-    .music-controls button,
-    .music-controls input[type=range] {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1.2em;
-      color: #5c2a7b;
-      transition: transform 0.2s;
-    }
-
-    .music-controls button:hover {
-      transform: scale(1.2);
-    }
-
-    .music-controls input[type=range] {
-      width: 80px;
-    }
-
-    .dark-mode .music-player {
-      background-color: rgba(50, 50, 50, 0.5);
-    }
-
-    .dark-mode .music-controls button,
-    .dark-mode .music-controls input[type=range] {
-      color: #e6ccff;
-    }
   </style>
 </head>
 <body>
@@ -178,13 +194,12 @@
     <div class="music-controls">
       <button onclick="togglePlayPause()">⏯</button>
       <button onclick="stopMusic()">⏹</button>
-      <input type="range" min="0" max="1" step="0.01" value="0.5" onchange="changeVolume(this.value)">
+      <input type="range" min="0" max="1" step="0.01" value="1" class="volume-slider" id="volumeSlider" />
     </div>
-   <audio id="background-music" loop autoplay>
-    <source src="audio/esporti.mp3" type="audio/mp3">
-  Tu navegador no soporta audio HTML5.
-  </audio>
-
+    <audio id="background-music" loop>
+      <source src="audio/esporti.mp3" type="audio/mp3">
+      Tu navegador no soporta audio HTML5.
+    </audio>
   </div>
 
   <h1>Feliz primer mes</h1>
@@ -207,10 +222,11 @@
 
     const audio = document.getElementById("background-music");
     const albumArt = document.getElementById("album-art");
+    const volumeSlider = document.getElementById("volumeSlider");
 
     function togglePlayPause() {
       if (audio.paused) {
-        audio.play();
+        audio.play().catch(e => console.log("Autoplay bloqueado"));
         albumArt.style.animationPlayState = 'running';
       } else {
         audio.pause();
@@ -224,9 +240,9 @@
       albumArt.style.animationPlayState = 'paused';
     }
 
-    function changeVolume(value) {
-      audio.volume = value;
-    }
+    volumeSlider.addEventListener("input", function () {
+      audio.volume = this.value;
+    });
   </script>
 </body>
 </html>
