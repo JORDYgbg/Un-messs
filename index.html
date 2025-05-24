@@ -35,15 +35,15 @@
     }
 
     body.celular .reproductor {
-      /* Estilos para reproductor minimizado en celular */
-      width: 80px; /* Tamaño más pequeño en celular */
+      /* Posición y tamaño minimizado en celular (arriba a la derecha) */
+      width: 80px;
       height: 80px;
       padding: 10px;
-      left: 50%; /* Centra el reproductor */
-      right: auto;
-      top: auto;
-      bottom: 20px;
-      transform: translateX(-50%); /* Ajusta para el centrado real */
+      top: 20px; /* Arriba */
+      right: 20px; /* Derecha */
+      left: auto; /* Desactiva centrado horizontal */
+      bottom: auto; /* Desactiva posición inferior */
+      transform: none; /* Elimina la transformación de centrado */
       overflow: hidden; /* Oculta el contenido extra cuando minimizado */
     }
 
@@ -67,6 +67,11 @@
       height: auto; /* Permite que el contenido determine la altura */
       padding: 20px;
       overflow: visible;
+      left: 50%; /* Centra horizontalmente al maximizar */
+      right: auto;
+      transform: translateX(-50%); /* Ajusta para el centrado real */
+      top: auto; /* Restaura posición vertical para expandir */
+      bottom: 20px; /* Coloca abajo al maximizar */
     }
 
     body.celular .reproductor:active img,
@@ -93,10 +98,9 @@
         display: block; /* Título puede ser bloque */
     }
 
-
     body.celular .triste-btn {
         width: calc(50% - 30px); /* Ajusta el ancho para móvil */
-        bottom: 80px; /* Sube para evitar superposición con el reproductor */
+        bottom: 80px; /* Sube para evitar superposición con el reproductor (si está maximizado abajo) */
         left: 20px;
         right: auto;
         font-size: 0.9rem;
@@ -107,7 +111,7 @@
         width: 45px;
         height: 45px;
         font-size: 18px;
-        bottom: 80px; /* Sube para alinearse con el botón triste */
+        bottom: 80px; /* Sube para alinearse con el triste button */
         right: 20px;
     }
 
@@ -251,6 +255,8 @@
       margin-bottom: 0; /* Sin margen por defecto */
       animation: girar 5s linear infinite;
       box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      transition: all 0.5s ease-in-out; /* También transiciona la imagen */
+      object-fit: cover; /* Asegura que la imagen no se distorsione */
     }
 
     .reproductor .titulo,
@@ -275,6 +281,8 @@
       width: 100px; /* Portada normal */
       height: 100px;
       margin-bottom: 10px; /* Margen normal */
+      margin-left: auto; /* Centra la imagen */
+      margin-right: auto; /* Centra la imagen */
     }
 
     .reproductor:hover .titulo,
@@ -409,15 +417,20 @@
       text-align: center;
       padding: 20px;
       opacity: 1; /* Opacidad inicial */
-      transition: opacity 0.4s ease-in-out, background 0.4s ease-in-out, color 0.4s ease-in-out; /* Transición también para background y color */
+      transition: opacity 0.4s ease-in-out; /* Transición solo para opacidad */
     }
 
     #pantalla-inicio.hidden {
         opacity: 0;
         pointer-events: none; /* Deshabilita la interacción cuando está oculto */
+    }
+
+    /* Clase para la transición de color de la pantalla de inicio */
+    #pantalla-inicio.transicion-lila {
         background: linear-gradient(135deg, #eac8ff, #d291fa); /* Fondo lila durante la transición */
         color: #333; /* Color de texto para el fondo lila */
     }
+
 
     .dispositivo-opciones {
       display: flex;
@@ -450,6 +463,7 @@
       margin-top: 8px;
       font-size: 1rem;
       color: white; /* Texto blanco para contraste contra el negro */
+      transition: color 0.4s ease-in-out; /* Transición para el color del texto */
     }
 
     /* Contenedor principal del contenido para la transición */
@@ -595,6 +609,9 @@
     });
 
     function seleccionarDispositivo(tipo) {
+      // Activa la clase para la transición de color de la pantalla de inicio
+      pantallaInicio.classList.add('transicion-lila');
+
       // Modifica el color del texto en la pantalla de inicio para que sea visible durante la transición lila
       document.querySelector('#pantalla-inicio h2').style.color = '#333';
       Array.from(document.querySelectorAll('.dispositivo-etiqueta')).forEach(el => el.style.color = '#333');
