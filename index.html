@@ -875,11 +875,7 @@
     });
 
     // Función para seleccionar el tipo de dispositivo (PC o Celular)
-   // Función para seleccionar el tipo de dispositivo (PC o Celular)
     function seleccionarDispositivo(tipo) {
-      const pantallaInicio = document.getElementById('pantalla-inicio');
-      const contenidoPrincipal = document.getElementById('contenido-principal');
-
       pantallaInicio.classList.add('transicion-lila');
       document.querySelector('#pantalla-inicio h2').style.color = '#4a4a4a';
       Array.from(document.querySelectorAll('.dispositivo-etiqueta')).forEach(el => el.style.color = '#4a4a4a');
@@ -894,55 +890,6 @@
         } else {
           document.body.classList.remove('celular');
         }
-
-        contenidoPrincipal.style.display = 'block';
-        setTimeout(() => {
-          contenidoPrincipal.style.opacity = '1';
-        }, 10); // Un pequeño retraso para la transición de opacidad
-      }, 400); // Duración de la transición de la pantalla de inicio
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const pantallaInicio = document.getElementById('pantalla-inicio');
-      const contenidoPrincipal = document.getElementById('contenido-principal');
-
-      // Verificar si hay un hash en la URL (ej. #seccion1)
-      if (window.location.hash) {
-        // Si hay un hash, ocultar la pantalla de inicio y mostrar el contenido principal
-        pantallaInicio.style.display = 'none';
-        contenidoPrincipal.style.display = 'block';
-        setTimeout(() => {
-          contenidoPrincipal.style.opacity = '1';
-        }, 10);
-
-        // Opcional: Si quieres que también aplique la clase 'celular' o 'pc' por defecto
-        // podrías añadir lógica aquí, por ejemplo, si el hash es de un enlace de móvil.
-        // Por ahora, asumimos que si llega con un hash, ya debe mostrar el contenido.
-
-        // Desplazarse a la sección indicada por el hash
-        const targetElement = document.querySelector(window.location.hash);
-        if (targetElement) {
-          targetElement.scrollIntoView({ behavior: 'smooth' });
-        }
-
-      } else {
-        // Si no hay hash, mostrar la pantalla de inicio normalmente
-        pantallaInicio.style.display = 'flex';
-        contenidoPrincipal.style.display = 'none';
-      }
-
-      // Lógica existente para el modo oscuro (mantenerla)
-      const modoBtn = document.getElementById('modo-btn');
-      if (localStorage.getItem('dark-mode') === 'true') {
-          body.classList.add('dark-mode');
-          modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-      } else {
-          modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-      }
-    });
-
-    // Lógica para el reproductor de música (mantenerla)
-    // ... tu código existente del reproductor de música ...
 
         contenidoPrincipal.style.display = 'block';
         setTimeout(() => {
