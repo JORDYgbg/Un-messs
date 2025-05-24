@@ -897,6 +897,18 @@
         }, 50);
       }, 400);
     }
+    // Revisar si se viene de triste.html con ?volver=true
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('volver') === 'true') {
+    // Omitir pantalla de inicio y mostrar contenido
+    pantallaInicio.style.display = 'none';
+    contenidoPrincipal.style.display = 'block';
+    contenidoPrincipal.style.opacity = '1';
+    document.body.classList.remove('celular'); // o agregar 'celular' si lo prefieres
+  }
+});
+
   </script>
 </div>
 </body>
