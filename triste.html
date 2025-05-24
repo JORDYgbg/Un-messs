@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Un Mensaje Especial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* Estilos generales del cuerpo */
         body {
-            font-family: 'Quicksand', sans-serif; /* Tipografía moderna y legible*/
-            background: linear-gradient(135deg, #e0f2f7, #b2ebf2); /* Un fondo azul muy suave para el modo claro*/
-            color: #333; /* Color de texto oscuro para contraste*/
+            font-family: Arial, sans-serif; /* Tipografía normal por defecto para el body */
+            background: linear-gradient(135deg, #e0f2f7, #b2ebf2); /* Un fondo azul muy suave para el modo claro */
+            color: #333;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -20,85 +19,100 @@
             text-align: center;
             min-height: 100vh;
             box-sizing: border-box;
-            transition: background 0.7s ease-in-out, color 0.7s ease-in-out; /* Transición suave para el modo oscuro*/
-            -webkit-font-smoothing: antialiased; /* Suavizado de fuente para mejor renderizado */
-            -moz-osx-font-smoothing: grayscale;
+            transition: background 0.7s ease-in-out, color 0.7s ease-in-out; /* Transición para modo oscuro */
         }
 
-        /* Modo oscuro: colores más suaves y contrastantes */
+        /* Modo oscuro */
         body.dark-mode {
-            background: linear-gradient(180deg, #2c3e50 0%, #34495e 70%); /* Azules oscuros profundos*/
-            color: #f0f0f0; /* Texto claro para el modo oscuro*/
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 70%); /* Azules oscuros */
+            color: #f0f0f0;
         }
 
-        /* Contenedor principal del contenido */
         .container {
             max-width: 800px;
             padding: 40px;
-            background: rgba(255, 255, 255, 0.8); /* Fondo blanco translúcido para el contenido*/
-            border-radius: 15px; /* Bordes redondeados sutiles*/
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra suave para profundidad*/
+            background: rgba(255, 255, 255, 0.8); /* Fondo blanco translúcido para el contenido */
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             margin-bottom: 30px;
-            transition: background 0.7s ease-in-out, box-shadow 0.7s ease-in-out; /* Transición para modo oscuro*/
+            transition: background 0.7s ease-in-out, box-shadow 0.7s ease-in-out; /* Transición para modo oscuro */
         }
         body.dark-mode .container {
-            background: rgba(0, 0, 0, 0.6); /* Fondo más oscuro en modo oscuro*/
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada en modo oscuro*/
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
         }
 
-        /* Estilo del título principal */
         h1 {
-            font-family: 'Dancing Script', cursive; /* Tipografía manuscrita y elegante*/
-            font-size: 3.5rem; /* Tamaño de título grande*/
-            color: #00acc1; /* Un color turquesa llamativo*/
+            font-family: 'Dancing Script', cursive; /* Tipografía manuscrita para el título */
+            font-size: 3.5rem; /* Tamaño de título grande */
+            color: #00acc1; /* Un color turquesa más llamativo */
             margin-bottom: 30px;
-            transition: color 0.7s ease-in-out; /* Transición de color para modo oscuro*/
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Sombra de texto sutil para destacar */
+            transition: color 0.7s ease-in-out; /* Transición para modo oscuro */
         }
         body.dark-mode h1 {
-            color: #87ceeb; /* Azul cielo en modo oscuro*/
+            color: #87ceeb; /* Azul cielo en modo oscuro */
         }
 
-        /* Estilo de los párrafos */
         p {
-            font-size: 1.8rem; /* Tamaño de párrafo grande y legible*/
-            line-height: 1.6; /* Espaciado entre líneas para mejor lectura*/
+            font-size: 1.8rem; /* Tamaño de párrafo grande y legible */
+            line-height: 1.6; /* Espaciado entre líneas para mejor lectura */
             margin-bottom: 30px;
-            transition: color 0.7s ease-in-out; /* Transición de color para modo oscuro*/
-            text-align: center; /* Centrado del texto */
+            transition: color 0.7s ease-in-out; /* Transición para modo oscuro */
         }
         body.dark-mode p {
-            color: #e0e0e0; /* Color de texto claro en modo oscuro*/
+            color: #e0e0e0;
         }
 
-        /* Estilo para el contenedor del video (responsivo) */
+        /* Estilo para el contenedor del video */
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* Relación de aspecto 16:9 (altura / ancho)*/
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 (altura / ancho) */
             height: 0;
             overflow: hidden;
             margin-bottom: 40px;
-            border-radius: 10px; /* Bordes redondeados*/
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); /* Sombra para el video*/
-            background: #000; /* Fondo negro para evitar "flash" antes de cargar el video */
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         }
-        .video-wrapper iframe {
+        .video-wrapper iframe { /* Aquí nos aseguramos que apunte a la etiqueta <iframe> */
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             border: 0;
-            border-radius: 10px; /* Asegura que el iframe también tenga bordes redondeados*/
+            border-radius: 10px; /* Asegura que el iframe también tenga bordes redondeados */
         }
 
-        /* Botón de modo oscuro/claro */
+        .volver-btn, .modo-btn {
+            border: none;
+            border-radius: 25px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+        }
+        .volver-btn {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px 30px;
+            margin-top: 20px;
+        }
+        .volver-btn:hover {
+            background-color: #45a049;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
         .modo-btn {
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background-color: #9370db; /* Lila suave*/
+            background-color: #9370db;
             border-radius: 50%;
             width: 55px;
             height: 55px;
@@ -109,50 +123,46 @@
             align-items: center;
             justify-content: center;
             z-index: 99;
-            cursor: pointer;
-            border: none; /* Eliminar el borde predeterminado */
-            box-shadow: 0 6px 15px rgba(0,0,0,0.25); /* Sombra para el botón*/
-            transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves al interactuar*/
         }
 
         .modo-btn:hover {
-            background-color: #6a5acd; /* Lila más oscuro al pasar el ratón*/
-            transform: rotate(360deg) scale(1.1); /* Efecto de giro y ligero aumento al pasar el ratón*/
+            background-color: #6a5acd;
+            transform: rotate(360deg);
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
         body.dark-mode .modo-btn {
-            background-color: #87ceeb; /* Azul cielo en modo oscuro*/
-            color: #333; /* Texto oscuro en modo oscuro*/
+            background-color: #87ceeb;
+            color: #333;
         }
 
         body.dark-mode .modo-btn:hover {
-            background-color: #6495ed; /* Azul más oscuro en modo oscuro al pasar el ratón*/
+            background-color: #6495ed;
         }
 
-        /* Animación de estrellas flotantes (fondo dinámico) */
+        /* Animación de estrellas flotantes */
         .estrellas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none; /* Las estrellas no bloquean clics*/
-            z-index: -1; /* Detrás del contenido*/
-            overflow: hidden; /* Oculta estrellas fuera de la pantalla*/
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
         }
 
         .estrella {
             position: absolute;
-            color: rgba(255, 255, 255, 0.5); /* Estrellas blancas semitransparentes*/
+            color: rgba(255, 255, 255, 0.5);
             font-size: 1.5rem;
-            animation: flotarEstrella 15s linear infinite; /* Animación de flotación infinita*/
+            animation: flotarEstrella 15s linear infinite;
         }
         body.dark-mode .estrella {
-            color: rgba(255, 223, 0, 0.4); /* Estrellas amarillas sutiles en modo oscuro*/
+            color: rgba(255, 223, 0, 0.4);
         }
 
-        /* Posiciones aleatorias y variaciones para las estrellas (más densidad)*/
+        /* Posiciones aleatorias para las estrellas */
         .estrella:nth-child(1) { top: 10%; left: 5%; animation-duration: 12s; animation-delay: -1s; font-size: 1.0rem; }
         .estrella:nth-child(2) { top: 25%; left: 80%; animation-duration: 18s; animation-delay: -3s; font-size: 1.8rem; }
         .estrella:nth-child(3) { top: 50%; left: 30%; animation-duration: 14s; animation-delay: -2s; font-size: 1.3rem; }
@@ -163,43 +173,28 @@
         .estrella:nth-child(8) { top: 40%; left: 90%; animation-duration: 19s; animation-delay: -3.5s; font-size: 1.7rem; }
         .estrella:nth-child(9) { top: 60%; left: 70%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
         .estrella:nth-child(10) { top: 15%; left: 20%; animation-duration: 20s; animation-delay: -4.5s; font-size: 2.0rem; }
+        /* Más estrellas para mayor densidad */
         .estrella:nth-child(11) { top: 95%; left: 50%; animation-duration: 15s; animation-delay: -1s; font-size: 1.0rem; }
-        .estrella:nth-child(12) { top: 80%; left: 25%; animation-duration: 12s; animation-delay: -3s; font-size: 1.5rem; }
-        .estrella:nth-child(13) { top: 20%; left: 55%; animation-duration: 18s; animation-delay: -2s; font-size: 1.9rem; }
-        .estrella:nth-child(14) { top: 65%; left: 5%; animation-duration: 10s; animation-delay: -0.7s; font-size: 1.1rem; }
-        .estrella:nth-child(15) { top: 45%; left: 75%; animation-duration: 16s; animation-delay: -4s; font-size: 1.6rem; }
+        .estrella:nth-child(12) { top: 80%; left: 5%; animation-duration: 12s; animation-delay: -2s; font-size: 1.5rem; }
+        .estrella:nth-child(13) { top: 20%; left: 50%; animation-duration: 18s; animation-delay: -3s; font-size: 1.2rem; }
+        .estrella:nth-child(14) { top: 45%; left: 5%; animation-duration: 10s; animation-delay: -0.5s; font-size: 1.0rem; }
+        .estrella:nth-child(15) { top: 70%; left: 90%; animation-duration: 16s; animation-delay: -2.5s; font-size: 1.4rem; }
+        .estrella:nth-child(16) { top: 10%; left: 60%; animation-duration: 13s; animation-delay: -1.5s; font-size: 1.1rem; }
+        .estrella:nth-child(17) { top: 35%; left: 25%; animation-duration: 19s; animation-delay: -3.5s; font-size: 1.6rem; }
+        .estrella:nth-child(18) { top: 55%; left: 75%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
+        .estrella:nth-child(19) { top: 90%; left: 30%; animation-duration: 20s; animation-delay: -4.5s; font-size: 1.7rem; }
+        .estrella:nth-child(20) { top: 75%; left: 40%; animation-duration: 14s; animation-delay: -2s; font-size: 1.3rem; }
 
-        /* Keyframes para la animación de flotar de las estrellas */
         @keyframes flotarEstrella {
-            0% {
-                transform: translateY(100vh) translateX(0) rotate(0deg);
+            from {
+                transform: translateY(100vh) rotate(0deg);
                 opacity: 0;
             }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% {
-                transform: translateY(-100vh) translateX(50vw) rotate(360deg); /* Las estrellas flotan hacia arriba y se dispersan */
+            25% { opacity: 1; }
+            75% { opacity: 1; }
+            to {
+                transform: translateY(-100vh) rotate(360deg);
                 opacity: 0;
-            }
-        }
-
-        /* Media queries para responsividad en pantallas más pequeñas */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem; /* Ajuste para pantallas pequeñas */
-            }
-            p {
-                font-size: 1.2rem; /* Ajuste para pantallas pequeñas */
-            }
-            .container {
-                padding: 20px; /* Menor padding en móvil */
-            }
-            .modo-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 20px;
-                bottom: 15px;
-                right: 15px;
             }
         }
     </style>
@@ -221,16 +216,26 @@
         <i class="fa-solid fa-star estrella"></i>
         <i class="fa-solid fa-star estrella"></i>
         <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
     </div>
 
     <div class="container">
-        <h1>Lo siento si te sientes así...</h1>
-        <p>Sé que a veces la vida puede ser complicada, y no siempre podemos controlar cómo nos sentimos. Pero quiero que sepas que estoy aquí para ti, siempre. No importa lo que pase, mi cariño por ti no cambia. Eres una persona increíble, fuerte y valiosa.</p>
-        <p>Este video es un pequeño recordatorio de la alegría y la conexión que compartimos. Espero que te saque una sonrisa y te recuerde lo mucho que significas para mí.</p>
+        <h1>Un Mensaje Cuando las Cosas no Van Bien</h1>
+        <p>
+            Sé que a veces la vida nos presenta desafíos y momentos difíciles. Quiero que sepas que no estás sola. Eres fuerte, valiente y capaz de superar cualquier obstáculo. Recuerda los momentos felices y las personas que te quieren. Este video es para recordarte lo especial que eres.
+        </p>
 
         <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/zSvgaQ9xogUx?si=n-lP646UjVw6tH7n&autoplay=1&mute=1&controls=0&loop=1&playlist=zSvgaQ9xogUx&start=4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/39ColarOWKo?si=7GFmzSvgaQ9xogUx&start=4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
+
+        <a href="index.html#seccion1" class="volver-btn">
+            <i class="fa-solid fa-house"></i> Volver a "Feliz primer mes"
+        </a>
     </div>
 
     <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
@@ -239,19 +244,17 @@
         const body = document.body;
         const modoBtn = document.getElementById('modo-btn');
 
-        // Función para alternar el modo oscuro
         modoBtn.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
             if (body.classList.contains('dark-mode')) {
                 localStorage.setItem('dark-mode-triste', 'true');
-                modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>'; // Cambia el icono a sol
+                modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
             } else {
                 localStorage.setItem('dark-mode-triste', 'false');
-                modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>'; // Cambia el icono a luna
+                modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
             }
         });
 
-        // Cargar el modo oscuro si estaba activado en la última visita
         document.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('dark-mode-triste') === 'true') {
                 body.classList.add('dark-mode');
