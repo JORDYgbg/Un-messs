@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feliz primer mes</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     /* Restablecimiento y estilos base */
@@ -18,18 +17,17 @@
     /* Estilo del cuerpo con transiciones mejoradas y suavizado de fuente */
     body {
       font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(135deg, #eac8ff, #d291fa);
-      color: #333;
+      background: linear-gradient(135deg, #f7e6ff, #d2a6fa); /* Degradado lila más suave */
+      color: #4a4a4a; /* Color de texto más oscuro y profesional */
       transition: background 0.7s ease-in-out, color 0.7s ease-in-out, font-size 0.7s ease-in-out;
       overflow-x: hidden;
-      /* Propiedades para suavizar las fuentes y hacerlas más nítidas (Anti-aliasing) */
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
     /* Estilo del modo oscuro */
     body.dark-mode {
-      background: linear-gradient(135deg, #000000, #2e2e2e);
+      background: linear-gradient(135deg, #1a1a1a, #333333); /* Degradado oscuro más sutil */
       color: #f0f0f0;
     }
 
@@ -39,25 +37,24 @@
     }
 
     body.celular .reproductor {
-      /* Posición y tamaño minimizado en celular (arriba a la derecha, más pequeño) */
-      width: 60px; /* Más pequeño */
-      height: 60px; /* Más pequeño */
-      padding: 5px; /* Menor padding */
-      top: 20px; /* Arriba */
-      right: 20px; /* Derecha */
+      width: 60px;
+      height: 60px;
+      padding: 5px;
+      top: 20px;
+      right: 20px;
       left: auto;
       bottom: auto;
       transform: none;
       overflow: hidden;
-      display: flex; /* Para centrar la portada */
+      display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Suavizada */
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     body.celular .reproductor img {
-      width: 50px; /* Portada aún más pequeña */
+      width: 50px;
       height: 50px;
       margin-bottom: 0;
     }
@@ -65,44 +62,43 @@
     body.celular .reproductor .titulo,
     body.celular .reproductor .barra,
     body.celular .reproductor .volumen,
-    body.celular .reproductor .controles { /* Ocultar todos los controles en minimizado para celular */
+    body.celular .reproductor .controles {
       display: none;
-      opacity: 0; /* Control de opacidad para transiciones */
+      opacity: 0;
       transition: opacity 0.3s ease-out;
     }
 
-    /* Reproductor maximizado en celular al tocar */
     body.celular .reproductor.maximized {
-      width: 90%; /* Se expande más */
+      width: 90%;
       height: auto;
       padding: 20px;
       overflow: visible;
-      left: 50%; /* Se centra horizontalmente */
+      left: 50%;
       right: auto;
-      transform: translateX(-50%); /* Ajuste para el centrado real */
-      top: 20px; /* Se mantiene arriba y se expande hacia abajo */
+      transform: translateX(-50%);
+      top: 20px;
       bottom: auto;
-      align-items: stretch; /* Restaura la alineación */
+      align-items: stretch;
     }
 
     body.celular .reproductor.maximized img {
       width: 100px;
       height: 100px;
       margin-bottom: 10px;
-      margin-left: auto; /* Centra la imagen */
-      margin-right: auto; /* Centra la imagen */
+      margin-left: auto;
+      margin-right: auto;
     }
 
     body.celular .reproductor.maximized .titulo,
     body.celular .reproductor.maximized .barra,
     body.celular .reproductor.maximized .volumen,
     body.celular .reproductor.maximized .controles {
-      display: flex; /* Muestra los elementos */
-      opacity: 1; /* Transición de opacidad */
-      transition-delay: 0.2s; /* Pequeño retraso para que aparezcan suavemente */
+      display: flex;
+      opacity: 1;
+      transition-delay: 0.2s;
     }
     body.celular .reproductor.maximized .titulo {
-        display: block; /* Título puede ser bloque */
+        display: block;
     }
 
 
@@ -126,92 +122,100 @@
     /* Estilo del encabezado */
     header {
       text-align: center;
-      padding: 50px 20px 20px;
+      padding: 60px 20px 30px; /* Más padding superior para espacio */
     }
 
     h1 {
       font-family: 'Pacifico', cursive;
-      font-size: 3.2rem; /* Ligeramente más grande */
-      color: #a259ff;
+      font-size: 3.8rem; /* Título un poco más grande para destacar */
+      color: #8a2be2; /* Lila más intenso */
       transition: color 0.7s ease-in-out;
-      /* Suavizado de fuente para el título */
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      margin-bottom: 10px; /* Espacio entre título y párrafo */
     }
 
     body.dark-mode h1 {
-        color: #ffcc00;
+        color: #ffda66; /* Amarillo más cálido para el modo oscuro */
     }
 
     header p {
-      margin-top: 10px;
-      font-size: 1.2rem;
-      /* Suavizado de fuente para el párrafo */
+      font-size: 1.3rem; /* Párrafo ligeramente más grande */
+      color: #666; /* Color de texto más suave */
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      margin-bottom: 30px; /* Más espacio entre el texto y el video */
+    }
+    body.dark-mode header p {
+        color: #ccc;
     }
 
+
     header video {
-        width: 100%;
-        max-width: 600px; /* Limita el ancho máximo del video */
-        margin-top: 20px;
-        border-radius: 10px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        width: 90%; /* Más pequeño, ocupa el 90% del ancho del padre */
+        max-width: 500px; /* Límite máximo para que no sea enorme en pantallas grandes */
+        height: auto; /* Mantiene la proporción */
+        margin: 0 auto 40px auto; /* Centra el video y le da más margen inferior */
+        border-radius: 15px; /* Bordes más redondeados */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Sombra más pronunciada y suave */
+        display: block; /* Para que margin auto funcione */
     }
 
     /* Botón "Si te sientes triste" */
     .triste-btn {
       position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background-color: #ff69b4;
+      bottom: 25px; /* Ligeramente más arriba */
+      left: 25px; /* Ligeramente más adentro */
+      background-color: #ff69b4; /* Rosa */
       border: none;
       color: white;
       font-size: 1rem;
       padding: 15px 25px;
-      border-radius: 12px;
+      border-radius: 25px; /* Bordes más redondeados */
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25); /* Sombra más definida */
+      transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     }
 
     .triste-btn:hover {
       background-color: #ff1493;
-      transform: translateY(-5px);
+      transform: translateY(-7px); /* Efecto de elevación más notable */
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
     /* Botón de cambio de modo oscuro/claro */
     .modo-btn {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #6a0dad;
+      bottom: 25px;
+      right: 25px;
+      background-color: #9370db; /* Lila más suave */
       border: none;
       border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 20px;
+      width: 55px; /* Ligeramente más grande */
+      height: 55px; /* Ligeramente más grande */
+      font-size: 22px; /* Ícono más grande */
       color: white;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, color 0.4s ease-in-out;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, color 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
     }
 
     .modo-btn:hover {
-      background-color: #4b0082;
+      background-color: #6a5acd; /* Lila al pasar el ratón */
       transform: rotate(360deg);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
     body.dark-mode .modo-btn {
-        background-color: #ffd700;
+        background-color: #ffdb58; /* Amarillo oro */
         color: #333;
     }
 
     body.dark-mode .modo-btn:hover {
-        background-color: #daa520;
+        background-color: #e0b400; /* Amarillo oscuro al pasar el ratón */
     }
 
     /* Animación de corazones flotantes */
@@ -227,9 +231,12 @@
 
     .corazon {
       position: absolute;
-      color: rgba(0, 0, 0, 0.2);
+      color: rgba(0, 0, 0, 0.1); /* Corazones más sutiles */
       font-size: 1.5rem;
       animation: flotar 10s linear infinite;
+    }
+    body.dark-mode .corazon {
+        color: rgba(255, 255, 255, 0.1); /* Corazones blancos en modo oscuro */
     }
 
     .corazon:nth-child(2n) { animation-duration: 12s; animation-delay: -2s; font-size: 1.2rem; }
@@ -259,38 +266,38 @@
     /* Estilo del reproductor de música (PC por defecto, minimizado) */
     .reproductor {
       position: fixed;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.2);
-      backdrop-filter: blur(10px);
+      top: 25px; /* Ligeramente más abajo */
+      right: 25px; /* Ligeramente más adentro */
+      background: rgba(255,255,255,0.4); /* Fondo más translúcido */
+      backdrop-filter: blur(12px); /* Blur un poco más fuerte */
       border-radius: 20px;
-      padding: 15px; /* Padding por defecto */
+      padding: 15px;
       text-align: center;
-      width: 80px; /* Ancho minimizado por defecto */
-      height: 80px; /* Altura minimizada por defecto */
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transición suave para PC */
+      width: 80px;
+      height: 80px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25); /* Sombra más grande y definida */
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       z-index: 100;
-      cursor: pointer; /* Indica que es interactuable */
+      cursor: pointer;
     }
 
     .reproductor.dark-mode {
-      background: rgba(0,0,0,0.4);
+      background: rgba(0,0,0,0.6); /* Fondo más oscuro y translúcido en modo oscuro */
     }
 
     .reproductor img {
-      width: 60px; /* Portada minimizada por defecto */
+      width: 60px;
       height: 60px;
       border-radius: 50%;
       margin-bottom: 0;
       animation: girar 5s linear infinite;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transición suave para imagen */
+      box-shadow: 0 0 20px rgba(0,0,0,0.2); /* Sombra sutil en la portada */
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       object-fit: cover;
     }
 
@@ -298,9 +305,9 @@
     .reproductor .barra,
     .reproductor .controles,
     .reproductor .volumen {
-      display: none; /* Oculta elementos por defecto (minimizado) */
-      opacity: 0; /* Control de opacidad */
-      transition: opacity 0.3s ease-out; /* Transición para que aparezcan/desaparezcan */
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
     }
 
     /* Reproductor maximizado en PC al pasar el ratón */
@@ -310,7 +317,7 @@
       padding: 20px;
       overflow: visible;
       align-items: stretch;
-      cursor: default; /* Vuelve a cursor normal al maximizar */
+      cursor: default;
     }
 
     .reproductor:hover img {
@@ -325,12 +332,12 @@
     .reproductor:hover .barra,
     .reproductor:hover .controles,
     .reproductor:hover .volumen {
-      display: flex; /* Muestra los elementos */
-      opacity: 1; /* Transición de opacidad */
-      transition-delay: 0.2s; /* Pequeño retraso para que aparezcan suavemente */
+      display: flex;
+      opacity: 1;
+      transition-delay: 0.2s;
     }
     .reproductor:hover .titulo {
-        display: block; /* Título puede ser bloque */
+        display: block;
     }
     .reproductor:hover .controles {
         flex-wrap: nowrap;
@@ -350,21 +357,21 @@
       width: 100%;
       margin: 10px 0;
       -webkit-appearance: none;
-      height: 6px;
+      height: 8px; /* Barra de progreso más gruesa */
       background: #ccc;
-      border-radius: 3px;
+      border-radius: 4px;
       outline: none;
       cursor: pointer;
     }
 
     .barra::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 16px;
-      height: 16px;
+      width: 18px; /* Pulgar más grande */
+      height: 18px;
       border-radius: 50%;
-      background: #a259ff;
+      background: #8a2be2; /* Lila más intenso */
       cursor: pointer;
-      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+      box-shadow: 0 0 8px rgba(0,0,0,0.3); /* Sombra en el pulgar */
     }
 
     .controles {
@@ -379,18 +386,18 @@
     .controles button {
       background: none;
       border: none;
-      font-size: 1.5rem;
+      font-size: 1.6rem; /* Íconos de control más grandes */
       cursor: pointer;
       color: inherit;
-      transition: color 0.3s ease-in-out, transform 0.2s ease-in-out, font-size 0.7s ease-in-out;
+      transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
     }
 
     .controles button:hover {
-        color: #a259ff;
-        transform: scale(1.1);
+        color: #8a2be2;
+        transform: scale(1.15); /* Efecto hover más pronunciado */
     }
     body.dark-mode .controles button:hover {
-        color: #ffcc00;
+        color: #ffda66;
     }
 
 
@@ -401,39 +408,54 @@
     }
 
     #volRange {
-      width: 70px;
+      width: 80px; /* Slider de volumen un poco más ancho */
       background: #ccc;
     }
     #volRange::-webkit-slider-thumb {
-        background: #a259ff;
+        background: #8a2be2;
     }
 
     /* Estilo de las secciones */
     section {
-      padding: 50px 20px;
+      padding: 60px 20px; /* Más padding para separar secciones */
       text-align: center;
       transition: background 0.7s ease-in-out, color 0.7s ease-in-out;
+      margin-bottom: 30px; /* Espacio entre secciones */
+      background: rgba(255,255,255,0.6); /* Fondo translúcido para secciones */
+      border-radius: 20px; /* Bordes redondeados */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* Sombra suave para "elevar" las secciones */
+      max-width: 900px; /* Limita el ancho de las secciones */
+      margin-left: auto;
+      margin-right: auto;
+    }
+    body.dark-mode section {
+        background: rgba(0,0,0,0.4);
     }
 
     section h2 {
-      font-family: 'Playfair Display', serif; /* Fuente más elegante para subtítulos */
-      font-size: 2.2rem; /* Ligeramente más grande */
-      margin-bottom: 20px;
-      color: #a259ff;
+      font-family: 'Dancing Script', cursive; /* Nueva fuente elegante para subtítulos */
+      font-size: 2.8rem; /* Tamaño de subtítulos más grande y elegante */
+      margin-bottom: 25px; /* Más espacio debajo del subtítulo */
+      color: #9370db; /* Lila más suave */
       transition: color 0.7s ease-in-out;
-      /* Suavizado de fuente para los subtítulos */
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      line-height: 1.2; /* Ajuste de altura de línea */
     }
 
     body.dark-mode section h2 {
-        color: #ffcc00;
+        color: #ffd700; /* Amarillo dorado en modo oscuro */
     }
 
     section p {
-      max-width: 800px;
+      max-width: 700px; /* Párrafos un poco más estrechos para mejor lectura */
       margin: 0 auto;
-      font-size: 1.1rem;
+      font-size: 1.15rem; /* Tamaño de texto de párrafo ligeramente más grande */
+      line-height: 1.7; /* Mayor espacio entre líneas para lectura fácil */
+      color: #555; /* Color de texto más suave */
+    }
+    body.dark-mode section p {
+        color: #e0e0e0;
     }
 
     /* Pantalla de bienvenida */
@@ -464,43 +486,47 @@
 
     /* Clase para la transición de color de la pantalla de inicio */
     #pantalla-inicio.transicion-lila {
-        background: linear-gradient(135deg, #eac8ff, #d291fa);
-        color: #333;
+        background: linear-gradient(135deg, #f7e6ff, #d2a6fa);
+        color: #4a4a4a;
     }
 
 
     .dispositivo-opciones {
       display: flex;
-      gap: 40px;
-      margin-top: 30px;
+      gap: 50px; /* Más espacio entre botones */
+      margin-top: 40px; /* Más espacio */
     }
 
     .dispositivo-boton {
       background: white;
-      color: black;
-      width: 80px;
-      height: 80px;
+      color: #8a2be2; /* Iconos en lila */
+      width: 90px; /* Botones más grandes */
+      height: 90px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      font-size: 2.5rem; /* Icono más grande */
       cursor: pointer;
       border: none;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* Sombra más notoria */
+      transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     }
 
     .dispositivo-boton:hover {
-      transform: scale(1.15);
-      background-color: #f0f0f0;
+      transform: scale(1.18); /* Efecto hover más grande */
+      background-color: #f8f8f8;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.4);
     }
 
     .dispositivo-etiqueta {
-      margin-top: 8px;
-      font-size: 1rem;
+      margin-top: 10px; /* Más espacio */
+      font-size: 1.1rem; /* Texto más grande */
       color: white;
       transition: color 0.4s ease-in-out;
+    }
+    #pantalla-inicio.transicion-lila .dispositivo-etiqueta {
+        color: #4a4a4a;
     }
 
     /* Contenedor principal del contenido para la transición */
@@ -701,8 +727,8 @@
       pantallaInicio.classList.add('transicion-lila');
 
       // Modifica el color del texto en la pantalla de inicio para que sea visible durante la transición lila
-      document.querySelector('#pantalla-inicio h2').style.color = '#333';
-      Array.from(document.querySelectorAll('.dispositivo-etiqueta')).forEach(el => el.style.color = '#333');
+      document.querySelector('#pantalla-inicio h2').style.color = '#4a4a4a'; /* Cambiado a color más oscuro */
+      Array.from(document.querySelectorAll('.dispositivo-etiqueta')).forEach(el => el.style.color = '#4a4a4a'); /* Cambiado a color más oscuro */
 
       pantallaInicio.classList.add('hidden'); // Inicia el desvanecimiento de la pantalla de bienvenida
 
