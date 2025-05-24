@@ -57,14 +57,13 @@
             font-size: 1.8rem; /* Tamaño de párrafo grande y legible */
             line-height: 1.6; /* Espaciado entre líneas para mejor lectura */
             margin-bottom: 30px;
-            /* Aquí p ya usa la tipografía por defecto del body (Arial, sans-serif) */
             transition: color 0.7s ease-in-out; /* Transición para modo oscuro */
         }
         body.dark-mode p {
             color: #e0e0e0;
         }
 
-        /* Estilo para el iframe de YouTube */
+        /* Estilo para el contenedor del video */
         .video-wrapper {
             position: relative;
             width: 100%;
@@ -75,7 +74,7 @@
             border-radius: 10px;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         }
-        .video-wrapper iframe {
+        .video-wrapper iframe { /* Aquí nos aseguramos que apunte a la etiqueta <iframe> */
             position: absolute;
             top: 0;
             left: 0;
@@ -87,8 +86,8 @@
 
         .volver-btn, .modo-btn {
             border: none;
-            border-radius: 25px; /* Para el botón principal */
-            font-size: 1.5rem; /* Para el botón principal */
+            border-radius: 25px;
+            font-size: 1.5rem;
             cursor: pointer;
             text-decoration: none;
             transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
@@ -96,32 +95,30 @@
             align-items: center;
             gap: 10px;
             box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-            /* El botón volver-btn usará la tipografía por defecto del body (Arial, sans-serif) */
         }
         .volver-btn {
-            background-color: #4caf50; /* Color verde alegre para el botón */
+            background-color: #4caf50;
             color: white;
-            padding: 15px 30px; /* Padding específico para este botón */
-            margin-top: 20px; /* Espacio superior */
+            padding: 15px 30px;
+            margin-top: 20px;
         }
         .volver-btn:hover {
-            background-color: #45a049; /* Verde un poco más oscuro al pasar el ratón */
+            background-color: #45a049;
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
-        /* Botón de cambio de modo oscuro/claro */
         .modo-btn {
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background-color: #9370db; /* Lila más suave */
-            border-radius: 50%; /* Lo hacemos circular */
-            width: 55px; /* Ancho fijo */
-            height: 55px; /* Altura fija */
-            font-size: 22px; /* Tamaño del ícono */
+            background-color: #9370db;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 22px;
             color: white;
-            padding: 0; /* Quita el padding si usas width/height fijo */
+            padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -135,12 +132,12 @@
         }
 
         body.dark-mode .modo-btn {
-            background-color: #87ceeb; /* Azul cielo */
+            background-color: #87ceeb;
             color: #333;
         }
 
         body.dark-mode .modo-btn:hover {
-            background-color: #6495ed; /* Azul más oscuro al pasar el ratón */
+            background-color: #6495ed;
         }
 
         /* Animación de estrellas flotantes */
@@ -149,4 +146,123 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 10
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .estrella {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.5rem;
+            animation: flotarEstrella 15s linear infinite;
+        }
+        body.dark-mode .estrella {
+            color: rgba(255, 223, 0, 0.4);
+        }
+
+        /* Posiciones aleatorias para las estrellas */
+        .estrella:nth-child(1) { top: 10%; left: 5%; animation-duration: 12s; animation-delay: -1s; font-size: 1.0rem; }
+        .estrella:nth-child(2) { top: 25%; left: 80%; animation-duration: 18s; animation-delay: -3s; font-size: 1.8rem; }
+        .estrella:nth-child(3) { top: 50%; left: 30%; animation-duration: 14s; animation-delay: -2s; font-size: 1.3rem; }
+        .estrella:nth-child(4) { top: 70%; left: 60%; animation-duration: 16s; animation-delay: -4s; font-size: 1.6rem; }
+        .estrella:nth-child(5) { top: 5%; left: 40%; animation-duration: 10s; animation-delay: -0.5s; font-size: 1.1rem; }
+        .estrella:nth-child(6) { top: 85%; left: 15%; animation-duration: 17s; animation-delay: -2.5s; font-size: 1.4rem; }
+        .estrella:nth-child(7) { top: 30%; left: 10%; animation-duration: 13s; animation-delay: -1.5s; font-size: 1.2rem; }
+        .estrella:nth-child(8) { top: 40%; left: 90%; animation-duration: 19s; animation-delay: -3.5s; font-size: 1.7rem; }
+        .estrella:nth-child(9) { top: 60%; left: 70%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
+        .estrella:nth-child(10) { top: 15%; left: 20%; animation-duration: 20s; animation-delay: -4.5s; font-size: 2.0rem; }
+        /* Más estrellas para mayor densidad */
+        .estrella:nth-child(11) { top: 95%; left: 50%; animation-duration: 15s; animation-delay: -1s; font-size: 1.0rem; }
+        .estrella:nth-child(12) { top: 80%; left: 5%; animation-duration: 12s; animation-delay: -2s; font-size: 1.5rem; }
+        .estrella:nth-child(13) { top: 20%; left: 50%; animation-duration: 18s; animation-delay: -3s; font-size: 1.2rem; }
+        .estrella:nth-child(14) { top: 45%; left: 5%; animation-duration: 10s; animation-delay: -0.5s; font-size: 1.0rem; }
+        .estrella:nth-child(15) { top: 70%; left: 90%; animation-duration: 16s; animation-delay: -2.5s; font-size: 1.4rem; }
+        .estrella:nth-child(16) { top: 10%; left: 60%; animation-duration: 13s; animation-delay: -1.5s; font-size: 1.1rem; }
+        .estrella:nth-child(17) { top: 35%; left: 25%; animation-duration: 19s; animation-delay: -3.5s; font-size: 1.6rem; }
+        .estrella:nth-child(18) { top: 55%; left: 75%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
+        .estrella:nth-child(19) { top: 90%; left: 30%; animation-duration: 20s; animation-delay: -4.5s; font-size: 1.7rem; }
+        .estrella:nth-child(20) { top: 75%; left: 40%; animation-duration: 14s; animation-delay: -2s; font-size: 1.3rem; }
+
+        @keyframes flotarEstrella {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            25% { opacity: 1; }
+            75% { opacity: 1; }
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="estrellas">
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+    </div>
+
+    <div class="container">
+        <h1>Un Mensaje Cuando las Cosas no Van Bien</h1>
+        <p>
+            Sé que a veces la vida nos presenta desafíos y momentos difíciles. Quiero que sepas que no estás sola. Eres fuerte, valiente y capaz de superar cualquier obstáculo. Recuerda los momentos felices y las personas que te quieren. Este video es para recordarte lo especial que eres.
+        </p>
+
+        <div class="video-wrapper">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/39ColarOWKo?si=7GFmzSvgaQ9xogUx&start=4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <a href="index.html#seccion1" class="volver-btn">
+            <i class="fa-solid fa-house"></i> Volver a "Feliz primer mes"
+        </a>
+    </div>
+
+    <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
+
+    <script>
+        const body = document.body;
+        const modoBtn = document.getElementById('modo-btn');
+
+        modoBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('dark-mode-triste', 'true');
+                modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            } else {
+                localStorage.setItem('dark-mode-triste', 'false');
+                modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('dark-mode-triste') === 'true') {
+                body.classList.add('dark-mode');
+                modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            } else {
+                modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            }
+        });
+    </script>
+</body>
+</html>
