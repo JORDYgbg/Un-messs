@@ -256,6 +256,8 @@ body.celular .reproductor {
      <!-- Pantalla de bienvenida -->
 <div id="pantalla-inicio">
   <h2>¿En dónde estás viendo esto?</h2>
+<div id="contenido-principal" style="display: none;">
+  <!-- Todo tu contenido: corazones, header, reproductor, secciones, etc. -->
   <div class="dispositivo-opciones">
     <div>
       <button class="dispositivo-boton" onclick="seleccionarDispositivo('celular')">
@@ -387,8 +389,13 @@ body.celular .reproductor {
     });
 function seleccionarDispositivo(tipo) {
   document.getElementById('pantalla-inicio').style.display = 'none';
+  document.getElementById('contenido-principal').style.display = 'block';
+
   if (tipo === 'celular') {
     document.body.classList.add('celular');
+  }
+}
+
   }
   console.log('Dispositivo seleccionado:', tipo);
 }
@@ -396,5 +403,6 @@ function seleccionarDispositivo(tipo) {
 }
 
   </script>
+  </div>
 </body>
 </html>
