@@ -1,146 +1,151 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Un Mensaje Especial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Un Abrazo Virtual</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
+        :root {
+            /* Colores para modo claro */
+            --light-bg: linear-gradient(135deg, #f0f8ff, #e6f7ff); /* Azul claro suave */
+            --light-text: #333;
+            --light-container-bg: rgba(255, 255, 255, 0.9);
+            --light-heading: #ff6f61; /* Coral vibrante */
+            --light-accent: #8e44ad; /* Púrpura */
+            --light-shadow: rgba(0, 0, 0, 0.15);
+            --light-btn-bg: #ff69b4; /* Rosa para botón principal */
+
+            /* Colores para modo oscuro */
+            --dark-bg: linear-gradient(180deg, #1a2a3a 0%, #2a3a4a 70%); /* Azules oscuros */
+            --dark-text: #f0f0f0;
+            --dark-container-bg: rgba(0, 0, 0, 0.7);
+            --dark-heading: #ffb6c1; /* Rosa claro */
+            --dark-accent: #9370db; /* Lila */
+            --dark-shadow: rgba(0, 0, 0, 0.5);
+            --dark-btn-bg: #da70d6; /* Orquídea para botón principal */
+        }
+
         body {
-            font-family: Arial, sans-serif; /* Tipografía normal por defecto para el body */
-            background: linear-gradient(135deg, #e0f2f7, #b2ebf2); /* Un fondo azul muy suave para el modo claro */
-            color: #333;
+            font-family: 'Montserrat', sans-serif;
+            background: var(--light-bg);
+            color: var(--light-text);
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
-            min-height: 100vh;
+            justify-content: center; /* Centrar verticalmente el contenido */
+            min-height: 100vh; /* Asegura que ocupe al menos toda la altura de la vista */
+            overflow-x: hidden;
+            transition: background 0.7s ease-in-out, color 0.7s ease-in-out;
+            position: relative;
             box-sizing: border-box;
-            transition: background 0.7s ease-in-out, color 0.7s ease-in-out; /* Transición para modo oscuro */
         }
 
-        /* Modo oscuro */
         body.dark-mode {
-            background: linear-gradient(180deg, #2c3e50 0%, #34495e 70%); /* Azules oscuros */
-            color: #f0f0f0;
+            background: var(--dark-bg);
+            color: var(--dark-text);
         }
 
         .container {
+            width: 90%;
             max-width: 800px;
+            margin: 40px auto; /* Mantener margen superior e inferior */
             padding: 40px;
-            background: rgba(255, 255, 255, 0.8); /* Fondo blanco translúcido para el contenido */
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-            transition: background 0.7s ease-in-out, box-shadow 0.7s ease-in-out; /* Transición para modo oscuro */
+            background: var(--light-container-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--light-shadow);
+            text-align: center;
+            transition: background 0.7s ease-in-out, box-shadow 0.7s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
         body.dark-mode .container {
-            background: rgba(0, 0, 0, 0.6);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            background: var(--dark-container-bg);
+            box-shadow: 0 10px 30px var(--dark-shadow);
         }
 
         h1 {
-            font-family: 'Dancing Script', cursive; /* Tipografía manuscrita para el título */
-            font-size: 3.5rem; /* Tamaño de título grande */
-            color: #00acc1; /* Un color turquesa más llamativo */
-            margin-bottom: 30px;
-            transition: color 0.7s ease-in-out; /* Transición para modo oscuro */
+            font-family: 'Dancing Script', cursive;
+            color: var(--light-heading);
+            margin-bottom: 25px;
+            font-size: 3.5rem;
+            transition: color 0.7s ease-in-out;
         }
         body.dark-mode h1 {
-            color: #87ceeb; /* Azul cielo en modo oscuro */
+            color: var(--dark-heading);
         }
 
         p {
-            font-size: 1.8rem; /* Tamaño de párrafo grande y legible */
-            line-height: 1.6; /* Espaciado entre líneas para mejor lectura */
-            margin-bottom: 30px;
-            transition: color 0.7s ease-in-out; /* Transición para modo oscuro */
-        }
-        body.dark-mode p {
-            color: #e0e0e0;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
         }
 
-        /* Estilo para el contenedor del video */
-        .video-wrapper {
+        .highlight {
+            font-weight: 700;
+            color: var(--light-accent);
+            transition: color 0.7s ease-in-out;
+        }
+        body.dark-mode .highlight {
+            color: var(--dark-accent);
+        }
+
+        .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* Relación de aspecto 16:9 (altura / ancho) */
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
             overflow: hidden;
-            margin-bottom: 40px;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--light-shadow);
+            margin-bottom: 30px;
         }
-        .video-wrapper iframe { /* Aquí nos aseguramos que apunte a la etiqueta <iframe> */
+        .video-container iframe, .video-container video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             border: 0;
-            border-radius: 10px; /* Asegura que el iframe también tenga bordes redondeados */
+            border-radius: 15px;
         }
 
-        .volver-btn, .modo-btn {
+        .btn {
+            background-color: var(--light-btn-bg);
+            color: white;
+            padding: 15px 30px;
             border: none;
-            border-radius: 25px;
-            font-size: 1.5rem;
+            border-radius: 30px;
+            font-size: 1.2rem;
             cursor: pointer;
             text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-        }
-        .volver-btn {
-            background-color: #4caf50;
-            color: white;
-            padding: 15px 30px;
-            margin-top: 20px;
-        }
-        .volver-btn:hover {
-            background-color: #45a049;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            margin-top: 30px;
         }
 
-        .modo-btn {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background-color: #9370db;
-            border-radius: 50%;
-            width: 55px;
-            height: 55px;
-            font-size: 22px;
-            color: white;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 99;
+        .btn:hover {
+            background-color: #ff1493; /* Rosa más oscuro */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+        body.dark-mode .btn {
+            background-color: var(--dark-btn-bg);
+        }
+        body.dark-mode .btn:hover {
+            background-color: #c060c0; /* Púrpura más oscuro */
         }
 
-        .modo-btn:hover {
-            background-color: #6a5acd;
-            transform: rotate(360deg);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        body.dark-mode .modo-btn {
-            background-color: #87ceeb;
-            color: #333;
-        }
-
-        body.dark-mode .modo-btn:hover {
-            background-color: #6495ed;
-        }
-
-        /* Animación de estrellas flotantes */
+        /* Estrellas flotantes (copiado de index.html para consistencia) */
         .estrellas {
             position: fixed;
             top: 0;
@@ -154,12 +159,12 @@
 
         .estrella {
             position: absolute;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(0, 0, 0, 0.1); /* Estrellas sutiles en modo claro */
             font-size: 1.5rem;
             animation: flotarEstrella 15s linear infinite;
         }
         body.dark-mode .estrella {
-            color: rgba(255, 223, 0, 0.4);
+            color: rgba(255, 223, 0, 0.4); /* Amarillo suave en modo oscuro */
         }
 
         /* Posiciones aleatorias para las estrellas */
@@ -170,19 +175,18 @@
         .estrella:nth-child(5) { top: 5%; left: 40%; animation-duration: 10s; animation-delay: -0.5s; font-size: 1.1rem; }
         .estrella:nth-child(6) { top: 85%; left: 15%; animation-duration: 17s; animation-delay: -2.5s; font-size: 1.4rem; }
         .estrella:nth-child(7) { top: 30%; left: 10%; animation-duration: 13s; animation-delay: -1.5s; font-size: 1.2rem; }
-        .estrella:nth-child(8) { top: 40%; left: 90%; animation-duration: 19s; animation-delay: -3.5s; font-size: 1.7rem; }
+        .estrella:nth-child(8) { top: 40%; left: 90%; animation-duration: 19s; animation-delay: -3s; font-size: 1.7rem; }
         .estrella:nth-child(9) { top: 60%; left: 70%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
-        .estrella:nth-child(10) { top: 15%; left: 20%; animation-duration: 20s; animation-delay: -4.5s; font-size: 2.0rem; }
-        /* Más estrellas para mayor densidad */
+        .estrella:nth-child(10) { top: 15%; left: 20%; animation-duration: 20s; animation-delay: -4s; font-size: 2.0rem; }
         .estrella:nth-child(11) { top: 95%; left: 50%; animation-duration: 15s; animation-delay: -1s; font-size: 1.0rem; }
         .estrella:nth-child(12) { top: 80%; left: 5%; animation-duration: 12s; animation-delay: -2s; font-size: 1.5rem; }
         .estrella:nth-child(13) { top: 20%; left: 50%; animation-duration: 18s; animation-delay: -3s; font-size: 1.2rem; }
         .estrella:nth-child(14) { top: 45%; left: 5%; animation-duration: 10s; animation-delay: -0.5s; font-size: 1.0rem; }
-        .estrella:nth-child(15) { top: 70%; left: 90%; animation-duration: 16s; animation-delay: -2.5s; font-size: 1.4rem; }
+        .estrella:nth-child(15) { top: 70%; left: 90%; animation-duration: 16s; animation-delay: -2s; font-size: 1.4rem; }
         .estrella:nth-child(16) { top: 10%; left: 60%; animation-duration: 13s; animation-delay: -1.5s; font-size: 1.1rem; }
-        .estrella:nth-child(17) { top: 35%; left: 25%; animation-duration: 19s; animation-delay: -3.5s; font-size: 1.6rem; }
+        .estrella:nth-child(17) { top: 35%; left: 25%; animation-duration: 19s; animation-delay: -3s; font-size: 1.6rem; }
         .estrella:nth-child(18) { top: 55%; left: 75%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
-        .estrella:nth-child(19) { top: 90%; left: 30%; animation-duration: 20s; animation-delay: -4.5s; font-size: 1.7rem; }
+        .estrella:nth-child(19) { top: 90%; left: 30%; animation-duration: 20s; animation-delay: -4s; font-size: 1.7rem; }
         .estrella:nth-child(20) { top: 75%; left: 40%; animation-duration: 14s; animation-delay: -2s; font-size: 1.3rem; }
 
         @keyframes flotarEstrella {
@@ -195,6 +199,78 @@
             to {
                 transform: translateY(-100vh) rotate(360deg);
                 opacity: 0;
+            }
+        }
+
+        /* Botón de cambio de modo oscuro/claro */
+        .modo-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--light-accent);
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 22px;
+            color: white;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+            cursor: pointer;
+        }
+
+        .modo-btn:hover {
+            background-color: #7d3cae;
+            transform: rotate(360deg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        body.dark-mode .modo-btn {
+            background-color: var(--dark-accent);
+        }
+        body.dark-mode .modo-btn:hover {
+            background-color: #7952b3;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            .btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            .container {
+                padding: 20px;
+                margin: 20px auto;
+            }
+            .modo-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            p {
+                font-size: 0.9rem;
+            }
+            .btn {
+                width: 90%; /* Full width button on very small screens */
+                margin-top: 20px;
             }
         }
     </style>
@@ -224,18 +300,16 @@
     </div>
 
     <div class="container">
-        <h1>Un Mensaje Cuando las Cosas no Van Bien</h1>
-        <p>
-            Sé que a veces la vida nos presenta desafíos y momentos difíciles. Quiero que sepas que no estás sola. Eres fuerte, valiente y capaz de superar cualquier obstáculo. Recuerda los momentos felices y las personas que te quieren. Este video es para recordarte lo especial que eres.
-        </p>
-
-        <div class="video-wrapper">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/39ColarOWKo?si=7GFmzSvgaQ9xogUx&start=4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-
-        <a href="index.html#seccion1" class="volver-btn">
-            <i class="fa-solid fa-house"></i> Volver a "Feliz primer mes"
-        </a>
+        <h1>Aquí estoy para ti</h1>
+        <p>Mi amor, si te sientes triste, recuerda que siempre estoy aquí para escucharte, para apoyarte y para recordarte lo mucho que te amo. Eres mi luz y mi felicidad.</p>
+        <p>No importa qué tan oscuro se sienta, siempre habrá una forma de encontrar la calma juntos.</p>
+        <div class="video-container">
+            <video src="video/abrazo.mp4" autoplay loop muted playsinline></video>
+            </div>
+        <p class="highlight">Siempre juntos, siempre.</p>
+        <button class="btn" onclick="location.href='index.html#seccion1'">
+            <i class="fa-solid fa-arrow-left"></i> Volver a la historia de nuestro amor
+        </button>
     </div>
 
     <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
@@ -244,6 +318,18 @@
         const body = document.body;
         const modoBtn = document.getElementById('modo-btn');
 
+        // Función para cargar la preferencia del modo oscuro
+        function loadDarkModePreference() {
+            if (localStorage.getItem('dark-mode-triste') === 'true') { // Usar clave específica para triste.html
+                body.classList.add('dark-mode');
+                modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            } else {
+                body.classList.remove('dark-mode');
+                modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            }
+        }
+
+        // Event listener para el botón de modo oscuro/claro
         modoBtn.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
             if (body.classList.contains('dark-mode')) {
@@ -255,14 +341,8 @@
             }
         });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            if (localStorage.getItem('dark-mode-triste') === 'true') {
-                body.classList.add('dark-mode');
-                modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-            } else {
-                modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-            }
-        });
+        // Cargar la preferencia del modo oscuro al cargar la página
+        window.addEventListener('load', loadDarkModePreference);
     </script>
 </body>
 </html>
