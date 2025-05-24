@@ -376,7 +376,6 @@
             <p>Estas canciones me recuerdan a ti y a nuestros momentos especiales. ¡Espero que las disfrutes!</p>
             <audio id="audioPlayer" controls></audio>
             <div class="audio-controls">
-                <button id="prev-song-btn"><i class="fa-solid fa-backward-step"></i> Anterior</button>
                 <button id="next-song-btn"><i class="fa-solid fa-forward-step"></i> Siguiente</button>
             </div>
             <p id="current-song-info">Reproduciendo: ...</p>
@@ -425,8 +424,7 @@
             <p>Estas canciones me recuerdan a ti y a nuestros momentos especiales.</p>
             <audio id="audioPlayerMobile" controls></audio>
             <div class="audio-controls">
-                <button id="prev-song-btn-mobile"><i class="fa-solid fa-backward-step"></i> Anterior</button>
-                <button id="next-song-btn-mobile"><i class="fa-solid fa-forward-step"></i> Siguiente</button>
+                 <button id="next-song-btn-mobile"><i class="fa-solid fa-forward-step"></i> Siguiente</button>
             </div>
             <p id="current-song-info-mobile">Reproduciendo: ...</p>
             <h2>Un Sueño Juntos</h2>
@@ -505,13 +503,11 @@
         const audioPlayer = document.getElementById('audioPlayer');
         const audioPlayerMobile = document.getElementById('audioPlayerMobile'); // Reproductor para móvil
         const nextSongBtn = document.getElementById('next-song-btn');
-        const prevSongBtn = document.getElementById('prev-song-btn');
         const nextSongBtnMobile = document.getElementById('next-song-btn-mobile');
-        const prevSongBtnMobile = document.getElementById('prev-song-btn-mobile');
         const currentSongInfo = document.getElementById('current-song-info');
         const currentSongInfoMobile = document.getElementById('current-song-info-mobile');
 
-        // Tu lista de reproducción con los nombres de tus archivos
+        // Tu lista de reproducción con los nombres exactos de tus archivos de audio
         const playlist = [
             { title: "Amor Completo", src: "audio/amorcompleto.mp3" },
             { title: "Compartir", src: "audio/compartir.mp3" },
@@ -532,25 +528,17 @@
             loadSong(audioPlayerMobile, currentSongIndex); // Actualiza también el reproductor móvil
         }
 
-        function playPrevSong() {
-            currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
-            loadSong(audioPlayer, currentSongIndex);
-            loadSong(audioPlayerMobile, currentSongIndex); // Actualiza también el reproductor móvil
-        }
-
         function updateSongInfo(index, infoElement) {
             infoElement.textContent = `Reproduciendo: ${playlist[index].title}`;
         }
 
-        // Event listener para que la canción pase automáticamente
+        // Event listener para que la canción pase automáticamente al terminar
         audioPlayer.onended = playNextSong;
         audioPlayerMobile.onended = playNextSong; // También para el reproductor móvil
 
-        // Botones de Siguiente/Anterior
+        // Botones de Siguiente
         nextSongBtn.addEventListener('click', playNextSong);
-        prevSongBtn.addEventListener('click', playPrevSong);
         nextSongBtnMobile.addEventListener('click', playNextSong);
-        prevSongBtnMobile.addEventListener('click', playPrevSong);
 
 
         // --- Lógica de Modo Oscuro/Claro ---
