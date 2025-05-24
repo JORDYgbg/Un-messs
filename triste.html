@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         body {
-            font-family: 'Dancing Script', cursive; /* Aplica la nueva tipografía a todo el cuerpo */
+            font-family: Arial, sans-serif; /* Tipografía normal por defecto para el body */
             background: linear-gradient(135deg, #e0f2f7, #b2ebf2); /* Un fondo azul muy suave para el modo claro */
             color: #333;
             margin: 0;
@@ -43,6 +43,7 @@
         }
 
         h1 {
+            font-family: 'Dancing Script', cursive; /* Tipografía manuscrita para el título */
             font-size: 3.5rem; /* Tamaño de título grande */
             color: #00acc1; /* Un color turquesa más llamativo */
             margin-bottom: 30px;
@@ -56,6 +57,7 @@
             font-size: 1.8rem; /* Tamaño de párrafo grande y legible */
             line-height: 1.6; /* Espaciado entre líneas para mejor lectura */
             margin-bottom: 30px;
+            /* Aquí p ya usa la tipografía por defecto del body (Arial, sans-serif) */
             transition: color 0.7s ease-in-out; /* Transición para modo oscuro */
         }
         body.dark-mode p {
@@ -94,8 +96,7 @@
             align-items: center;
             gap: 10px;
             box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-            /* Aseguramos que la tipografía se aplique también al botón */
-            font-family: 'Dancing Script', cursive; 
+            /* El botón volver-btn usará la tipografía por defecto del body (Arial, sans-serif) */
         }
         .volver-btn {
             background-color: #4caf50; /* Color verde alegre para el botón */
@@ -148,133 +149,4 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden; /* Para que las estrellas no salgan de la pantalla */
-        }
-
-        .estrella {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.5); /* Estrellas blancas semitransparentes en modo claro */
-            font-size: 1.5rem;
-            animation: flotarEstrella 15s linear infinite;
-        }
-        body.dark-mode .estrella {
-            color: rgba(255, 223, 0, 0.4); /* Amarillo suave en modo oscuro */
-        }
-
-        /* Posiciones aleatorias para las estrellas */
-        .estrella:nth-child(1) { top: 10%; left: 5%; animation-duration: 12s; animation-delay: -1s; font-size: 1.0rem; }
-        .estrella:nth-child(2) { top: 25%; left: 80%; animation-duration: 18s; animation-delay: -3s; font-size: 1.8rem; }
-        .estrella:nth-child(3) { top: 50%; left: 30%; animation-duration: 14s; animation-delay: -2s; font-size: 1.3rem; }
-        .estrella:nth-child(4) { top: 70%; left: 60%; animation-duration: 16s; animation-delay: -4s; font-size: 1.6rem; }
-        .estrella:nth-child(5) { top: 5%; left: 40%; animation-duration: 10s; animation-delay: -0.5s; font-size: 1.1rem; }
-        .estrella:nth-child(6) { top: 85%; left: 15%; animation-duration: 17s; animation-delay: -2.5s; font-size: 1.4rem; }
-        .estrella:nth-child(7) { top: 30%; left: 10%; animation-duration: 13s; animation-delay: -1.5s; font-size: 1.2rem; }
-        .estrella:nth-child(8) { top: 40%; left: 90%; animation-duration: 19s; animation-delay: -3.5s; font-size: 1.7rem; }
-        .estrella:nth-child(9) { top: 60%; left: 70%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
-        .estrella:nth-child(10) { top: 15%; left: 20%; animation-duration: 20s; animation-delay: -4.5s; font-size: 2.0rem; }
-        /* Más estrellas para mayor densidad */
-        .estrella:nth-child(11) { top: 95%; left: 50%; animation-duration: 15s; animation-delay: -1s; font-size: 1.0rem; }
-        .estrella:nth-child(12) { top: 80%; left: 5%; animation-duration: 12s; animation-delay: -2s; font-size: 1.5rem; }
-        .estrella:nth-child(13) { top: 20%; left: 50%; animation-duration: 18s; animation-delay: -3s; font-size: 1.2rem; }
-        .estrella:nth-child(14) { top: 45%; left: 5%; animation-duration: 10s; animation-delay: -0.5s; font-size: 1.0rem; }
-        .estrella:nth-child(15) { top: 70%; left: 90%; animation-duration: 16s; animation-delay: -2.5s; font-size: 1.4rem; }
-        .estrella:nth-child(16) { top: 10%; left: 60%; animation-duration: 13s; animation-delay: -1.5s; font-size: 1.1rem; }
-        .estrella:nth-child(17) { top: 35%; left: 25%; animation-duration: 19s; animation-delay: -3.5s; font-size: 1.6rem; }
-        .estrella:nth-child(18) { top: 55%; left: 75%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
-        .estrella:nth-child(19) { top: 90%; left: 30%; animation-duration: 20s; animation-delay: -4.5s; font-size: 1.7rem; }
-        .estrella:nth-child(20) { top: 75%; left: 40%; animation-duration: 14s; animation-delay: -2s; font-size: 1.3rem; }
-
-        @keyframes flotarEstrella {
-            from {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            25% { opacity: 1; }
-            75% { opacity: 1; }
-            to {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="estrellas">
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-    </div>
-
-    <div class="container">
-        <h1>Un Mensaje Cuando las Cosas no Van Bien</h1>
-        <p>
-            Sé que a veces la vida nos presenta desafíos y momentos difíciles. Quiero que sepas que no estás sola. Eres fuerte, valiente y capaz de superar cualquier obstáculo. Recuerda los momentos felices y las personas que te quieren. Este video es para recordarte lo especial que eres.
-        </p>
-        
-        <div class="video-wrapper">
-            <iframe 
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" 
-                allowfullscreen>
-            </iframe>
-        </div>
-        
-        <a href="index.html#seccion1" class="volver-btn">
-            <i class="fa-solid fa-house"></i> Volver a "Feliz primer mes"
-        </a>
-    </div>
-
-    <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
-
-    <script>
-        const body = document.body;
-        const modoBtn = document.getElementById('modo-btn');
-
-        // Event listener para el botón de modo oscuro/claro
-        modoBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            // Guardar preferencia en localStorage (clave diferente para evitar conflicto con index.html)
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('dark-mode-triste', 'true'); 
-                modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-            } else {
-                localStorage.setItem('dark-mode-triste', 'false');
-                modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-            }
-        });
-
-        // Cargar preferencia de modo oscuro al cargar la página
-        document.addEventListener('DOMContentLoaded', () => {
-            if (localStorage.getItem('dark-mode-triste') === 'true') {
-                body.classList.add('dark-mode');
-                modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-            } else {
-                modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-            }
-        });
-    </script>
-</body>
-</html>
+            height: 10
