@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feliz primer mes</title>
+  <link rel="icon" href="favicon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -117,14 +118,6 @@
         font-size: 18px;
         bottom: 20px;
         right: 20px;
-    }
-    body.celular .inicio-btn { /* Este botón no es necesario en index.html, pero si lo hubiéramos añadido, sería así */
-        width: 45px;
-        height: 45px;
-        font-size: 18px;
-        bottom: 65px;
-        right: 20px;
-        left: auto;
     }
 
     /* Estilo del encabezado */
@@ -643,154 +636,267 @@
       construyendo algo real, un futuro.
       <br><br>
       Dicen que el amor necesita tocar, sentir lo crudo,<br>
-      pero contigo basta una palabra, un gesto rudo.
+      pero contigo, Mariana, todo es profundo.
       <br>
-      Un "te quiero" en la pantalla, un corazón mandado,<br>
-      y mi mundo se ilumina, contigo a mi lado.
+      Tu voz me calma, tus palabras me elevan,<br>
+      sin necesidad de un abrazo, las horas vuelan.
       <br><br>
-      Eres mi chica de la pantalla, mi bug más hermoso,<br>
-      el error del sistema que me hace sentir grandioso.
+      Eres mi cable a tierra, mi locura de vez en cuando,<br>
+      la verdad que me dices, sin filtros ni ando.<br>
+      No es perfecto, claro, ¿qué lo es en esta vida?<br>
+      Pero es real, es nuestra, una herida que sana la herida.<br>
       <br>
-      No te veo con los ojos, te siento con el alma,<br>
-      y cada mensaje tuyo me devuelve la calma.
+      Así que aquí estoy, en este teclado, tecleando,<br>
+      sabiendo que del otro lado, me estás amando.<br>
+      Y eso, querida, es más que suficiente para mí,<br>
+      mi chica de la pantalla, mi razón para ser feliz.
+    </p>
+  </section>
+  <section id="seccion4">
+    <h2>Mis promesas para ti</h2>
+    <p>
+      Mariana, en este día especial, quiero reafirmarte lo que siento y lo que prometo para nuestro futuro juntos, sin importar las pantallas de por medio:
       <br><br>
-      No importa la distancia, ni los cables que nos unen,<br>
-      nuestro amor es más fuerte que las redes que se tejen.
+      1. **Prometo escucharte siempre:** Cada palabra que escribas, cada audio que envíes, cada silencio. Estaré aquí para comprenderte, no solo para oírte.
       <br>
-      Así que gracias, mi Killjoy, mi amor virtual y real,<br>
-      por ser mi compañera, mi mundo ideal.
+      2. **Prometo apoyarte en cada sueño:** Tus metas serán mis metas. Estaré a tu lado, aunque sea a la distancia, para celebrar tus victorias y para darte la fuerza cuando la necesites.
+      <br>
+      3. **Prometo ser tu refugio:** Cuando el mundo digital o el real te parezca pesado, mi amor y mi presencia virtual serán el lugar donde siempre puedas encontrar paz y consuelo.
+      <br>
+      4. **Prometo mantener viva la chispa:** Con mensajes inesperados, risas compartidas en llamadas y nuevas "aventuras" en línea, haremos que cada día sea emocionante y que nuestro amor siga floreciendo.
+      <br>
+      5. **Prometo amarte sin condiciones:** Mi amor por ti será constante, puro y eterno. En los buenos momentos de conexión y en los desafíos de la distancia, siempre con la paciencia y el cariño que mereces.
       <br><br>
-      Y aunque la pantalla nos separe a veces sin darnos cuenta,
+      Eres el regalo más hermoso que la vida, y la internet, me ha dado.
+    </p>
+  </section>
+  <section id="seccion5">
+    <h2>Frases que me recuerdan a ti</h2>
+    <p>
+      "Contigo, el ping es bajo y la conexión, infinita."
       <br>
-      sé que nuestro amor es real, y nunca se apaga la cuenta.
+      "Eres esa notificación que siempre espero, la que ilumina mi pantalla."
       <br>
-      Por este primer mes, y por todos los que vendrán,<br>
-      mi corazón te pertenece, y siempre te amará.
+      "En cada emoji, un pedacito de tu sonrisa que llega a mi alma."
+      <br>
+      "Mi mundo era un chat silenciado hasta que llegaste tú, mi conversación favorita."
+      <br>
+      "Eres la prueba de que el amor más grande no conoce barreras de Wi-Fi, solo conexiones de corazón."
+      <br>
+      "Cada '¿qué haces?' tuyo es el inicio de la mejor parte de mi día."
+      <br>
+      "Contigo, descubrí que la magia existe en las videollamadas y la paz en tu 'buenas noches'."
+      <br>
+      "Eres mi dulce escapada, mi hogar en la nube."
+      <br>
+      "Tu presencia, aunque sea en mi lista de amigos, es más real que cualquier otra."
+      <br>
+      "Por ti, cada servidor, cada juego, cada pixel, cobra sentido."
     </p>
   </section>
 
-  <div class="reproductor">
-    <img src="audio/cover.jpg" alt="Portada de canción" />
-    <span class="titulo">Es por ti <small>Juanes</small></span>
-    <audio id="miAudio" src="audio/esporti.mp3"></audio>
-    <input type="range" id="progresoBarra" value="0" />
+  <div class="reproductor" id="reproductor">
+    <img src="audio/cover.jpg" alt="Portada" id="portada">
+    <div class="titulo" id="titulo-cancion">Es Por Ti<br><small id="artista-cancion">Juanes</small></div>
+    <input class="barra" type="range" value="0" id="progress">
     <div class="controles">
-      <button id="retroceder"><i class="fa-solid fa-backward-step"></i></button>
-      <button id="playPause"><i class="fa-solid fa-play"></i></button>
-      <button id="avanzar"><i class="fa-solid fa-forward-step"></i></button>
-    </div>
-    <div class="volumen">
-      <i class="fa-solid fa-volume-down"></i>
-      <input type="range" id="volRange" min="0" max="1" step="0.01" value="0.5" />
-      <i class="fa-solid fa-volume-up"></i>
+      <button id="prev"><i class="fa-solid fa-backward-step"></i></button>
+      <button id="play"><i class="fa-solid fa-play"></i></button>
+      <button id="next"><i class="fa-solid fa-forward-step"></i></button>
+      <div class="volumen">
+        <button id="mute"><i class="fa-solid fa-volume-high"></i></button>
+        <input type="range" min="0" max="1" step="0.01" value="1" id="volRange">
+      </div>
     </div>
   </div>
 
   <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
 
   <script>
-    // Lógica para la pantalla de inicio
+    const body = document.body;
+    const modoBtn = document.getElementById('modo-btn');
+    const reproductor = document.getElementById('reproductor');
+    const portada = document.getElementById('portada');
+    const tituloCancion = document.getElementById('titulo-cancion');
+    const artistaCancion = document.getElementById('artista-cancion');
+    const playBtn = document.getElementById('play');
+    // const stopBtn = document.getElementById('stop'); // Eliminado
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    const muteBtn = document.getElementById('mute');
+    const volRange = document.getElementById('volRange');
+    const progress = document.getElementById('progress');
     const pantallaInicio = document.getElementById('pantalla-inicio');
     const contenidoPrincipal = document.getElementById('contenido-principal');
-    const body = document.body;
-    let dispositivoSeleccionado = '';
 
-    function seleccionarDispositivo(tipo) {
-        dispositivoSeleccionado = tipo;
-        pantallaInicio.classList.add('transicion-lila'); // Inicia la transición de color
-        // Da tiempo para la transición de color antes de ocultar
-        setTimeout(() => {
-            pantallaInicio.classList.add('hidden');
-            contenidoPrincipal.style.display = 'block';
-            setTimeout(() => {
-                contenidoPrincipal.style.opacity = '1';
-                if (dispositivoSeleccionado === 'celular') {
-                    body.classList.add('celular');
-                } else {
-                    body.classList.remove('celular');
-                }
-            }, 50); // Pequeño delay para que el opacity se aplique después del display block
-        }, 400); // Duración de la transición de color del body
+    const canciones = [
+      {
+        titulo: "Es Por Ti",
+        artista: "Juanes",
+        src: "audio/esporti.mp3",
+        cover: "audio/cover.jpg"
+      },
+      {
+        titulo: "Amor Completo",
+        artista: "Mon Laferte", // Ajusta el artista si es diferente
+        src: "audio/amorcompleto.mp3", /* cite: image_36a297.png */
+        cover: "audio/cover2.jpg" /* cite: image_36a297.png */
+      },
+      {
+        titulo: "Compartir",
+        artista: "Carla Morrison", // Ajusta el artista si es diferente
+        src: "audio/compartir.mp3", /* cite: image_36a297.png */
+        cover: "audio/cover3.jpg" /* cite: image_36a297.png */
+      }
+    ];
+
+    let currentSongIndex = 0;
+    let audio = new Audio();
+    let isMuted = false;
+    let isPlaying = false;
+    let isReproductorMaximized = false;
+
+    // Función para cargar una canción
+    function loadSong(index) {
+      const song = canciones[index];
+      audio.src = song.src;
+      portada.src = song.cover;
+      tituloCancion.innerHTML = song.titulo + '<br><small>' + song.artista + '</small>';
+      audio.load(); // Carga la nueva canción
+      
+      // Si estaba reproduciendo, sigue reproduciendo la nueva
+      if (isPlaying) {
+        audio.play();
+        portada.style.animationPlayState = 'running';
+        playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+      } else {
+        portada.style.animationPlayState = 'paused';
+        playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+      }
     }
 
-    // Lógica para el modo oscuro/claro
-    const modoBtn = document.getElementById('modo-btn');
+    // Establecer volumen inicial al 20% y cargar la primera canción
+    audio.volume = 0.2;
+    volRange.value = 0.2;
+    loadSong(currentSongIndex);
 
+
+    // Event listener para el botón de modo oscuro/claro
     modoBtn.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
-      // Guardar preferencia en localStorage
-      if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('dark-mode', 'true');
-        modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-      } else {
-        localStorage.setItem('dark-mode', 'false');
-        modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-      }
+      reproductor.classList.toggle('dark-mode');
+      // Actualiza el ícono del botón (luna o sol)
+      modoBtn.innerHTML = body.classList.contains('dark-mode') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
     });
 
-    // Cargar preferencia de modo oscuro al cargar la página
-    document.addEventListener('DOMContentLoaded', () => {
-      if (localStorage.getItem('dark-mode') === 'true') {
-        body.classList.add('dark-mode');
-        modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    // Event listener para el botón de Play/Pause
+    playBtn.addEventListener('click', (event) => {
+      event.stopPropagation();
+      if (isPlaying) {
+        audio.pause();
+        playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        portada.style.animationPlayState = 'paused';
       } else {
-        modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+        audio.play();
+        playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        portada.style.animationPlayState = 'running';
       }
+      isPlaying = !isPlaying;
     });
 
-    // Lógica del reproductor de música
-    const audio = document.getElementById('miAudio');
-    const playPauseBtn = document.getElementById('playPause');
-    const progresoBarra = document.getElementById('progresoBarra');
-    const volRange = document.getElementById('volRange');
-    const retrocederBtn = document.getElementById('retroceder');
-    const avanzarBtn = document.getElementById('avanzar');
-    const reproductor = document.querySelector('.reproductor'); // Para el clic en celular
-
-    // Evento para el clic en el reproductor en modo celular para maximizar/minimizar
-    reproductor.addEventListener('click', () => {
-        if (body.classList.contains('celular')) {
-            reproductor.classList.toggle('maximized');
+    // Event listener para el botón Anterior
+    prevBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        currentSongIndex = (currentSongIndex - 1 + canciones.length) % canciones.length;
+        loadSong(currentSongIndex);
+        // Si la canción anterior estaba reproduciéndose, la nueva también lo hará
+        if (isPlaying) {
+            audio.play();
         }
     });
 
-    playPauseBtn.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play();
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-      } else {
-        audio.pause();
-        playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-      }
+    // Event listener para el botón Siguiente
+    nextBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        currentSongIndex = (currentSongIndex + 1) % canciones.length;
+        loadSong(currentSongIndex);
+        // Si la canción actual estaba reproduciéndose, la nueva también lo hará
+        if (isPlaying) {
+            audio.play();
+        }
     });
 
-    audio.addEventListener('timeupdate', () => {
-      const progreso = (audio.currentTime / audio.duration) * 100;
-      progresoBarra.value = progreso;
+    // Event listener para el botón de Mute/Unmute
+    muteBtn.addEventListener('click', (event) => {
+      event.stopPropagation();
+      isMuted = !isMuted;
+      audio.muted = isMuted;
+      muteBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
     });
 
-    progresoBarra.addEventListener('input', () => {
-      const tiempo = (progresoBarra.value / 100) * audio.duration;
-      audio.currentTime = tiempo;
-    });
-
-    volRange.addEventListener('input', () => {
+    // Event listener para el slider de volumen
+    volRange.addEventListener('input', (event) => {
+      event.stopPropagation();
       audio.volume = volRange.value;
     });
 
-    // Funcionalidad de retroceder y avanzar (10 segundos)
-    retrocederBtn.addEventListener('click', () => {
-        audio.currentTime -= 10;
+    // Actualizar la barra de progreso de la canción
+    audio.addEventListener('timeupdate', () => {
+      progress.value = (audio.currentTime / audio.duration) * 100 || 0;
     });
 
-    avanzarBtn.addEventListener('click', () => {
-        audio.currentTime += 10;
+    // Permitir arrastrar la barra de progreso para cambiar la posición de la canción
+    progress.addEventListener('input', (event) => {
+      event.stopPropagation();
+      audio.currentTime = (progress.value / 100) * audio.duration;
     });
 
-    // Reproducir automáticamente el audio cuando la página esté lista
-    // Se recomienda que la reproducción automática solo se active si el usuario ya ha interactuado
-    // o para un efecto más suave. Aquí lo dejamos con muted por defecto en el HTML.
-    // audio.play(); // Descomentar solo si realmente quieres auto-play sin interacción
+    // Lógica para maximizar/minimizar el reproductor en celular
+    reproductor.addEventListener('click', (event) => {
+        if (document.body.classList.contains('celular')) {
+            if (!isReproductorMaximized) {
+                reproductor.classList.add('maximized');
+                isReproductorMaximized = true;
+                event.stopPropagation();
+            }
+        }
+    });
+
+    // Minimizar el reproductor al tocar fuera de él en celular
+    document.addEventListener('click', (event) => {
+        if (document.body.classList.contains('celular') && isReproductorMaximized) {
+            // Si el clic no fue dentro del reproductor, minimízalo
+            if (!reproductor.contains(event.target)) {
+                reproductor.classList.remove('maximized');
+                isReproductorMaximized = false;
+            }
+        }
+    });
+
+    // Función para seleccionar el tipo de dispositivo (PC o Celular)
+    function seleccionarDispositivo(tipo) {
+      pantallaInicio.classList.add('transicion-lila');
+      document.querySelector('#pantalla-inicio h2').style.color = '#4a4a4a';
+      Array.from(document.querySelectorAll('.dispositivo-etiqueta')).forEach(el => el.style.color = '#4a4a4a');
+
+      pantallaInicio.classList.add('hidden');
+
+      setTimeout(() => {
+        pantallaInicio.style.display = 'none';
+
+        if (tipo === 'celular') {
+          document.body.classList.add('celular');
+        } else {
+          document.body.classList.remove('celular');
+        }
+
+        contenidoPrincipal.style.display = 'block';
+        setTimeout(() => {
+            contenidoPrincipal.style.opacity = '1';
+        }, 50);
+      }, 400);
+    }
   </script>
+</div>
 </body>
 </html>
