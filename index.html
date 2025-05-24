@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    /* ... (todo el CSS permanece igual, no modificado) ... */
     * {
       margin: 0;
       padding: 0;
@@ -17,7 +18,7 @@
       font-family: 'Quicksand', sans-serif;
       background: linear-gradient(135deg, #eac8ff, #d291fa);
       color: #333;
-      transition: background 0.5s ease, color 0.5s ease;
+      transition: background 0.5s ease-in-out, color 0.5s ease-in-out, font-size 0.5s ease-in-out; /* Transición para el cambio de dispositivo */
       overflow-x: hidden;
     }
     body.celular {
@@ -58,7 +59,7 @@
       position: fixed;
       bottom: 20px;
       left: 20px;
-      background-color: #ff99cc; /* suave pero notorio */
+      background-color: #ff69b4; /* Color rosa llamativo */
       border: none;
       color: white;
       font-size: 1rem;
@@ -66,18 +67,19 @@
       border-radius: 12px;
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease, transform 0.3s ease;
+      transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transición */
     }
+
     .triste-btn:hover {
-      background-color: #ff77aa;
-      transform: scale(1.05);
+      background-color: #ff1493; /* Rosa más oscuro al pasar el ratón */
+      transform: translateY(-3px);
     }
 
     .modo-btn {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #6fcf97; /* tono tenue y combinable */
+      background-color: #6a0dad; /* Color morado oscuro */
       border: none;
       border-radius: 50%;
       width: 50px;
@@ -89,11 +91,12 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease, transform 0.3s ease;
+      transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transición */
     }
+
     .modo-btn:hover {
-      background-color: #5fbf87;
-      transform: scale(1.1);
+      background-color: #4b0082; /* Morado aún más oscuro al pasar el ratón */
+      transform: rotate(30deg);
     }
 
     .corazones {
@@ -114,8 +117,12 @@
     }
 
     @keyframes flotar {
-      from { transform: translateY(100vh) rotate(0deg); }
-      to { transform: translateY(-100vh) rotate(360deg); }
+      from {
+        transform: translateY(100vh) rotate(0deg);
+      }
+      to {
+        transform: translateY(-100vh) rotate(360deg);
+      }
     }
 
     .reproductor {
@@ -129,13 +136,11 @@
       text-align: center;
       width: 260px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
+      transition: background 0.5s ease-in-out; /* Transición */
     }
+
     .reproductor.dark-mode {
       background: rgba(0,0,0,0.3);
-    }
-    .reproductor:hover {
-      transform: scale(1.02);
     }
 
     .reproductor img {
@@ -174,10 +179,6 @@
       font-size: 1.2rem;
       cursor: pointer;
       color: inherit;
-      transition: color 0.2s ease;
-    }
-    .controles button:hover {
-      color: #a259ff;
     }
 
     .volumen {
@@ -193,14 +194,11 @@
     input[type="range"]::-webkit-slider-thumb {
       background: #a259ff;
       border-radius: 50%;
-      transition: background-color 0.2s ease;
     }
 
     section {
       padding: 50px 20px;
       text-align: center;
-      opacity: 1;
-      transition: opacity 0.5s ease;
     }
 
     section h2 {
@@ -215,7 +213,6 @@
       margin: 0 auto;
       font-size: 1.1rem;
     }
-
     /* Pantalla de inicio */
     #pantalla-inicio {
       position: fixed;
@@ -233,7 +230,7 @@
       font-family: 'Quicksand', sans-serif;
       text-align: center;
       padding: 20px;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.5s ease-in-out; /* Transición para la pantalla de inicio */
     }
 
     .dispositivo-opciones {
@@ -254,8 +251,9 @@
       font-size: 2rem;
       cursor: pointer;
       border: none;
-      transition: transform 0.3s ease, background-color 0.3s ease;
+      transition: transform 0.2s, background-color 0.3s ease-in-out; /* Transición */
     }
+
     .dispositivo-boton:hover {
       transform: scale(1.1);
       background-color: #f0f0f0;
@@ -264,105 +262,160 @@
     .dispositivo-etiqueta {
       margin-top: 8px;
       font-size: 1rem;
-      transition: color 0.3s ease;
     }
+
   </style>
 </head>
 <body>
-  <!-- Pantalla de bienvenida -->
-  <div id="pantalla-inicio">
-    <h2>¿En dónde estás viendo esto?</h2>
-    <div class="dispositivo-opciones">
-      <div>
-        <button class="dispositivo-boton" onclick="seleccionarDispositivo('celular')">
-          <i class="fa-solid fa-mobile-screen"></i>
-        </button>
-        <div class="dispositivo-etiqueta">Celular</div>
-      </div>
-      <div>
-        <button class="dispositivo-boton" onclick="seleccionarDispositivo('pc')">
-          <i class="fa-solid fa-desktop"></i>
-        </button>
-        <div class="dispositivo-etiqueta">PC</div>
+     <div id="pantalla-inicio">
+  <h2>¿En dónde estás viendo esto?</h2>
+  <div class="dispositivo-opciones">
+    <div>
+      <button class="dispositivo-boton" onclick="seleccionarDispositivo('celular')">
+        <i class="fa-solid fa-mobile-screen"></i>
+      </button>
+      <div class="dispositivo-etiqueta">Celular</div>
+    </div>
+    <div>
+      <button class="dispositivo-boton" onclick="seleccionarDispositivo('pc')">
+        <i class="fa-solid fa-desktop"></i>
+      </button>
+      <div class="dispositivo-etiqueta">PC</div>
+    </div>
+  </div>
+</div>
+
+<div id="contenido-principal" style="display: none;">
+  <div class="corazones">
+    <i class="fa-solid fa-heart corazon" style="top:10%; left:10%;"></i>
+    <i class="fa-solid fa-heart corazon" style="top:20%; left:80%;"></i>
+    <i class="fa-solid fa-heart corazon" style="top:60%; left:40%;"></i>
+    <i class="fa-solid fa-heart corazon" style="top:30%; left:60%;"></i>
+    <i class="fa-solid fa-heart corazon" style="top:50%; left:20%;"></i>
+    <i class="fa-solid fa-heart corazon" style="top:15%; left:50%;"></i>
+    <i class="fa-solid fa-heart corazon" style="top:70%; left:30%;"></i>
+    <i class="fa-solid fa-heart corazon" style="top:40%; left:70%;"></i>
+    <i class="fa-solid fa-heart corazon" style="top:80%; left:15%;"></i>
+    <i class="fa-solid fa-heart corazon" style="top:5%; left:85%;"></i>
+  </div>
+
+  <header>
+    <h1>Feliz primer mes</h1>
+    <p>Gracias por este tiempo tan bonito mi amor <i class="fa-solid fa-heart"></i></p>
+  </header>
+
+  <button class="triste-btn" onclick="location.href='triste.html'">Si te sientes triste, presiona aquí</button>
+
+  <section id="seccion1">
+    <h2>Cómo me enamoré de ti</h2>
+    <p>Desde el primer momento que hablamos, supe que eras especial. Cada día contigo ha sido una aventura hermosa.</p>
+  </section>
+  <section id="seccion2">
+    <h2>Poema que nunca te mostré</h2>
+    <p>Tu risa es mi melodía, tu mirada mi sol. Con cada latido, mi amor por ti es mayor.</p>
+  </section>
+  <section id="seccion4">
+    <h2>Mis promesas para ti</h2>
+    <p>Prometo cuidarte, escucharte, apoyarte y amarte en cada etapa de nuestras vidas.</p>
+  </section>
+  <section id="seccion5">
+    <h2>Frases que me recuerdan a ti</h2>
+    <p>“Contigo, todo es mejor.” – “Eres mi lugar favorito.” – “Cada día contigo es un regalo.”</p>
+  </section>
+
+  <div class="reproductor" id="reproductor">
+    <img src="audio/cover.jpg" alt="Portada" id="portada">
+    <div class="titulo">Es Por Ti<br><small>Juanes</small></div>
+    <input class="barra" type="range" value="0" id="progress">
+    <div class="controles">
+      <button id="play"><i class="fa-solid fa-play"></i></button>
+      <button id="stop"><i class="fa-solid fa-stop"></i></button>
+      <div class="volumen">
+        <button id="mute"><i class="fa-solid fa-volume-high"></i></button>
+        <input type="range" min="0" max="1" step="0.01" value="1" id="volRange">
       </div>
     </div>
   </div>
 
-  <!-- Contenido principal oculto hasta selección -->
-  <div id="contenido-principal" style="display: none; opacity: 0;">
-    <div class="corazones">
-      <!-- corazones flotantes -->
-    </div>
-
-    <header>
-      <h1>Feliz primer mes</h1>
-      <p>Gracias por este tiempo tan bonito mi amor <i class="fa-solid fa-heart"></i></p>
-    </header>
-
-    <button class="triste-btn" onclick="location.href='triste.html'">Si te sientes triste, presiona aquí</button>
-
-    <section id="seccion1">
-      <h2>Cómo me enamoré de ti</h2>
-      <p>Desde el primer momento que hablamos, supe que eras especial. Cada día contigo ha sido una aventura hermosa.</p>
-    </section>
-
-    <!-- resto de secciones -->
-
-    <div class="reproductor" id="reproductor">
-      <!-- reproductor -->
-    </div>
-
-    <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
-  </div>
+  <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
 
   <script>
     const body = document.body;
     const modoBtn = document.getElementById('modo-btn');
+    const reproductor = document.getElementById('reproductor');
+    const portada = document.getElementById('portada');
     const playBtn = document.getElementById('play');
     const stopBtn = document.getElementById('stop');
     const muteBtn = document.getElementById('mute');
     const volRange = document.getElementById('volRange');
     const progress = document.getElementById('progress');
-    const inicio = document.getElementById('pantalla-inicio');
-    const contenido = document.getElementById('contenido-principal');
+    const pantallaInicio = document.getElementById('pantalla-inicio');
+    const contenidoPrincipal = document.getElementById('contenido-principal');
+
     let audio = new Audio('audio/esporti.mp3');
     let isMuted = false;
     let isPlaying = false;
 
-    function seleccionarDispositivo(tipo) {
-      inicio.style.opacity = '0';
-      setTimeout(() => inicio.style.display = 'none', 500);
-      contenido.style.display = 'block';
-      setTimeout(() => contenido.style.opacity = '1', 50);
-      if (tipo === 'celular') body.classList.add('celular');
-      console.log('Dispositivo seleccionado:', tipo);
-    }
-
     modoBtn.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
-      modoBtn.innerHTML = body.classList.contains('dark-mode')
-        ? '<i class="fa-solid fa-sun"></i>'
-        : '<i class="fa-solid fa-moon"></i>';
+      reproductor.classList.toggle('dark-mode');
+      modoBtn.innerHTML = body.classList.contains('dark-mode') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
     });
 
-    playBtn && playBtn.addEventListener('click', () => {
-      if (isPlaying) { audio.pause(); playBtn.innerHTML = '<i class="fa-solid fa-play"></i>'; }
-      else { audio.play(); playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>'; }
+    playBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        audio.pause();
+        playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        portada.style.animationPlayState = 'paused';
+      } else {
+        audio.play();
+        playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        portada.style.animationPlayState = 'running';
+      }
       isPlaying = !isPlaying;
     });
 
-    stopBtn && stopBtn.addEventListener('click', () => {
-      audio.pause(); audio.currentTime = 0; playBtn.innerHTML = '<i class="fa-solid fa-play"></i>'; isPlaying = false;
+    stopBtn.addEventListener('click', () => {
+      audio.pause();
+      audio.currentTime = 0;
+      playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+      isPlaying = false;
+      portada.style.animationPlayState = 'paused';
     });
 
-    muteBtn && muteBtn.addEventListener('click', () => {
-      isMuted = !isMuted; audio.muted = isMuted;
+    muteBtn.addEventListener('click', () => {
+      isMuted = !isMuted;
+      audio.muted = isMuted;
       muteBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
     });
 
-    volRange && volRange.addEventListener('input', () => audio.volume = volRange.value);
-    audio.addEventListener('timeupdate', () => progress && (progress.value = (audio.currentTime / audio.duration) * 100 || 0));
-    progress && progress.addEventListener('input', () => audio.currentTime = (progress.value / 100) * audio.duration);
+    volRange.addEventListener('input', () => {
+      audio.volume = volRange.value;
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      progress.value = (audio.currentTime / audio.duration) * 100 || 0;
+    });
+
+    progress.addEventListener('input', () => {
+      audio.currentTime = (progress.value / 100) * audio.duration;
+    });
+
+    function seleccionarDispositivo(tipo) {
+      pantallaInicio.style.opacity = '0';
+      setTimeout(() => {
+        pantallaInicio.style.display = 'none';
+        contenidoPrincipal.style.display = 'block';
+        contenidoPrincipal.style.opacity = '1'; /* Para la transición de aparición */
+
+        if (tipo === 'celular') {
+          document.body.classList.add('celular');
+        } else {
+          document.body.classList.remove('celular');
+        }
+      }, 500); // Coincide con la duración de la transición
+    }
   </script>
+</div>
 </body>
 </html>
