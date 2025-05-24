@@ -35,22 +35,64 @@
     }
 
     body.celular .reproductor {
-      width: 180px; /* Reproductor más pequeño para celular */
-      padding: 15px; /* Ajuste del padding */
+      /* Estilos para reproductor minimizado en celular */
+      width: 80px; /* Tamaño más pequeño en celular */
+      height: 80px;
+      padding: 10px;
       left: 50%; /* Centra el reproductor */
       right: auto;
       top: auto;
       bottom: 20px;
       transform: translateX(-50%); /* Ajusta para el centrado real */
+      overflow: hidden; /* Oculta el contenido extra cuando minimizado */
     }
 
     body.celular .reproductor img {
-      width: 70px; /* Portada más pequeña */
+      width: 60px; /* Portada más pequeña */
+      height: 60px;
+      margin-bottom: 0; /* Elimina margen inferior */
     }
 
-    body.celular .reproductor .controles button {
-      font-size: 1.1rem; /* Iconos de control más pequeños */
+    body.celular .reproductor .titulo,
+    body.celular .reproductor .barra,
+    body.celular .reproductor .controles,
+    body.celular .reproductor .volumen {
+      display: none; /* Oculta estos elementos por defecto en minimizado */
     }
+
+    /* Reproductor maximizado en celular al tocar */
+    body.celular .reproductor:active,
+    body.celular .reproductor.maximized { /* Clase para maximizar con JS si se necesita */
+      width: 90%;
+      height: auto; /* Permite que el contenido determine la altura */
+      padding: 20px;
+      overflow: visible;
+    }
+
+    body.celular .reproductor:active img,
+    body.celular .reproductor.maximized img {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 10px;
+    }
+
+    body.celular .reproductor:active .titulo,
+    body.celular .reproductor.maximized .titulo,
+    body.celular .reproductor:active .barra,
+    body.celular .reproductor.maximized .barra,
+    body.celular .reproductor:active .controles,
+    body.celular .reproductor.maximized .controles,
+    body.celular .reproductor:active .volumen,
+    body.celular .reproductor.maximized .volumen {
+      display: flex; /* Muestra los elementos al maximizar */
+      justify-content: center;
+      align-items: center;
+    }
+    body.celular .reproductor:active .titulo,
+    body.celular .reproductor.maximized .titulo {
+        display: block; /* Título puede ser bloque */
+    }
+
 
     body.celular .triste-btn {
         width: calc(50% - 30px); /* Ajusta el ancho para móvil */
@@ -177,7 +219,7 @@
       }
     }
 
-    /* Estilo del reproductor de música */
+    /* Estilo del reproductor de música (PC por defecto, minimizado) */
     .reproductor {
       position: fixed;
       top: 20px;
@@ -185,11 +227,17 @@
       background: rgba(255,255,255,0.2);
       backdrop-filter: blur(10px);
       border-radius: 20px;
-      padding: 20px;
+      padding: 15px; /* Padding por defecto más pequeño */
       text-align: center;
-      width: 260px; /* Ancho por defecto para PC */
+      width: 80px; /* Ancho minimizado por defecto */
+      height: 80px; /* Altura minimizada por defecto */
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      transition: background 0.7s ease-in-out, backdrop-filter 0.7s ease-in-out, transform 0.7s ease-in-out, left 0.7s ease-in-out, width 0.7s ease-in-out, padding 0.7s ease-in-out; /* Añadidos width y padding a la transición */
+      transition: all 0.5s ease-in-out; /* Transición para todas las propiedades */
+      overflow: hidden; /* Oculta el contenido extra cuando minimizado */
+      display: flex; /* Para centrar la portada */
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
 
     .reproductor.dark-mode {
@@ -197,12 +245,53 @@
     }
 
     .reproductor img {
-      width: 100px; /* Ancho por defecto para PC */
+      width: 60px; /* Portada más pequeña por defecto */
+      height: 60px;
       border-radius: 50%;
-      margin-bottom: 10px;
+      margin-bottom: 0; /* Sin margen por defecto */
       animation: girar 5s linear infinite;
       box-shadow: 0 0 15px rgba(0,0,0,0.3);
-      transition: width 0.7s ease-in-out; /* Añadido width a la transición */
+    }
+
+    .reproductor .titulo,
+    .reproductor .barra,
+    .reproductor .controles,
+    .reproductor .volumen {
+      display: none; /* Oculta estos elementos por defecto (minimizado) */
+    }
+
+    /* Reproductor maximizado (al pasar el ratón/tocar) */
+    .reproductor:hover,
+    .reproductor.maximized { /* .maximized es para control manual si es necesario */
+      width: 260px; /* Ancho normal */
+      height: auto; /* Altura automática */
+      padding: 20px; /* Padding normal */
+      overflow: visible; /* Muestra el contenido */
+      align-items: stretch; /* Restaura la alineación */
+    }
+
+    .reproductor:hover img,
+    .reproductor.maximized img {
+      width: 100px; /* Portada normal */
+      height: 100px;
+      margin-bottom: 10px; /* Margen normal */
+    }
+
+    .reproductor:hover .titulo,
+    .reproductor.maximized .titulo,
+    .reproductor:hover .barra,
+    .reproductor.maximized .barra,
+    .reproductor:hover .controles,
+    .reproductor.maximized .controles,
+    .reproductor:hover .volumen,
+    .reproductor.maximized .volumen {
+      display: flex; /* Muestra los elementos al maximizar */
+      justify-content: center;
+      align-items: center;
+    }
+    .reproductor:hover .titulo,
+    .reproductor.maximized .titulo {
+        display: block; /* Título puede ser bloque */
     }
 
     @keyframes girar {
@@ -309,8 +398,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, #eac8ff, #d291fa); /* Fondo lila */
-      color: #333; /* Texto oscuro para contraste */
+      background: black; /* Fondo negro al inicio */
+      color: white; /* Texto blanco al inicio */
       z-index: 9999;
       display: flex;
       flex-direction: column;
@@ -320,12 +409,14 @@
       text-align: center;
       padding: 20px;
       opacity: 1; /* Opacidad inicial */
-      transition: opacity 0.4s ease-in-out; /* Transición más rápida y suave */
+      transition: opacity 0.4s ease-in-out, background 0.4s ease-in-out, color 0.4s ease-in-out; /* Transición también para background y color */
     }
 
     #pantalla-inicio.hidden {
         opacity: 0;
         pointer-events: none; /* Deshabilita la interacción cuando está oculto */
+        background: linear-gradient(135deg, #eac8ff, #d291fa); /* Fondo lila durante la transición */
+        color: #333; /* Color de texto para el fondo lila */
     }
 
     .dispositivo-opciones {
@@ -358,7 +449,7 @@
     .dispositivo-etiqueta {
       margin-top: 8px;
       font-size: 1rem;
-      color: #333; /* Texto oscuro para contraste contra el lila */
+      color: white; /* Texto blanco para contraste contra el negro */
     }
 
     /* Contenedor principal del contenido para la transición */
@@ -504,6 +595,10 @@
     });
 
     function seleccionarDispositivo(tipo) {
+      // Modifica el color del texto en la pantalla de inicio para que sea visible durante la transición lila
+      document.querySelector('#pantalla-inicio h2').style.color = '#333';
+      Array.from(document.querySelectorAll('.dispositivo-etiqueta')).forEach(el => el.style.color = '#333');
+
       pantallaInicio.classList.add('hidden'); // Inicia el desvanecimiento de la pantalla de bienvenida
 
       setTimeout(() => {
