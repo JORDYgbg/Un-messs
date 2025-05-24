@@ -1,348 +1,792 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Un Abrazo Virtual</title>
-    <link rel="icon" href="favicon.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        :root {
-            /* Colores para modo claro */
-            --light-bg: linear-gradient(135deg, #f0f8ff, #e6f7ff); /* Azul claro suave */
-            --light-text: #333;
-            --light-container-bg: rgba(255, 255, 255, 0.9);
-            --light-heading: #ff6f61; /* Coral vibrante */
-            --light-accent: #8e44ad; /* Púrpura */
-            --light-shadow: rgba(0, 0, 0, 0.15);
-            --light-btn-bg: #ff69b4; /* Rosa para botón principal */
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz primer mes</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Restablecimiento y estilos base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-            /* Colores para modo oscuro */
-            --dark-bg: linear-gradient(180deg, #1a2a3a 0%, #2a3a4a 70%); /* Azules oscuros */
-            --dark-text: #f0f0f0;
-            --dark-container-bg: rgba(0, 0, 0, 0.7);
-            --dark-heading: #ffb6c1; /* Rosa claro */
-            --dark-accent: #9370db; /* Lila */
-            --dark-shadow: rgba(0, 0, 0, 0.5);
-            --dark-btn-bg: #da70d6; /* Orquídea para botón principal */
-        }
+    /* Estilo del cuerpo con transiciones mejoradas y suavizado de fuente */
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(180deg, #d2a6fa 0%, #f7e6ff 70%); /* Degradado vertical: lila oscuro arriba, más claro abajo */
+      color: #4a4a4a; /* Color de texto más oscuro y profesional */
+      transition: background 0.7s ease-in-out, color 0.7s ease-in-out;
+      -webkit-font-smoothing: antialiased; /* Suavizado de fuente para WebKit */
+      -moz-osx-font-smoothing: grayscale; /* Suavizado de fuente para Firefox */
+      position: relative; /* Necesario para las estrellas y posicionamiento absoluto */
+      min-height: 100vh; /* Asegura que el cuerpo ocupe al menos la altura de la ventana */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: var(--light-bg);
-            color: var(--light-text);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center; /* Centrar verticalmente el contenido */
-            min-height: 100vh; /* Asegura que ocupe al menos toda la altura de la vista */
-            overflow-x: hidden;
-            transition: background 0.7s ease-in-out, color 0.7s ease-in-out;
-            position: relative;
-            box-sizing: border-box;
-        }
+    /* Modo oscuro */
+    body.dark-mode {
+      background: linear-gradient(180deg, #1a2a3a 0%, #2a3a4a 70%); /* Degradado oscuro */
+      color: #f0f0f0; /* Color de texto claro */
+    }
 
-        body.dark-mode {
-            background: var(--dark-bg);
-            color: var(--dark-text);
-        }
+    /* Estilos generales para las secciones (tarjetas) */
+    .seccion-tarjeta {
+      background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+      border-radius: 20px; /* Bordes redondeados */
+      padding: 40px; /* Espaciado interno */
+      margin: 30px auto; /* Margen superior/inferior y centrado horizontal */
+      max-width: 800px; /* Ancho máximo de la tarjeta */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Sombra suave */
+      text-align: center; /* Texto centrado */
+      transition: background-color 0.7s ease-in-out, box-shadow 0.7s ease-in-out;
+      opacity: 0; /* Inicialmente oculto para animación */
+      transform: translateY(20px); /* Inicialmente un poco abajo */
+      animation: fadeInSlideUp 0.8s ease-out forwards; /* Animación de entrada */
+    }
 
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 40px auto; /* Mantener margen superior e inferior */
-            padding: 40px;
-            background: var(--light-container-bg);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px var(--light-shadow);
-            text-align: center;
-            transition: background 0.7s ease-in-out, box-shadow 0.7s ease-in-out;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    body.dark-mode .seccion-tarjeta {
+      background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi-transparente */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra más oscura */
+    }
 
-        body.dark-mode .container {
-            background: var(--dark-container-bg);
-            box-shadow: 0 10px 30px var(--dark-shadow);
-        }
+    @keyframes fadeInSlideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        h1 {
-            font-family: 'Dancing Script', cursive;
-            color: var(--light-heading);
-            margin-bottom: 25px;
-            font-size: 3.5rem;
-            transition: color 0.7s ease-in-out;
-        }
-        body.dark-mode h1 {
-            color: var(--dark-heading);
-        }
+    /* Animación secuencial para las secciones */
+    .seccion-tarjeta:nth-of-type(1) { animation-delay: 0.2s; }
+    .seccion-tarjeta:nth-of-type(2) { animation-delay: 0.4s; }
+    .seccion-tarjeta:nth-of-type(3) { animation-delay: 0.6s; }
+    .seccion-tarjeta:nth-of-type(4) { animation-delay: 0.8s; }
+    .seccion-tarjeta:nth-of-type(5) { animation-delay: 1.0s; }
 
-        p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
 
-        .highlight {
-            font-weight: 700;
-            color: var(--light-accent);
-            transition: color 0.7s ease-in-out;
-        }
-        body.dark-mode .highlight {
-            color: var(--dark-accent);
-        }
+    /* Títulos principales */
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 4.5rem; /* Tamaño grande para el título principal */
+      color: #ff69b4; /* Rosa vibrante */
+      margin-bottom: 25px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra de texto suave */
+      transition: color 0.7s ease-in-out;
+    }
+    body.dark-mode h1 {
+      color: #ffb6c1; /* Rosa claro en modo oscuro */
+    }
 
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px var(--light-shadow);
-            margin-bottom: 30px;
-        }
-        .video-container iframe, .video-container video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-            border-radius: 15px;
-        }
+    h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5rem; /* Tamaño para subtítulos */
+      color: #8e44ad; /* Púrpura */
+      margin-top: 40px;
+      margin-bottom: 20px;
+      transition: color 0.7s ease-in-out;
+    }
+    body.dark-mode h2 {
+      color: #9370db; /* Lila en modo oscuro */
+    }
 
-        .btn {
-            background-color: var(--light-btn-bg);
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 30px;
-        }
+    /* Párrafos de texto */
+    p {
+      font-size: 1.2rem; /* Tamaño de fuente para párrafos */
+      line-height: 1.8; /* Espaciado entre líneas */
+      margin-bottom: 20px;
+    }
 
-        .btn:hover {
-            background-color: #ff1493; /* Rosa más oscuro */
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-        }
-        body.dark-mode .btn {
-            background-color: var(--dark-btn-bg);
-        }
-        body.dark-mode .btn:hover {
-            background-color: #c060c0; /* Púrpura más oscuro */
-        }
+    /* Texto resaltado */
+    .resaltado {
+      font-weight: 700; /* Negrita */
+      color: #ff69b4; /* Rosa vibrante */
+      transition: color 0.7s ease-in-out;
+    }
+    body.dark-mode .resaltado {
+      color: #ffb6c1; /* Rosa claro en modo oscuro */
+    }
 
-        /* Estrellas flotantes (copiado de index.html para consistencia) */
-        .estrellas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-        }
+    /* Contenedor de video para asegurar la proporción */
+    .video-contenedor {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* Relación de aspecto 16:9 (altura/ancho * 100) */
+      height: 0;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      margin-bottom: 30px;
+    }
 
-        .estrella {
-            position: absolute;
-            color: rgba(0, 0, 0, 0.1); /* Estrellas sutiles en modo claro */
-            font-size: 1.5rem;
-            animation: flotarEstrella 15s linear infinite;
-        }
-        body.dark-mode .estrella {
-            color: rgba(255, 223, 0, 0.4); /* Amarillo suave en modo oscuro */
-        }
+    .video-contenedor iframe, .video-contenedor video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 15px;
+    }
 
-        /* Posiciones aleatorias para las estrellas */
-        .estrella:nth-child(1) { top: 10%; left: 5%; animation-duration: 12s; animation-delay: -1s; font-size: 1.0rem; }
-        .estrella:nth-child(2) { top: 25%; left: 80%; animation-duration: 18s; animation-delay: -3s; font-size: 1.8rem; }
-        .estrella:nth-child(3) { top: 50%; left: 30%; animation-duration: 14s; animation-delay: -2s; font-size: 1.3rem; }
-        .estrella:nth-child(4) { top: 70%; left: 60%; animation-duration: 16s; animation-delay: -4s; font-size: 1.6rem; }
-        .estrella:nth-child(5) { top: 5%; left: 40%; animation-duration: 10s; animation-delay: -0.5s; font-size: 1.1rem; }
-        .estrella:nth-child(6) { top: 85%; left: 15%; animation-duration: 17s; animation-delay: -2.5s; font-size: 1.4rem; }
-        .estrella:nth-child(7) { top: 30%; left: 10%; animation-duration: 13s; animation-delay: -1.5s; font-size: 1.2rem; }
-        .estrella:nth-child(8) { top: 40%; left: 90%; animation-duration: 19s; animation-delay: -3s; font-size: 1.7rem; }
-        .estrella:nth-child(9) { top: 60%; left: 70%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
-        .estrella:nth-child(10) { top: 15%; left: 20%; animation-duration: 20s; animation-delay: -4s; font-size: 2.0rem; }
-        .estrella:nth-child(11) { top: 95%; left: 50%; animation-duration: 15s; animation-delay: -1s; font-size: 1.0rem; }
-        .estrella:nth-child(12) { top: 80%; left: 5%; animation-duration: 12s; animation-delay: -2s; font-size: 1.5rem; }
-        .estrella:nth-child(13) { top: 20%; left: 50%; animation-duration: 18s; animation-delay: -3s; font-size: 1.2rem; }
-        .estrella:nth-child(14) { top: 45%; left: 5%; animation-duration: 10s; animation-delay: -0.5s; font-size: 1.0rem; }
-        .estrella:nth-child(15) { top: 70%; left: 90%; animation-duration: 16s; animation-delay: -2s; font-size: 1.4rem; }
-        .estrella:nth-child(16) { top: 10%; left: 60%; animation-duration: 13s; animation-delay: -1.5s; font-size: 1.1rem; }
-        .estrella:nth-child(17) { top: 35%; left: 25%; animation-duration: 19s; animation-delay: -3s; font-size: 1.6rem; }
-        .estrella:nth-child(18) { top: 55%; left: 75%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
-        .estrella:nth-child(19) { top: 90%; left: 30%; animation-duration: 20s; animation-delay: -4s; font-size: 1.7rem; }
-        .estrella:nth-child(20) { top: 75%; left: 40%; animation-duration: 14s; animation-delay: -2s; font-size: 1.3rem; }
+    /* Grupo de botones */
+    .grupo-botones {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap; /* Permite que los botones se envuelvan en pantallas pequeñas */
+      justify-content: center; /* Centra los botones */
+      gap: 20px; /* Espacio entre botones */
+    }
 
-        @keyframes flotarEstrella {
-            from {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            25% { opacity: 1; }
-            75% { opacity: 1; }
-            to {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
+    /* Estilo general para botones */
+    .boton {
+      background-color: #ff69b4; /* Rosa vibrante */
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 30px; /* Botones pill-shaped */
+      font-size: 1.2rem;
+      cursor: pointer;
+      text-decoration: none; /* Quita el subrayado de los enlaces */
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      display: inline-flex; /* Permite alinear el ícono y el texto */
+      align-items: center; /* Centra verticalmente el contenido */
+      gap: 10px; /* Espacio entre el ícono y el texto */
+    }
 
-        /* Botón de cambio de modo oscuro/claro */
-        .modo-btn {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background-color: var(--light-accent);
-            border-radius: 50%;
-            width: 55px;
-            height: 55px;
-            font-size: 22px;
-            color: white;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 99;
-            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-            cursor: pointer;
-        }
+    .boton:hover {
+      background-color: #ff1493; /* Rosa más oscuro al pasar el ratón */
+      transform: translateY(-3px); /* Efecto de elevación */
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+    body.dark-mode .boton {
+      background-color: #da70d6; /* Orquídea en modo oscuro */
+    }
+    body.dark-mode .boton:hover {
+      background-color: #c060c0; /* Púrpura más oscuro en modo oscuro */
+    }
 
-        .modo-btn:hover {
-            background-color: #7d3cae;
-            transform: rotate(360deg);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
+    /* Estilos específicos para la pantalla de inicio */
+    #pantalla-inicio {
+      position: fixed; /* Fija la pantalla de inicio para que cubra todo */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #d2a6fa 0%, #f7e6ff 70%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000; /* Asegura que esté por encima de todo */
+      transition: background 0.7s ease-in-out, opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+      text-align: center; /* Centra el contenido */
+    }
 
-        body.dark-mode .modo-btn {
-            background-color: var(--dark-accent);
-        }
-        body.dark-mode .modo-btn:hover {
-            background-color: #7952b3;
-        }
+    body.dark-mode #pantalla-inicio {
+      background: linear-gradient(180deg, #1a2a3a 0%, #2a3a4a 70%);
+    }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.8rem;
-            }
-            p {
-                font-size: 1rem;
-            }
-            .btn {
-                padding: 12px 20px;
-                font-size: 1rem;
-            }
-            .container {
-                padding: 20px;
-                margin: 20px auto;
-            }
-            .modo-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-                bottom: 15px;
-                right: 15px;
-            }
-        }
+    #pantalla-inicio.hidden {
+      opacity: 0;
+      pointer-events: none; /* Deshabilita interacciones cuando está oculto */
+      transform: scale(0.95); /* Pequeño efecto de zoom out al ocultar */
+    }
 
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2.2rem;
-            }
-            p {
-                font-size: 0.9rem;
-            }
-            .btn {
-                width: 90%; /* Full width button on very small screens */
-                margin-top: 20px;
-            }
-        }
-    </style>
+    #pantalla-inicio.transicion-lila {
+      background: linear-gradient(180deg, #c3a6ff 0%, #e6d2fa 70%); /* Lila más suave */
+    }
+
+    #pantalla-inicio h2 {
+      font-size: 2.5rem; /* Tamaño para el texto de la pantalla de inicio */
+      color: #6a5acd; /* Púrpura azulado */
+      margin-bottom: 30px;
+      transition: color 0.7s ease-in-out;
+    }
+    body.dark-mode #pantalla-inicio h2 {
+      color: #b0e0e6; /* Azul claro en modo oscuro */
+    }
+
+    .dispositivo-etiqueta {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #6a5acd;
+      transition: color 0.7s ease-in-out;
+    }
+    body.dark-mode .dispositivo-etiqueta {
+      color: #b0e0e6;
+    }
+
+    /* Estilos para el reproductor de audio */
+    .reproductor-audio {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 15px 25px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      z-index: 900;
+      transition: all 0.3s ease-in-out;
+      backdrop-filter: blur(8px); /* Efecto de desenfoque */
+      -webkit-backdrop-filter: blur(8px);
+      flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+      justify-content: center;
+    }
+
+    body.dark-mode .reproductor-audio {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .reproductor-audio audio {
+      width: 200px; /* Ancho fijo para el reproductor */
+      outline: none; /* Quitar el contorno de enfoque */
+      transition: width 0.3s ease;
+    }
+
+    .reproductor-audio button {
+      background-color: #8e44ad; /* Púrpura */
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .reproductor-audio button:hover {
+      background-color: #7d3cae;
+      transform: scale(1.05);
+    }
+    body.dark-mode .reproductor-audio button {
+      background-color: #9370db;
+    }
+    body.dark-mode .reproductor-audio button:hover {
+      background-color: #7952b3;
+    }
+
+    .reproductor-audio .info-cancion {
+      font-size: 0.9rem;
+      color: #6a5acd;
+      white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+      overflow: hidden; /* Oculta el desbordamiento del texto */
+      text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es muy largo */
+      max-width: 180px; /* Limita el ancho de la información de la canción */
+      transition: color 0.7s ease-in-out;
+    }
+    body.dark-mode .reproductor-audio .info-cancion {
+      color: #b0e0e6;
+    }
+
+    /* Estrellas flotantes */
+    .estrellas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* Permite hacer clic a través de ellas */
+      z-index: -1; /* Asegura que estén detrás del contenido */
+      overflow: hidden; /* Evita barras de desplazamiento */
+    }
+
+    .estrella {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.5); /* Color blanco semi-transparente */
+      font-size: 1.5rem; /* Tamaño inicial */
+      animation: flotarEstrella 15s linear infinite; /* Animación de flotación */
+    }
+    body.dark-mode .estrella {
+      color: rgba(255, 223, 0, 0.4); /* Amarillo suave en modo oscuro */
+    }
+
+    /* Posiciones y tamaños aleatorios para las estrellas */
+    .estrella:nth-child(1) { top: 10%; left: 5%; animation-duration: 12s; animation-delay: -1s; font-size: 1.0rem; }
+    .estrella:nth-child(2) { top: 25%; left: 80%; animation-duration: 18s; animation-delay: -3s; font-size: 1.8rem; }
+    .estrella:nth-child(3) { top: 50%; left: 30%; animation-duration: 14s; animation-delay: -2s; font-size: 1.3rem; }
+    .estrella:nth-child(4) { top: 70%; left: 60%; animation-duration: 16s; animation-delay: -4s; font-size: 1.6rem; }
+    .estrella:nth-child(5) { top: 5%; left: 40%; animation-duration: 10s; animation-delay: -0.5s; font-size: 1.1rem; }
+    .estrella:nth-child(6) { top: 85%; left: 15%; animation-duration: 17s; animation-delay: -2.5s; font-size: 1.4rem; }
+    .estrella:nth-child(7) { top: 30%; left: 10%; animation-duration: 13s; animation-delay: -1.5s; font-size: 1.2rem; }
+    .estrella:nth-child(8) { top: 40%; left: 90%; animation-duration: 19s; animation-delay: -3s; font-size: 1.7rem; }
+    .estrella:nth-child(9) { top: 60%; left: 70%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
+    .estrella:nth-child(10) { top: 15%; left: 20%; animation-duration: 20s; animation-delay: -4s; font-size: 2.0rem; }
+    .estrella:nth-child(11) { top: 95%; left: 50%; animation-duration: 15s; animation-delay: -1s; font-size: 1.0rem; }
+    .estrella:nth-child(12) { top: 80%; left: 5%; animation-duration: 12s; animation-delay: -2s; font-size: 1.5rem; }
+    .estrella:nth-child(13) { top: 20%; left: 50%; animation-duration: 18s; animation-delay: -3s; font-size: 1.2rem; }
+    .estrella:nth-child(14) { top: 45%; left: 5%; animation-duration: 10s; animation-delay: -0.5s; font-size: 1.0rem; }
+    .estrella:nth-child(15) { top: 70%; left: 90%; animation-duration: 16s; animation-delay: -2s; font-size: 1.4rem; }
+    .estrella:nth-child(16) { top: 10%; left: 60%; animation-duration: 13s; animation-delay: -1.5s; font-size: 1.1rem; }
+    .estrella:nth-child(17) { top: 35%; left: 25%; animation-duration: 19s; animation-delay: -3s; font-size: 1.6rem; }
+    .estrella:nth-child(18) { top: 55%; left: 75%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
+    .estrella:nth-child(19) { top: 90%; left: 30%; animation-duration: 20s; animation-delay: -4s; font-size: 1.7rem; }
+    .estrella:nth-child(20) { top: 75%; left: 40%; animation-duration: 14s; animation-delay: -2s; font-size: 1.3rem; }
+
+
+    @keyframes flotarEstrella {
+      from {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      25% { opacity: 1; }
+      75% { opacity: 1; }
+      to {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Botón de cambio de modo oscuro/claro */
+    .modo-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #8e44ad; /* Púrpura */
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      font-size: 22px;
+      color: white;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999; /* Alto z-index para que esté siempre visible */
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      cursor: pointer;
+    }
+
+    .modo-btn:hover {
+      background-color: #7d3cae; /* Púrpura más oscuro al pasar el ratón */
+      transform: rotate(360deg); /* Animación de rotación */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    body.dark-mode .modo-btn {
+      background-color: #9370db; /* Lila en modo oscuro */
+    }
+    body.dark-mode .modo-btn:hover {
+      background-color: #7952b3; /* Lila más oscuro en modo oscuro */
+    }
+
+
+    /* Media Queries para Responsividad */
+    @media (max-width: 768px) {
+      h1 { font-size: 3.5rem; }
+      h2 { font-size: 2.5rem; }
+      p { font-size: 1.1rem; }
+      .seccion-tarjeta {
+        padding: 30px;
+        margin: 20px auto;
+      }
+      .boton {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
+      #pantalla-inicio h2 {
+        font-size: 2rem;
+      }
+      .reproductor-audio {
+        width: 90%;
+        left: 5%;
+        transform: translateX(0);
+        bottom: 15px;
+        padding: 10px 15px;
+        flex-direction: column; /* Apila los elementos en móvil */
+        gap: 10px;
+      }
+      .reproductor-audio audio {
+        width: 100%;
+      }
+      .reproductor-audio .info-cancion {
+        max-width: none; /* Permite que la info de la canción use todo el ancho disponible */
+      }
+      .modo-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+        bottom: 15px;
+        right: 15px;
+      }
+
+      /* Celular-specific styles */
+      body.celular .seccion-tarjeta {
+        padding: 20px;
+        margin: 15px auto;
+      }
+      body.celular h1 { font-size: 3rem; }
+      body.celular h2 { font-size: 2rem; }
+      body.celular p { font-size: 1rem; }
+      body.celular .boton {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+      body.celular .reproductor-audio {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        transform: translateX(0);
+        border-radius: 0;
+        padding: 10px;
+        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+        flex-direction: row; /* En fila para el reproductor */
+        justify-content: space-around;
+        align-items: center;
+        gap: 10px;
+        height: 60px; /* Altura fija para el reproductor móvil */
+        overflow: hidden; /* Oculta el contenido extra */
+      }
+
+      body.celular .reproductor-audio audio {
+        display: none; /* Oculta el elemento audio nativo */
+      }
+
+      body.celular .reproductor-audio .info-cancion {
+        flex-grow: 1; /* Permite que la info ocupe el espacio restante */
+        text-align: left;
+        margin: 0;
+      }
+
+      body.celular .reproductor-audio.maximized {
+        height: auto; /* Permite que se expanda cuando se maximiza */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      body.celular .reproductor-audio.maximized audio {
+        display: block; /* Muestra el audio nativo al maximizar */
+        width: 90%;
+        margin-top: 10px;
+      }
+      body.celular .reproductor-audio.maximized .controles-reproductor {
+        flex-direction: row; /* Mantener los controles en fila */
+        gap: 15px;
+      }
+
+      /* Ocultar scrollbar horizontal en celular */
+      body.celular {
+        overflow-x: hidden;
+      }
+
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 3rem; }
+      h2 { font-size: 2rem; }
+      p { font-size: 1rem; }
+      .seccion-tarjeta {
+        padding: 20px;
+        margin: 15px;
+      }
+      .boton {
+        width: 100%; /* Botones de ancho completo en pantallas muy pequeñas */
+      }
+      #pantalla-inicio h2 {
+        font-size: 1.8rem;
+      }
+      #pantalla-inicio .grupo-botones .boton {
+        width: 80%; /* Asegura que los botones de dispositivo sean manejables */
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="estrellas">
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
-        <i class="fa-solid fa-star estrella"></i>
+  <div class="estrellas">
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+    <i class="fa-solid fa-star estrella"></i>
+  </div>
+
+  <div id="pantalla-inicio">
+    <h1 style="color: #ff69b4;">¡Hola Mi Amor!</h1>
+    <h2 style="color: #6a5acd;">¿Desde dónde me visitas hoy?</h2>
+    <div class="grupo-botones">
+      <button id="btn-celular" class="boton"><i class="fas fa-mobile-alt"></i> <span class="dispositivo-etiqueta">Desde mi Celular</span></button>
+      <button id="btn-pc" class="boton"><i class="fas fa-desktop"></i> <span class="dispositivo-etiqueta">Desde mi PC</span></button>
     </div>
+  </div>
 
-    <div class="container">
-        <h1>Aquí estoy para ti</h1>
-        <p>Mi amor, si te sientes triste, recuerda que siempre estoy aquí para escucharte, para apoyarte y para recordarte lo mucho que te amo. Eres mi luz y mi felicidad.</p>
-        <p>No importa qué tan oscuro se sienta, siempre habrá una forma de encontrar la calma juntos.</p>
-        <div class="video-container">
-            <video src="video/abrazo.mp4" autoplay loop muted playsinline></video>
-            </div>
-        <p class="highlight">Siempre juntos, siempre.</p>
-        <button class="btn" onclick="location.href='index.html#seccion1'">
-            <i class="fa-solid fa-arrow-left"></i> Volver a la historia de nuestro amor
-        </button>
-    </div>
+  <main id="contenido-principal" style="display: none;">
+    <section id="seccion1" class="seccion-tarjeta">
+      <h1>Feliz Primer Mes, Mi Amor</h1>
+      <p>Este mes a tu lado ha sido el más <span class="resaltado">hermoso y especial</span> de mi vida. Cada día contigo es una aventura que atesoro con todo mi corazón.</p>
+      <div class="video-contenedor">
+        <video controls autoplay loop muted>
+          <source src="video/kiss.mp4" type="video/mp4">
+          Tu navegador no soporta el video.
+        </video>
+      </div>
+      <p>Este pequeño video es un recordatorio de lo mucho que te amo y de lo feliz que me haces.</p>
+      <div class="grupo-botones">
+        <a href="#seccion2" class="boton"><i class="fas fa-heart"></i> Nuestra Historia</a>
+        <a href="triste.html" class="boton"><i class="fas fa-sad-tear"></i> Si te sientes triste, presiona aquí</a>
+      </div>
+    </section>
 
-    <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
+    <section id="seccion2" class="seccion-tarjeta">
+      <h2>Nuestra Historia</h2>
+      <p>Desde el día que te conocí, supe que algo mágico había empezado. Cada momento, cada risa, cada conversación me ha mostrado lo increíble que eres.</p>
+      <p>Gracias por ser tú, por tu risa, por tu apoyo y por hacer que cada día sea mejor que el anterior.</p>
+      <img src="image_37fbb0.jpg" alt="Nuestra foto" style="max-width:100%; height:auto; border-radius:15px; margin:20px 0; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
+      <p>Espero que tengamos muchísimos meses más llenos de amor y felicidad.</p>
+      <div class="grupo-botones">
+        <a href="#seccion3" class="boton"><i class="fas fa-music"></i> Nuestra Música</a>
+      </div>
+    </section>
 
-    <script>
-        const body = document.body;
-        const modoBtn = document.getElementById('modo-btn');
+    <section id="seccion3" class="seccion-tarjeta">
+      <h2>Nuestra Música</h2>
+      <p>Estas canciones me recuerdan a ti y a nuestros momentos especiales. ¡Espero que las disfrutes!</p>
+      <div class="reproductor-audio" id="reproductor-audio">
+        <audio id="audio-player" controls></audio>
+        <div class="controles-reproductor">
+            <button id="prev-btn"><i class="fas fa-backward"></i></button>
+            <button id="play-pause-btn"><i class="fas fa-play"></i></button>
+            <button id="next-btn"><i class="fas fa-forward"></i></button>
+        </div>
+        <span class="info-cancion" id="current-song-info">Reproduciendo: ...</span>
+      </div>
+      <div class="grupo-botones" style="margin-top: 100px;"> <a href="#seccion4" class="boton"><i class="fas fa-star"></i> Un Sueño Juntos</a>
+      </div>
+    </section>
 
-        // Función para cargar la preferencia del modo oscuro
-        function loadDarkModePreference() {
-            if (localStorage.getItem('dark-mode-triste') === 'true') { // Usar clave específica para triste.html
-                body.classList.add('dark-mode');
-                modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-            } else {
-                body.classList.remove('dark-mode');
-                modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    <section id="seccion4" class="seccion-tarjeta">
+      <h2>Un Sueño Juntos</h2>
+      <p>Mi sueño es seguir construyendo una vida a tu lado, llena de alegría, complicidad y muchísimo amor. Contigo, cada día es un sueño hecho realidad.</p>
+      <p>Eres la persona más maravillosa que he conocido y no puedo esperar a ver todo lo que el futuro nos depara.</p>
+      <div class="grupo-botones">
+        <a href="#seccion5" class="boton"><i class="fas fa-gift"></i> Mi Promesa</a>
+      </div>
+    </section>
+
+    <section id="seccion5" class="seccion-tarjeta">
+      <h2>Mi Promesa</h2>
+      <p>Te prometo amor, apoyo incondicional y mi esfuerzo diario para hacerte la persona más feliz del mundo. Siempre estaré para ti.</p>
+      <p class="resaltado" style="font-size: 1.5rem;">¡Te amo con todo mi ser!</p>
+      <div class="grupo-botones">
+        <a href="#seccion1" class="boton"><i class="fas fa-arrow-up"></i> Volver al Inicio</a>
+      </div>
+    </section>
+  </main>
+
+  <button class="modo-btn" id="modo-btn"><i class="fas fa-moon"></i></button>
+
+  <script>
+    const pantallaInicio = document.getElementById('pantalla-inicio');
+    const contenidoPrincipal = document.getElementById('contenido-principal');
+    const btnCelular = document.getElementById('btn-celular');
+    const btnPc = document.getElementById('btn-pc');
+    const body = document.body;
+    const modoBtn = document.getElementById('modo-btn');
+
+    // Reproductor de audio
+    const audioPlayer = document.getElementById('audio-player');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const currentSongInfo = document.getElementById('current-song-info');
+    const reproductor = document.getElementById('reproductor-audio');
+
+    // Estado del reproductor en celular
+    let isReproductorMaximized = false;
+
+    // Tu playlist original
+    const playlist = [
+      { title: "Pensando en Ti", src: "audio/audio1.mp3" },
+      { title: "Nuestro Rincón", src: "audio/audio2.mp3" },
+      { title: "Recuerdos Contigo", src: "audio/audio3.mp3" },
+      { title: "Sueño de Amor", src: "audio/audio4.mp3" }
+    ];
+    let currentSongIndex = 0;
+
+    // --- MANEJO DEL MODO OSCURO/CLARO ---
+    // Cargar la preferencia del modo oscuro al inicio
+    function loadDarkModePreference() {
+      if (localStorage.getItem('dark-mode') === 'true') {
+        body.classList.add('dark-mode');
+        modoBtn.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        body.classList.remove('dark-mode');
+        modoBtn.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+    }
+
+    // Cambiar modo oscuro/claro al hacer clic en el botón
+    modoBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('dark-mode', 'true');
+        modoBtn.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        localStorage.setItem('dark-mode', 'false');
+        modoBtn.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+    });
+
+    // --- LÓGICA DEL REPRODUCTOR DE AUDIO ---
+    function loadSong(index) {
+      audioPlayer.src = playlist[index].src;
+      audioPlayer.load();
+      currentSongInfo.textContent = `Reproduciendo: ${playlist[index].title}`;
+      playPauseBtn.innerHTML = '<i class="fas fa-play"></i>'; // Resetear ícono a play al cargar nueva canción
+    }
+
+    playPauseBtn.addEventListener('click', () => {
+      if (audioPlayer.paused) {
+        audioPlayer.play().catch(e => console.error("Error al intentar reproducir:", e));
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      } else {
+        audioPlayer.pause();
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentSongIndex = (currentSongIndex + 1) % playlist.length;
+      loadSong(currentSongIndex);
+      audioPlayer.play().catch(e => console.error("Error al intentar reproducir:", e));
+      playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
+      loadSong(currentSongIndex);
+      audioPlayer.play().catch(e => console.error("Error al intentar reproducir:", e));
+      playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    });
+
+    audioPlayer.addEventListener('ended', () => {
+      nextBtn.click(); // Pasa a la siguiente canción automáticamente
+    });
+
+    // Maximizar/minimizar el reproductor al hacer click en él (solo para celular)
+    reproductor.addEventListener('click', (event) => {
+        if (document.body.classList.contains('celular')) {
+            if (!isReproductorMaximized) {
+                reproductor.classList.add('maximized');
+                isReproductorMaximized = true;
+                event.stopPropagation(); // Evita que el clic se propague al documento
             }
         }
+    });
 
-        // Event listener para el botón de modo oscuro/claro
-        modoBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('dark-mode-triste', 'true');
-                modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-            } else {
-                localStorage.setItem('dark-mode-triste', 'false');
-                modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    // Minimizar el reproductor al tocar fuera de él en celular
+    document.addEventListener('click', (event) => {
+        if (document.body.classList.contains('celular') && isReproductorMaximized) {
+            // Si el clic no fue dentro del reproductor, minimízalo
+            if (!reproductor.contains(event.target)) {
+                reproductor.classList.remove('maximized');
+                isReproductorMaximized = false;
             }
-        });
+        }
+    });
 
-        // Cargar la preferencia del modo oscuro al cargar la página
-        window.addEventListener('load', loadDarkModePreference);
-    </script>
+    // --- LÓGICA DE SELECCIÓN DE DISPOSITIVO Y NAVEGACIÓN POR HASH ---
+    // Función para seleccionar el tipo de dispositivo (PC o Celular)
+    function seleccionarDispositivo(tipo) {
+      pantallaInicio.classList.add('transicion-lila');
+      document.querySelector('#pantalla-inicio h1').style.color = '#4a4a4a'; // Cambia el color del h1 también
+      document.querySelector('#pantalla-inicio h2').style.color = '#4a4a4a';
+      Array.from(document.querySelectorAll('.dispositivo-etiqueta')).forEach(el => el.style.color = '#4a4a4a');
+
+      pantallaInicio.classList.add('hidden');
+
+      setTimeout(() => {
+        pantallaInicio.style.display = 'none';
+
+        if (tipo === 'celular') {
+          document.body.classList.add('celular');
+        } else {
+          document.body.classList.remove('celular');
+        }
+
+        contenidoPrincipal.style.display = 'block';
+        // Iniciar la reproducción de la primera canción si no se ha iniciado
+        if (audioPlayer.paused && audioPlayer.currentTime === 0) {
+            // Se puede considerar un autoplay condicional aquí si el usuario ya hizo un clic
+            // Por ahora, solo cargamos la canción
+            loadSong(currentSongIndex);
+        }
+      }, 700); // Coincide con la duración de la transición CSS
+    }
+
+    // Event listeners para los botones de selección de dispositivo
+    btnCelular.addEventListener('click', () => seleccionarDispositivo('celular'));
+    btnPc.addEventListener('click', () => seleccionarDispositivo('pc'));
+
+    // --- LÓGICA DE INICIO AL CARGAR LA PÁGINA ---
+    window.addEventListener('DOMContentLoaded', () => {
+      loadDarkModePreference(); // Cargar la preferencia de modo oscuro al cargar la página
+
+      // Verificar si hay un hash en la URL (ej. #seccion1)
+      const hash = window.location.hash;
+
+      if (hash) {
+        // Si hay un hash, ocultar la pantalla de inicio directamente
+        pantallaInicio.style.display = 'none';
+        contenidoPrincipal.style.display = 'block';
+        document.body.classList.remove('celular'); // Asegurarse de que el modo PC esté activo para los hashes
+
+        // Pequeño retardo para asegurar que el contenido es visible antes del scroll
+        setTimeout(() => {
+            const targetElement = document.querySelector(hash);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 50); // Un retardo mínimo para que el renderizado se ajuste
+        loadSong(currentSongIndex); // Cargar la primera canción
+      } else {
+        // Si no hay hash, mostrar la pantalla de inicio normalmente
+        pantallaInicio.style.display = 'flex'; // Asegurarse de que sea flex para centrado
+        contenidoPrincipal.style.display = 'none';
+      }
+    });
+
+    // Manejar el cambio de hash para navegación interna suave
+    window.addEventListener('hashchange', () => {
+        const hash = window.location.hash;
+        if (hash) {
+            const targetElement = document.querySelector(hash);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    });
+  </script>
 </body>
 </html>
