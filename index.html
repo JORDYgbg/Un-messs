@@ -17,7 +17,7 @@
     /* Estilo del cuerpo con transiciones mejoradas y suavizado de fuente */
     body {
       font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(135deg, #f7e6ff, #d2a6fa); /* Degradado lila más suave */
+      background: linear-gradient(180deg, #d2a6fa 0%, #f7e6ff 70%); /* Degradado vertical: lila oscuro arriba, más claro abajo */
       color: #4a4a4a; /* Color de texto más oscuro y profesional */
       transition: background 0.7s ease-in-out, color 0.7s ease-in-out, font-size 0.7s ease-in-out;
       overflow-x: hidden;
@@ -27,7 +27,7 @@
 
     /* Estilo del modo oscuro */
     body.dark-mode {
-      background: linear-gradient(135deg, #1a1a1a, #333333); /* Degradado oscuro más sutil */
+      background: linear-gradient(180deg, #1a1a1a 0%, #333333 70%); /* Degradado oscuro más sutil */
       color: #f0f0f0;
     }
 
@@ -152,8 +152,8 @@
 
 
     header video {
-        width: 90%; /* Más pequeño, ocupa el 90% del ancho del padre */
-        max-width: 500px; /* Límite máximo para que no sea enorme en pantallas grandes */
+        width: 80%; /* Más pequeño, ocupa el 80% del ancho del padre */
+        max-width: 450px; /* Límite máximo para que no sea enorme en pantallas grandes */
         height: auto; /* Mantiene la proporción */
         margin: 0 auto 40px auto; /* Centra el video y le da más margen inferior */
         border-radius: 15px; /* Bordes más redondeados */
@@ -192,7 +192,7 @@
       border: none;
       border-radius: 50%;
       width: 55px; /* Ligeramente más grande */
-      height: 55px; /* Ligeramente más grande */
+      height: 55px;
       font-size: 22px; /* Ícono más grande */
       color: white;
       cursor: pointer;
@@ -231,12 +231,12 @@
 
     .corazon {
       position: absolute;
-      color: rgba(0, 0, 0, 0.1); /* Corazones más sutiles */
+      color: rgba(0, 0, 0, 0.1); /* Corazones más sutiles en modo claro */
       font-size: 1.5rem;
       animation: flotar 10s linear infinite;
     }
     body.dark-mode .corazon {
-        color: rgba(255, 255, 255, 0.1); /* Corazones blancos en modo oscuro */
+        color: rgba(147, 112, 219, 0.3); /* Lila suave en modo oscuro */
     }
 
     .corazon:nth-child(2n) { animation-duration: 12s; animation-delay: -2s; font-size: 1.2rem; }
@@ -453,6 +453,8 @@
       font-size: 1.15rem; /* Tamaño de texto de párrafo ligeramente más grande */
       line-height: 1.7; /* Mayor espacio entre líneas para lectura fácil */
       color: #555; /* Color de texto más suave */
+      text-align: justify; /* Texto justificado para las secciones de contenido */
+      padding: 0 15px; /* Pequeño padding interno para que no toque los bordes en móvil */
     }
     body.dark-mode section p {
         color: #e0e0e0;
@@ -588,19 +590,96 @@
 
   <section id="seccion1">
     <h2>Cómo me enamoré de ti</h2>
-    <p>Desde el primer momento que hablamos, supe que eras especial. Cada día contigo ha sido una aventura hermosa.</p>
+    <p>
+      No sé en qué momento exacto empezó todo. Fue en una partida de Valorant, en Ascent. Como cualquier otra noche. Prepickeó Phoenix y le dije a Nathalia, mi amiga: “Uy no, va a trollear fijo.” Pero luego... pickeó Killjoy. Y no sé cómo explicarlo, pero ahí empezó algo. Pequeñito, imperceptible, como una chispa.
+      <br><br>
+      Jugamos esa partida y terminamos cayéndonos bien. Todos en el grupo fluyeron, pero ella… había algo diferente. Esa noche nos quedamos jugando hasta la madrugada. Y no porque el juego estuviera bueno, sino porque su risa, sus comentarios, su forma de mirar el juego... todo eso me mantenía despierto.
+      <br><br>
+      Después empezamos a hablar por Riot Mobile, mensajes cada tanto, pero cada tanto se volvió cada vez más seguido. Y era raro —en el buen sentido— lo bien que nos entendíamos. Como si nuestras conversaciones ya tuvieran confianza desde el principio. Como si habláramos con alguien que ya conocíamos de vidas pasadas.
+      <br><br>
+      La invité a un servidor de Minecraft. Ahí... fue otro nivel. Nos regalábamos cosas dentro del juego —pero se sentían más reales que cualquier regalo físico. Le dejaba cofres con flores o materiales, y no decía nada, solo esperaba que lo viera y sonriera. Porque aunque no la veía, yo juraba que lo hacía.
+      <br><br>
+      Después vino Instagram. Más charlas. Más cercanía. Más nosotros. Recuerdo con esa mezcla de ternura y vergüenza el primer “te quiero” que le dije. Temblaba mientras lo escribía, lo juro. Y peor aún el “creo que me gustas”, porque eso ya era cruzar una línea sin saber si había suelo del otro lado. Pero sí lo había. Porque ella me respondió con esa forma tan bonita de hacerlo sentir fácil. Como si lo estuviera esperando.
+      <br><br>
+      Veíamos Ladybug juntos en Rave, aunque yo jamás pensé ver algo así. Pero por ella… por ella veía lo que sea. Jugábamos otros juegos solo para tener excusa de pasar tiempo juntos. Y no necesitaba más: me sentía en casa. Me sentía visto. Me sentía querido.
+      <br><br>
+      Y luego... llegó ese momento. Tenía de fondo “Es por ti” de Juanes, porque sí, cursi, romántico, cliché y todo lo que quieras. Pero era nuestra banda sonora. Le dije que la amaba. Fue como soltar todo lo que llevaba dentro, como una confesión con el corazón en las manos.
+      <br><br>
+      Y cuando me dijo que sí... sonreí. Pero no solo por un rato. Sonreí hasta el día siguiente. Dormí con una sonrisa que me dolía en la cara, pero me curaba el alma.
+      <br><br>
+      Y así fue como me enamoré de una chica que empezó como Killjoy en Ascent. Y terminó siendo la mujer de mis amores, mi compañera, mi futura esposa, mi “te amo” más sincero.
+    </p>
   </section>
   <section id="seccion2">
-    <h2>Poema que nunca te mostré</h2>
-    <p>Tu risa es mi melodía, tu mirada mi sol. Con cada latido, mi amor por ti es mayor.</p>
+    <h2>Poema para el alma que me calma</h2>
+    <p>
+      Aunque la distancia nos separe en la piel,<br>
+      nuestras almas se encuentran, leal es su miel.<br>
+      En cada mensaje, en cada compás,<br>
+      construimos un mundo que solo tú das.<br>
+      <br>
+      Tu risa, un eco que viaja en el aire,<br>
+      alegra mis días, mi más dulce donaire.<br>
+      Tu voz, un susurro que el tiempo no frena,<br>
+      mi mente ilumina, mi calma serena.<br>
+      <br>
+      No importan las millas, ni el dónde ni el cuándo,<br>
+      nuestro lazo es fuerte, creciendo y amando.<br>
+      Con cada palabra, un puente se tiende,<br>
+      un amor que lo eterno comprende.<br>
+      <br>
+      Eres mi consuelo, mi fiel confidente,<br>
+      la luz que me guía, mi estrella creciente.<br>
+      En este universo que juntos creamos,<br>
+      nuestro amor es arte, por siempre te amo.<br>
+      <br>
+      Así, sin tocarte, mi ser te adora,<br>
+      esperando el día, la feliz aurora,<br>
+      en que este anhelo se vuelva un abrazo,<br>
+      y en mi vida te quedes, sin tiempo ni espacio.
+    </p>
   </section>
   <section id="seccion4">
     <h2>Mis promesas para ti</h2>
-    <p>Prometo cuidarte, escucharte, apoyarte y amarte en cada etapa de nuestras vidas.</p>
+    <p>
+      Mi amor, en este día especial, quiero reafirmarte lo que siento y lo que prometo para nuestro futuro juntos:
+      <br><br>
+      1. **Prometo escucharte siempre:** Cada palabra, cada pensamiento, cada silencio tuyo será importante para mí. Estaré aquí para comprenderte, no solo para oírte.
+      <br>
+      2. **Prometo apoyarte en cada sueño:** Tus metas serán mis metas. Estaré a tu lado para celebrar tus victorias y para levantarte cuando necesites fuerza.
+      <br>
+      3. **Prometo ser tu refugio:** Cuando el mundo se sienta pesado, mi amor será el lugar donde siempre puedas encontrar paz y consuelo.
+      <br>
+      4. **Prometo mantener viva la chispa:** Con risas, sorpresas y nuevas aventuras, haremos que cada día sea emocionante y que nuestro amor siga floreciendo.
+      <br>
+      5. **Prometo amarte sin condiciones:** Mi amor por ti será constante, puro y eterno, en los buenos momentos y en los desafíos, siempre con la paciencia y el cariño que mereces.
+      <br><br>
+      Eres el regalo más hermoso que la vida me ha dado.
+    </p>
   </section>
   <section id="seccion5">
     <h2>Frases que me recuerdan a ti</h2>
-    <p>“Contigo, todo es mejor.” – “Eres mi lugar favorito.” – “Cada día contigo es un regalo.”</p>
+    <p>
+      "Contigo, el tiempo se detiene y el alma sonríe."
+      <br>
+      "Eres esa canción que siempre quiero escuchar, la melodía de mi calma."
+      <br>
+      "En cada mensaje tuyo, un pedacito de cielo se abre."
+      <br>
+      "Mi mundo era blanco y negro hasta que llegaste tú, mi explosión de color."
+      <br>
+      "Eres la prueba de que el amor más grande no conoce barreras, solo conexiones."
+      <br>
+      "Cada día contigo es una aventura que no sabía que necesitaba."
+      <br>
+      "Contigo, encontré la magia en lo cotidiano y la paz en el corazón."
+      <br>
+      "Eres mi dulce escapada, mi hogar sin paredes."
+      <br>
+      "Tu presencia, aunque virtual, es más real que cualquier otra."
+      <br>
+      "Por ti, el universo entero cobra sentido."
+    </p>
   </section>
 
   <div class="reproductor" id="reproductor">
