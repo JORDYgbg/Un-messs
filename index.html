@@ -3,419 +3,229 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Feliz primer mes</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Feliz Primer Mes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
-    /* ... (todo el CSS permanece igual, no modificado) ... */
-    * {
+    /* Estilos base */
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
       font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(135deg, #eac8ff, #d291fa);
-      color: #333;
-      transition: background 0.5s ease-in-out, color 0.5s ease-in-out, font-size 0.5s ease-in-out; /* Transición para el cambio de dispositivo */
-      overflow-x: hidden;
-    }
-    body.celular {
-      font-size: 1.1rem;
-    }
-
-    body.celular .reproductor {
-      width: 90%;
-      left: 5%;
-      right: 5%;
-      top: auto;
-      bottom: 20px;
-      transform: none;
-    }
-
-    body.dark-mode {
-      background: linear-gradient(135deg, #000000, #2e2e2e);
-      color: #f0f0f0;
-    }
-
-    header {
+      background: linear-gradient(to bottom right, #e7c6ff, #f6d9ff);
+      color: #5c2a7b;
       text-align: center;
-      padding: 50px 20px 20px;
+      transition: background 0.4s, color 0.4s;
     }
 
     h1 {
-      font-family: 'Pacifico', cursive;
-      font-size: 3rem;
-      color: #a259ff;
+      font-family: 'Dancing Script', cursive;
+      font-size: 4em;
+      margin: 1.5em 0 0.2em;
+      color: #a64dff;
+      text-shadow: 3px 3px 6px #dfbfff;
     }
 
     p {
-      margin-top: 10px;
-      font-size: 1.2rem;
+      font-size: 1.2em;
+      margin: 1em 2em;
+      color: #6a2c91;
+      text-shadow: 1px 1px 2px #f3d9ff;
     }
 
-    .triste-btn {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background-color: #ff69b4; /* Color rosa llamativo */
-      border: none;
-      color: white;
-      font-size: 1rem;
-      padding: 15px 25px;
-      border-radius: 12px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transición */
-    }
-
-    .triste-btn:hover {
-      background-color: #ff1493; /* Rosa más oscuro al pasar el ratón */
-      transform: translateY(-3px);
-    }
-
-    .modo-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #6a0dad; /* Color morado oscuro */
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 20px;
-      color: white;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transición */
-    }
-
-    .modo-btn:hover {
-      background-color: #4b0082; /* Morado aún más oscuro al pasar el ratón */
-      transform: rotate(30deg);
-    }
-
-    .corazones {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .corazon {
-      position: absolute;
-      color: rgba(0, 0, 0, 0.2);
-      font-size: 1.5rem;
-      animation: flotar 10s linear infinite;
-    }
-
-    @keyframes flotar {
-      from {
-        transform: translateY(100vh) rotate(0deg);
-      }
-      to {
-        transform: translateY(-100vh) rotate(360deg);
-      }
-    }
-
-    .reproductor {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.2);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 20px;
-      text-align: center;
-      width: 260px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      transition: background 0.5s ease-in-out; /* Transición */
-    }
-
-    .reproductor.dark-mode {
-      background: rgba(0,0,0,0.3);
-    }
-
-    .reproductor img {
-      width: 100px;
-      border-radius: 50%;
-      margin-bottom: 10px;
-      animation: girar 5s linear infinite;
-    }
-
-    @keyframes girar {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .titulo {
-      font-weight: bold;
-    }
-
-    .barra {
-      width: 100%;
-      margin: 10px 0;
-    }
-
-    .controles {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-    }
-
-    .controles button {
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      color: inherit;
-    }
-
-    .volumen {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    #volRange {
-      width: 70px;
-    }
-
-    input[type="range"]::-webkit-slider-thumb {
-      background: #a259ff;
-      border-radius: 50%;
-    }
-
-    section {
-      padding: 50px 20px;
-      text-align: center;
-    }
-
-    section h2 {
-      font-family: 'Pacifico', cursive;
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #a259ff;
-    }
-
-    section p {
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-    }
-    /* Pantalla de inicio */
-    #pantalla-inicio {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: black;
-      color: white;
-      z-index: 9999;
+    .button-container {
+      margin-top: 2em;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      gap: 1em;
       align-items: center;
-      font-family: 'Quicksand', sans-serif;
-      text-align: center;
-      padding: 20px;
-      transition: opacity 0.5s ease-in-out; /* Transición para la pantalla de inicio */
     }
 
-    .dispositivo-opciones {
+    a.button {
+      padding: 0.9em 1.6em;
+      text-decoration: none;
+      background-color: #c586e3;
+      color: white;
+      border-radius: 12px;
+      font-weight: bold;
+      box-shadow: 0px 6px 12px rgba(150, 90, 190, 0.5);
+      transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
+    }
+
+    a.button:hover {
+      background-color: #b372d4;
+      transform: scale(1.05);
+      box-shadow: 0px 8px 14px rgba(150, 90, 190, 0.6);
+    }
+
+    a.button:active {
+      transform: scale(0.97);
+      box-shadow: 0px 4px 8px rgba(150, 90, 190, 0.4);
+    }
+
+    .toggle-mode {
+      margin-top: 3em;
+      padding: 0.6em 1.2em;
+      font-size: 1em;
+      cursor: pointer;
+      background-color: #b276e8;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0px 4px 6px rgba(178, 118, 232, 0.4);
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .toggle-mode:hover {
+      background-color: #955ccc;
+      transform: scale(1.05);
+    }
+
+    .toggle-mode:active {
+      transform: scale(0.97);
+    }
+
+    .dark-mode {
+      background: #1f1f1f;
+      color: #f1f1f1;
+    }
+
+    .dark-mode h1 {
+      color: #d3b3ff;
+      text-shadow: 2px 2px 6px #000;
+    }
+
+    .dark-mode p {
+      color: #e6ccff;
+      text-shadow: 1px 1px 4px #000;
+    }
+
+    .dark-mode a.button {
+      background-color: #5a5a5a;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.5);
+    }
+
+    .dark-mode a.button:hover {
+      background-color: #444;
+      box-shadow: 0px 6px 12px rgba(0,0,0,0.6);
+    }
+
+    /* Reproductor musical */
+    .music-player {
+      position: fixed;
+      top: 1em;
+      right: 1em;
       display: flex;
-      gap: 40px;
-      margin-top: 30px;
+      flex-direction: column;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 1em;
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(8px);
+      z-index: 999;
     }
 
-    .dispositivo-boton {
-      background: white;
-      color: black;
+    .music-player img {
       width: 80px;
       height: 80px;
       border-radius: 50%;
+      animation: spin 4s linear infinite;
+      margin-bottom: 0.5em;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .music-controls {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      cursor: pointer;
+      gap: 0.5em;
+    }
+
+    .music-controls button,
+    .music-controls input[type=range] {
+      background: none;
       border: none;
-      transition: transform 0.2s, background-color 0.3s ease-in-out; /* Transición */
+      cursor: pointer;
+      font-size: 1.2em;
+      color: #5c2a7b;
+      transition: transform 0.2s;
     }
 
-    .dispositivo-boton:hover {
-      transform: scale(1.1);
-      background-color: #f0f0f0;
+    .music-controls button:hover {
+      transform: scale(1.2);
     }
 
-    .dispositivo-etiqueta {
-      margin-top: 8px;
-      font-size: 1rem;
+    .music-controls input[type=range] {
+      width: 80px;
     }
 
+    .dark-mode .music-player {
+      background-color: rgba(50, 50, 50, 0.5);
+    }
+
+    .dark-mode .music-controls button,
+    .dark-mode .music-controls input[type=range] {
+      color: #e6ccff;
+    }
   </style>
 </head>
 <body>
-     <div id="pantalla-inicio">
-  <h2>¿En dónde estás viendo esto?</h2>
-  <div class="dispositivo-opciones">
-    <div>
-      <button class="dispositivo-boton" onclick="seleccionarDispositivo('celular')">
-        <i class="fa-solid fa-mobile-screen"></i>
-      </button>
-      <div class="dispositivo-etiqueta">Celular</div>
+  <div class="music-player">
+    <img src="https://i.imgur.com/4M34hi2.png" alt="Disco girando" id="album-art" />
+    <div class="music-controls">
+      <button onclick="togglePlayPause()">⏯</button>
+      <button onclick="stopMusic()">⏹</button>
+      <input type="range" min="0" max="1" step="0.01" value="0.5" onchange="changeVolume(this.value)">
     </div>
-    <div>
-      <button class="dispositivo-boton" onclick="seleccionarDispositivo('pc')">
-        <i class="fa-solid fa-desktop"></i>
-      </button>
-      <div class="dispositivo-etiqueta">PC</div>
-    </div>
-  </div>
-</div>
-
-<div id="contenido-principal" style="display: none;">
-  <div class="corazones">
-    <i class="fa-solid fa-heart corazon" style="top:10%; left:10%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:20%; left:80%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:60%; left:40%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:30%; left:60%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:50%; left:20%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:15%; left:50%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:70%; left:30%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:40%; left:70%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:80%; left:15%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:5%; left:85%;"></i>
+    <audio id="background-music" loop autoplay>
+      <source src="audio/Juanes%20-%20Es%20Por%20Ti%20%28Letra%29.mp3" type="audio/mp3">
+      Tu navegador no soporta audio HTML5.
+    </audio>
   </div>
 
-  <header>
-    <h1>Feliz primer mes</h1>
-    <p>Gracias por este tiempo tan bonito mi amor <i class="fa-solid fa-heart"></i></p>
-  </header>
+  <h1>Feliz primer mes</h1>
+  <p>Gracias por este tiempo tan bonito, te hice esto con mucho amor 💜</p>
 
-  <button class="triste-btn" onclick="location.href='triste.html'">Si te sientes triste, presiona aquí</button>
-
-  <section id="seccion1">
-    <h2>Cómo me enamoré de ti</h2>
-    <p>Desde el primer momento que hablamos, supe que eras especial. Cada día contigo ha sido una aventura hermosa.</p>
-  </section>
-  <section id="seccion2">
-    <h2>Poema que nunca te mostré</h2>
-    <p>Tu risa es mi melodía, tu mirada mi sol. Con cada latido, mi amor por ti es mayor.</p>
-  </section>
-  <section id="seccion4">
-    <h2>Mis promesas para ti</h2>
-    <p>Prometo cuidarte, escucharte, apoyarte y amarte en cada etapa de nuestras vidas.</p>
-  </section>
-  <section id="seccion5">
-    <h2>Frases que me recuerdan a ti</h2>
-    <p>“Contigo, todo es mejor.” – “Eres mi lugar favorito.” – “Cada día contigo es un regalo.”</p>
-  </section>
-
-  <div class="reproductor" id="reproductor">
-    <img src="audio/cover.jpg" alt="Portada" id="portada">
-    <div class="titulo">Es Por Ti<br><small>Juanes</small></div>
-    <input class="barra" type="range" value="0" id="progress">
-    <div class="controles">
-      <button id="play"><i class="fa-solid fa-play"></i></button>
-      <button id="stop"><i class="fa-solid fa-stop"></i></button>
-      <div class="volumen">
-        <button id="mute"><i class="fa-solid fa-volume-high"></i></button>
-        <input type="range" min="0" max="1" step="0.01" value="1" id="volRange">
-      </div>
-    </div>
+  <div class="button-container">
+    <a href="enamore.html" class="button">Cómo me enamoré de ti</a>
+    <a href="poema.html" class="button">Poema que nunca te mostré</a>
+    <a href="sentir.html" class="button">Si te sientes mal, aplasta aquí</a>
+    <a href="promesas.html" class="button">Mis promesas para ti</a>
+    <a href="frases.html" class="button">Frases que me recuerdan a ti</a>
   </div>
 
-  <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
+  <button class="toggle-mode" onclick="toggleMode()">Cambiar modo</button>
 
   <script>
-    const body = document.body;
-    const modoBtn = document.getElementById('modo-btn');
-    const reproductor = document.getElementById('reproductor');
-    const portada = document.getElementById('portada');
-    const playBtn = document.getElementById('play');
-    const stopBtn = document.getElementById('stop');
-    const muteBtn = document.getElementById('mute');
-    const volRange = document.getElementById('volRange');
-    const progress = document.getElementById('progress');
-    const pantallaInicio = document.getElementById('pantalla-inicio');
-    const contenidoPrincipal = document.getElementById('contenido-principal');
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
 
-    let audio = new Audio('audio/esporti.mp3');
-    let isMuted = false;
-    let isPlaying = false;
+    const audio = document.getElementById("background-music");
+    const albumArt = document.getElementById("album-art");
 
-    modoBtn.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      reproductor.classList.toggle('dark-mode');
-      modoBtn.innerHTML = body.classList.contains('dark-mode') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
-    });
-
-    playBtn.addEventListener('click', () => {
-      if (isPlaying) {
-        audio.pause();
-        playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-        portada.style.animationPlayState = 'paused';
-      } else {
+    function togglePlayPause() {
+      if (audio.paused) {
         audio.play();
-        playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        portada.style.animationPlayState = 'running';
+        albumArt.style.animationPlayState = 'running';
+      } else {
+        audio.pause();
+        albumArt.style.animationPlayState = 'paused';
       }
-      isPlaying = !isPlaying;
-    });
+    }
 
-    stopBtn.addEventListener('click', () => {
+    function stopMusic() {
       audio.pause();
       audio.currentTime = 0;
-      playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-      isPlaying = false;
-      portada.style.animationPlayState = 'paused';
-    });
+      albumArt.style.animationPlayState = 'paused';
+    }
 
-    muteBtn.addEventListener('click', () => {
-      isMuted = !isMuted;
-      audio.muted = isMuted;
-      muteBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
-    });
-
-    volRange.addEventListener('input', () => {
-      audio.volume = volRange.value;
-    });
-
-    audio.addEventListener('timeupdate', () => {
-      progress.value = (audio.currentTime / audio.duration) * 100 || 0;
-    });
-
-    progress.addEventListener('input', () => {
-      audio.currentTime = (progress.value / 100) * audio.duration;
-    });
-
-    function seleccionarDispositivo(tipo) {
-      pantallaInicio.style.opacity = '0';
-      setTimeout(() => {
-        pantallaInicio.style.display = 'none';
-        contenidoPrincipal.style.display = 'block';
-        contenidoPrincipal.style.opacity = '1'; /* Para la transición de aparición */
-
-        if (tipo === 'celular') {
-          document.body.classList.add('celular');
-        } else {
-          document.body.classList.remove('celular');
-        }
-      }, 500); // Coincide con la duración de la transición
+    function changeVolume(value) {
+      audio.volume = value;
     }
   </script>
-</div>
 </body>
 </html>
