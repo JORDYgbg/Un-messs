@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    
     /* ... (todo el CSS permanece igual, no modificado) ... */
     * {
       margin: 0;
@@ -21,6 +22,18 @@
       transition: background 0.3s, color 0.3s;
       overflow-x: hidden;
     }
+    body.celular {
+  font-size: 1.1rem;
+}
+
+body.celular .reproductor {
+  width: 90%;
+  left: 5%;
+  right: 5%;
+  top: auto;
+  bottom: 20px;
+  transform: none;
+}
 
     body.dark-mode {
       background: linear-gradient(135deg, #000000, #2e2e2e);
@@ -188,9 +201,77 @@
       margin: 0 auto;
       font-size: 1.1rem;
     }
+    /* Pantalla de inicio */
+#pantalla-inicio {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  color: white;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+.dispositivo-opciones {
+  display: flex;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.dispositivo-boton {
+  background: white;
+  color: black;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s;
+}
+
+.dispositivo-boton:hover {
+  transform: scale(1.1);
+}
+
+.dispositivo-etiqueta {
+  margin-top: 8px;
+  font-size: 1rem;
+}
+
   </style>
 </head>
 <body>
+     <!-- Pantalla de bienvenida -->
+<div id="pantalla-inicio">
+  <h2>¿En dónde estás viendo esto?</h2>
+  <div class="dispositivo-opciones">
+    <div>
+      <button class="dispositivo-boton" onclick="seleccionarDispositivo('celular')">
+        <i class="fa-solid fa-mobile-screen"></i>
+      </button>
+      <div class="dispositivo-etiqueta">Celular</div>
+    </div>
+    <div>
+      <button class="dispositivo-boton" onclick="seleccionarDispositivo('pc')">
+        <i class="fa-solid fa-desktop"></i>
+      </button>
+      <div class="dispositivo-etiqueta">PC</div>
+    </div>
+  </div>
+</div>
+
   <div class="corazones">
     <i class="fa-solid fa-heart corazon" style="top:10%; left:10%;"></i>
     <i class="fa-solid fa-heart corazon" style="top:20%; left:80%;"></i>
@@ -304,6 +385,16 @@
     progress.addEventListener('input', () => {
       audio.currentTime = (progress.value / 100) * audio.duration;
     });
+function seleccionarDispositivo(tipo) {
+  document.getElementById('pantalla-inicio').style.display = 'none';
+  if (tipo === 'celular') {
+    document.body.classList.add('celular');
+  }
+  console.log('Dispositivo seleccionado:', tipo);
+}
+
+}
+
   </script>
 </body>
 </html>
