@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feliz primer mes</title>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     /* Restablecimiento y estilos base */
@@ -14,13 +15,16 @@
       box-sizing: border-box;
     }
 
-    /* Estilo del cuerpo con transiciones mejoradas */
+    /* Estilo del cuerpo con transiciones mejoradas y suavizado de fuente */
     body {
       font-family: 'Quicksand', sans-serif;
       background: linear-gradient(135deg, #eac8ff, #d291fa);
       color: #333;
       transition: background 0.7s ease-in-out, color 0.7s ease-in-out, font-size 0.7s ease-in-out;
       overflow-x: hidden;
+      /* Propiedades para suavizar las fuentes y hacerlas más nítidas (Anti-aliasing) */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* Estilo del modo oscuro */
@@ -127,18 +131,32 @@
 
     h1 {
       font-family: 'Pacifico', cursive;
-      font-size: 3rem;
+      font-size: 3.2rem; /* Ligeramente más grande */
       color: #a259ff;
       transition: color 0.7s ease-in-out;
+      /* Suavizado de fuente para el título */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     body.dark-mode h1 {
         color: #ffcc00;
     }
 
-    p {
+    header p {
       margin-top: 10px;
       font-size: 1.2rem;
+      /* Suavizado de fuente para el párrafo */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    header video {
+        width: 100%;
+        max-width: 600px; /* Limita el ancho máximo del video */
+        margin-top: 20px;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
 
     /* Botón "Si te sientes triste" */
@@ -398,11 +416,14 @@
     }
 
     section h2 {
-      font-family: 'Pacifico', cursive;
-      font-size: 2rem;
+      font-family: 'Playfair Display', serif; /* Fuente más elegante para subtítulos */
+      font-size: 2.2rem; /* Ligeramente más grande */
       margin-bottom: 20px;
       color: #a259ff;
       transition: color 0.7s ease-in-out;
+      /* Suavizado de fuente para los subtítulos */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     body.dark-mode section h2 {
@@ -534,6 +555,7 @@
   <header>
     <h1>Feliz primer mes</h1>
     <p>Gracias por este tiempo tan bonito mi amor <i class="fa-solid fa-heart"></i></p>
+    <video src="video/kiss.mp4" autoplay loop muted></video>
   </header>
 
   <button class="triste-btn" onclick="location.href='triste.html'">Si te sientes triste, presiona aquí</button>
@@ -593,13 +615,15 @@
     audio.volume = 0.2;
     volRange.value = 0.2; // Actualizar el slider de volumen
 
+    // Event listener para el botón de modo oscuro/claro
     modoBtn.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
       reproductor.classList.toggle('dark-mode');
-      // Actualiza el ícono del botón y aplica la transición para el cambio de color
+      // Actualiza el ícono del botón (luna o sol)
       modoBtn.innerHTML = body.classList.contains('dark-mode') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
     });
 
+    // Event listener para el botón de Play/Pause
     playBtn.addEventListener('click', (event) => {
       event.stopPropagation(); // Evita que el clic se propague al body y cierre el reproductor
       if (isPlaying) {
@@ -614,15 +638,17 @@
       isPlaying = !isPlaying;
     });
 
+    // Event listener para el botón de Stop
     stopBtn.addEventListener('click', (event) => {
       event.stopPropagation(); // Evita que el clic se propague al body y cierre el reproductor
       audio.pause();
-      audio.currentTime = 0;
+      audio.currentTime = 0; // Reinicia la canción al principio
       playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
       isPlaying = false;
       portada.style.animationPlayState = 'paused';
     });
 
+    // Event listener para el botón de Mute/Unmute
     muteBtn.addEventListener('click', (event) => {
       event.stopPropagation(); // Evita que el clic se propague al body y cierre el reproductor
       isMuted = !isMuted;
@@ -630,15 +656,18 @@
       muteBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
     });
 
+    // Event listener para el slider de volumen
     volRange.addEventListener('input', (event) => {
       event.stopPropagation(); // Evita que el clic se propague al body y cierre el reproductor
       audio.volume = volRange.value;
     });
 
+    // Actualizar la barra de progreso de la canción
     audio.addEventListener('timeupdate', () => {
       progress.value = (audio.currentTime / audio.duration) * 100 || 0;
     });
 
+    // Permitir arrastrar la barra de progreso para cambiar la posición de la canción
     progress.addEventListener('input', (event) => {
       event.stopPropagation(); // Evita que el clic se propague al body y cierre el reproductor
       audio.currentTime = (progress.value / 100) * audio.duration;
@@ -655,6 +684,7 @@
         }
     });
 
+    // Minimizar el reproductor al tocar fuera de él en celular
     document.addEventListener('click', (event) => {
         if (document.body.classList.contains('celular') && isReproductorMaximized) {
             // Si el clic no fue dentro del reproductor, minimízalo
@@ -665,7 +695,7 @@
         }
     });
 
-
+    // Función para seleccionar el tipo de dispositivo (PC o Celular)
     function seleccionarDispositivo(tipo) {
       // Activa la clase para la transición de color de la pantalla de inicio
       pantallaInicio.classList.add('transicion-lila');
