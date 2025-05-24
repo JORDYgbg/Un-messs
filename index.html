@@ -353,6 +353,15 @@
       font-weight: bold;
       color: inherit;
     }
+    .titulo small {
+        font-weight: normal;
+        font-size: 0.8em;
+        color: #888;
+    }
+    body.dark-mode .titulo small {
+        color: #bbb;
+    }
+
 
     .barra {
       width: 100%;
@@ -599,7 +608,7 @@
       Después empezamos a hablar por Riot Mobile, mensajes cada tanto, pero cada tanto se volvió cada vez más seguido. Y era raro —en el buen sentido— lo bien que nos entendíamos. Como si nuestras conversaciones ya tuvieran confianza desde el principio. Como si habláramos con alguien que ya conocíamos de vidas pasadas.
       <br><br>
       La invité a un servidor de Minecraft. Ahí... fue otro nivel. Nos regalábamos cosas dentro del juego —pero se sentían más reales que cualquier regalo físico. Le dejaba cofres con flores o materiales, y no decía nada, solo esperaba que lo viera y sonriera. Porque aunque no la veía, yo juraba que lo hacía.
-      <<br>
+      <br><br>
       Después vino Instagram. Más charlas. Más cercanía. Más nosotros. Recuerdo con esa mezcla de ternura y vergüenza el primer “te quiero” que le dije. Temblaba mientras lo escribía, lo juro. Y peor aún el “creo que me gustas”, porque eso ya era cruzar una línea sin saber si había suelo del otro lado. Pero sí lo había. Porque ella me respondió con esa forma tan bonita de hacerlo sentir fácil. Como si lo estuviera esperando.
       <br><br>
       Veíamos Ladybug juntos en Rave, aunque yo jamás pensé ver algo así. Pero por ella… por ella veía lo que sea. Jugábamos otros juegos solo para tener excusa de pasar tiempo juntos. Y no necesitaba más: me sentía en casa. Me sentía visto. Me sentía querido.
@@ -688,11 +697,12 @@
 
   <div class="reproductor" id="reproductor">
     <img src="audio/cover.jpg" alt="Portada" id="portada">
-    <div class="titulo">Es Por Ti<br><small>Juanes</small></div>
+    <div class="titulo" id="titulo-cancion">Es Por Ti<br><small id="artista-cancion">Juanes</small></div>
     <input class="barra" type="range" value="0" id="progress">
     <div class="controles">
+      <button id="prev"><i class="fa-solid fa-backward-step"></i></button>
       <button id="play"><i class="fa-solid fa-play"></i></button>
-      <button id="stop"><i class="fa-solid fa-stop"></i></button>
+      <button id="next"><i class="fa-solid fa-forward-step"></i></button>
       <div class="volumen">
         <button id="mute"><i class="fa-solid fa-volume-high"></i></button>
         <input type="range" min="0" max="1" step="0.01" value="1" id="volRange">
@@ -707,22 +717,69 @@
     const modoBtn = document.getElementById('modo-btn');
     const reproductor = document.getElementById('reproductor');
     const portada = document.getElementById('portada');
+    const tituloCancion = document.getElementById('titulo-cancion');
+    const artistaCancion = document.getElementById('artista-cancion');
     const playBtn = document.getElementById('play');
-    const stopBtn = document.getElementById('stop');
+    // const stopBtn = document.getElementById('stop'); // Eliminado
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
     const muteBtn = document.getElementById('mute');
     const volRange = document.getElementById('volRange');
     const progress = document.getElementById('progress');
     const pantallaInicio = document.getElementById('pantalla-inicio');
     const contenidoPrincipal = document.getElementById('contenido-principal');
 
-    let audio = new Audio('audio/esporti.mp3');
+    const canciones = [
+      {
+        titulo: "Es Por Ti",
+        artista: "Juanes",
+        src: "audio/esporti.mp3",
+        cover: "audio/cover.jpg"
+      },
+      {
+        titulo: "Amor Completo",
+        artista: "Mon Laferte", // Ajusta el artista si es diferente
+        src: "audio/amorcompleto.mp3", /* cite: image_36a297.png */
+        cover: "audio/cover2.jpg" /* cite: image_36a297.png */
+      },
+      {
+        titulo: "Compartir",
+        artista: "Carla Morrison", // Ajusta el artista si es diferente
+        src: "audio/compartir.mp3", /* cite: image_36a297.png */
+        cover: "audio/cover3.jpg" /* cite: image_36a297.png */
+      }
+    ];
+
+    let currentSongIndex = 0;
+    let audio = new Audio();
     let isMuted = false;
     let isPlaying = false;
-    let isReproductorMaximized = false; // Estado para el reproductor en móvil
+    let isReproductorMaximized = false;
 
-    // Establecer volumen inicial al 20%
+    // Función para cargar una canción
+    function loadSong(index) {
+      const song = canciones[index];
+      audio.src = song.src;
+      portada.src = song.cover;
+      tituloCancion.innerHTML = song.titulo + '<br><small>' + song.artista + '</small>';
+      audio.load(); // Carga la nueva canción
+      
+      // Si estaba reproduciendo, sigue reproduciendo la nueva
+      if (isPlaying) {
+        audio.play();
+        portada.style.animationPlayState = 'running';
+        playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+      } else {
+        portada.style.animationPlayState = 'paused';
+        playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+      }
+    }
+
+    // Establecer volumen inicial al 20% y cargar la primera canción
     audio.volume = 0.2;
-    volRange.value = 0.2; // Actualizar el slider de volumen
+    volRange.value = 0.2;
+    loadSong(currentSongIndex);
+
 
     // Event listener para el botón de modo oscuro/claro
     modoBtn.addEventListener('click', () => {
@@ -734,7 +791,7 @@
 
     // Event listener para el botón de Play/Pause
     playBtn.addEventListener('click', (event) => {
-      event.stopPropagation(); // Evita que el clic se propague al body y cierre el reproductor
+      event.stopPropagation();
       if (isPlaying) {
         audio.pause();
         playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
@@ -747,19 +804,31 @@
       isPlaying = !isPlaying;
     });
 
-    // Event listener para el botón de Stop
-    stopBtn.addEventListener('click', (event) => {
-      event.stopPropagation(); // Evita que el clic se propague al body y cierre el reproductor
-      audio.pause();
-      audio.currentTime = 0; // Reinicia la canción al principio
-      playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-      isPlaying = false;
-      portada.style.animationPlayState = 'paused';
+    // Event listener para el botón Anterior
+    prevBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        currentSongIndex = (currentSongIndex - 1 + canciones.length) % canciones.length;
+        loadSong(currentSongIndex);
+        // Si la canción anterior estaba reproduciéndose, la nueva también lo hará
+        if (isPlaying) {
+            audio.play();
+        }
+    });
+
+    // Event listener para el botón Siguiente
+    nextBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        currentSongIndex = (currentSongIndex + 1) % canciones.length;
+        loadSong(currentSongIndex);
+        // Si la canción actual estaba reproduciéndose, la nueva también lo hará
+        if (isPlaying) {
+            audio.play();
+        }
     });
 
     // Event listener para el botón de Mute/Unmute
     muteBtn.addEventListener('click', (event) => {
-      event.stopPropagation(); // Evita que el clic se propague al body y cierre el reproductor
+      event.stopPropagation();
       isMuted = !isMuted;
       audio.muted = isMuted;
       muteBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
@@ -767,7 +836,7 @@
 
     // Event listener para el slider de volumen
     volRange.addEventListener('input', (event) => {
-      event.stopPropagation(); // Evita que el clic se propague al body y cierre el reproductor
+      event.stopPropagation();
       audio.volume = volRange.value;
     });
 
@@ -778,7 +847,7 @@
 
     // Permitir arrastrar la barra de progreso para cambiar la posición de la canción
     progress.addEventListener('input', (event) => {
-      event.stopPropagation(); // Evita que el clic se propague al body y cierre el reproductor
+      event.stopPropagation();
       audio.currentTime = (progress.value / 100) * audio.duration;
     });
 
@@ -788,7 +857,7 @@
             if (!isReproductorMaximized) {
                 reproductor.classList.add('maximized');
                 isReproductorMaximized = true;
-                event.stopPropagation(); // Evita que el clic se propague al document y cierre
+                event.stopPropagation();
             }
         }
     });
@@ -806,17 +875,14 @@
 
     // Función para seleccionar el tipo de dispositivo (PC o Celular)
     function seleccionarDispositivo(tipo) {
-      // Activa la clase para la transición de color de la pantalla de inicio
       pantallaInicio.classList.add('transicion-lila');
+      document.querySelector('#pantalla-inicio h2').style.color = '#4a4a4a';
+      Array.from(document.querySelectorAll('.dispositivo-etiqueta')).forEach(el => el.style.color = '#4a4a4a');
 
-      // Modifica el color del texto en la pantalla de inicio para que sea visible durante la transición lila
-      document.querySelector('#pantalla-inicio h2').style.color = '#4a4a4a'; /* Cambiado a color más oscuro */
-      Array.from(document.querySelectorAll('.dispositivo-etiqueta')).forEach(el => el.style.color = '#4a4a4a'); /* Cambiado a color más oscuro */
-
-      pantallaInicio.classList.add('hidden'); // Inicia el desvanecimiento de la pantalla de bienvenida
+      pantallaInicio.classList.add('hidden');
 
       setTimeout(() => {
-        pantallaInicio.style.display = 'none'; // Oculta después del desvanecimiento
+        pantallaInicio.style.display = 'none';
 
         if (tipo === 'celular') {
           document.body.classList.add('celular');
@@ -824,11 +890,11 @@
           document.body.classList.remove('celular');
         }
 
-        contenidoPrincipal.style.display = 'block'; // Muestra el contenido principal
+        contenidoPrincipal.style.display = 'block';
         setTimeout(() => {
-            contenidoPrincipal.style.opacity = '1'; // Desvanece el contenido principal
-        }, 50); // Pequeño retraso para asegurar que display:block surta efecto
-      }, 400); // Coincide con la duración de la transición de 0.4s
+            contenidoPrincipal.style.opacity = '1';
+        }, 50);
+      }, 400);
     }
   </script>
 </div>
