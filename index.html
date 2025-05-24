@@ -1,902 +1,593 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Feliz primer mes</title>
-  <link rel="icon" href="favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    /* Restablecimiento y estilos base */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Primer Mes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --light-bg: linear-gradient(135deg, #f0f8ff, #e6f7ff); /* Azul claro suave */
+            --light-text: #333;
+            --light-container-bg: rgba(255, 255, 255, 0.9);
+            --light-heading: #ff6f61; /* Coral vibrante */
+            --light-accent: #8e44ad; /* Púrpura */
+            --light-shadow: rgba(0, 0, 0, 0.15);
 
-    /* Estilo del cuerpo con transiciones mejoradas y suavizado de fuente */
-    body {
-      font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(180deg, #d2a6fa 0%, #f7e6ff 70%); /* Degradado vertical: lila oscuro arriba, más claro abajo */
-      color: #4a4a4a; /* Color de texto más oscuro y profesional */
-      transition: background 0.7s ease-in-out, color 0.7s ease-in-out, font-size 0.7s ease-in-out;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+            --dark-bg: linear-gradient(180deg, #1a2a3a 0%, #2a3a4a 70%); /* Azules oscuros */
+            --dark-text: #f0f0f0;
+            --dark-container-bg: rgba(0, 0, 0, 0.7);
+            --dark-heading: #ffb6c1; /* Rosa claro */
+            --dark-accent: #9370db; /* Lila */
+            --dark-shadow: rgba(0, 0, 0, 0.5);
+        }
 
-    /* Estilo del modo oscuro */
-    body.dark-mode {
-      background: linear-gradient(180deg, #1a1a1a 0%, #333333 70%); /* Degradado oscuro más sutil */
-      color: #f0f0f0;
-    }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--light-bg);
+            color: var(--light-text);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden; /* Evita scroll horizontal */
+            transition: background 0.7s ease-in-out, color 0.7s ease-in-out;
+            position: relative; /* Para estrellas */
+            box-sizing: border-box;
+        }
 
-    /* Estilos específicos para celular */
-    body.celular {
-      font-size: 1.1rem;
-    }
+        body.dark-mode {
+            background: var(--dark-bg);
+            color: var(--dark-text);
+        }
 
-    body.celular .reproductor {
-      width: 60px;
-      height: 60px;
-      padding: 5px;
-      top: 20px;
-      right: 20px;
-      left: auto;
-      bottom: auto;
-      transform: none;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
+        .section {
+            width: 100%;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px;
+            background: var(--light-container-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--light-shadow);
+            text-align: center;
+            transition: background 0.7s ease-in-out, box-shadow 0.7s ease-in-out;
+            opacity: 0; /* Inicialmente oculto para animación */
+            transform: translateY(20px); /* Inicialmente un poco abajo */
+            animation: fadeInSlideUp 0.8s ease-out forwards;
+        }
 
-    body.celular .reproductor img {
-      width: 50px;
-      height: 50px;
-      margin-bottom: 0;
-    }
+        body.dark-mode .section {
+            background: var(--dark-container-bg);
+            box-shadow: 0 10px 30px var(--dark-shadow);
+        }
 
-    body.celular .reproductor .titulo,
-    body.celular .reproductor .barra,
-    body.celular .reproductor .volumen,
-    body.celular .reproductor .controles {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.3s ease-out;
-    }
+        @keyframes fadeInSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    body.celular .reproductor.maximized {
-      width: 90%;
-      height: auto;
-      padding: 20px;
-      overflow: visible;
-      left: 50%;
-      right: auto;
-      transform: translateX(-50%);
-      top: 20px;
-      bottom: auto;
-      align-items: stretch;
-    }
+        .section:nth-of-type(1) { animation-delay: 0.2s; }
+        .section:nth-of-type(2) { animation-delay: 0.4s; }
+        .section:nth-of-type(3) { animation-delay: 0.6s; }
+        .section:nth-of-type(4) { animation-delay: 0.8s; }
+        .section:nth-of-type(5) { animation-delay: 1.0s; }
 
-    body.celular .reproductor.maximized img {
-      width: 100px;
-      height: 100px;
-      margin-bottom: 10px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+        h1, h2 {
+            font-family: 'Dancing Script', cursive;
+            color: var(--light-heading);
+            margin-bottom: 25px;
+            font-size: 3.5rem;
+            transition: color 0.7s ease-in-out;
+        }
+        body.dark-mode h1, body.dark-mode h2 {
+            color: var(--dark-heading);
+        }
 
-    body.celular .reproductor.maximized .titulo,
-    body.celular .reproductor.maximized .barra,
-    body.celular .reproductor.maximized .volumen,
-    body.celular .reproductor.maximized .controles {
-      display: flex;
-      opacity: 1;
-      transition-delay: 0.2s;
-    }
-    body.celular .reproductor.maximized .titulo {
-        display: block;
-    }
+        h2 {
+            font-size: 2.8rem;
+            margin-top: 40px;
+        }
 
+        p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
 
-    body.celular .triste-btn {
-        width: calc(50% - 30px);
-        bottom: 20px;
-        left: 20px;
-        right: auto;
-        font-size: 0.9rem;
-        padding: 12px 15px;
-    }
+        .highlight {
+            font-weight: 700;
+            color: var(--light-accent);
+            transition: color 0.7s ease-in-out;
+        }
+        body.dark-mode .highlight {
+            color: var(--dark-accent);
+        }
 
-    body.celular .modo-btn {
-        width: 45px;
-        height: 45px;
-        font-size: 18px;
-        bottom: 20px;
-        right: 20px;
-    }
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--light-shadow);
+            margin-bottom: 30px;
+        }
+        .video-container iframe, .video-container video { /* Estilo para video local y iframe */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 15px;
+        }
 
-    /* Estilo del encabezado */
-    header {
-      text-align: center;
-      padding: 60px 20px 30px; /* Más padding superior para espacio */
-    }
+        .button-group {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
 
-    h1 {
-      font-family: 'Pacifico', cursive;
-      font-size: 3.8rem; /* Título un poco más grande para destacar */
-      color: #8a2be2; /* Lila más intenso */
-      transition: color 0.7s ease-in-out;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      margin-bottom: 10px; /* Espacio entre título y párrafo */
-    }
+        .btn {
+            background-color: var(--light-accent);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    body.dark-mode h1 {
-        color: #ffda66; /* Amarillo más cálido para el modo oscuro */
-    }
+        .btn:hover {
+            background-color: #7d3cae;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+        body.dark-mode .btn {
+            background-color: var(--dark-accent);
+        }
+        body.dark-mode .btn:hover {
+            background-color: #7952b3;
+        }
 
-    header p {
-      font-size: 1.3rem; /* Párrafo ligeramente más grande */
-      color: #666; /* Color de texto más suave */
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      margin-bottom: 30px; /* Más espacio entre el texto y el video */
-    }
-    body.dark-mode header p {
-        color: #ccc;
-    }
+        /* Estilos específicos para la sección de elección inicial */
+        #initial-choice {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            width: 100%;
+            background: var(--light-bg);
+            color: var(--light-text);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            transition: background 0.7s ease-in-out, color 0.7s ease-in-out;
+        }
 
+        #initial-choice .section {
+            opacity: 1; /* Siempre visible */
+            transform: translateY(0);
+            animation: none;
+        }
+        #initial-choice h1 {
+            font-size: 4rem;
+        }
+        #initial-choice p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
 
-    header video {
-        width: 70%; /* Aún más pequeño */
-        max-width: 400px; /* Nuevo límite máximo */
-        height: auto; /* Mantiene la proporción */
-        margin: 0 auto 40px auto; /* Centra el video y le da más margen inferior */
-        border-radius: 15px; /* Bordes más redondeados */
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Sombra más pronunciada y suave */
-        display: block; /* Para que margin auto funcione */
-    }
+        /* Modo oscuro para la elección inicial */
+        body.dark-mode #initial-choice {
+            background: var(--dark-bg);
+            color: var(--dark-text);
+        }
 
-    /* Botón "Si te sientes triste" */
-    .triste-btn {
-      position: fixed;
-      bottom: 25px; /* Ligeramente más arriba */
-      left: 25px; /* Ligeramente más adentro */
-      background-color: #ff69b4; /* Rosa */
-      border: none;
-      color: white;
-      font-size: 1rem;
-      padding: 15px 25px;
-      border-radius: 25px; /* Bordes más redondeados */
-      cursor: pointer;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.25); /* Sombra más definida */
-      transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    }
+        /* Estrellas flotantes (copiado de triste.html para consistencia) */
+        .estrellas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
 
-    .triste-btn:hover {
-      background-color: #ff1493;
-      transform: translateY(-7px); /* Efecto de elevación más notable */
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
+        .estrella {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.5rem;
+            animation: flotarEstrella 15s linear infinite;
+        }
+        body.dark-mode .estrella {
+            color: rgba(255, 223, 0, 0.4);
+        }
 
-    /* Botón de cambio de modo oscuro/claro */
-    .modo-btn {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background-color: #9370db; /* Lila más suave */
-      border: none;
-      border-radius: 50%;
-      width: 55px; /* Ligeramente más grande */
-      height: 55px;
-      font-size: 22px; /* Ícono más grande */
-      color: white;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-      transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, color 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
-    }
+        /* Posiciones aleatorias para las estrellas */
+        .estrella:nth-child(1) { top: 10%; left: 5%; animation-duration: 12s; animation-delay: -1s; font-size: 1.0rem; }
+        .estrella:nth-child(2) { top: 25%; left: 80%; animation-duration: 18s; animation-delay: -3s; font-size: 1.8rem; }
+        .estrella:nth-child(3) { top: 50%; left: 30%; animation-duration: 14s; animation-delay: -2s; font-size: 1.3rem; }
+        .estrella:nth-child(4) { top: 70%; left: 60%; animation-duration: 16s; animation-delay: -4s; font-size: 1.6rem; }
+        .estrella:nth-child(5) { top: 5%; left: 40%; animation-duration: 10s; animation-delay: -0.5s; font-size: 1.1rem; }
+        .estrella:nth-child(6) { top: 85%; left: 15%; animation-duration: 17s; animation-delay: -2.5s; font-size: 1.4rem; }
+        .estrella:nth-child(7) { top: 30%; left: 10%; animation-duration: 13s; animation-delay: -1.5s; font-size: 1.2rem; }
+        .estrella:nth-child(8) { top: 40%; left: 90%; animation-duration: 19s; animation-delay: -3.5s; font-size: 1.7rem; }
+        .estrella:nth-child(9) { top: 60%; left: 70%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
+        .estrella:nth-child(10) { top: 15%; left: 20%; animation-duration: 20s; animation-delay: -4.5s; font-size: 2.0rem; }
+        /* Más estrellas para mayor densidad */
+        .estrella:nth-child(11) { top: 95%; left: 50%; animation-duration: 15s; animation-delay: -1s; font-size: 1.0rem; }
+        .estrella:nth-child(12) { top: 80%; left: 5%; animation-duration: 12s; animation-delay: -2s; font-size: 1.5rem; }
+        .estrella:nth-child(13) { top: 20%; left: 50%; animation-duration: 18s; animation-delay: -3s; font-size: 1.2rem; }
+        .estrella:nth-child(14) { top: 45%; left: 5%; animation-duration: 10s; animation-delay: -0.5s; font-size: 1.0rem; }
+        .estrella:nth-child(15) { top: 70%; left: 90%; animation-duration: 16s; animation-delay: -2.5s; font-size: 1.4rem; }
+        .estrella:nth-child(16) { top: 10%; left: 60%; animation-duration: 13s; animation-delay: -1.5s; font-size: 1.1rem; }
+        .estrella:nth-child(17) { top: 35%; left: 25%; animation-duration: 19s; animation-delay: -3.5s; font-size: 1.6rem; }
+        .estrella:nth-child(18) { top: 55%; left: 75%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
+        .estrella:nth-child(19) { top: 90%; left: 30%; animation-duration: 20s; animation-delay: -4.5s; font-size: 1.7rem; }
+        .estrella:nth-child(20) { top: 75%; left: 40%; animation-duration: 14s; animation-delay: -2s; font-size: 1.3rem; }
 
-    .modo-btn:hover {
-      background-color: #6a5acd; /* Lila al pasar el ratón */
-      transform: rotate(360deg);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
+        @keyframes flotarEstrella {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            25% { opacity: 1; }
+            75% { opacity: 1; }
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-    body.dark-mode .modo-btn {
-        background-color: #ffdb58; /* Amarillo oro */
-        color: #333;
-    }
+        /* Botón de cambio de modo oscuro/claro */
+        .modo-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--light-accent);
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 22px;
+            color: white;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+        }
 
-    body.dark-mode .modo-btn:hover {
-        background-color: #e0b400; /* Amarillo oscuro al pasar el ratón */
-    }
+        .modo-btn:hover {
+            background-color: #7d3cae;
+            transform: rotate(360deg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
 
-    /* Animación de corazones flotantes */
-    .corazones {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-    }
+        body.dark-mode .modo-btn {
+            background-color: var(--dark-accent);
+        }
+        body.dark-mode .modo-btn:hover {
+            background-color: #7952b3;
+        }
 
-    .corazon {
-      position: absolute;
-      color: rgba(0, 0, 0, 0.1); /* Corazones más sutiles en modo claro */
-      font-size: 1.5rem;
-      animation: flotar 10s linear infinite;
-    }
-    body.dark-mode .corazon {
-        color: rgba(147, 112, 219, 0.3); /* Lila suave en modo oscuro */
-    }
-
-    .corazon:nth-child(2n) { animation-duration: 12s; animation-delay: -2s; font-size: 1.2rem; }
-    .corazon:nth-child(3n) { animation-duration: 9s; animation-delay: -3s; font-size: 1.8rem; }
-    .corazon:nth-child(4n) { animation-duration: 11s; animation-delay: -1s; font-size: 1.0rem; }
-    .corazon:nth-child(5n) { animation-duration: 13s; animation-delay: -4s; font-size: 2.0rem; }
-    .corazon:nth-child(6n) { animation-duration: 8s; animation-delay: -5s; font-size: 1.3rem; }
-    .corazon:nth-child(7n) { animation-duration: 10.5s; animation-delay: -2.5s; font-size: 1.6rem; }
-    .corazon:nth-child(8n) { animation-duration: 9.5s; animation-delay: -1.5s; font-size: 1.1rem; }
-    .corazon:nth-child(9n) { animation-duration: 14s; animation-delay: -3.5s; font-size: 1.9rem; }
-    .corazon:nth-child(10n) { animation-duration: 7s; animation-delay: -0.5s; font-size: 1.4rem; }
-
-
-    @keyframes flotar {
-      from {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
-      25% { opacity: 1; }
-      75% { opacity: 1; }
-      to {
-        transform: translateY(-100vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* Estilo del reproductor de música (PC por defecto, minimizado) */
-    .reproductor {
-      position: fixed;
-      top: 25px; /* Ligeramente más abajo */
-      right: 25px; /* Ligeramente más adentro */
-      background: rgba(255,255,255,0.4); /* Fondo más translúcido */
-      backdrop-filter: blur(12px); /* Blur un poco más fuerte */
-      border-radius: 20px;
-      padding: 15px;
-      text-align: center;
-      width: 80px;
-      height: 80px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.25); /* Sombra más grande y definida */
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 100;
-      cursor: pointer;
-    }
-
-    .reproductor.dark-mode {
-      background: rgba(0,0,0,0.6); /* Fondo más oscuro y translúcido en modo oscuro */
-    }
-
-    .reproductor img {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      margin-bottom: 0;
-      animation: girar 5s linear infinite;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2); /* Sombra sutil en la portada */
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      object-fit: cover;
-    }
-
-    .reproductor .titulo,
-    .reproductor .barra,
-    .reproductor .controles,
-    .reproductor .volumen {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.3s ease-out;
-    }
-
-    /* Reproductor maximizado en PC al pasar el ratón */
-    .reproductor:hover {
-      width: 260px;
-      height: auto;
-      padding: 20px;
-      overflow: visible;
-      align-items: stretch;
-      cursor: default;
-    }
-
-    .reproductor:hover img {
-      width: 100px;
-      height: 100px;
-      margin-bottom: 10px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .reproductor:hover .titulo,
-    .reproductor:hover .barra,
-    .reproductor:hover .controles,
-    .reproductor:hover .volumen {
-      display: flex;
-      opacity: 1;
-      transition-delay: 0.2s;
-    }
-    .reproductor:hover .titulo {
-        display: block;
-    }
-    .reproductor:hover .controles {
-        flex-wrap: nowrap;
-    }
-
-    @keyframes girar {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .titulo {
-      font-weight: bold;
-      color: inherit;
-    }
-    .titulo small {
-        font-weight: normal;
-        font-size: 0.8em;
-        color: #888;
-    }
-    body.dark-mode .titulo small {
-        color: #bbb;
-    }
-
-
-    .barra {
-      width: 100%;
-      margin: 10px 0;
-      -webkit-appearance: none;
-      height: 8px; /* Barra de progreso más gruesa */
-      background: #ccc;
-      border-radius: 4px;
-      outline: none;
-      cursor: pointer;
-    }
-
-    .barra::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 18px; /* Pulgar más grande */
-      height: 18px;
-      border-radius: 50%;
-      background: #8a2be2; /* Lila más intenso */
-      cursor: pointer;
-      box-shadow: 0 0 8px rgba(0,0,0,0.3); /* Sombra en el pulgar */
-    }
-
-    .controles {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-    }
-
-    .controles button {
-      background: none;
-      border: none;
-      font-size: 1.6rem; /* Íconos de control más grandes */
-      cursor: pointer;
-      color: inherit;
-      transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
-    }
-
-    .controles button:hover {
-        color: #8a2be2;
-        transform: scale(1.15); /* Efecto hover más pronunciado */
-    }
-    body.dark-mode .controles button:hover {
-        color: #ffda66;
-    }
-
-
-    .volumen {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    #volRange {
-      width: 80px; /* Slider de volumen un poco más ancho */
-      background: #ccc;
-    }
-    #volRange::-webkit-slider-thumb {
-        background: #8a2be2;
-    }
-
-    /* Estilo de las secciones */
-    section {
-      padding: 60px 20px; /* Más padding para separar secciones */
-      text-align: center;
-      transition: background 0.7s ease-in-out, color 0.7s ease-in-out;
-      margin-bottom: 30px; /* Espacio entre secciones */
-      background: rgba(255,255,255,0.6); /* Fondo translúcido para secciones */
-      border-radius: 20px; /* Bordes redondeados */
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* Sombra suave para "elevar" las secciones */
-      max-width: 900px; /* Limita el ancho de las secciones */
-      margin-left: auto;
-      margin-right: auto;
-    }
-    body.dark-mode section {
-        background: rgba(0,0,0,0.4);
-    }
-
-    section h2 {
-      font-family: 'Dancing Script', cursive; /* Nueva fuente elegante para subtítulos */
-      font-size: 2.8rem; /* Tamaño de subtítulos más grande y elegante */
-      margin-bottom: 25px; /* Más espacio debajo del subtítulo */
-      color: #9370db; /* Lila más suave */
-      transition: color 0.7s ease-in-out;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.2; /* Ajuste de altura de línea */
-    }
-
-    body.dark-mode section h2 {
-        color: #ffd700; /* Amarillo dorado en modo oscuro */
-    }
-
-    section p {
-      max-width: 700px; /* Párrafos un poco más estrechos para mejor lectura */
-      margin: 0 auto;
-      font-size: 1.15rem; /* Tamaño de texto de párrafo ligeramente más grande */
-      line-height: 1.7; /* Mayor espacio entre líneas para lectura fácil */
-      color: #555; /* Color de texto más suave */
-      text-align: justify; /* Texto justificado para las secciones de contenido */
-      padding: 0 15px; /* Pequeño padding interno para que no toque los bordes en móvil */
-    }
-    body.dark-mode section p {
-        color: #e0e0e0;
-    }
-
-    /* Pantalla de bienvenida */
-    #pantalla-inicio {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: black;
-      color: white;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Quicksand', sans-serif;
-      text-align: center;
-      padding: 20px;
-      opacity: 1;
-      transition: opacity 0.4s ease-in-out, background 0.4s ease-in-out, color 0.4s ease-in-out;
-    }
-
-    #pantalla-inicio.hidden {
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    /* Clase para la transición de color de la pantalla de inicio */
-    #pantalla-inicio.transicion-lila {
-        background: linear-gradient(135deg, #f7e6ff, #d2a6fa);
-        color: #4a4a4a;
-    }
-
-
-    .dispositivo-opciones {
-      display: flex;
-      gap: 50px; /* Más espacio entre botones */
-      margin-top: 40px; /* Más espacio */
-    }
-
-    .dispositivo-boton {
-      background: white;
-      color: #8a2be2; /* Iconos en lila */
-      width: 90px; /* Botones más grandes */
-      height: 90px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem; /* Icono más grande */
-      cursor: pointer;
-      border: none;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* Sombra más notoria */
-      transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    }
-
-    .dispositivo-boton:hover {
-      transform: scale(1.18); /* Efecto hover más grande */
-      background-color: #f8f8f8;
-      box-shadow: 0 12px 25px rgba(0,0,0,0.4);
-    }
-
-    .dispositivo-etiqueta {
-      margin-top: 10px; /* Más espacio */
-      font-size: 1.1rem; /* Texto más grande */
-      color: white;
-      transition: color 0.4s ease-in-out;
-    }
-    #pantalla-inicio.transicion-lila .dispositivo-etiqueta {
-        color: #4a4a4a;
-    }
-
-    /* Contenedor principal del contenido para la transición */
-    #contenido-principal {
-        transition: opacity 0.4s ease-in-out;
-    }
-  </style>
+        /* Estilos para el reproductor de audio */
+        .audio-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .audio-controls button {
+            background-color: #6a5acd; /* Un color morado para los controles de audio */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .audio-controls button:hover {
+            background-color: #5d4bb3;
+            transform: translateY(-2px);
+        }
+        body.dark-mode .audio-controls button {
+            background-color: #87ceeb;
+            color: #333;
+        }
+        body.dark-mode .audio-controls button:hover {
+            background-color: #6495ed;
+        }
+    </style>
 </head>
 <body>
-     <div id="pantalla-inicio">
-  <h2>¿En dónde estás viendo esto?</h2>
-  <div class="dispositivo-opciones">
-    <div>
-      <button class="dispositivo-boton" onclick="seleccionarDispositivo('celular')">
-        <i class="fa-solid fa-mobile-screen"></i>
-      </button>
-      <div class="dispositivo-etiqueta">Celular</div>
+    <div class="estrellas">
+        <i class="fa-solid fa-star estrella"></i><i class="fa-solid fa-star estrella"></i><i class="fa-solid fa-star estrella"></i><i class="fa-solid fa-star estrella"></i><i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i><i class="fa-solid fa-star estrella"></i><i class="fa-solid fa-star estrella"></i><i class="fa-solid fa-star estrella"></i><i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i><i class="fa-solid fa-star estrella"></i><i class="fa-solid fa-star estrella"></i><i class="fa-solid fa-star estrella"></i><i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i><i class="fa-solid fa-star estrella"></i><i class="fa-solid fa-star estrella"></i><i class="fa-solid fa-star estrella"></i><i class="fa-solid fa-star estrella"></i>
     </div>
-    <div>
-      <button class="dispositivo-boton" onclick="seleccionarDispositivo('pc')">
-        <i class="fa-solid fa-desktop"></i>
-      </button>
-      <div class="dispositivo-etiqueta">PC</div>
+
+    <div id="initial-choice" class="section">
+        <h1>¡Bienvenida!</h1>
+        <p>¿Desde dónde estás viendo esto?</p>
+        <div class="button-group">
+            <button id="go-mobile" class="btn"><i class="fa-solid fa-mobile-alt"></i> Desde mi Celular</button>
+            <button id="go-pc" class="btn"><i class="fa-solid fa-desktop"></i> Desde mi PC</button>
+        </div>
     </div>
-  </div>
-</div>
 
-<div id="contenido-principal" style="opacity: 0; display: none;">
-  <div class="corazones">
-    <i class="fa-solid fa-heart corazon" style="top:10%; left:10%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:20%; left:80%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:60%; left:40%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:30%; left:60%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:50%; left:20%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:15%; left:50%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:70%; left:30%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:40%; left:70%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:80%; left:15%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:5%; left:85%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:25%; left:5%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:35%; left:90%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:75%; left:55%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:45%; left:35%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:85%; left:75%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:55%; left:5%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:5%; left:30%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:90%; left:45%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:65%; left:10%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:10%; left:70%;"></i>
-  </div>
+    <div id="pc-content" style="display:none;">
+        <div id="seccion1" class="section">
+            <h1>Feliz Primer Mes, Mi Amor</h1>
+            <p>Este mes a tu lado ha sido el más <span class="highlight">hermoso y especial</span> de mi vida. Cada día contigo es una aventura que atesoro con todo mi corazón.</p>
+            <div class="video-container">
+                <video controls autoplay loop muted>
+                    <source src="video/kiss.mp4" type="video/mp4">
+                    Tu navegador no soporta el video.
+                </video>
+            </div>
+            <p>Este pequeño video es un recordatorio de lo mucho que te amo y de lo feliz que me haces.</p>
+            <div class="button-group">
+                <a href="#seccion2" class="btn"><i class="fa-solid fa-heart"></i> Nuestra Historia</a>
+                <a href="triste.html" class="btn"><i class="fa-solid fa-sad-tear"></i> Si te sientes triste, presiona aquí</a>
+            </div>
+        </div>
 
-  <header>
-    <h1>Feliz primer mes</h1>
-    <p>Gracias por este tiempo tan bonito Mariana <i class="fa-solid fa-heart"></i></p>
-    <video src="video/kiss.mp4" autoplay loop muted playsinline></video>
-  </header>
+        <div id="seccion2" class="section">
+            <h2>Nuestra Historia</h2>
+            <p>Desde el día que te conocí, supe que algo mágico había empezado. Cada momento, cada risa, cada conversación me ha mostrado lo increíble que eres.</p>
+            <p>Gracias por ser tú, por tu risa, por tu apoyo y por hacer que cada día sea mejor que el anterior.</p>
+            <img src="image_37fbb0.jpg" alt="Nuestra foto" style="max-width:100%; height:auto; border-radius:15px; margin:20px 0; box-shadow: 0 5px 15px var(--light-shadow);">
+            <p>Espero que tengamos muchísimos meses más llenos de amor y felicidad.</p>
+            <div class="button-group">
+                <a href="#seccion3" class="btn"><i class="fa-solid fa-music"></i> Nuestra Música</a>
+            </div>
+        </div>
 
-  <button class="triste-btn" onclick="location.href='triste.html'">Si te sientes triste, presiona aquí</button>
+        <div id="seccion3" class="section">
+            <h2>Nuestra Música</h2>
+            <p>Estas canciones me recuerdan a ti y a nuestros momentos especiales. ¡Espero que las disfrutes!</p>
+            <audio id="audioPlayer" controls></audio>
+            <div class="audio-controls">
+                <button id="prev-song-btn"><i class="fa-solid fa-backward-step"></i> Anterior</button>
+                <button id="next-song-btn"><i class="fa-solid fa-forward-step"></i> Siguiente</button>
+            </div>
+            <p id="current-song-info">Reproduciendo: ...</p>
+            <div class="button-group">
+                <a href="#seccion4" class="btn"><i class="fa-solid fa-star"></i> Un Sueño Juntos</a>
+            </div>
+        </div>
 
-  <section id="seccion1">
-    <h2>Cómo me enamoré de ti</h2>
-    <p>
-      No sé en qué momento exacto empezó todo. Fue en una partida de Valorant, en Ascent. Como cualquier otra noche. Prepickeó Phoenix y le dije a Nathalia, mi amiga: “Uy no, va a trollear fijo.” Pero luego... pickeó Killjoy. Y no sé cómo explicarlo, pero ahí empezó algo. Pequeñito, imperceptible, como una chispa.
-      <br><br>
-      Jugamos esa partida y terminamos cayéndonos bien. Todos en el grupo fluyeron, pero ella… había algo diferente. Esa noche nos quedamos jugando hasta la madrugada. Y no porque el juego estuviera bueno, sino porque su risa, sus comentarios, su forma de mirar el juego... todo eso me mantenía despierto.
-      <br><br>
-      Después empezamos a hablar por Riot Mobile, mensajes cada tanto, pero cada tanto se volvió cada vez más seguido. Y era raro —en el buen sentido— lo bien que nos entendíamos. Como si nuestras conversaciones ya tuvieran confianza desde el principio. Como si habláramos con alguien que ya conocíamos de vidas pasadas.
-      <br><br>
-      La invité a un servidor de Minecraft. Ahí... fue otro nivel. Nos regalábamos cosas dentro del juego —pero se sentían más reales que cualquier regalo físico. Le dejaba cofres con flores o materiales, y no decía nada, solo esperaba que lo viera y sonriera. Porque aunque no la veía, yo juraba que lo hacía.
-      <br><br>
-      Después vino Instagram. Más charlas. Más cercanía. Más nosotros. Recuerdo con esa mezcla de ternura y vergüenza el primer “te quiero” que le dije. Temblaba mientras lo escribía, lo juro. Y peor aún el “creo que me gustas”, porque eso ya era cruzar una línea sin saber si había suelo del otro lado. Pero sí lo había. Porque ella me respondió con esa forma tan bonita de hacerlo sentir fácil. Como si lo estuviera esperando.
-      <br><br>
-      Veíamos Ladybug juntos en Rave, aunque yo jamás pensé ver algo así. Pero por ella… por ella veía lo que sea. Jugábamos otros juegos solo para tener excusa de pasar tiempo juntos. Y no necesitaba más: me sentía en casa. Me sentía visto. Me sentía querido.
-      <br><br>
-      Y luego... llegó ese momento. Tenía de fondo “Es por ti” de Juanes, porque sí, cursi, romántico, cliché y todo lo que quieras. Pero era nuestra banda sonora. Le dije que la amaba. Fue como soltar todo lo que llevaba dentro, como una confesión con el corazón en las manos.
-      <br><br>
-      Y cuando me dijo que sí... sonreí. Pero no solo por un rato. Sonreí hasta el día siguiente. Dormí con una sonrisa que me dolía en la cara, pero me curaba el alma.
-      <br><br>
-      Y así fue como me enamoré de una chica que empezó como Killjoy en Ascent. Y terminó siendo la mujer de mis amores, mi compañera, mi futura esposa, mi “te amo” más sincero.
-    </p>
-  </section>
-  <section id="seccion2">
-    <h2>Mi chica de la pantalla</h2>
-    <p>
-      La vida, a veces, es una partida que nadie entiende,<br>
-      uno pica aquí, otro allá, y el tiempo se nos va.
-      <br>
-      Pero un día, entre pixeles y voces que flotan,<br>
-      apareció tu risa, y mis dudas se agotan.
-      <br><br>
-      No fue en la calle, ni en un café de moda,<br>
-      fue en el chat, donde la mente explora.
-      <br>
-      Mensajes que van y vienen, a veces sin apuro,<br>
-      construyendo algo real, un futuro.
-      <br><br>
-      Dicen que el amor necesita tocar, sentir lo crudo,<br>
-      pero contigo, Mariana, todo es profundo.
-      <br>
-      Tu voz me calma, tus palabras me elevan,<br>
-      sin necesidad de un abrazo, las horas vuelan.
-      <br><br>
-      Eres mi cable a tierra, mi locura de vez en cuando,<br>
-      la verdad que me dices, sin filtros ni ando.<br>
-      No es perfecto, claro, ¿qué lo es en esta vida?<br>
-      Pero es real, es nuestra, una herida que sana la herida.<br>
-      <br>
-      Así que aquí estoy, en este teclado, tecleando,<br>
-      sabiendo que del otro lado, me estás amando.<br>
-      Y eso, querida, es más que suficiente para mí,<br>
-      mi chica de la pantalla, mi razón para ser feliz.
-    </p>
-  </section>
-  <section id="seccion4">
-    <h2>Mis promesas para ti</h2>
-    <p>
-      Mariana, en este día especial, quiero reafirmarte lo que siento y lo que prometo para nuestro futuro juntos, sin importar las pantallas de por medio:
-      <br><br>
-      1. **Prometo escucharte siempre:** Cada palabra que escribas, cada audio que envíes, cada silencio. Estaré aquí para comprenderte, no solo para oírte.
-      <br>
-      2. **Prometo apoyarte en cada sueño:** Tus metas serán mis metas. Estaré a tu lado, aunque sea a la distancia, para celebrar tus victorias y para darte la fuerza cuando la necesites.
-      <br>
-      3. **Prometo ser tu refugio:** Cuando el mundo digital o el real te parezca pesado, mi amor y mi presencia virtual serán el lugar donde siempre puedas encontrar paz y consuelo.
-      <br>
-      4. **Prometo mantener viva la chispa:** Con mensajes inesperados, risas compartidas en llamadas y nuevas "aventuras" en línea, haremos que cada día sea emocionante y que nuestro amor siga floreciendo.
-      <br>
-      5. **Prometo amarte sin condiciones:** Mi amor por ti será constante, puro y eterno. En los buenos momentos de conexión y en los desafíos de la distancia, siempre con la paciencia y el cariño que mereces.
-      <br><br>
-      Eres el regalo más hermoso que la vida, y la internet, me ha dado.
-    </p>
-  </section>
-  <section id="seccion5">
-    <h2>Frases que me recuerdan a ti</h2>
-    <p>
-      "Contigo, el ping es bajo y la conexión, infinita."
-      <br>
-      "Eres esa notificación que siempre espero, la que ilumina mi pantalla."
-      <br>
-      "En cada emoji, un pedacito de tu sonrisa que llega a mi alma."
-      <br>
-      "Mi mundo era un chat silenciado hasta que llegaste tú, mi conversación favorita."
-      <br>
-      "Eres la prueba de que el amor más grande no conoce barreras de Wi-Fi, solo conexiones de corazón."
-      <br>
-      "Cada '¿qué haces?' tuyo es el inicio de la mejor parte de mi día."
-      <br>
-      "Contigo, descubrí que la magia existe en las videollamadas y la paz en tu 'buenas noches'."
-      <br>
-      "Eres mi dulce escapada, mi hogar en la nube."
-      <br>
-      "Tu presencia, aunque sea en mi lista de amigos, es más real que cualquier otra."
-      <br>
-      "Por ti, cada servidor, cada juego, cada pixel, cobra sentido."
-    </p>
-  </section>
+        <div id="seccion4" class="section">
+            <h2>Un Sueño Juntos</h2>
+            <p>Mi sueño es seguir construyendo una vida a tu lado, llena de alegría, complicidad y muchísimo amor. Contigo, cada día es un sueño hecho realidad.</p>
+            <p>Eres la persona más maravillosa que he conocido y no puedo esperar a ver todo lo que el futuro nos depara.</p>
+            <div class="button-group">
+                <a href="#seccion5" class="btn"><i class="fa-solid fa-gift"></i> Mi Promesa</a>
+            </div>
+        </div>
 
-  <div class="reproductor" id="reproductor">
-    <img src="audio/cover.jpg" alt="Portada" id="portada">
-    <div class="titulo" id="titulo-cancion">Es Por Ti<br><small id="artista-cancion">Juanes</small></div>
-    <input class="barra" type="range" value="0" id="progress">
-    <div class="controles">
-      <button id="prev"><i class="fa-solid fa-backward-step"></i></button>
-      <button id="play"><i class="fa-solid fa-play"></i></button>
-      <button id="next"><i class="fa-solid fa-forward-step"></i></button>
-      <div class="volumen">
-        <button id="mute"><i class="fa-solid fa-volume-high"></i></button>
-        <input type="range" min="0" max="1" step="0.01" value="1" id="volRange">
-      </div>
+        <div id="seccion5" class="section">
+            <h2>Mi Promesa</h2>
+            <p>Te prometo amor, apoyo incondicional y mi esfuerzo diario para hacerte la persona más feliz del mundo. Siempre estaré para ti.</p>
+            <p class="highlight">¡Te amo con todo mi ser!</p>
+            <div class="button-group">
+                <a href="#seccion1" class="btn"><i class="fa-solid fa-arrow-up"></i> Volver al Inicio</a>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
+    <div id="mobile-content" style="display:none;">
+        <div class="section">
+            <h1>¡Feliz Primer Mes, Mi Amor!</h1>
+            <p>Este mes a tu lado ha sido el más <span class="highlight">hermoso y especial</span> de mi vida. Cada día contigo es una aventura que atesoro con todo mi corazón.</p>
+            <div class="video-container">
+                <video controls autoplay loop muted>
+                    <source src="video/kiss.mp4" type="video/mp4">
+                    Tu navegador no soporta el video.
+                </video>
+            </div>
+            <p>Este pequeño video es un recordatorio de lo mucho que te amo y de lo feliz que me haces.</p>
+            <div class="button-group">
+                <a href="triste.html" class="btn"><i class="fa-solid fa-sad-tear"></i> Si te sientes triste, presiona aquí</a>
+            </div>
+            <h2>Nuestra Historia</h2>
+            <p>Desde el día que te conocí, supe que algo mágico había empezado. Gracias por ser tú.</p>
+            <img src="image_37fbb0.jpg" alt="Nuestra foto" style="max-width:100%; height:auto; border-radius:15px; margin:20px 0; box-shadow: 0 5px 15px var(--light-shadow);">
+            <h2>Nuestra Música</h2>
+            <p>Estas canciones me recuerdan a ti y a nuestros momentos especiales.</p>
+            <audio id="audioPlayerMobile" controls></audio>
+            <div class="audio-controls">
+                <button id="prev-song-btn-mobile"><i class="fa-solid fa-backward-step"></i> Anterior</button>
+                <button id="next-song-btn-mobile"><i class="fa-solid fa-forward-step"></i> Siguiente</button>
+            </div>
+            <p id="current-song-info-mobile">Reproduciendo: ...</p>
+            <h2>Un Sueño Juntos</h2>
+            <p>Mi sueño es seguir construyendo una vida a tu lado, llena de alegría, complicidad y muchísimo amor.</p>
+            <h2>Mi Promesa</h2>
+            <p>Te prometo amor, apoyo incondicional y mi esfuerzo diario para hacerte la persona más feliz del mundo. Siempre estaré para ti.</p>
+            <p class="highlight">¡Te amo con todo mi ser!</p>
+        </div>
+    </div>
 
-  <script>
-    const body = document.body;
-    const modoBtn = document.getElementById('modo-btn');
-    const reproductor = document.getElementById('reproductor');
-    const portada = document.getElementById('portada');
-    const tituloCancion = document.getElementById('titulo-cancion');
-    const artistaCancion = document.getElementById('artista-cancion');
-    const playBtn = document.getElementById('play');
-    // const stopBtn = document.getElementById('stop'); // Eliminado
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
-    const muteBtn = document.getElementById('mute');
-    const volRange = document.getElementById('volRange');
-    const progress = document.getElementById('progress');
-    const pantallaInicio = document.getElementById('pantalla-inicio');
-    const contenidoPrincipal = document.getElementById('contenido-principal');
+    <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
 
-    const canciones = [
-      {
-        titulo: "Es Por Ti",
-        artista: "Juanes",
-        src: "audio/esporti.mp3",
-        cover: "audio/cover.jpg"
-      },
-      {
-        titulo: "Amor Completo",
-        artista: "Mon Laferte", // Ajusta el artista si es diferente
-        src: "audio/amorcompleto.mp3", /* cite: image_36a297.png */
-        cover: "audio/cover2.jpg" /* cite: image_36a297.png */
-      },
-      {
-        titulo: "Compartir",
-        artista: "Carla Morrison", // Ajusta el artista si es diferente
-        src: "audio/compartir.mp3", /* cite: image_36a297.png */
-        cover: "audio/cover3.jpg" /* cite: image_36a297.png */
-      }
-    ];
+    <script>
+        // --- LÓGICA DE DETECCIÓN DE DISPOSITIVO MEJORADA PARA ANCLAS ---
+        function detectDevice() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-    let currentSongIndex = 0;
-    let audio = new Audio();
-    let isMuted = false;
-    let isPlaying = false;
-    let isReproductorMaximized = false;
-
-    // Función para cargar una canción
-    function loadSong(index) {
-      const song = canciones[index];
-      audio.src = song.src;
-      portada.src = song.cover;
-      tituloCancion.innerHTML = song.titulo + '<br><small>' + song.artista + '</small>';
-      audio.load(); // Carga la nueva canción
-      
-      // Si estaba reproduciendo, sigue reproduciendo la nueva
-      if (isPlaying) {
-        audio.play();
-        portada.style.animationPlayState = 'running';
-        playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-      } else {
-        portada.style.animationPlayState = 'paused';
-        playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-      }
-    }
-
-    // Establecer volumen inicial al 20% y cargar la primera canción
-    audio.volume = 0.2;
-    volRange.value = 0.2;
-    loadSong(currentSongIndex);
-
-
-    // Event listener para el botón de modo oscuro/claro
-    modoBtn.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      reproductor.classList.toggle('dark-mode');
-      // Actualiza el ícono del botón (luna o sol)
-      modoBtn.innerHTML = body.classList.contains('dark-mode') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
-    });
-
-    // Event listener para el botón de Play/Pause
-    playBtn.addEventListener('click', (event) => {
-      event.stopPropagation();
-      if (isPlaying) {
-        audio.pause();
-        playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-        portada.style.animationPlayState = 'paused';
-      } else {
-        audio.play();
-        playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        portada.style.animationPlayState = 'running';
-      }
-      isPlaying = !isPlaying;
-    });
-
-    // Event listener para el botón Anterior
-    prevBtn.addEventListener('click', (event) => {
-        event.stopPropagation();
-        currentSongIndex = (currentSongIndex - 1 + canciones.length) % canciones.length;
-        loadSong(currentSongIndex);
-        // Si la canción anterior estaba reproduciéndose, la nueva también lo hará
-        if (isPlaying) {
-            audio.play();
+            // Comprobación para iPad y tablets en general
+            if (/iPad|tablet|android|touch/i.test(userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
+                return 'mobile'; // Consideramos tabletas como móviles para esta lógica
+            }
+            // Comprobación para iPhone, iPod
+            if (/iPhone|iPod/i.test(userAgent)) {
+                return 'mobile';
+            }
+            // Asumiendo que es un PC si no es móvil/tablet
+            return 'pc';
         }
-    });
 
-    // Event listener para el botón Siguiente
-    nextBtn.addEventListener('click', (event) => {
-        event.stopPropagation();
-        currentSongIndex = (currentSongIndex + 1) % canciones.length;
-        loadSong(currentSongIndex);
-        // Si la canción actual estaba reproduciéndose, la nueva también lo hará
-        if (isPlaying) {
-            audio.play();
-        }
-    });
+        function showContentForDevice() {
+            const device = detectDevice();
+            const currentHash = window.location.hash; // Captura el hash actual
 
-    // Event listener para el botón de Mute/Unmute
-    muteBtn.addEventListener('click', (event) => {
-      event.stopPropagation();
-      isMuted = !isMuted;
-      audio.muted = isMuted;
-      muteBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
-    });
+            const mobileContent = document.getElementById('mobile-content');
+            const pcContent = document.getElementById('pc-content');
+            const initialChoice = document.getElementById('initial-choice');
 
-    // Event listener para el slider de volumen
-    volRange.addEventListener('input', (event) => {
-      event.stopPropagation();
-      audio.volume = volRange.value;
-    });
+            mobileContent.style.display = 'none';
+            pcContent.style.display = 'none';
+            initialChoice.style.display = 'none';
 
-    // Actualizar la barra de progreso de la canción
-    audio.addEventListener('timeupdate', () => {
-      progress.value = (audio.currentTime / audio.duration) * 100 || 0;
-    });
+            // Si la URL viene con un hash (ej. #seccion1), siempre mostrar el contenido principal (PC)
+            // y permitir que el navegador se encargue del desplazamiento.
+            if (currentHash) {
+                pcContent.style.display = 'block';
+                // Opcional: Desplazarse a la sección si el navegador no lo hace automáticamente
+                setTimeout(() => {
+                    const targetElement = document.querySelector(currentHash);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 100); // Pequeño retraso para asegurar que el contenido esté visible antes de scroll
+                return; // Termina la función aquí, no más lógica de elección
+            }
 
-    // Permitir arrastrar la barra de progreso para cambiar la posición de la canción
-    progress.addEventListener('input', (event) => {
-      event.stopPropagation();
-      audio.currentTime = (progress.value / 100) * audio.duration;
-    });
-
-    // Lógica para maximizar/minimizar el reproductor en celular
-    reproductor.addEventListener('click', (event) => {
-        if (document.body.classList.contains('celular')) {
-            if (!isReproductorMaximized) {
-                reproductor.classList.add('maximized');
-                isReproductorMaximized = true;
-                event.stopPropagation();
+            // Si no hay hash, procedemos con la lógica de elección de dispositivo
+            if (device === 'mobile') {
+                initialChoice.style.display = 'block';
+            } else {
+                pcContent.style.display = 'block';
             }
         }
-    });
 
-    // Minimizar el reproductor al tocar fuera de él en celular
-    document.addEventListener('click', (event) => {
-        if (document.body.classList.contains('celular') && isReproductorMaximized) {
-            // Si el clic no fue dentro del reproductor, minimízalo
-            if (!reproductor.contains(event.target)) {
-                reproductor.classList.remove('maximized');
-                isReproductorMaximized = false;
+        // Funciones para los botones de elección
+        document.getElementById('go-mobile').addEventListener('click', function() {
+            document.getElementById('initial-choice').style.display = 'none';
+            document.getElementById('mobile-content').style.display = 'block';
+        });
+
+        document.getElementById('go-pc').addEventListener('click', function() {
+            document.getElementById('initial-choice').style.display = 'none';
+            document.getElementById('pc-content').style.display = 'block';
+        });
+
+        // --- Lógica del Reproductor de Audio ---
+        const audioPlayer = document.getElementById('audioPlayer');
+        const audioPlayerMobile = document.getElementById('audioPlayerMobile'); // Reproductor para móvil
+        const nextSongBtn = document.getElementById('next-song-btn');
+        const prevSongBtn = document.getElementById('prev-song-btn');
+        const nextSongBtnMobile = document.getElementById('next-song-btn-mobile');
+        const prevSongBtnMobile = document.getElementById('prev-song-btn-mobile');
+        const currentSongInfo = document.getElementById('current-song-info');
+        const currentSongInfoMobile = document.getElementById('current-song-info-mobile');
+
+        // Tu lista de reproducción con los nombres de tus archivos
+        const playlist = [
+            { title: "Amor Completo", src: "audio/amorcompleto.mp3" },
+            { title: "Compartir", src: "audio/compartir.mp3" },
+            { title: "Esporti", src: "audio/esporti.mp3" }
+        ];
+        let currentSongIndex = 0;
+
+        function loadSong(player, index) {
+            player.src = playlist[index].src;
+            player.load(); // Carga la canción
+            player.play().catch(e => console.log("Autoplay prevented:", e)); // Intenta reproducir, captura error si el navegador lo bloquea
+            updateSongInfo(index, player.id === 'audioPlayer' ? currentSongInfo : currentSongInfoMobile);
+        }
+
+        function playNextSong() {
+            currentSongIndex = (currentSongIndex + 1) % playlist.length;
+            loadSong(audioPlayer, currentSongIndex);
+            loadSong(audioPlayerMobile, currentSongIndex); // Actualiza también el reproductor móvil
+        }
+
+        function playPrevSong() {
+            currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
+            loadSong(audioPlayer, currentSongIndex);
+            loadSong(audioPlayerMobile, currentSongIndex); // Actualiza también el reproductor móvil
+        }
+
+        function updateSongInfo(index, infoElement) {
+            infoElement.textContent = `Reproduciendo: ${playlist[index].title}`;
+        }
+
+        // Event listener para que la canción pase automáticamente
+        audioPlayer.onended = playNextSong;
+        audioPlayerMobile.onended = playNextSong; // También para el reproductor móvil
+
+        // Botones de Siguiente/Anterior
+        nextSongBtn.addEventListener('click', playNextSong);
+        prevSongBtn.addEventListener('click', playPrevSong);
+        nextSongBtnMobile.addEventListener('click', playNextSong);
+        prevSongBtnMobile.addEventListener('click', playPrevSong);
+
+
+        // --- Lógica de Modo Oscuro/Claro ---
+        const body = document.body;
+        const modoBtn = document.getElementById('modo-btn');
+
+        modoBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('dark-mode-index', 'true'); // Usar clave diferente para index
+                modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            } else {
+                localStorage.setItem('dark-mode-index', 'false');
+                modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
             }
-        }
-    });
+        });
 
-    // Función para seleccionar el tipo de dispositivo (PC o Celular)
-    function seleccionarDispositivo(tipo) {
-      pantallaInicio.classList.add('transicion-lila');
-      document.querySelector('#pantalla-inicio h2').style.color = '#4a4a4a';
-      Array.from(document.querySelectorAll('.dispositivo-etiqueta')).forEach(el => el.style.color = '#4a4a4a');
+        // Ejecutar al cargar la página (DOMContentLoaded para asegurar que el DOM esté listo)
+        document.addEventListener('DOMContentLoaded', () => {
+            // Cargar preferencia de modo oscuro
+            if (localStorage.getItem('dark-mode-index') === 'true') {
+                body.classList.add('dark-mode');
+                modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            } else {
+                modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            }
 
-      pantallaInicio.classList.add('hidden');
+            // Iniciar la detección de dispositivo y carga de contenido
+            showContentForDevice();
 
-      setTimeout(() => {
-        pantallaInicio.style.display = 'none';
+            // Cargar la primera canción al iniciar
+            loadSong(audioPlayer, currentSongIndex);
+            loadSong(audioPlayerMobile, currentSongIndex);
+        });
 
-        if (tipo === 'celular') {
-          document.body.classList.add('celular');
-        } else {
-          document.body.classList.remove('celular');
-        }
-
-        contenidoPrincipal.style.display = 'block';
-        setTimeout(() => {
-            contenidoPrincipal.style.opacity = '1';
-        }, 50);
-      }, 400);
-    }
-  </script>
-</div>
+        // Re-ejecutar la detección de dispositivo si el hash de la URL cambia
+        window.addEventListener('hashchange', showContentForDevice);
+    </script>
 </body>
 </html>
