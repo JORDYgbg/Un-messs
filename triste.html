@@ -1,299 +1,279 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>¡Ánimo!</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    /* Restablecimiento y estilos base */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un Mensaje Especial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Dancing Script', cursive; /* Aplica la nueva tipografía a todo el cuerpo */
+            background: linear-gradient(135deg, #e0f2f7, #b2ebf2); /* Un fondo azul muy suave para el modo claro */
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            transition: background 0.7s ease-in-out, color 0.7s ease-in-out; /* Transición para modo oscuro */
+        }
 
-    body {
-      font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(180deg, #b0e0e6 0%, #e0ffff 70%); /* Degradado de azules suaves */
-      color: #333;
-      transition: background 0.7s ease-in-out, color 0.7s ease-in-out;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh; /* Asegura que el cuerpo ocupe al menos toda la altura de la ventana */
-    }
+        /* Modo oscuro */
+        body.dark-mode {
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 70%); /* Azules oscuros */
+            color: #f0f0f0;
+        }
 
-    /* Estilo del modo oscuro para esta página también */
-    body.dark-mode {
-      background: linear-gradient(180deg, #2c3e50 0%, #34495e 70%); /* Azules oscuros */
-      color: #f0f0f0;
-    }
+        .container {
+            max-width: 800px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.8); /* Fondo blanco translúcido para el contenido */
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: background 0.7s ease-in-out, box-shadow 0.7s ease-in-out; /* Transición para modo oscuro */
+        }
+        body.dark-mode .container {
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
 
-    /* Contenido principal para permitir footer al fondo */
-    .content-wrapper {
-        flex-grow: 1;
-        padding-bottom: 80px; /* Espacio para el footer fijo */
-    }
+        h1 {
+            font-size: 3.5rem; /* Tamaño de título grande */
+            color: #00acc1; /* Un color turquesa más llamativo */
+            margin-bottom: 30px;
+            transition: color 0.7s ease-in-out; /* Transición para modo oscuro */
+        }
+        body.dark-mode h1 {
+            color: #87ceeb; /* Azul cielo en modo oscuro */
+        }
 
-    header {
-      text-align: center;
-      padding: 60px 20px 30px;
-    }
+        p {
+            font-size: 1.8rem; /* Tamaño de párrafo grande y legible */
+            line-height: 1.6; /* Espaciado entre líneas para mejor lectura */
+            margin-bottom: 30px;
+            transition: color 0.7s ease-in-out; /* Transición para modo oscuro */
+        }
+        body.dark-mode p {
+            color: #e0e0e0;
+        }
 
-    h1 {
-      font-family: 'Dancing Script', cursive; /* Misma fuente elegante para título */
-      font-size: 3.2rem; /* Tamaño de título adecuado para esta página */
-      color: #6a5acd; /* Un lila/morado más suave */
-      transition: color 0.7s ease-in-out;
-      margin-bottom: 10px;
-    }
-    body.dark-mode h1 {
-        color: #87ceeb; /* Azul cielo en modo oscuro */
-    }
+        /* Estilo para el iframe de YouTube */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 (altura / ancho) */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 40px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 10px; /* Asegura que el iframe también tenga bordes redondeados */
+        }
 
-    h2 {
-      font-family: 'Dancing Script', cursive; /* Fuente elegante para subtítulos */
-      font-size: 2.5rem;
-      margin-top: 40px;
-      margin-bottom: 25px;
-      color: #6a5acd;
-      transition: color 0.7s ease-in-out;
-    }
-    body.dark-mode h2 {
-        color: #87ceeb;
-    }
+        .volver-btn, .modo-btn {
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+        }
+        .volver-btn {
+            background-color: #4caf50; /* Verde alegre para el botón */
+            color: white;
+            margin-top: 20px; /* Espacio superior */
+        }
+        .volver-btn:hover {
+            background-color: #45a049; /* Verde un poco más oscuro al pasar el ratón */
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
 
-    p {
-      max-width: 800px;
-      margin: 0 auto 30px auto;
-      font-size: 1.15rem;
-      line-height: 1.7;
-      color: #555;
-      text-align: justify;
-      padding: 0 20px;
-    }
-    body.dark-mode p {
-        color: #e0e0e0;
-    }
+        /* Botón de cambio de modo oscuro/claro */
+        .modo-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #9370db; /* Lila más suave */
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 22px;
+            color: white;
+            padding: 0; /* Quita el padding si usas width/height fijo */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99;
+        }
 
-    img.small-image {
-        max-width: 80%; /* Más pequeña en esta página */
-        height: auto;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        display: block;
-        margin: 40px auto;
-    }
+        .modo-btn:hover {
+            background-color: #6a5acd;
+            transform: rotate(360deg);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
 
-    /* Botón de cambio de modo oscuro/claro */
-    .modo-btn {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background-color: #9370db; /* Lila más suave */
-      border: none;
-      border-radius: 50%;
-      width: 55px;
-      height: 55px;
-      font-size: 22px;
-      color: white;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-      transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, color 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
-      z-index: 99; /* Asegura que esté por encima de otros elementos */
-    }
+        body.dark-mode .modo-btn {
+            background-color: #87ceeb; /* Azul cielo */
+            color: #333;
+        }
 
-    .modo-btn:hover {
-      background-color: #6a5acd;
-      transform: rotate(360deg);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
+        body.dark-mode .modo-btn:hover {
+            background-color: #6495ed; /* Azul más oscuro al pasar el ratón */
+        }
 
-    body.dark-mode .modo-btn {
-        background-color: #87ceeb; /* Azul cielo */
-        color: #333;
-    }
+        /* Animación de estrellas flotantes */
+        .estrellas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden; /* Para que las estrellas no salgan de la pantalla */
+        }
 
-    body.dark-mode .modo-btn:hover {
-        background-color: #6495ed; /* Azul más oscuro al pasar el ratón */
-    }
+        .estrella {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.5); /* Estrellas blancas semitransparentes en modo claro */
+            font-size: 1.5rem;
+            animation: flotarEstrella 15s linear infinite;
+        }
+        body.dark-mode .estrella {
+            color: rgba(255, 223, 0, 0.4); /* Amarillo suave en modo oscuro */
+        }
 
-    /* Botón de volver al inicio */
-    .volver-btn {
-        position: fixed;
-        bottom: 25px;
-        left: 25px;
-        background-color: #5cb85c; /* Verde */
-        border: none;
-        border-radius: 50%;
-        width: 55px;
-        height: 55px;
-        font-size: 22px;
-        color: white;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-        transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        z-index: 99;
-    }
+        /* Posiciones aleatorias para las estrellas */
+        .estrella:nth-child(1) { top: 10%; left: 5%; animation-duration: 12s; animation-delay: -1s; font-size: 1.0rem; }
+        .estrella:nth-child(2) { top: 25%; left: 80%; animation-duration: 18s; animation-delay: -3s; font-size: 1.8rem; }
+        .estrella:nth-child(3) { top: 50%; left: 30%; animation-duration: 14s; animation-delay: -2s; font-size: 1.3rem; }
+        .estrella:nth-child(4) { top: 70%; left: 60%; animation-duration: 16s; animation-delay: -4s; font-size: 1.6rem; }
+        .estrella:nth-child(5) { top: 5%; left: 40%; animation-duration: 10s; animation-delay: -0.5s; font-size: 1.1rem; }
+        .estrella:nth-child(6) { top: 85%; left: 15%; animation-duration: 17s; animation-delay: -2.5s; font-size: 1.4rem; }
+        .estrella:nth-child(7) { top: 30%; left: 10%; animation-duration: 13s; animation-delay: -1.5s; font-size: 1.2rem; }
+        .estrella:nth-child(8) { top: 40%; left: 90%; animation-duration: 19s; animation-delay: -3.5s; font-size: 1.7rem; }
+        .estrella:nth-child(9) { top: 60%; left: 70%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
+        .estrella:nth-child(10) { top: 15%; left: 20%; animation-duration: 20s; animation-delay: -4.5s; font-size: 2.0rem; }
+        /* Añade más si quieres mayor densidad */
+        .estrella:nth-child(11) { top: 95%; left: 50%; animation-duration: 15s; animation-delay: -1s; font-size: 1.0rem; }
+        .estrella:nth-child(12) { top: 80%; left: 5%; animation-duration: 12s; animation-delay: -2s; font-size: 1.5rem; }
+        .estrella:nth-child(13) { top: 20%; left: 50%; animation-duration: 18s; animation-delay: -3s; font-size: 1.2rem; }
+        .estrella:nth-child(14) { top: 45%; left: 5%; animation-duration: 10s; animation-delay: -0.5s; font-size: 1.0rem; }
+        .estrella:nth-child(15) { top: 70%; left: 90%; animation-duration: 16s; animation-delay: -2.5s; font-size: 1.4rem; }
+        .estrella:nth-child(16) { top: 10%; left: 60%; animation-duration: 13s; animation-delay: -1.5s; font-size: 1.1rem; }
+        .estrella:nth-child(17) { top: 35%; left: 25%; animation-duration: 19s; animation-delay: -3.5s; font-size: 1.6rem; }
+        .estrella:nth-child(18) { top: 55%; left: 75%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
+        .estrella:nth-child(19) { top: 90%; left: 30%; animation-duration: 20s; animation-delay: -4.5s; font-size: 1.7rem; }
+        .estrella:nth-child(20) { top: 75%; left: 40%; animation-duration: 14s; animation-delay: -2s; font-size: 1.3rem; }
 
-    .volver-btn:hover {
-        background-color: #4cae4c;
-        transform: scale(1.1);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
 
-    /* Animación de corazones flotantes */
-    .corazones {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .corazon {
-      position: absolute;
-      color: rgba(0, 0, 0, 0.08); /* Corazones más sutiles en modo claro */
-      font-size: 1.5rem;
-      animation: flotar 10s linear infinite;
-    }
-    body.dark-mode .corazon {
-        color: rgba(135, 206, 235, 0.25); /* Azul claro suave en modo oscuro */
-    }
-
-    .corazon:nth-child(2n) { animation-duration: 12s; animation-delay: -2s; font-size: 1.2rem; }
-    .corazon:nth-child(3n) { animation-duration: 9s; animation-delay: -3s; font-size: 1.8rem; }
-    .corazon:nth-child(4n) { animation-duration: 11s; animation-delay: -1s; font-size: 1.0rem; }
-    .corazon:nth-child(5n) { animation-duration: 13s; animation-delay: -4s; font-size: 2.0rem; }
-    .corazon:nth-child(6n) { animation-duration: 8s; animation-delay: -5s; font-size: 1.3rem; }
-    .corazon:nth-child(7n) { animation-duration: 10.5s; animation-delay: -2.5s; font-size: 1.6rem; }
-    .corazon:nth-child(8n) { animation-duration: 9.5s; animation-delay: -1.5s; font-size: 1.1rem; }
-    .corazon:nth-child(9n) { animation-duration: 14s; animation-delay: -3.5s; font-size: 1.9rem; }
-    .corazon:nth-child(10n) { animation-duration: 7s; animation-delay: -0.5s; font-size: 1.4rem; }
-
-    @keyframes flotar {
-      from {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
-      25% { opacity: 1; }
-      75% { opacity: 1; }
-      to {
-        transform: translateY(-100vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* Footer */
-    footer {
-        text-align: center;
-        padding: 20px;
-        background: rgba(255,255,255,0.4);
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        margin-top: auto; /* Empuja el footer al final de la página */
-        box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
-        color: #555;
-    }
-    body.dark-mode footer {
-        background: rgba(0,0,0,0.6);
-        color: #e0e0e0;
-    }
-  </style>
+        @keyframes flotarEstrella {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            25% { opacity: 1; }
+            75% { opacity: 1; }
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="corazones">
-    <i class="fa-solid fa-heart corazon" style="top:10%; left:10%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:20%; left:80%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:60%; left:40%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:30%; left:60%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:50%; left:20%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:15%; left:50%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:70%; left:30%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:40%; left:70%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:80%; left:15%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:5%; left:85%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:25%; left:5%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:35%; left:90%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:75%; left:55%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:45%; left:35%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:85%; left:75%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:55%; left:5%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:5%; left:30%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:90%; left:45%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:65%; left:10%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:10%; left:70%;"></i>
-  </div>
+    <div class="estrellas">
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+        <i class="fa-solid fa-star estrella"></i>
+    </div>
 
-  <div class="content-wrapper">
-    <header>
-      <h1>¡Ánimo, mi amor!</h1>
-      <p>Sé que a veces los días pueden ser difíciles, pero siempre recuerda esto:</p>
-    </header>
+    <div class="container">
+        <h1>Un Mensaje Cuando las Cosas no Van Bien</h1>
+        <p>
+            Sé que a veces la vida nos presenta desafíos y momentos difíciles. Quiero que sepas que no estás sola. Eres fuerte, valiente y capaz de superar cualquier obstáculo. Recuerda los momentos felices y las personas que te quieren. Este video es para recordarte lo especial que eres.
+        </p>
+        
+        <div class="video-wrapper">
+            <iframe 
+                src="https://www.youtube.com/embed/VIDEO_ID_AQUI?autoplay=0&mute=0&controls=1" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        
+        <a href="index.html" class="volver-btn">
+            <i class="fa-solid fa-house"></i> Volver al inicio
+        </a>
+    </div>
 
-    <h2>Tienes una fuerza increíble</h2>
-    <p>
-      Cada desafío que has enfrentado te ha hecho más fuerte. Eres resiliente, capaz de superar cualquier obstáculo que se presente en tu camino. No subestimes la fortaleza que llevas dentro.
-    </p>
-    <img src="https://i.pinimg.com/originals/9f/c0/87/9fc08711c2106203d98c5d9472f3e8f8.gif" alt="Gatito animado" class="small-image">
+    <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
 
-    <h2>Eres amada, mucho más de lo que crees</h2>
-    <p>
-      No solo yo, sino muchas personas te quieren y se preocupan por ti. Eres importante en la vida de quienes te rodeamos. Tu presencia ilumina nuestros días.
-    </p>
-    <img src="https://gifdb.com/images/high/cute-bunny-with-heart-emoticon-q0pgyu5980753h91.gif" alt="Conejo animado" class="small-image">
+    <script>
+        const body = document.body;
+        const modoBtn = document.getElementById('modo-btn');
 
-    <h2>Los malos momentos son pasajeros</h2>
-    <p>
-      Así como las nubes grises dan paso al sol, las tristezas también se van. Date permiso para sentir, pero también para saber que la alegría volverá. Estoy aquí para ayudarte a encontrarla.
-    </p>
-    <img src="https://i.pinimg.com/originals/e3/3e/26/e33e26210f08a101f78f895c1a79f001.gif" alt="Oso Panda" class="small-image">
+        // Event listener para el botón de modo oscuro/claro
+        modoBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            // Guardar preferencia en localStorage
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('dark-mode-triste', 'true'); // Usar clave diferente para evitar conflicto con index.html
+                modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            } else {
+                localStorage.setItem('dark-mode-triste', 'false');
+                modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            }
+        });
 
-    <h2>Estoy siempre contigo</h2>
-    <p>
-      No importa la distancia, mi apoyo y mi amor están contigo en cada momento. Si necesitas hablar, llorar o simplemente un silencio acompañado, aquí estoy. Eres mi prioridad y mi felicidad.
-    </p>
-    <img src="https://media.tenor.com/W2d0D3p-Ld0AAAAj/good-morning-happy-day.gif" alt="Te quiero" class="small-image">
-
-  </div>
-
-  <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
-
-  <button class="volver-btn" onclick="location.href='index.html'">
-    <i class="fa-solid fa-house"></i> </button>
-
-  <script>
-    const body = document.body;
-    const modoBtn = document.getElementById('modo-btn');
-
-    // Event listener para el botón de modo oscuro/claro
-    modoBtn.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      // Actualiza el ícono del botón (luna o sol)
-      modoBtn.innerHTML = body.classList.contains('dark-mode') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
-    });
-
-    // Cargar preferencia de modo oscuro al cargar la página
-    document.addEventListener('DOMContentLoaded', () => {
-      if (localStorage.getItem('dark-mode') === 'true') {
-        body.classList.add('dark-mode');
-        modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-      } else {
-        modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-      }
-    });
-  </script>
+        // Cargar preferencia de modo oscuro al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('dark-mode-triste') === 'true') {
+                body.classList.add('dark-mode');
+                modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            } else {
+                modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            }
+        });
+    </script>
 </body>
 </html>
