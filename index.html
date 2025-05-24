@@ -7,7 +7,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* ... (todo el CSS permanece igual, no modificado) ... */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Quicksand', sans-serif;
       background: linear-gradient(135deg, #eac8ff, #d291fa);
@@ -15,45 +21,86 @@
       transition: background 0.3s, color 0.3s;
       overflow-x: hidden;
     }
+
     body.dark-mode {
       background: linear-gradient(135deg, #000000, #2e2e2e);
       color: #f0f0f0;
     }
+
     header {
       text-align: center;
       padding: 50px 20px 20px;
     }
+
     h1 {
       font-family: 'Pacifico', cursive;
       font-size: 3rem;
       color: #a259ff;
     }
-    p { margin-top: 10px; font-size: 1.2rem; }
-    .triste-btn, .modo-btn {
+
+    p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
+
+    .triste-btn {
       position: fixed;
       bottom: 20px;
+      left: 20px;
       background-color: #d291fa;
       border: none;
       color: white;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    .triste-btn {
-      left: 20px;
       font-size: 1rem;
       padding: 15px 25px;
       border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
+
     .modo-btn {
+      position: fixed;
+      bottom: 20px;
       right: 20px;
+      background-color: #d291fa;
+      border: none;
       border-radius: 50%;
       width: 50px;
       height: 50px;
       font-size: 20px;
+      color: white;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
+
+    .corazones {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .corazon {
+      position: absolute;
+      color: rgba(0, 0, 0, 0.2);
+      font-size: 1.5rem;
+      animation: flotar 10s linear infinite;
+    }
+
+    @keyframes flotar {
+      from {
+        transform: translateY(100vh) rotate(0deg);
+      }
+      to {
+        transform: translateY(-100vh) rotate(360deg);
+      }
+    }
+
     .reproductor {
       position: fixed;
       top: 20px;
@@ -66,154 +113,197 @@
       width: 260px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
-    .reproductor.dark-mode { background: rgba(0,0,0,0.3); }
+
+    .reproductor.dark-mode {
+      background: rgba(0,0,0,0.3);
+    }
+
     .reproductor img {
       width: 100px;
-      border-radius: 20px;
+      border-radius: 50%;
       margin-bottom: 10px;
+      animation: girar 5s linear infinite;
     }
-    .titulo { font-weight: bold; }
-    .barra input[type="range"] {
+
+    @keyframes girar {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .titulo {
+      font-weight: bold;
+    }
+
+    .barra {
       width: 100%;
-      accent-color: #a259ff;
+      margin: 10px 0;
     }
+
     .controles {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 10px;
       margin-top: 10px;
+      flex-wrap: wrap;
     }
+
     .controles button {
       background: none;
       border: none;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       cursor: pointer;
       color: inherit;
     }
+
     .volumen {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 5px;
     }
+
     #volRange {
       width: 70px;
-      display: none;
     }
-    .volumen:hover #volRange { display: block; }
-    .corazones-dark-mode {
-      display: none;
+
+    input[type="range"]::-webkit-slider-thumb {
+      background: #a259ff;
+      border-radius: 50%;
     }
-    body.dark-mode .corazones-dark-mode {
-      display: block;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+
+    section {
+      padding: 50px 20px;
+      text-align: center;
     }
-    .corazones-dark-mode span {
-      position: absolute;
-      font-size: 1.5rem;
-      opacity: 0.4;
-      animation: flotar 6s infinite ease-in-out;
+
+    section h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #a259ff;
     }
-    @keyframes flotar {
-      0%, 100% { transform: translateY(0); opacity: 0.4; }
-      50% { transform: translateY(-20px); opacity: 0.7; }
+
+    section p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
     }
   </style>
 </head>
 <body>
-  <div class="corazones-dark-mode" id="corazones">
-    <!-- corazones -->
-    <script>
-      document.write(Array(60).fill('<span style="left:' + Math.random()*100 + '%; top:' + Math.random()*100 + '%;">❤️</span>').join(''));
-    </script>
+  <div class="corazones">
+    <i class="fa-solid fa-heart corazon" style="top:10%; left:10%;"></i>
+    <i class="fa-solid fa-heart corazon" style="top:20%; left:80%;"></i>
+    <i class="fa-solid fa-heart corazon" style="top:60%; left:40%;"></i>
+    <i class="fa-solid fa-heart corazon" style="top:30%; left:60%;"></i>
+    <i class="fa-solid fa-heart corazon" style="top:50%; left:20%;"></i>
+    <!-- Corazones añadidos -->
+    <i class="fa-solid fa-heart corazon" style="top:15%; left:50%;"></i>
+    <i class="fa-solid fa-heart corazon" style="top:70%; left:30%;"></i>
+    <i class="fa-solid fa-heart corazon" style="top:40%; left:70%;"></i>
+    <i class="fa-solid fa-heart corazon" style="top:80%; left:15%;"></i>
+    <i class="fa-solid fa-heart corazon" style="top:5%; left:85%;"></i>
   </div>
 
   <header>
-    <h1>Feliz primer mes, mi amor</h1>
-    <p>Te hice esta página con mucho cariño.</p>
+    <h1>Feliz primer mes</h1>
+    <p>Gracias por este tiempo tan bonito mi amor <i class="fa-solid fa-heart"></i></p>
   </header>
 
-  <section>
-    <h2>Video especial</h2>
-    <video controls width="90%" style="max-width: 600px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.2);">
-      <source src="kiss.mp4" type="video/mp4">
-      Tu navegador no soporta el video.
-    </video>
+  <button class="triste-btn" onclick="location.href='triste.html'">Si te sientes triste, presiona aquí</button>
+
+  <section id="seccion1">
+    <h2>Cómo me enamoré de ti</h2>
+    <p>Desde el primer momento que hablamos, supe que eras especial. Cada día contigo ha sido una aventura hermosa.</p>
+  </section>
+  <section id="seccion2">
+    <h2>Poema que nunca te mostré</h2>
+    <p>Tu risa es mi melodía, tu mirada mi sol. Con cada latido, mi amor por ti es mayor.</p>
+  </section>
+  <section id="seccion4">
+    <h2>Mis promesas para ti</h2>
+    <p>Prometo cuidarte, escucharte, apoyarte y amarte en cada etapa de nuestras vidas.</p>
+  </section>
+  <section id="seccion5">
+    <h2>Frases que me recuerdan a ti</h2>
+    <p>“Contigo, todo es mejor.” – “Eres mi lugar favorito.” – “Cada día contigo es un regalo.”</p>
   </section>
 
   <div class="reproductor" id="reproductor">
-    <img src="portada.jpg" alt="Portada canción">
-    <div class="titulo">Tu canción especial</div>
-    <div class="barra"><input type="range" id="duracion" value="0"></div>
+    <img src="audio/cover.jpg" alt="Portada" id="portada">
+    <div class="titulo">Es Por Ti<br><small>Juanes</small></div>
+    <input class="barra" type="range" value="0" id="progress">
     <div class="controles">
-      <button id="play"><i class="fas fa-play"></i></button>
-      <button id="stop"><i class="fas fa-stop"></i></button>
+      <button id="play"><i class="fa-solid fa-play"></i></button>
+      <button id="stop"><i class="fa-solid fa-stop"></i></button>
       <div class="volumen">
-        <button id="mute"><i class="fas fa-volume-up"></i></button>
-        <input type="range" id="volRange" min="0" max="1" step="0.01" value="1">
+        <button id="mute"><i class="fa-solid fa-volume-high"></i></button>
+        <input type="range" min="0" max="1" step="0.01" value="1" id="volRange">
       </div>
     </div>
-    <audio id="audio" src="musica.mp3"></audio>
   </div>
 
-  <button class="modo-btn" id="modoBtn"><i class="fas fa-moon"></i></button>
+  <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
 
   <script>
-    const audio = document.getElementById('audio');
+    const body = document.body;
+    const modoBtn = document.getElementById('modo-btn');
+    const reproductor = document.getElementById('reproductor');
+    const portada = document.getElementById('portada');
     const playBtn = document.getElementById('play');
     const stopBtn = document.getElementById('stop');
     const muteBtn = document.getElementById('mute');
     const volRange = document.getElementById('volRange');
-    const duracion = document.getElementById('duracion');
-    const body = document.body;
-    const modoBtn = document.getElementById('modoBtn');
-    const reproductor = document.getElementById('reproductor');
+    const progress = document.getElementById('progress');
 
-    playBtn.onclick = () => {
-      if (audio.paused) {
-        audio.play();
-        playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-      } else {
-        audio.pause();
-        playBtn.innerHTML = '<i class="fas fa-play"></i>';
-      }
-    };
+    let audio = new Audio('audio/esporti.mp3');
+    let isMuted = false;
+    let isPlaying = false;
 
-    stopBtn.onclick = () => {
-      audio.pause();
-      audio.currentTime = 0;
-      playBtn.innerHTML = '<i class="fas fa-play"></i>';
-    };
-
-    muteBtn.onclick = () => {
-      audio.muted = !audio.muted;
-      muteBtn.innerHTML = audio.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
-    };
-
-    volRange.oninput = () => {
-      audio.volume = volRange.value;
-      audio.muted = false;
-      muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-    };
-
-    audio.ontimeupdate = () => {
-      duracion.value = audio.currentTime / audio.duration * 100 || 0;
-    };
-
-    duracion.oninput = () => {
-      audio.currentTime = duracion.value * audio.duration / 100;
-    };
-
-    modoBtn.onclick = () => {
+    modoBtn.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
       reproductor.classList.toggle('dark-mode');
-      modoBtn.innerHTML = body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    };
+      modoBtn.innerHTML = body.classList.contains('dark-mode') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+    });
+
+    playBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        audio.pause();
+        playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        portada.style.animationPlayState = 'paused';
+      } else {
+        audio.play();
+        playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        portada.style.animationPlayState = 'running';
+      }
+      isPlaying = !isPlaying;
+    });
+
+    stopBtn.addEventListener('click', () => {
+      audio.pause();
+      audio.currentTime = 0;
+      playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+      isPlaying = false;
+      portada.style.animationPlayState = 'paused';
+    });
+
+    muteBtn.addEventListener('click', () => {
+      isMuted = !isMuted;
+      audio.muted = isMuted;
+      muteBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
+    });
+
+    volRange.addEventListener('input', () => {
+      audio.volume = volRange.value;
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      progress.value = (audio.currentTime / audio.duration) * 100 || 0;
+    });
+
+    progress.addEventListener('input', () => {
+      audio.currentTime = (progress.value / 100) * audio.duration;
+    });
   </script>
 </body>
 </html>
