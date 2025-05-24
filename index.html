@@ -7,14 +7,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* Reset and base styles */
+    /* Restablecimiento y estilos base */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    /* Body styling with enhanced transitions */
+    /* Estilo del cuerpo con transiciones mejoradas */
     body {
       font-family: 'Quicksand', sans-serif;
       background: linear-gradient(135deg, #eac8ff, #d291fa);
@@ -23,30 +23,38 @@
       overflow-x: hidden;
     }
 
-    /* Dark mode styling */
+    /* Estilo del modo oscuro */
     body.dark-mode {
       background: linear-gradient(135deg, #000000, #2e2e2e);
       color: #f0f0f0;
     }
 
-    /* Mobile specific styles */
+    /* Estilos específicos para celular */
     body.celular {
       font-size: 1.1rem;
     }
 
     body.celular .reproductor {
-      width: 90%;
-      left: 5%;
-      right: 5%;
+      width: 180px; /* Reproductor más pequeño para celular */
+      padding: 15px; /* Ajuste del padding */
+      left: 50%; /* Centra el reproductor */
+      right: auto;
       top: auto;
       bottom: 20px;
-      transform: translateX(-50%); /* Center the player */
-      left: 50%; /* Center the player */
+      transform: translateX(-50%); /* Ajusta para el centrado real */
+    }
+
+    body.celular .reproductor img {
+      width: 70px; /* Portada más pequeña */
+    }
+
+    body.celular .reproductor .controles button {
+      font-size: 1.1rem; /* Iconos de control más pequeños */
     }
 
     body.celular .triste-btn {
-        width: calc(50% - 30px); /* Adjust width for mobile */
-        bottom: 80px; /* Move up to avoid overlapping with player */
+        width: calc(50% - 30px); /* Ajusta el ancho para móvil */
+        bottom: 80px; /* Sube para evitar superposición con el reproductor */
         left: 20px;
         right: auto;
         font-size: 0.9rem;
@@ -57,11 +65,11 @@
         width: 45px;
         height: 45px;
         font-size: 18px;
-        bottom: 80px; /* Move up to avoid overlapping with player */
+        bottom: 80px; /* Sube para alinearse con el botón triste */
         right: 20px;
     }
 
-    /* Header styling */
+    /* Estilo del encabezado */
     header {
       text-align: center;
       padding: 50px 20px 20px;
@@ -75,7 +83,7 @@
     }
 
     body.dark-mode h1 {
-        color: #ffcc00; /* A brighter color for dark mode */
+        color: #ffcc00; /* Un color más brillante para el modo oscuro */
     }
 
     p {
@@ -83,12 +91,12 @@
       font-size: 1.2rem;
     }
 
-    /* Button for "Si te sientes triste" */
+    /* Botón "Si te sientes triste" */
     .triste-btn {
       position: fixed;
       bottom: 20px;
       left: 20px;
-      background-color: #ff69b4; /* Soft pink */
+      background-color: #ff69b4; /* Rosa suave */
       border: none;
       color: white;
       font-size: 1rem;
@@ -100,16 +108,16 @@
     }
 
     .triste-btn:hover {
-      background-color: #ff1493; /* Deeper pink on hover */
+      background-color: #ff1493; /* Rosa más intenso al pasar el ratón */
       transform: translateY(-5px);
     }
 
-    /* Dark/Light mode toggle button */
+    /* Botón de cambio de modo oscuro/claro */
     .modo-btn {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #6a0dad; /* Royal Purple */
+      background-color: #6a0dad; /* Morado real */
       border: none;
       border-radius: 50%;
       width: 50px;
@@ -125,20 +133,20 @@
     }
 
     .modo-btn:hover {
-      background-color: #4b0082; /* Darker Royal Purple on hover */
-      transform: rotate(360deg); /* Smooth rotation */
+      background-color: #4b0082; /* Morado real más oscuro al pasar el ratón */
+      transform: rotate(360deg); /* Rotación suave */
     }
 
     body.dark-mode .modo-btn {
-        background-color: #ffd700; /* Gold for dark mode */
+        background-color: #ffd700; /* Dorado para el modo oscuro */
         color: #333;
     }
 
     body.dark-mode .modo-btn:hover {
-        background-color: #daa520; /* Darker gold on hover */
+        background-color: #daa520; /* Dorado más oscuro al pasar el ratón */
     }
 
-    /* Floating hearts animation */
+    /* Animación de corazones flotantes */
     .corazones {
       position: fixed;
       top: 0;
@@ -169,7 +177,7 @@
       }
     }
 
-    /* Music player styling */
+    /* Estilo del reproductor de música */
     .reproductor {
       position: fixed;
       top: 20px;
@@ -179,9 +187,9 @@
       border-radius: 20px;
       padding: 20px;
       text-align: center;
-      width: 260px;
+      width: 260px; /* Ancho por defecto para PC */
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      transition: background 0.7s ease-in-out, backdrop-filter 0.7s ease-in-out;
+      transition: background 0.7s ease-in-out, backdrop-filter 0.7s ease-in-out, transform 0.7s ease-in-out, left 0.7s ease-in-out, width 0.7s ease-in-out, padding 0.7s ease-in-out; /* Añadidos width y padding a la transición */
     }
 
     .reproductor.dark-mode {
@@ -189,11 +197,12 @@
     }
 
     .reproductor img {
-      width: 100px;
+      width: 100px; /* Ancho por defecto para PC */
       border-radius: 50%;
       margin-bottom: 10px;
       animation: girar 5s linear infinite;
       box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      transition: width 0.7s ease-in-out; /* Añadido width a la transición */
     }
 
     @keyframes girar {
@@ -239,10 +248,10 @@
     .controles button {
       background: none;
       border: none;
-      font-size: 1.5rem;
+      font-size: 1.5rem; /* Tamaño por defecto para PC */
       cursor: pointer;
       color: inherit;
-      transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+      transition: color 0.3s ease-in-out, transform 0.2s ease-in-out, font-size 0.7s ease-in-out; /* Añadido font-size a la transición */
     }
 
     .controles button:hover {
@@ -268,7 +277,7 @@
         background: #a259ff;
     }
 
-    /* Section styling */
+    /* Estilo de las secciones */
     section {
       padding: 50px 20px;
       text-align: center;
@@ -293,15 +302,15 @@
       font-size: 1.1rem;
     }
 
-    /* Welcome screen */
+    /* Pantalla de bienvenida */
     #pantalla-inicio {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: black;
-      color: white;
+      background: linear-gradient(135deg, #eac8ff, #d291fa); /* Fondo lila */
+      color: #333; /* Texto oscuro para contraste */
       z-index: 9999;
       display: flex;
       flex-direction: column;
@@ -310,13 +319,13 @@
       font-family: 'Quicksand', sans-serif;
       text-align: center;
       padding: 20px;
-      opacity: 1; /* Initial opacity */
-      transition: opacity 0.8s ease-in-out; /* Smooth fade out */
+      opacity: 1; /* Opacidad inicial */
+      transition: opacity 0.4s ease-in-out; /* Transición más rápida y suave */
     }
 
     #pantalla-inicio.hidden {
         opacity: 0;
-        pointer-events: none; /* Disable interaction when hidden */
+        pointer-events: none; /* Deshabilita la interacción cuando está oculto */
     }
 
     .dispositivo-opciones {
@@ -349,7 +358,12 @@
     .dispositivo-etiqueta {
       margin-top: 8px;
       font-size: 1rem;
-      color: white;
+      color: #333; /* Texto oscuro para contraste contra el lila */
+    }
+
+    /* Contenedor principal del contenido para la transición */
+    #contenido-principal {
+        transition: opacity 0.4s ease-in-out; /* Transición de aparición más rápida */
     }
   </style>
 </head>
@@ -446,7 +460,7 @@
     modoBtn.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
       reproductor.classList.toggle('dark-mode');
-      // Update button icon and apply transition for color change
+      // Actualiza el ícono del botón y aplica la transición para el cambio de color
       modoBtn.innerHTML = body.classList.contains('dark-mode') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
     });
 
@@ -490,21 +504,22 @@
     });
 
     function seleccionarDispositivo(tipo) {
-      pantallaInicio.classList.add('hidden'); // Start fade out of welcome screen
+      pantallaInicio.classList.add('hidden'); // Inicia el desvanecimiento de la pantalla de bienvenida
 
       setTimeout(() => {
-        pantallaInicio.style.display = 'none'; // Hide after fade out
-        contenidoPrincipal.style.display = 'block'; // Show main content
-        setTimeout(() => {
-            contenidoPrincipal.style.opacity = '1'; // Fade in main content
-        }, 50); // Small delay to ensure display:block takes effect
+        pantallaInicio.style.display = 'none'; // Oculta después del desvanecimiento
 
         if (tipo === 'celular') {
           document.body.classList.add('celular');
         } else {
           document.body.classList.remove('celular');
         }
-      }, 800); // Matches the transition duration for pantallaInicio.hidden
+
+        contenidoPrincipal.style.display = 'block'; // Muestra el contenido principal
+        setTimeout(() => {
+            contenidoPrincipal.style.opacity = '1'; // Desvanece el contenido principal
+        }, 50); // Pequeño retraso para asegurar que display:block surta efecto
+      }, 400); // Coincide con la duración de la transición de 0.4s
     }
   </script>
 </div>
