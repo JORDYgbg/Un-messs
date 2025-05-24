@@ -85,9 +85,8 @@
 
         .volver-btn, .modo-btn {
             border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-size: 1.5rem;
+            border-radius: 25px; /* Para el botón principal */
+            font-size: 1.5rem; /* Para el botón principal */
             cursor: pointer;
             text-decoration: none;
             transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
@@ -95,10 +94,13 @@
             align-items: center;
             gap: 10px;
             box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+            /* Aseguramos que la tipografía se aplique también al botón */
+            font-family: 'Dancing Script', cursive; 
         }
         .volver-btn {
-            background-color: #4caf50; /* Verde alegre para el botón */
+            background-color: #4caf50; /* Color verde alegre para el botón */
             color: white;
+            padding: 15px 30px; /* Padding específico para este botón */
             margin-top: 20px; /* Espacio superior */
         }
         .volver-btn:hover {
@@ -113,10 +115,10 @@
             bottom: 25px;
             right: 25px;
             background-color: #9370db; /* Lila más suave */
-            border-radius: 50%;
-            width: 55px;
-            height: 55px;
-            font-size: 22px;
+            border-radius: 50%; /* Lo hacemos circular */
+            width: 55px; /* Ancho fijo */
+            height: 55px; /* Altura fija */
+            font-size: 22px; /* Tamaño del ícono */
             color: white;
             padding: 0; /* Quita el padding si usas width/height fijo */
             display: flex;
@@ -173,7 +175,7 @@
         .estrella:nth-child(8) { top: 40%; left: 90%; animation-duration: 19s; animation-delay: -3.5s; font-size: 1.7rem; }
         .estrella:nth-child(9) { top: 60%; left: 70%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
         .estrella:nth-child(10) { top: 15%; left: 20%; animation-duration: 20s; animation-delay: -4.5s; font-size: 2.0rem; }
-        /* Añade más si quieres mayor densidad */
+        /* Más estrellas para mayor densidad */
         .estrella:nth-child(11) { top: 95%; left: 50%; animation-duration: 15s; animation-delay: -1s; font-size: 1.0rem; }
         .estrella:nth-child(12) { top: 80%; left: 5%; animation-duration: 12s; animation-delay: -2s; font-size: 1.5rem; }
         .estrella:nth-child(13) { top: 20%; left: 50%; animation-duration: 18s; animation-delay: -3s; font-size: 1.2rem; }
@@ -184,7 +186,6 @@
         .estrella:nth-child(18) { top: 55%; left: 75%; animation-duration: 11s; animation-delay: -0.8s; font-size: 0.9rem; }
         .estrella:nth-child(19) { top: 90%; left: 30%; animation-duration: 20s; animation-delay: -4.5s; font-size: 1.7rem; }
         .estrella:nth-child(20) { top: 75%; left: 40%; animation-duration: 14s; animation-delay: -2s; font-size: 1.3rem; }
-
 
         @keyframes flotarEstrella {
             from {
@@ -232,7 +233,7 @@
         
         <div class="video-wrapper">
             <iframe 
-                src="https://www.youtube.com/embed/VIDEO_ID_AQUI?autoplay=0&mute=0&controls=1" 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
                 title="YouTube video player" 
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -241,8 +242,8 @@
             </iframe>
         </div>
         
-        <a href="index.html" class="volver-btn">
-            <i class="fa-solid fa-house"></i> Volver al inicio
+        <a href="index.html#seccion1" class="volver-btn">
+            <i class="fa-solid fa-house"></i> Volver a "Feliz primer mes"
         </a>
     </div>
 
@@ -255,9 +256,9 @@
         // Event listener para el botón de modo oscuro/claro
         modoBtn.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
-            // Guardar preferencia en localStorage
+            // Guardar preferencia en localStorage (clave diferente para evitar conflicto con index.html)
             if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('dark-mode-triste', 'true'); // Usar clave diferente para evitar conflicto con index.html
+                localStorage.setItem('dark-mode-triste', 'true'); 
                 modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
             } else {
                 localStorage.setItem('dark-mode-triste', 'false');
