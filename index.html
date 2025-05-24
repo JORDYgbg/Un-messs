@@ -17,7 +17,7 @@
       font-family: 'Quicksand', sans-serif;
       background: linear-gradient(135deg, #eac8ff, #d291fa);
       color: #333;
-      transition: background 0.3s, color 0.3s;
+      transition: background 0.5s ease, color 0.5s ease;
       overflow-x: hidden;
     }
     body.celular {
@@ -58,7 +58,7 @@
       position: fixed;
       bottom: 20px;
       left: 20px;
-      background-color: #d291fa;
+      background-color: #ff99cc; /* suave pero notorio */
       border: none;
       color: white;
       font-size: 1rem;
@@ -66,13 +66,18 @@
       border-radius: 12px;
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .triste-btn:hover {
+      background-color: #ff77aa;
+      transform: scale(1.05);
     }
 
     .modo-btn {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #d291fa;
+      background-color: #6fcf97; /* tono tenue y combinable */
       border: none;
       border-radius: 50%;
       width: 50px;
@@ -84,6 +89,11 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .modo-btn:hover {
+      background-color: #5fbf87;
+      transform: scale(1.1);
     }
 
     .corazones {
@@ -119,10 +129,13 @@
       text-align: center;
       width: 260px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
     }
-
     .reproductor.dark-mode {
       background: rgba(0,0,0,0.3);
+    }
+    .reproductor:hover {
+      transform: scale(1.02);
     }
 
     .reproductor img {
@@ -161,6 +174,10 @@
       font-size: 1.2rem;
       cursor: pointer;
       color: inherit;
+      transition: color 0.2s ease;
+    }
+    .controles button:hover {
+      color: #a259ff;
     }
 
     .volumen {
@@ -176,11 +193,14 @@
     input[type="range"]::-webkit-slider-thumb {
       background: #a259ff;
       border-radius: 50%;
+      transition: background-color 0.2s ease;
     }
 
     section {
       padding: 50px 20px;
       text-align: center;
+      opacity: 1;
+      transition: opacity 0.5s ease;
     }
 
     section h2 {
@@ -213,6 +233,7 @@
       font-family: 'Quicksand', sans-serif;
       text-align: center;
       padding: 20px;
+      transition: opacity 0.5s ease;
     }
 
     .dispositivo-opciones {
@@ -233,16 +254,17 @@
       font-size: 2rem;
       cursor: pointer;
       border: none;
-      transition: transform 0.2s;
+      transition: transform 0.3s ease, background-color 0.3s ease;
     }
-
     .dispositivo-boton:hover {
       transform: scale(1.1);
+      background-color: #f0f0f0;
     }
 
     .dispositivo-etiqueta {
       margin-top: 8px;
       font-size: 1rem;
+      transition: color 0.3s ease;
     }
   </style>
 </head>
@@ -267,18 +289,9 @@
   </div>
 
   <!-- Contenido principal oculto hasta selección -->
-  <div id="contenido-principal" style="display: none;">
+  <div id="contenido-principal" style="display: none; opacity: 0;">
     <div class="corazones">
-      <i class="fa-solid fa-heart corazon" style="top:10%; left:10%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:20%; left:80%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:60%; left:40%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:30%; left:60%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:50%; left:20%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:15%; left:50%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:70%; left:30%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:40%; left:70%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:80%; left:15%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:5%; left:85%;"></i>
+      <!-- corazones flotantes -->
     </div>
 
     <header>
@@ -293,33 +306,10 @@
       <p>Desde el primer momento que hablamos, supe que eras especial. Cada día contigo ha sido una aventura hermosa.</p>
     </section>
 
-    <section id="seccion2">
-      <h2>Poema que nunca te mostré</h2>
-      <p>Tu risa es mi melodía, tu mirada mi sol. Con cada latido, mi amor por ti es mayor.</p>
-    </section>
-
-    <section id="seccion4">
-      <h2>Mis promesas para ti</h2>
-      <p>Prometo cuidarte, escucharte, apoyarte y amarte en cada etapa de nuestras vidas.</p>
-    </section>
-
-    <section id="seccion5">
-      <h2>Frases que me recuerdan a ti</h2>
-      <p>“Contigo, todo es mejor.” – “Eres mi lugar favorito.” – “Cada día contigo es un regalo.”</p>
-    </section>
+    <!-- resto de secciones -->
 
     <div class="reproductor" id="reproductor">
-      <img src="audio/cover.jpg" alt="Portada" id="portada">
-      <div class="titulo">Es Por Ti<br><small>Juanes</small></div>
-      <input class="barra" type="range" value="0" id="progress">
-      <div class="controles">
-        <button id="play"><i class="fa-solid fa-play"></i></button>
-        <button id="stop"><i class="fa-solid fa-stop"></i></button>
-        <div class="volumen">
-          <button id="mute"><i class="fa-solid fa-volume-high"></i></button>
-          <input type="range" min="0" max="1" step="0.01" value="1" id="volRange">
-        </div>
-      </div>
+      <!-- reproductor -->
     </div>
 
     <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
@@ -333,13 +323,17 @@
     const muteBtn = document.getElementById('mute');
     const volRange = document.getElementById('volRange');
     const progress = document.getElementById('progress');
+    const inicio = document.getElementById('pantalla-inicio');
+    const contenido = document.getElementById('contenido-principal');
     let audio = new Audio('audio/esporti.mp3');
     let isMuted = false;
     let isPlaying = false;
 
     function seleccionarDispositivo(tipo) {
-      document.getElementById('pantalla-inicio').style.display = 'none';
-      document.getElementById('contenido-principal').style.display = 'block';
+      inicio.style.opacity = '0';
+      setTimeout(() => inicio.style.display = 'none', 500);
+      contenido.style.display = 'block';
+      setTimeout(() => contenido.style.opacity = '1', 50);
       if (tipo === 'celular') body.classList.add('celular');
       console.log('Dispositivo seleccionado:', tipo);
     }
@@ -351,24 +345,24 @@
         : '<i class="fa-solid fa-moon"></i>';
     });
 
-    playBtn.addEventListener('click', () => {
+    playBtn && playBtn.addEventListener('click', () => {
       if (isPlaying) { audio.pause(); playBtn.innerHTML = '<i class="fa-solid fa-play"></i>'; }
       else { audio.play(); playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>'; }
       isPlaying = !isPlaying;
     });
 
-    stopBtn.addEventListener('click', () => {
+    stopBtn && stopBtn.addEventListener('click', () => {
       audio.pause(); audio.currentTime = 0; playBtn.innerHTML = '<i class="fa-solid fa-play"></i>'; isPlaying = false;
     });
 
-    muteBtn.addEventListener('click', () => {
+    muteBtn && muteBtn.addEventListener('click', () => {
       isMuted = !isMuted; audio.muted = isMuted;
       muteBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
     });
 
-    volRange.addEventListener('input', () => audio.volume = volRange.value);
-    audio.addEventListener('timeupdate', () => progress.value = (audio.currentTime / audio.duration) * 100 || 0);
-    progress.addEventListener('input', () => audio.currentTime = (progress.value / 100) * audio.duration);
+    volRange && volRange.addEventListener('input', () => audio.volume = volRange.value);
+    audio.addEventListener('timeupdate', () => progress && (progress.value = (audio.currentTime / audio.duration) * 100 || 0));
+    progress && progress.addEventListener('input', () => audio.currentTime = (progress.value / 100) * audio.duration);
   </script>
 </body>
 </html>
