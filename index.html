@@ -7,20 +7,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* ... (todo el CSS permanece igual, no modificado) ... */
+    /* Reset and base styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* Body styling with enhanced transitions */
     body {
       font-family: 'Quicksand', sans-serif;
       background: linear-gradient(135deg, #eac8ff, #d291fa);
       color: #333;
-      transition: background 0.5s ease-in-out, color 0.5s ease-in-out, font-size 0.5s ease-in-out; /* Transición para el cambio de dispositivo */
+      transition: background 0.7s ease-in-out, color 0.7s ease-in-out, font-size 0.7s ease-in-out;
       overflow-x: hidden;
     }
+
+    /* Dark mode styling */
+    body.dark-mode {
+      background: linear-gradient(135deg, #000000, #2e2e2e);
+      color: #f0f0f0;
+    }
+
+    /* Mobile specific styles */
     body.celular {
       font-size: 1.1rem;
     }
@@ -31,14 +40,28 @@
       right: 5%;
       top: auto;
       bottom: 20px;
-      transform: none;
+      transform: translateX(-50%); /* Center the player */
+      left: 50%; /* Center the player */
     }
 
-    body.dark-mode {
-      background: linear-gradient(135deg, #000000, #2e2e2e);
-      color: #f0f0f0;
+    body.celular .triste-btn {
+        width: calc(50% - 30px); /* Adjust width for mobile */
+        bottom: 80px; /* Move up to avoid overlapping with player */
+        left: 20px;
+        right: auto;
+        font-size: 0.9rem;
+        padding: 12px 15px;
     }
 
+    body.celular .modo-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+        bottom: 80px; /* Move up to avoid overlapping with player */
+        right: 20px;
+    }
+
+    /* Header styling */
     header {
       text-align: center;
       padding: 50px 20px 20px;
@@ -48,6 +71,11 @@
       font-family: 'Pacifico', cursive;
       font-size: 3rem;
       color: #a259ff;
+      transition: color 0.7s ease-in-out;
+    }
+
+    body.dark-mode h1 {
+        color: #ffcc00; /* A brighter color for dark mode */
     }
 
     p {
@@ -55,11 +83,12 @@
       font-size: 1.2rem;
     }
 
+    /* Button for "Si te sientes triste" */
     .triste-btn {
       position: fixed;
       bottom: 20px;
       left: 20px;
-      background-color: #ff69b4; /* Color rosa llamativo */
+      background-color: #ff69b4; /* Soft pink */
       border: none;
       color: white;
       font-size: 1rem;
@@ -67,19 +96,20 @@
       border-radius: 12px;
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transición */
+      transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out;
     }
 
     .triste-btn:hover {
-      background-color: #ff1493; /* Rosa más oscuro al pasar el ratón */
-      transform: translateY(-3px);
+      background-color: #ff1493; /* Deeper pink on hover */
+      transform: translateY(-5px);
     }
 
+    /* Dark/Light mode toggle button */
     .modo-btn {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #6a0dad; /* Color morado oscuro */
+      background-color: #6a0dad; /* Royal Purple */
       border: none;
       border-radius: 50%;
       width: 50px;
@@ -91,14 +121,24 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transición */
+      transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, color 0.4s ease-in-out;
     }
 
     .modo-btn:hover {
-      background-color: #4b0082; /* Morado aún más oscuro al pasar el ratón */
-      transform: rotate(30deg);
+      background-color: #4b0082; /* Darker Royal Purple on hover */
+      transform: rotate(360deg); /* Smooth rotation */
     }
 
+    body.dark-mode .modo-btn {
+        background-color: #ffd700; /* Gold for dark mode */
+        color: #333;
+    }
+
+    body.dark-mode .modo-btn:hover {
+        background-color: #daa520; /* Darker gold on hover */
+    }
+
+    /* Floating hearts animation */
     .corazones {
       position: fixed;
       top: 0;
@@ -119,12 +159,17 @@
     @keyframes flotar {
       from {
         transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
       }
+      25% { opacity: 1; }
+      75% { opacity: 1; }
       to {
         transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
       }
     }
 
+    /* Music player styling */
     .reproductor {
       position: fixed;
       top: 20px;
@@ -136,11 +181,11 @@
       text-align: center;
       width: 260px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      transition: background 0.5s ease-in-out; /* Transición */
+      transition: background 0.7s ease-in-out, backdrop-filter 0.7s ease-in-out;
     }
 
     .reproductor.dark-mode {
-      background: rgba(0,0,0,0.3);
+      background: rgba(0,0,0,0.4);
     }
 
     .reproductor img {
@@ -148,6 +193,7 @@
       border-radius: 50%;
       margin-bottom: 10px;
       animation: girar 5s linear infinite;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
     }
 
     @keyframes girar {
@@ -157,18 +203,35 @@
 
     .titulo {
       font-weight: bold;
+      color: inherit;
     }
 
     .barra {
       width: 100%;
       margin: 10px 0;
+      -webkit-appearance: none;
+      height: 6px;
+      background: #ccc;
+      border-radius: 3px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .barra::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #a259ff;
+      cursor: pointer;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
     }
 
     .controles {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 10px;
+      gap: 15px;
       margin-top: 10px;
       flex-wrap: wrap;
     }
@@ -176,10 +239,20 @@
     .controles button {
       background: none;
       border: none;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       cursor: pointer;
       color: inherit;
+      transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
     }
+
+    .controles button:hover {
+        color: #a259ff;
+        transform: scale(1.1);
+    }
+    body.dark-mode .controles button:hover {
+        color: #ffcc00;
+    }
+
 
     .volumen {
       display: flex;
@@ -189,16 +262,17 @@
 
     #volRange {
       width: 70px;
+      background: #ccc;
+    }
+    #volRange::-webkit-slider-thumb {
+        background: #a259ff;
     }
 
-    input[type="range"]::-webkit-slider-thumb {
-      background: #a259ff;
-      border-radius: 50%;
-    }
-
+    /* Section styling */
     section {
       padding: 50px 20px;
       text-align: center;
+      transition: background 0.7s ease-in-out, color 0.7s ease-in-out;
     }
 
     section h2 {
@@ -206,6 +280,11 @@
       font-size: 2rem;
       margin-bottom: 20px;
       color: #a259ff;
+      transition: color 0.7s ease-in-out;
+    }
+
+    body.dark-mode section h2 {
+        color: #ffcc00;
     }
 
     section p {
@@ -213,7 +292,8 @@
       margin: 0 auto;
       font-size: 1.1rem;
     }
-    /* Pantalla de inicio */
+
+    /* Welcome screen */
     #pantalla-inicio {
       position: fixed;
       top: 0;
@@ -230,7 +310,13 @@
       font-family: 'Quicksand', sans-serif;
       text-align: center;
       padding: 20px;
-      transition: opacity 0.5s ease-in-out; /* Transición para la pantalla de inicio */
+      opacity: 1; /* Initial opacity */
+      transition: opacity 0.8s ease-in-out; /* Smooth fade out */
+    }
+
+    #pantalla-inicio.hidden {
+        opacity: 0;
+        pointer-events: none; /* Disable interaction when hidden */
     }
 
     .dispositivo-opciones {
@@ -251,19 +337,20 @@
       font-size: 2rem;
       cursor: pointer;
       border: none;
-      transition: transform 0.2s, background-color 0.3s ease-in-out; /* Transición */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
     }
 
     .dispositivo-boton:hover {
-      transform: scale(1.1);
+      transform: scale(1.15);
       background-color: #f0f0f0;
     }
 
     .dispositivo-etiqueta {
       margin-top: 8px;
       font-size: 1rem;
+      color: white;
     }
-
   </style>
 </head>
 <body>
@@ -285,7 +372,7 @@
   </div>
 </div>
 
-<div id="contenido-principal" style="display: none;">
+<div id="contenido-principal" style="opacity: 0; display: none;">
   <div class="corazones">
     <i class="fa-solid fa-heart corazon" style="top:10%; left:10%;"></i>
     <i class="fa-solid fa-heart corazon" style="top:20%; left:80%;"></i>
@@ -359,6 +446,7 @@
     modoBtn.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
       reproductor.classList.toggle('dark-mode');
+      // Update button icon and apply transition for color change
       modoBtn.innerHTML = body.classList.contains('dark-mode') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
     });
 
@@ -402,18 +490,21 @@
     });
 
     function seleccionarDispositivo(tipo) {
-      pantallaInicio.style.opacity = '0';
+      pantallaInicio.classList.add('hidden'); // Start fade out of welcome screen
+
       setTimeout(() => {
-        pantallaInicio.style.display = 'none';
-        contenidoPrincipal.style.display = 'block';
-        contenidoPrincipal.style.opacity = '1'; /* Para la transición de aparición */
+        pantallaInicio.style.display = 'none'; // Hide after fade out
+        contenidoPrincipal.style.display = 'block'; // Show main content
+        setTimeout(() => {
+            contenidoPrincipal.style.opacity = '1'; // Fade in main content
+        }, 50); // Small delay to ensure display:block takes effect
 
         if (tipo === 'celular') {
           document.body.classList.add('celular');
         } else {
           document.body.classList.remove('celular');
         }
-      }, 500); // Coincide con la duración de la transición
+      }, 800); // Matches the transition duration for pantallaInicio.hidden
     }
   </script>
 </div>
