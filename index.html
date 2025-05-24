@@ -7,8 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    
-    /* ... (todo el CSS permanece igual, no modificado) ... */
     * {
       margin: 0;
       padding: 0;
@@ -23,17 +21,17 @@
       overflow-x: hidden;
     }
     body.celular {
-  font-size: 1.1rem;
-}
+      font-size: 1.1rem;
+    }
 
-body.celular .reproductor {
-  width: 90%;
-  left: 5%;
-  right: 5%;
-  top: auto;
-  bottom: 20px;
-  transform: none;
-}
+    body.celular .reproductor {
+      width: 90%;
+      left: 5%;
+      right: 5%;
+      top: auto;
+      bottom: 20px;
+      transform: none;
+    }
 
     body.dark-mode {
       background: linear-gradient(135deg, #000000, #2e2e2e);
@@ -106,12 +104,8 @@ body.celular .reproductor {
     }
 
     @keyframes flotar {
-      from {
-        transform: translateY(100vh) rotate(0deg);
-      }
-      to {
-        transform: translateY(-100vh) rotate(360deg);
-      }
+      from { transform: translateY(100vh) rotate(0deg); }
+      to { transform: translateY(-100vh) rotate(360deg); }
     }
 
     .reproductor {
@@ -201,208 +195,180 @@ body.celular .reproductor {
       margin: 0 auto;
       font-size: 1.1rem;
     }
+
     /* Pantalla de inicio */
-#pantalla-inicio {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  color: white;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Quicksand', sans-serif;
-  text-align: center;
-  padding: 20px;
-}
+    #pantalla-inicio {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      color: white;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Quicksand', sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
 
-.dispositivo-opciones {
-  display: flex;
-  gap: 40px;
-  margin-top: 30px;
-}
+    .dispositivo-opciones {
+      display: flex;
+      gap: 40px;
+      margin-top: 30px;
+    }
 
-.dispositivo-boton {
-  background: white;
-  color: black;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  cursor: pointer;
-  border: none;
-  transition: transform 0.2s;
-}
+    .dispositivo-boton {
+      background: white;
+      color: black;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s;
+    }
 
-.dispositivo-boton:hover {
-  transform: scale(1.1);
-}
+    .dispositivo-boton:hover {
+      transform: scale(1.1);
+    }
 
-.dispositivo-etiqueta {
-  margin-top: 8px;
-  font-size: 1rem;
-}
-
+    .dispositivo-etiqueta {
+      margin-top: 8px;
+      font-size: 1rem;
+    }
   </style>
 </head>
 <body>
-     <!-- Pantalla de bienvenida -->
-<div id="pantalla-inicio">
-  <h2>¿En dónde estás viendo esto?</h2>
-<div id="contenido-principal" style="display: none;">
-  <!-- Todo tu contenido: corazones, header, reproductor, secciones, etc. -->
-  <div class="dispositivo-opciones">
-    <div>
-      <button class="dispositivo-boton" onclick="seleccionarDispositivo('celular')">
-        <i class="fa-solid fa-mobile-screen"></i>
-      </button>
-      <div class="dispositivo-etiqueta">Celular</div>
-    </div>
-    <div>
-      <button class="dispositivo-boton" onclick="seleccionarDispositivo('pc')">
-        <i class="fa-solid fa-desktop"></i>
-      </button>
-      <div class="dispositivo-etiqueta">PC</div>
-    </div>
-  </div>
-</div>
-
-  <div class="corazones">
-    <i class="fa-solid fa-heart corazon" style="top:10%; left:10%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:20%; left:80%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:60%; left:40%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:30%; left:60%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:50%; left:20%;"></i>
-    <!-- Corazones añadidos -->
-    <i class="fa-solid fa-heart corazon" style="top:15%; left:50%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:70%; left:30%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:40%; left:70%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:80%; left:15%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:5%; left:85%;"></i>
-  </div>
-
-  <header>
-    <h1>Feliz primer mes</h1>
-    <p>Gracias por este tiempo tan bonito mi amor <i class="fa-solid fa-heart"></i></p>
-  </header>
-
-  <button class="triste-btn" onclick="location.href='triste.html'">Si te sientes triste, presiona aquí</button>
-
-  <section id="seccion1">
-    <h2>Cómo me enamoré de ti</h2>
-    <p>Desde el primer momento que hablamos, supe que eras especial. Cada día contigo ha sido una aventura hermosa.</p>
-  </section>
-  <section id="seccion2">
-    <h2>Poema que nunca te mostré</h2>
-    <p>Tu risa es mi melodía, tu mirada mi sol. Con cada latido, mi amor por ti es mayor.</p>
-  </section>
-  <section id="seccion4">
-    <h2>Mis promesas para ti</h2>
-    <p>Prometo cuidarte, escucharte, apoyarte y amarte en cada etapa de nuestras vidas.</p>
-  </section>
-  <section id="seccion5">
-    <h2>Frases que me recuerdan a ti</h2>
-    <p>“Contigo, todo es mejor.” – “Eres mi lugar favorito.” – “Cada día contigo es un regalo.”</p>
-  </section>
-
-  <div class="reproductor" id="reproductor">
-    <img src="audio/cover.jpg" alt="Portada" id="portada">
-    <div class="titulo">Es Por Ti<br><small>Juanes</small></div>
-    <input class="barra" type="range" value="0" id="progress">
-    <div class="controles">
-      <button id="play"><i class="fa-solid fa-play"></i></button>
-      <button id="stop"><i class="fa-solid fa-stop"></i></button>
-      <div class="volumen">
-        <button id="mute"><i class="fa-solid fa-volume-high"></i></button>
-        <input type="range" min="0" max="1" step="0.01" value="1" id="volRange">
+  <!-- Pantalla de bienvenida -->
+  <div id="pantalla-inicio">
+    <h2>¿En dónde estás viendo esto?</h2>
+    <div class="dispositivo-opciones">
+      <div>
+        <button class="dispositivo-boton" onclick="seleccionarDispositivo('celular')">
+          <i class="fa-solid fa-mobile-screen"></i>
+        </button>
+        <div class="dispositivo-etiqueta">Celular</div>
+      </div>
+      <div>
+        <button class="dispositivo-boton" onclick="seleccionarDispositivo('pc')">
+          <i class="fa-solid fa-desktop"></i>
+        </button>
+        <div class="dispositivo-etiqueta">PC</div>
       </div>
     </div>
   </div>
 
-  <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
+  <!-- Contenido principal oculto hasta selección -->
+  <div id="contenido-principal" style="display: none;">
+    <div class="corazones">
+      <i class="fa-solid fa-heart corazon" style="top:10%; left:10%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:20%; left:80%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:60%; left:40%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:30%; left:60%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:50%; left:20%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:15%; left:50%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:70%; left:30%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:40%; left:70%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:80%; left:15%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:5%; left:85%;"></i>
+    </div>
+
+    <header>
+      <h1>Feliz primer mes</h1>
+      <p>Gracias por este tiempo tan bonito mi amor <i class="fa-solid fa-heart"></i></p>
+    </header>
+
+    <button class="triste-btn" onclick="location.href='triste.html'">Si te sientes triste, presiona aquí</button>
+
+    <section id="seccion1">
+      <h2>Cómo me enamoré de ti</h2>
+      <p>Desde el primer momento que hablamos, supe que eras especial. Cada día contigo ha sido una aventura hermosa.</p>
+    </section>
+
+    <section id="seccion2">
+      <h2>Poema que nunca te mostré</h2>
+      <p>Tu risa es mi melodía, tu mirada mi sol. Con cada latido, mi amor por ti es mayor.</p>
+    </section>
+
+    <section id="seccion4">
+      <h2>Mis promesas para ti</h2>
+      <p>Prometo cuidarte, escucharte, apoyarte y amarte en cada etapa de nuestras vidas.</p>
+    </section>
+
+    <section id="seccion5">
+      <h2>Frases que me recuerdan a ti</h2>
+      <p>“Contigo, todo es mejor.” – “Eres mi lugar favorito.” – “Cada día contigo es un regalo.”</p>
+    </section>
+
+    <div class="reproductor" id="reproductor">
+      <img src="audio/cover.jpg" alt="Portada" id="portada">
+      <div class="titulo">Es Por Ti<br><small>Juanes</small></div>
+      <input class="barra" type="range" value="0" id="progress">
+      <div class="controles">
+        <button id="play"><i class="fa-solid fa-play"></i></button>
+        <button id="stop"><i class="fa-solid fa-stop"></i></button>
+        <div class="volumen">
+          <button id="mute"><i class="fa-solid fa-volume-high"></i></button>
+          <input type="range" min="0" max="1" step="0.01" value="1" id="volRange">
+        </div>
+      </div>
+    </div>
+
+    <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
+  </div>
 
   <script>
     const body = document.body;
     const modoBtn = document.getElementById('modo-btn');
-    const reproductor = document.getElementById('reproductor');
-    const portada = document.getElementById('portada');
     const playBtn = document.getElementById('play');
     const stopBtn = document.getElementById('stop');
     const muteBtn = document.getElementById('mute');
     const volRange = document.getElementById('volRange');
     const progress = document.getElementById('progress');
-
     let audio = new Audio('audio/esporti.mp3');
     let isMuted = false;
     let isPlaying = false;
 
+    function seleccionarDispositivo(tipo) {
+      document.getElementById('pantalla-inicio').style.display = 'none';
+      document.getElementById('contenido-principal').style.display = 'block';
+      if (tipo === 'celular') body.classList.add('celular');
+      console.log('Dispositivo seleccionado:', tipo);
+    }
+
     modoBtn.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
-      reproductor.classList.toggle('dark-mode');
-      modoBtn.innerHTML = body.classList.contains('dark-mode') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+      modoBtn.innerHTML = body.classList.contains('dark-mode')
+        ? '<i class="fa-solid fa-sun"></i>'
+        : '<i class="fa-solid fa-moon"></i>';
     });
 
     playBtn.addEventListener('click', () => {
-      if (isPlaying) {
-        audio.pause();
-        playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-        portada.style.animationPlayState = 'paused';
-      } else {
-        audio.play();
-        playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        portada.style.animationPlayState = 'running';
-      }
+      if (isPlaying) { audio.pause(); playBtn.innerHTML = '<i class="fa-solid fa-play"></i>'; }
+      else { audio.play(); playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>'; }
       isPlaying = !isPlaying;
     });
 
     stopBtn.addEventListener('click', () => {
-      audio.pause();
-      audio.currentTime = 0;
-      playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-      isPlaying = false;
-      portada.style.animationPlayState = 'paused';
+      audio.pause(); audio.currentTime = 0; playBtn.innerHTML = '<i class="fa-solid fa-play"></i>'; isPlaying = false;
     });
 
     muteBtn.addEventListener('click', () => {
-      isMuted = !isMuted;
-      audio.muted = isMuted;
+      isMuted = !isMuted; audio.muted = isMuted;
       muteBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
     });
 
-    volRange.addEventListener('input', () => {
-      audio.volume = volRange.value;
-    });
-
-    audio.addEventListener('timeupdate', () => {
-      progress.value = (audio.currentTime / audio.duration) * 100 || 0;
-    });
-
-    progress.addEventListener('input', () => {
-      audio.currentTime = (progress.value / 100) * audio.duration;
-    });
-function seleccionarDispositivo(tipo) {
-  document.getElementById('pantalla-inicio').style.display = 'none';
-  document.getElementById('contenido-principal').style.display = 'block';
-
-  if (tipo === 'celular') {
-    document.body.classList.add('celular');
-  }
-}
-
-  }
-  console.log('Dispositivo seleccionado:', tipo);
-}
-
-}
-
+    volRange.addEventListener('input', () => audio.volume = volRange.value);
+    audio.addEventListener('timeupdate', () => progress.value = (audio.currentTime / audio.duration) * 100 || 0);
+    progress.addEventListener('input', () => audio.currentTime = (progress.value / 100) * audio.duration);
   </script>
-  </div>
 </body>
 </html>
