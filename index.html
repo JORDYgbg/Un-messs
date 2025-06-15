@@ -4,1218 +4,1148 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nuestro Primer Mes ❤️</title>
-  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/833/833472.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;700&family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     /* Restablecimiento y estilos base */
     * {
-      margin: 0;
-      padding: 0;
+      margin: 0; 
+      padding: 0; 
       box-sizing: border-box;
     }
 
     /* Custom text selection color */
     ::selection {
-        background-color: #d2a6fa; /* A soft lilac */
-        color: #fff;
+        background-color: #d2a6fa; /* A soft lilac */ 
+        color: #fff; 
     }
     body.dark-mode ::selection {
-        background-color: #ffda66; /* Warm yellow for dark mode */
-        color: #333;
+        background-color: #ffda66; /* Warm yellow for dark mode */ 
+        color: #333; 
     }
 
     /* Estilo del cuerpo con transiciones mejoradas y suavizado de fuente */
     body {
-      font-family: 'Quicksand', sans-serif;
-      /* Degradado inverso: empieza claro, se oscurece al bajar */
-      background: linear-gradient(180deg, #f7e6ff 0%, #d2a6fa 50%, #9370db 100%);
-      color: #4a4a4a;
-      transition: background 0.7s ease-in-out, color 0.7s ease-in-out, font-size 0.7s ease-in-out;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      font-family: 'Quicksand', sans-serif; /* Degradado inverso: empieza claro, se oscurece al bajar */ 
+      background: linear-gradient(180deg, #f7e6ff 0%, #d2a6fa 50%, #9370db 100%); 
+      color: #4a4a4a; 
+      transition: background 0.7s ease-in-out, color 0.7s ease-in-out, font-size 0.7s ease-in-out; 
+      overflow-x: hidden; 
+      -webkit-font-smoothing: antialiased; 
+      -moz-osx-font-smoothing: grayscale; 
       /* Scrollbar styling for WebKit browsers */
-      scrollbar-width: thin;
-      scrollbar-color: #9370db #f1f1f1;
+      scrollbar-width: thin; 
+      scrollbar-color: #9370db #f1f1f1; 
     }
     body::-webkit-scrollbar {
-        width: 10px;
+        width: 10px; 
     }
     body::-webkit-scrollbar-track {
-        background: #f1f1f1;
+        background: #f1f1f1; 
     }
     body::-webkit-scrollbar-thumb {
-        background-color: #9370db;
-        border-radius: 6px;
-        border: 2px solid #f1f1f1;
+        background-color: #9370db; 
+        border-radius: 6px; 
+        border: 2px solid #f1f1f1; 
     }
     body.dark-mode::-webkit-scrollbar-track {
-        background: #2a2a2a;
+        background: #2a2a2a; 
     }
     body.dark-mode::-webkit-scrollbar-thumb {
-        background-color: #ffda66;
-        border: 2px solid #2a2a2a;
+        background-color: #ffda66; 
+        border: 2px solid #2a2a2a; 
     }
 
     /* Estilo del modo oscuro (DEFAULT) */
     body.dark-mode {
       /* Degradado oscuro inverso */
-      background: linear-gradient(180deg, #1a1a1a 0%, #333333 50%, #4a4a4a 100%);
-      color: #f0f0f0;
+      background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 50%, #3e3d4f 100%);
+      color: #f0f0f0; 
     }
 
     /* Estilos específicos para celular */
     body.celular {
-      font-size: 1.1rem;
+      font-size: 1.1rem; 
     }
 
     body.celular .reproductor {
-      width: 60px;
-      height: 60px;
-      padding: 5px;
-      top: 20px;
-      right: 20px;
+      width: 60px; 
+      height: 60px; 
+      padding: 5px; 
+      top: 20px; 
+      right: 20px; 
       left: auto;
       bottom: auto;
       transform: none;
       overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      flex-direction: column; 
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
     }
 
     body.celular .reproductor img {
-      width: 50px;
-      height: 50px;
-      margin-bottom: 0;
+      width: 50px; 
+      height: 50px; 
+      margin-bottom: 0; 
     }
 
     body.celular .reproductor .titulo,
     body.celular .reproductor .barra,
     body.celular .reproductor .volumen,
     body.celular .reproductor .controles {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.3s ease-out;
+      display: none; 
+      opacity: 0; 
+      transition: opacity 0.3s ease-out; 
     }
 
     body.celular .reproductor.maximized {
-      width: 90%;
-      height: auto;
-      padding: 20px;
-      overflow: visible;
-      left: 50%;
-      right: auto;
-      transform: translateX(-50%);
-      top: 20px;
-      bottom: auto;
-      align-items: stretch;
+      width: 90%; 
+      height: auto; 
+      padding: 20px; 
+      overflow: visible; 
+      left: 50%; 
+      right: auto; 
+      transform: translateX(-50%); 
+      top: 20px; 
+      bottom: auto; 
+      align-items: stretch; 
     }
 
     body.celular .reproductor.maximized img {
-      width: 100px;
-      height: 100px;
-      margin-bottom: 10px;
-      margin-left: auto;
-      margin-right: auto;
+      width: 100px; 
+      height: 100px; 
+      margin-bottom: 10px; 
+      margin-left: auto; 
+      margin-right: auto; 
     }
 
     body.celular .reproductor.maximized .titulo,
     body.celular .reproductor.maximized .barra,
     body.celular .reproductor.maximized .volumen,
     body.celular .reproductor.maximized .controles {
-      display: flex;
-      opacity: 1;
-      transition-delay: 0.2s;
+      display: flex; 
+      opacity: 1; 
+      transition-delay: 0.2s; 
     }
     body.celular .reproductor.maximized .titulo {
-        display: block;
+        display: block; 
     }
 
     body.celular .triste-btn {
-        width: calc(50% - 30px);
-        bottom: 20px;
-        left: 20px;
+        width: calc(50% - 30px); 
+        bottom: 20px; 
+        left: 20px; 
         right: auto;
-        font-size: 0.9rem;
-        padding: 12px 15px;
-        z-index: 99;
+        font-size: 0.9rem; 
+        padding: 12px 15px; 
+        z-index: 99; 
     }
 
     body.celular .modo-btn {
-        width: 45px;
-        height: 45px;
-        font-size: 18px;
-        bottom: 20px;
-        right: 20px;
+        width: 45px; 
+        height: 45px; 
+        font-size: 18px; 
+        bottom: 20px; 
+        right: 20px; 
     }
 
     /* **CRONÓMETRO VERTICAL, ELEGANTE Y PEQUEÑO** */
     #tiempo-juntos {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        background: rgba(255, 255, 255, 0.9); /* Más opaco en modo claro */
-        backdrop-filter: blur(12px);
-        padding: 15px 12px; /* Un poco más de padding para la forma vertical */
-        border-radius: 16px;
-        font-family: 'Orbitron', sans-serif;
-        color: #6a5acd; /* Lila oscuro para etiquetas en modo claro */
-        box-shadow: 0 6px 18px rgba(0,0,0,0.15); /* Sombra más pronunciada pero elegante */
-        z-index: 101;
-        transition: background 0.4s ease-in-out, color 0.4s ease-in-out, box-shadow 0.2s ease-in-out, border 0.2s ease-in-out;
-        display: flex;
-        flex-direction: column; /* Vertical */
-        align-items: center; /* Centrar contenido */
-        gap: 5px; /* Espacio entre unidades */
-        border: 1px solid rgba(255, 255, 255, 0.4);
+        position: fixed; 
+        top: 20px; 
+        left: 20px; 
+        background: rgba(255, 255, 255, 0.9); /* Más opaco en modo claro */ 
+        backdrop-filter: blur(12px); 
+        padding: 15px 12px; /* Un poco más de padding para la forma vertical */ 
+        border-radius: 16px; 
+        font-family: 'Orbitron', sans-serif; 
+        color: #6a5acd; /* Lila oscuro para etiquetas en modo claro */ 
+        box-shadow: 0 6px 18px rgba(0,0,0,0.15); 
+        /* Sombra más pronunciada pero elegante */
+        z-index: 101; 
+        transition: background 0.4s ease-in-out, color 0.4s ease-in-out, box-shadow 0.2s ease-in-out, border 0.2s ease-in-out; 
+        display: flex; 
+        flex-direction: column; /* Vertical */ 
+        align-items: center; /* Centrar contenido */ 
+        gap: 5px; 
+        /* Espacio entre unidades */
+        border: 1px solid rgba(255, 255, 255, 0.4); 
     }
 
     body.dark-mode #tiempo-juntos {
-        background: rgba(0, 0, 0, 0.8);
-        color: #ffda66; /* Amarillo cálido para etiquetas en modo oscuro */
-        border: 1px solid rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.8); 
+        color: #ffda66; /* Amarillo cálido para etiquetas en modo oscuro */ 
+        border: 1px solid rgba(0, 0, 0, 0.5); 
     }
 
     #tiempo-titulo {
-        font-family: 'Quicksand', sans-serif; /* Un toque más suave para el título */
-        font-size: 0.85rem;
-        font-weight: 700;
-        color: #8a2be2; /* Lila más intenso en modo claro */
-        margin-bottom: 8px; /* Espacio antes de los números */
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        transition: color 0.4s ease-in-out;
-        white-space: nowrap; /* Evita que el texto se rompa */
+        font-family: 'Quicksand', sans-serif; /* Un toque más suave para el título */ 
+        font-size: 0.85rem; 
+        font-weight: 700; 
+        color: #8a2be2; /* Lila más intenso en modo claro */ 
+        margin-bottom: 8px; 
+        /* Espacio antes de los números */
+        text-transform: uppercase; 
+        letter-spacing: 0.5px; 
+        transition: color 0.4s ease-in-out; 
+        white-space: nowrap; /* Evita que el texto se rompa */ 
     }
     body.dark-mode #tiempo-titulo {
-        color: #ffd700; /* Amarillo dorado en modo oscuro */
+        color: #ffd700; /* Amarillo dorado en modo oscuro */ 
     }
     
     .tiempo-unidad {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-        overflow: hidden;
-        width: 100%; /* Para que las unidades se alineen */
-        padding: 2px 0; /* Pequeño padding vertical */
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        position: relative; 
+        overflow: hidden; 
+        width: 100%; /* Para que las unidades se alineen */ 
+        padding: 2px 0; /* Pequeño padding vertical */ 
     }
 
     .tiempo-numero {
-        font-size: 1.4rem;
-        font-weight: 700;
-        height: 1.5em;
-        position: relative;
-        overflow: hidden;
-        width: 2.2em;
-        color: #4a4a4a;
-        transition: color 0.4s ease-in-out;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        font-size: 1.4rem; 
+        font-weight: 700; 
+        height: 1.5em; 
+        position: relative; 
+        overflow: hidden; 
+        width: 2.2em; 
+        color: #4a4a4a; 
+        transition: color 0.4s ease-in-out; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
     }
     body.dark-mode .tiempo-numero {
-        color: #f0f0f0; /* Color claro para los números en modo oscuro */
+        color: #f0f0f0; /* Color claro para los números en modo oscuro */ 
     }
 
     .tiempo-numero span {
-        display: block;
-        transition: transform 0.2s cubic-bezier(0.65, 0.05, 0.36, 1) 0s, opacity 0.2s ease-out; /* Más rápido y suave */
-        position: absolute;
-        width: 100%;
-        text-align: center;
-        top: 0;
-        left: 0;
+        display: block; 
+        transition: transform 0.2s cubic-bezier(0.65, 0.05, 0.36, 1) 0s, opacity 0.2s ease-out; /* Más rápido y suave */ 
+        position: absolute; 
+        width: 100%; 
+        text-align: center; 
+        top: 0; 
+        left: 0; 
     }
 
     /* Animación de entrada del nuevo número */
     .tiempo-numero span.new {
-        transform: translateY(100%);
-        opacity: 0;
+        transform: translateY(100%); 
+        opacity: 0; 
     }
     .tiempo-numero span.new.animate {
-        transform: translateY(0);
-        opacity: 1;
+        transform: translateY(0); 
+        opacity: 1; 
     }
 
     /* Animación de salida del número viejo */
     .tiempo-numero span.old.animate {
-        transform: translateY(-100%);
-        opacity: 0;
+        transform: translateY(-100%); 
+        opacity: 0; 
     }
 
     .tiempo-etiqueta {
-        font-size: 0.65rem; /* Etiquetas aún más pequeñas */
-        text-transform: uppercase;
-        margin-top: 0px; /* Sin margen superior */
-        color: #888; /* Gris suave para etiquetas en modo claro */
-        transition: color 0.4s ease-in-out;
-        white-space: nowrap;
-        opacity: 0.9;
+        font-size: 0.65rem; /* Etiquetas aún más pequeñas */ 
+        text-transform: uppercase; 
+        margin-top: 0px; /* Sin margen superior */ 
+        color: #888; /* Gris suave para etiquetas en modo claro */ 
+        transition: color 0.4s ease-in-out; 
+        white-space: nowrap; 
+        opacity: 0.9; 
     }
     body.dark-mode .tiempo-etiqueta {
-        color: #bbb; /* Gris más claro para etiquetas en modo oscuro */
+        color: #bbb; /* Gris más claro para etiquetas en modo oscuro */ 
     }
 
     /* Adaptación para celular: el cronómetro debe ser aún más compacto */
     body.celular #tiempo-juntos {
-        top: 10px;
-        left: 10px;
-        padding: 10px 8px; /* Menor padding */
-        gap: 3px; /* Más pequeño aún */
+        top: 10px; 
+        left: 10px; 
+        padding: 10px 8px; /* Menor padding */ 
+        gap: 3px; /* Más pequeño aún */ 
     }
     body.celular #tiempo-titulo {
-        font-size: 0.7rem;
-        margin-bottom: 5px;
+        font-size: 0.7rem; 
+        margin-bottom: 5px; 
     }
     body.celular .tiempo-numero {
-        font-size: 1.0rem; /* Números aún más pequeños */
-        width: 2.5em; /* Ajuste para móviles */
+        font-size: 1.0rem; /* Números aún más pequeños */ 
+        width: 2.5em; /* Ajuste para móviles */ 
     }
     body.celular .tiempo-etiqueta {
-        font-size: 0.55rem;
+        font-size: 0.55rem; 
     }
 
 
     /* Estilo del encabezado */
     header {
-      text-align: center;
-      padding: 60px 20px 30px; /* Más padding superior para espacio */
-      position: relative; /* Para el contador */
+      text-align: center; 
+      padding: 60px 20px 30px; /* Más padding superior para espacio */ 
+      position: relative; /* Para el contador */ 
     }
 
     h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 4.8rem; /* Ligeramente más grande aún para destacar con la nueva fuente */
-      color: #8a2be2; /* Lila más intenso */
-      transition: color 0.7s ease-in-out;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      margin-bottom: 10px; /* Espacio entre título y párrafo */
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      font-family: 'Great Vibes', cursive; 
+      font-size: 4.8rem; /* Ligeramente más grande aún para destacar con la nueva fuente */ 
+      color: #8a2be2; /* Lila más intenso */ 
+      transition: color 0.7s ease-in-out; 
+      -webkit-font-smoothing: antialiased; 
+      -moz-osx-font-smoothing: grayscale; 
+      margin-bottom: 10px; /* Espacio entre título y párrafo */ 
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1); 
     }
 
     body.dark-mode h1 {
-        color: #ffda66; /* Amarillo más cálido para el modo oscuro */
-        text-shadow: 2px 2px 4px rgba(255,255,255,0.1);
+        color: #ffda66; /* Amarillo más cálido para el modo oscuro */ 
+        text-shadow: 2px 2px 4px rgba(255,255,255,0.1); 
     }
 
     header p {
-      font-size: 1.3rem; /* Párrafo ligeramente más grande */
-      color: #666; /* Color de texto más suave */
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      margin-bottom: 30px; /* Más espacio entre el texto y el video */
+      font-size: 1.3rem; /* Párrafo ligeramente más grande */ 
+      color: #666; /* Color de texto más suave */ 
+      -webkit-font-smoothing: antialiased; 
+      -moz-osx-font-smoothing: grayscale; 
+      margin-bottom: 30px; /* Más espacio entre el texto y el video */ 
     }
     body.dark-mode header p {
-        color: #ccc;
+        color: #ccc; 
     }
 
     header video {
-        width: 70%;
-        max-width: 400px;
-        height: auto;
-        margin: 0 auto 40px auto;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        display: block;
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, filter 0.3s ease-in-out;
-        background-color: transparent; /* Asegurar que no haya color de fondo indeseado */
-        border: none; /* Asegurar que no haya border */
-        overflow: hidden;
+        width: 70%; 
+        max-width: 400px; 
+        height: auto; 
+        margin: 0 auto 40px auto; 
+        border-radius: 15px; 
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+        display: block; 
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, filter 0.3s ease-in-out; 
+        background-color: transparent; /* Asegurar que no haya color de fondo indeseado */ 
+        border: none; /* Asegurar que no haya border */ 
+        overflow: hidden; 
     }
     header video:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        filter: brightness(1.05); /* Slightly brighter on hover */
+        transform: translateY(-5px); 
+        box-shadow: 0 15px 40px rgba(0,0,0,0.3); 
+        filter: brightness(1.05); /* Slightly brighter on hover */ 
     }
 
     /* Botón "Si te sientes triste" */
     .triste-btn {
-      position: fixed;
-      bottom: 25px; /* Ligeramente más arriba */
-      left: 25px; /* Ligeramente más adentro */
-      background-color: #ff69b4; /* Rosa */
-      border: none;
-      color: white;
-      font-size: 1rem;
-      padding: 15px 25px;
-      border-radius: 25px;
-      cursor: pointer;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-      transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-      z-index: 100; /* Asegurar que esté siempre al frente */
+      position: fixed; 
+      bottom: 25px; /* Ligeramente más arriba */ 
+      left: 25px; /* Ligeramente más adentro */ 
+      background-color: #ff69b4; /* Rosa */ 
+      border: none; 
+      color: white; 
+      font-size: 1rem; 
+      padding: 15px 25px; 
+      border-radius: 25px; 
+      cursor: pointer; 
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25); 
+      transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
+      z-index: 100; /* Asegurar que esté siempre al frente */ 
     }
 
     .triste-btn:hover {
-      background-color: #ff1493;
-      transform: translateY(-7px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      background-color: #ff1493; 
+      transform: translateY(-7px); 
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
     }
 
     /* Botón de cambio de modo oscuro/claro */
     .modo-btn {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background-color: #9370db; /* Lila más suave */
-      border: none;
-      border-radius: 50%;
-      width: 55px; /* Ligeramente más grande */
-      height: 55px;
-      font-size: 22px;
-      color: white;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-      transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, color 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
-      z-index: 100;
+      position: fixed; 
+      bottom: 25px; 
+      right: 25px; 
+      background-color: #9370db; /* Lila más suave */ 
+      border: none; 
+      border-radius: 50%; 
+      width: 55px; /* Ligeramente más grande */ 
+      height: 55px; 
+      font-size: 22px; 
+      color: white; 
+      cursor: pointer; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25); 
+      transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, color 0.4s ease-in-out, box-shadow 0.3s ease-in-out; 
+      z-index: 100; 
     }
 
     .modo-btn:hover {
-      background-color: #6a5acd; /* Lila al pasar el ratón */
-      transform: rotate(360deg);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      background-color: #6a5acd; /* Lila al pasar el ratón */ 
+      transform: rotate(360deg); 
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
     }
 
     body.dark-mode .modo-btn {
-        background-color: #ffdb58; /* Amarillo oro */
-        color: #333;
+        background-color: #ffdb58; /* Amarillo oro */ 
+        color: #333; 
     }
 
     body.dark-mode .modo-btn:hover {
-        background-color: #e0b400; /* Amarillo oscuro al pasar el ratón */
+        background-color: #e0b400; /* Amarillo oscuro al pasar el ratón */ 
     }
 
     /* Animación de corazones flotantes */
     .corazones {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      pointer-events: none; 
+      z-index: -1; 
     }
 
     .corazon {
-      position: absolute;
-      color: rgba(255, 105, 180, 0.15); /* Corazones más rosados y notorios en modo claro */
-      font-size: 1.5rem;
-      animation: flotar 10s linear infinite;
+      position: absolute; 
+      color: rgba(255, 105, 180, 0.15); /* Corazones más rosados y notorios en modo claro */ 
+      font-size: 1.5rem; 
+      animation: flotar 10s linear infinite; 
     }
     body.dark-mode .corazon {
-        color: rgba(255, 192, 203, 0.25); /* Rosa más claro en modo oscuro */
+        color: rgba(255, 192, 203, 0.25); /* Rosa más claro en modo oscuro */ 
     }
 
     /* More diverse heart animations for size and delay */
-    .corazon:nth-child(2n) { animation-duration: 12s; animation-delay: -2s; font-size: 1.2rem; opacity: 0.8; }
-    .corazon:nth-child(3n) { animation-duration: 9s; animation-delay: -3s; font-size: 1.8rem; opacity: 0.9; }
-    .corazon:nth-child(4n) { animation-duration: 11s; animation-delay: -1s; font-size: 1.0rem; opacity: 0.7; }
-    .corazon:nth-child(5n) { animation-duration: 13s; animation-delay: -4s; font-size: 2.0rem; opacity: 1.0; }
-    .corazon:nth-child(6n) { animation-duration: 8s; animation-delay: -5s; font-size: 1.3rem; opacity: 0.85; }
-    .corazon:nth-child(7n) { animation-duration: 10.5s; animation-delay: -2.5s; font-size: 1.6rem; opacity: 0.95; }
-    .corazon:nth-child(8n) { animation-duration: 9.5s; animation-delay: -1.5s; font-size: 1.1rem; opacity: 0.75; }
-    .corazon:nth-child(9n) { animation-duration: 14s; animation-delay: -3.5s; font-size: 1.9rem; opacity: 1.0; }
-    .corazon:nth-child(10n) { animation-duration: 7s; animation-delay: -0.5s; font-size: 1.4rem; opacity: 0.8; }
+    .corazon:nth-child(2n) { animation-duration: 12s; 
+      animation-delay: -2s; 
+      font-size: 1.2rem; 
+      opacity: 0.8; 
+    }
+    .corazon:nth-child(3n) { animation-duration: 9s; 
+      animation-delay: -3s; 
+      font-size: 1.8rem; 
+      opacity: 0.9; 
+    }
+    .corazon:nth-child(4n) { animation-duration: 11s; 
+      animation-delay: -1s; 
+      font-size: 1.0rem; 
+      opacity: 0.7; 
+    }
+    .corazon:nth-child(5n) { animation-duration: 13s; 
+      animation-delay: -4s; 
+      font-size: 2.0rem; 
+      opacity: 1.0; 
+    }
+    .corazon:nth-child(6n) { animation-duration: 8s; 
+      animation-delay: -5s; 
+      font-size: 1.3rem; 
+      opacity: 0.85; 
+    }
+    .corazon:nth-child(7n) { animation-duration: 10.5s; 
+      animation-delay: -2.5s; 
+      font-size: 1.6rem; 
+      opacity: 0.95; 
+    }
+    .corazon:nth-child(8n) { animation-duration: 9.5s; 
+      animation-delay: -1.5s; 
+      font-size: 1.1rem; 
+      opacity: 0.75; 
+    }
+    .corazon:nth-child(9n) { animation-duration: 14s; 
+      animation-delay: -3.5s; 
+      font-size: 1.9rem; 
+      opacity: 1.0; 
+    }
+    .corazon:nth-child(10n) { animation-duration: 7s; 
+      animation-delay: -0.5s; 
+      font-size: 1.4rem; 
+      opacity: 0.8; 
+    }
     /* Added more nth-child rules for better distribution and subtlety */
-    .corazon:nth-child(11n) { animation-duration: 10s; animation-delay: -0.8s; font-size: 1.7rem; opacity: 0.9; }
-    .corazon:nth-child(12n) { animation-duration: 11.5s; animation-delay: -2.8s; font-size: 1.35rem; opacity: 0.8; }
-    .corazon:nth-child(13n) { animation-duration: 9.8s; animation-delay: -4.2s; font-size: 1.05rem; opacity: 0.7; }
-    .corazon:nth-child(14n) { animation-duration: 12.3s; animation-delay: -1.2s; font-size: 2.1rem; opacity: 1.0; }
-    .corazon:nth-child(15n) { animation-duration: 8.5s; animation-delay: -3.7s; font-size: 1.5rem; opacity: 0.85; }
+    .corazon:nth-child(11n) { animation-duration: 10s; 
+      animation-delay: -0.8s; 
+      font-size: 1.7rem; 
+      opacity: 0.9; 
+    }
+    .corazon:nth-child(12n) { animation-duration: 11.5s; 
+      animation-delay: -2.8s; 
+      font-size: 1.35rem; 
+      opacity: 0.8; 
+    }
+    .corazon:nth-child(13n) { animation-duration: 9.8s; 
+      animation-delay: -4.2s; 
+      font-size: 1.05rem; 
+      opacity: 0.7; 
+    }
+    .corazon:nth-child(14n) { animation-duration: 12.3s; 
+      animation-delay: -1.2s; 
+      font-size: 2.1rem; 
+      opacity: 1.0; 
+    }
+    .corazon:nth-child(15n) { animation-duration: 8.5s; 
+      animation-delay: -3.7s; 
+      font-size: 1.5rem; 
+      opacity: 0.85; 
+    }
 
     @keyframes flotar {
       from {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
+        transform: translateY(100vh) rotate(0deg); 
+        opacity: 0; 
       }
-      25% { opacity: 1; }
-      75% { opacity: 1; }
+      25% { opacity: 1; 
+      }
+      75% { opacity: 1; 
+      }
       to {
-        transform: translateY(-100vh) rotate(360deg);
-        opacity: 0;
+        transform: translateY(-100vh) rotate(360deg); 
+        opacity: 0; 
       }
     }
 
     /* Estilo del reproductor de música (PC por defecto, minimizado) */
     .reproductor {
-      position: fixed;
-      top: 25px; /* Ligeramente más abajo */
-      right: 25px; /* Ligeramente más adentro */
-      background: rgba(255,255,255,0.4);
-      backdrop-filter: blur(12px);
-      border-radius: 20px;
-      padding: 15px;
-      text-align: center;
-      width: 80px;
-      height: 80px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 99; /* Menor que los botones fijos pero mayor que el contenido */
-      cursor: pointer;
+      position: fixed; 
+      top: 25px; /* Ligeramente más abajo */ 
+      right: 25px; /* Ligeramente más adentro */ 
+      background: rgba(255,255,255,0.4); 
+      backdrop-filter: blur(12px); 
+      border-radius: 20px; 
+      padding: 15px; 
+      text-align: center; 
+      width: 80px; 
+      height: 80px; 
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25); 
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+      overflow: hidden; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      flex-direction: column; 
+      z-index: 99; /* Menor que los botones fijos pero mayor que el contenido */ 
+      cursor: pointer; 
     }
 
     .reproductor.dark-mode {
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.6); 
     }
 
     .reproductor img {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      margin-bottom: 0;
-      animation: girar 5s linear infinite;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      object-fit: cover;
-      filter: saturate(1);
+      width: 60px; 
+      height: 60px; 
+      border-radius: 50%; 
+      margin-bottom: 0; 
+      animation: girar 5s linear infinite; 
+      box-shadow: 0 0 20px rgba(0,0,0,0.2); 
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+      object-fit: cover; 
+      filter: saturate(1); 
     }
     .reproductor img:hover {
-        filter: saturate(1.1); /* Slightly more saturated on hover */
+        filter: saturate(1.1); /* Slightly more saturated on hover */ 
     }
 
     .reproductor .titulo,
     .reproductor .barra,
     .reproductor .controles,
     .reproductor .volumen {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.3s ease-out;
+      display: none; 
+      opacity: 0; 
+      transition: opacity 0.3s ease-out; 
     }
 
     /* Reproductor maximizado en PC al pasar el ratón */
     .reproductor:hover {
-      width: 260px;
-      height: auto;
-      padding: 20px;
-      overflow: visible;
-      align-items: stretch;
-      cursor: default;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+      width: 260px; 
+      height: auto; 
+      padding: 20px; 
+      overflow: visible; 
+      align-items: stretch; 
+      cursor: default; 
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35); 
     }
 
     .reproductor:hover img {
-      width: 100px;
-      height: 100px;
-      margin-bottom: 10px;
-      margin-left: auto;
-      margin-right: auto;
+      width: 100px; 
+      height: 100px; 
+      margin-bottom: 10px; 
+      margin-left: auto; 
+      margin-right: auto; 
     }
 
     .reproductor:hover .titulo,
     .reproductor:hover .barra,
     .reproductor:hover .controles,
     .reproductor:hover .volumen {
-      display: flex;
-      opacity: 1;
-      transition-delay: 0.2s;
+      display: flex; 
+      opacity: 1; 
+      transition-delay: 0.2s; 
     }
     .reproductor:hover .titulo {
-        display: block;
+        display: block; 
     }
     .reproductor:hover .controles {
-        flex-wrap: nowrap;
+        flex-wrap: nowrap; 
     }
 
     @keyframes girar {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+      from { transform: rotate(0deg); 
+      }
+      to { transform: rotate(360deg); 
+      }
     }
 
     .titulo {
-      font-weight: bold;
-      color: inherit;
+      font-weight: bold; 
+      color: inherit; 
     }
     .titulo small {
-        font-weight: normal;
-        font-size: 0.8em;
-        color: #888;
+        font-weight: normal; 
+        font-size: 0.8em; 
+        color: #888; 
     }
     body.dark-mode .titulo small {
-        color: #bbb;
+        color: #bbb; 
     }
 
     .barra {
-      width: 100%;
-      margin: 10px 0;
-      -webkit-appearance: none;
-      height: 8px; /* Barra de progreso más gruesa */
-      background: #ccc;
-      border-radius: 4px;
-      outline: none;
-      cursor: pointer;
+      width: 100%; 
+      margin: 10px 0; 
+      -webkit-appearance: none; 
+      height: 8px; /* Barra de progreso más gruesa */ 
+      background: #ccc; 
+      border-radius: 4px; 
+      outline: none; 
+      cursor: pointer; 
     }
 
     .barra::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 18px; /* Pulgar más grande */
-      height: 18px;
-      border-radius: 50%;
-      background: #8a2be2; /* Lila más intenso */
-      cursor: pointer;
-      box-shadow: 0 0 8px rgba(0,0,0,0.3); /* Sombra en el pulgar */
-      border: 1px solid rgba(255,255,255,0.5);
+      -webkit-appearance: none; 
+      width: 18px; /* Pulgar más grande */ 
+      height: 18px; 
+      border-radius: 50%; 
+      background: #8a2be2; /* Lila más intenso */ 
+      cursor: pointer; 
+      box-shadow: 0 0 8px rgba(0,0,0,0.3); /* Sombra en el pulgar */ 
+      border: 1px solid rgba(255,255,255,0.5); 
     }
     /* Firefox slider thumb styling */
     .barra::-moz-range-thumb {
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: #8a2be2;
-        cursor: pointer;
-        box-shadow: 0 0 8px rgba(0,0,0,0.3);
-        border: 1px solid rgba(255,255,255,0.5);
+        width: 18px; 
+        height: 18px; 
+        border-radius: 50%; 
+        background: #8a2be2; 
+        cursor: pointer; 
+        box-shadow: 0 0 8px rgba(0,0,0,0.3); 
+        border: 1px solid rgba(255,255,255,0.5); 
     }
 
     .controles {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      margin-top: 10px;
-      flex-wrap: wrap;
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      gap: 15px; 
+      margin-top: 10px; 
+      flex-wrap: wrap; 
     }
 
     .controles button {
-      background: none;
-      border: none;
-      font-size: 1.6rem; /* Íconos de control más grandes */
-      cursor: pointer;
-      color: inherit;
-      transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+      background: none; 
+      border: none; 
+      font-size: 1.6rem; /* Íconos de control más grandes */ 
+      cursor: pointer; 
+      color: inherit; 
+      transition: color 0.3s ease-in-out, transform 0.2s ease-in-out; 
     }
 
     .controles button:hover {
-        color: #8a2be2;
-        transform: scale(1.15); /* Efecto hover más pronunciado */
+        color: #8a2be2; 
+        transform: scale(1.15); /* Efecto hover más pronunciado */ 
     }
     body.dark-mode .controles button:hover {
-        color: #ffda66;
+        color: #ffda66; 
     }
 
     .volumen {
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      display: flex; 
+      align-items: center; 
+      gap: 5px; 
     }
 
     #volRange {
-      width: 80px; /* Slider de volumen un poco más ancho */
-      background: #ccc;
+      width: 80px; /* Slider de volumen un poco más ancho */ 
+      background: #ccc; 
     }
     #volRange::-webkit-slider-thumb {
-        background: #8a2be2;
+        background: #8a2be2; 
     }
     /* Firefox volume slider thumb styling */
     #volRange::-moz-range-thumb {
-        background: #8a2be2;
+        background: #8a2be2; 
     }
 
     /* Estilo de las secciones */
     section {
-      padding: 60px 20px; /* Más padding para separar secciones */
-      text-align: center;
-      transition: background 0.7s ease-in-out, color 0.7s ease-in-out;
-      margin-bottom: 30px; /* Espacio entre secciones */
+      padding: 60px 20px; /* Más padding para separar secciones */ 
+      text-align: center; 
+      transition: background 0.7s ease-in-out, color 0.7s ease-in-out; 
+      margin-bottom: 30px; /* Espacio entre secciones */ 
       /* Background más sutil en secciones, que se adapte al nuevo degradado */
-      background: rgba(255,255,255,0.7);
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      transition: background 0.7s ease-in-out, color 0.7s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+      background: rgba(255,255,255,0.7); 
+      border-radius: 20px; 
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+      max-width: 900px; 
+      margin-left: auto; 
+      margin-right: auto; 
+      transition: background 0.7s ease-in-out, color 0.7s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out; 
     }
     section:hover {
-        box-shadow: 0 12px 25px rgba(0,0,0,0.15); /* Slightly larger shadow on hover */
-        transform: translateY(-3px); /* Subtle lift effect */
+        box-shadow: 0 12px 25px rgba(0,0,0,0.15); /* Slightly larger shadow on hover */ 
+        transform: translateY(-3px); /* Subtle lift effect */ 
     }
 
     body.dark-mode section {
-        background: rgba(0,0,0,0.5); /* Más oscuro en modo oscuro */
+        background: rgba(20, 20, 25, 0.75);
     }
 
     section h2 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.8rem;
-      margin-bottom: 25px;
-      color: #9370db;
-      transition: color 0.7s ease-in-out;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.2;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
-      transition: color 0.7s ease-in-out, text-shadow 0.3s ease-in-out;
+      font-family: 'Dancing Script', cursive; 
+      font-size: 2.8rem; 
+      margin-bottom: 25px; 
+      color: #9370db; 
+      transition: color 0.7s ease-in-out; 
+      -webkit-font-smoothing: antialiased; 
+      -moz-osx-font-smoothing: grayscale; 
+      line-height: 1.2; 
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.05); 
+      transition: color 0.7s ease-in-out, text-shadow 0.3s ease-in-out; 
     }
     section h2:hover {
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1); 
     }
 
     body.dark-mode section h2 {
-        color: #ffd700;
+        color: #ffd700; 
     }
 
     section p {
-      max-width: 700px;
-      margin: 0 auto;
-      font-size: 1.15rem;
-      line-height: 1.7;
-      color: #555;
-      text-align: justify;
-      padding: 0 15px;
+      max-width: 700px; 
+      margin: 0 auto; 
+      font-size: 1.15rem; 
+      line-height: 1.7; 
+      color: #555; 
+      text-align: justify; 
+      padding: 0 15px; 
     }
     body.dark-mode section p {
-        color: #e0e0e0;
+        color: #e0e0e0; 
     }
 
     /* Pantalla de bienvenida */
     #pantalla-inicio {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: black;
-      color: white;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Quicksand', sans-serif;
-      text-align: center;
-      padding: 20px;
-      opacity: 1;
-      transition: opacity 0.4s ease-in-out, background 0.4s ease-in-out, color 0.4s ease-in-out;
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background: black; 
+      color: white; 
+      z-index: 9999; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      align-items: center; 
+      font-family: 'Quicksand', sans-serif; 
+      text-align: center; 
+      padding: 20px; 
+      opacity: 1; 
+      transition: opacity 0.4s ease-in-out, background 0.4s ease-in-out, color 0.4s ease-in-out; 
     }
 
     #pantalla-inicio.hidden {
-        opacity: 0;
-        pointer-events: none;
+        opacity: 0; 
+        pointer-events: none; 
     }
 
     /* Clase para la transición de color de la pantalla de inicio */
     #pantalla-inicio.transicion-lila {
-        background: linear-gradient(135deg, #f7e6ff, #d2a6fa);
-        color: #4a4a4a;
+        background: linear-gradient(135deg, #f7e6ff, #d2a6fa); 
+        color: #4a4a4a; 
     }
 
     .dispositivo-opciones {
-      display: flex;
-      gap: 50px;
-      margin-top: 40px;
+      display: flex; 
+      gap: 50px; 
+      margin-top: 40px; 
     }
 
     .dispositivo-boton {
-      background: white;
-      color: #8a2be2; /* Iconos en lila */
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      cursor: pointer;
-      border: none;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      background: white; 
+      color: #8a2be2; /* Iconos en lila */ 
+      width: 90px; 
+      height: 90px; 
+      border-radius: 50%; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      font-size: 2.5rem; 
+      cursor: pointer; 
+      border: none; 
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3); 
+      transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
     }
 
     .dispositivo-boton:hover {
-      transform: scale(1.18);
-      background-color: #f8f8f8;
-      box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+      transform: scale(1.18); 
+      background-color: #f8f8f8; 
+      box-shadow: 0 12px 25px rgba(0,0,0,0.4); 
     }
 
     .dispositivo-etiqueta {
-      margin-top: 10px;
-      font-size: 1.1rem;
-      color: white;
-      transition: color 0.4s ease-in-out;
+      margin-top: 10px; 
+      font-size: 1.1rem; 
+      color: white; 
+      transition: color 0.4s ease-in-out; 
     }
     #pantalla-inicio.transicion-lila .dispositivo-etiqueta {
-        color: #4a4a4a;
+        color: #4a4a4a; 
     }
 
     /* Contenedor principal del contenido para la transición */
     #contenido-principal {
-        transition: opacity 0.4s ease-in-out;
+      transition: opacity 0.4s ease-in-out; 
     }
   </style>
 </head>
-<body class="dark-mode"> <div id="pantalla-inicio">
-  <h2>¿En dónde estás viendo esto?</h2>
-  <div class="dispositivo-opciones">
-    <div>
-      <button class="dispositivo-boton" onclick="seleccionarDispositivo('celular')">
-        <i class="fa-solid fa-mobile-screen"></i>
-      </button>
-      <div class="dispositivo-etiqueta">Celular</div>
-    </div>
-    <div>
-      <button class="dispositivo-boton" onclick="seleccionarDispositivo('pc')">
-        <i class="fa-solid fa-desktop"></i>
-      </button>
-      <div class="dispositivo-etiqueta">PC</div>
-    </div>
-  </div>
-</div>
-
-<div id="contenido-principal" style="opacity: 0; display: none;">
-  <div id="tiempo-juntos">
-    <span id="tiempo-titulo">Nuestro Tiempo Juntos ♥</span>
-    <div class="tiempo-unidad">
-      <span class="tiempo-numero" id="anios"><span>00</span></span>
-      <span class="tiempo-etiqueta">Años</span>
-    </div>
-    <div class="tiempo-unidad">
-      <span class="tiempo-numero" id="meses"><span>00</span></span>
-      <span class="tiempo-etiqueta">Meses</span>
-    </div>
-    <div class="tiempo-unidad">
-      <span class="tiempo-numero" id="dias"><span>00</span></span>
-      <span class="tiempo-etiqueta">Días</span>
-    </div>
-    <div class="tiempo-unidad">
-      <span class="tiempo-numero" id="horas"><span>00</span></span>
-      <span class="tiempo-etiqueta">Horas</span>
-    </div>
-    <div class="tiempo-unidad">
-      <span class="tiempo-numero" id="minutos"><span>00</span></span>
-      <span class="tiempo-etiqueta">Minutos</span>
-    </div>
-    <div class="tiempo-unidad">
-      <span class="tiempo-numero" id="segundos"><span>00</span></span>
-      <span class="tiempo-etiqueta">Segundos</span>
-    </div>
-  </div>
-
-  <div class="corazones">
-    <i class="fa-solid fa-heart corazon" style="top:10%; left:10%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:20%; left:80%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:60%; left:40%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:30%; left:60%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:50%; left:20%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:15%; left:50%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:70%; left:30%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:40%; left:70%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:80%; left:15%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:5%; left:85%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:25%; left:5%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:35%; left:90%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:75%; left:55%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:45%; left:35%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:85%; left:75%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:55%; left:5%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:5%; left:30%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:90%; left:45%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:65%; left:10%;"></i>
-    <i class="fa-solid fa-heart corazon" style="top:10%; left:70%;"></i>
-  </div>
-
-  <header>
-    <h1>Feliz primer mes</h1>
-    <p>Gracias por este tiempo tan bonito Mariana <i class="fa-solid fa-heart"></i></p>
-    <video src="video/kiss.mp4" autoplay loop muted playsinline></video>
-  </header>
-
-  <button class="triste-btn" onclick="location.href='triste.html'">Cuando te sientas triste, presiona aquí</button>
-
-  <section id="seccion1">
-    <h2>Cómo me enamoré de ti</h2>
-    <p>
-      No sé en qué momento exacto empezó todo. Fue en una partida de Valorant, en Ascent asidjqeq, como cualquier otra noche. Prepickeó Phoenix y le dije a Nathalia: “Uy no, va a trollear fijo.” Pero luego terminó pickeando Killjoy. Y no sé cómo explicarlo, pero ahí empezó algo. Pequeñito, imperceptible, como una chispa.
-      <br><br>
-      Jugamos esa partida y terminamos cayéndonos bien, Todos en el grupo fluyeron, pero ella… tenía algo diferente. Esa noche nos quedamos jugando hasta la madrugada. Y no porque el juego estuviera bueno, sino porque su risa, sus comentarios, su forma de mirar el juego, todo eso me mantenía despierto.
-      <br><br>
-      Después empezamos a hablar por Riot Mobile, mensajes cada tanto, pero cada tanto se volvió cada vez más seguido. Y era raro (en el buen sentido) lo bien que nos entendíamos. Como si nuestras conversaciones ya tuvieran confianza desde el principio. Como si habláramos con alguien que ya conocíamos de vidas pasadas.
-      <br><br>
-      La invité a un servidor de Minecraft Y AHI, fue escalando todo. Nos regalábamos cosas dentro del juego (pero se sentían más reales que cualquier otro regalo físico) Le dejaba cofres con flores o animalitos, y no decía nada, solo esperaba que lo viera y sonriera. Porque aunque no la veía, yo juraba que lo hacía.
-      <br><br>
-      Después vino Instagram. Más charlas. Más cercanía. Más nosotros. Recuerdo con esa mezcla de ternura y vergüenza el primer “te quiero” que le dije (el primer te quiero no se lo dije en instagram) Temblaba mientras lo escribía lo juro. Y peor aún el “creo que me gustas”, porque eso ya era cruzar una línea sin saber si había suelo del otro lado. Pero sí lo había. Porque ella me respondió con esa forma tan bonita de hacerlo sentir fácil. Como si lo estuviera esperando.
-      <br><br>
-      Veíamos Ladybug juntos en Rave, aunque yo jamás pensé volver a ver algo así. Pero por ella, por ella veía lo que sea. Jugábamos otros juegos solo para tener excusa de pasar tiempo juntos. Y no necesitaba más. Me sentía en casa. Me sentía visto. Me sentía querido. <br><br>
-      Y luego, llegó ese momento. Tenía de fondo “Es por ti” de Juanes, porque sí, cursi, romántico, cliché y todo lo que quieras. Pero era nuestra banda sonora. Le dije que la amaba. Fue como soltar todo lo que llevaba dentro, como una confesión con el corazón en las manos. <br><br>
-      Y cuando me dijo que sí, sonreí. Pero no solo por un rato. Sonreí hasta el día siguiente. Dormí con una sonrisa que me dolía en la cara, pero me curaba el alma. <br><br>
-      Y así fue como me enamoré de una chica que empezó como Killjoy en Ascent. Y terminó siendo la mujer de mis amores, mi compañera, mi futura esposa y mi “te amo” más sincero. </p>
-  </section>
-
-  <section id="seccion2">
-    <h2>Mariana</h2>
-    <p>
-      Mariana, te pienso y todo se calma,
-      como si el mundo aprendiera a flotar.<br>
-      No estás en mis ojos, estás en mi alma,
-      y aún sin tocarte, te puedo abrazar. <br>
-      Hay algo en tus frases, en lo que callas,
-      que sabe quedarse, que sabe cuidar.<br>
-      No sé si eres magia, destino o murallas,
-      pero eres mi forma de querer de verdad. <br><br>
-      No tienes un rostro en mis pensamientos,
-      pero hay una esencia que huele a hogar.<br>
-      Estás en mis días, estás en mis tiempos,
-      te siento tan cerca, como si la felicidad no fuera a terminar. <br>
-      No necesito tenerte presente
-      para saber cuánto puedes sanar.<br>
-      Eres el verso que escribe mi mente,
-      sin tinta ni libro, con ganas de volar. <br><br>
-      Mariana, eres risa que viaja en la brisa,
-      refugio invisible, señal sin final.<br>
-      Y aunque este amor no se vea a simple vista,
-      late tan fuerte, que es simplemente real. <br>
-      
-    </p>
-  </section>
-
-  <section id="seccion4">
-    <h2>Mis promesas para ti</h2>
-    <p>
-      Mariana, en este día especial, quiero reafirmarte lo que siento y lo que prometo para nuestro futuro juntos, sin importar las pantallas de por medio:
-      <br><br>
-      1. Prometo escucharte siempre: Cada palabra que escribas, cada audio que envíes, cada silencio. Estaré aquí para comprenderte, no solo para oírte.
-      <br>
-      2. Prometo apoyarte en cada sueño: Tus metas serán mis metas. Estaré a tu lado, aunque sea a la distancia, para celebrar tus victorias y para darte la fuerza cuando la necesites. <br>
-      3. Prometo ser tu refugio: Cuando el mundo digital o el real te parezca pesado, mi amor y mi presencia virtual serán el lugar donde siempre puedas encontrar paz y consuelo. <br>
-      4. Prometo mantener viva la chispa: Con mensajes inesperados, risas compartidas en llamadas y nuevas "aventuras" en línea, haremos que cada día sea emocionante y que nuestro amor siga floreciendo. <br>
-      5. Prometo amarte sin condiciones: Mi amor por ti será constante, puro y eterno. En los buenos momentos de conexión y en los desafíos de la distancia, siempre con la paciencia y el cariño que mereces. <br><br>
-      Eres el regalo más hermoso que la vida me ha dado. </p>
-  </section>
-
-  <section id="seccion5">
-    <h2>Frases que me recuerdan a ti</h2>
-    <p>
-      "No necesito verte para sentir que estás conmigo en cada parte de mí." <br>
-      "Hay algo en ti que calma mis tormentas sin decir una palabra." <br>
-      "Te pienso sin buscarte… y aun así te encuentro en todo." <br>
-      "No sé cómo lo haces, pero con cada palabra tuya, me siento en casa." <br>
-      "Estás tan dentro de mí, que a veces dudo si este corazón late por mí… o por ti." <br>
-      "Eres el único pensamiento que no me cansa repetir." <br>
-      "Contigo no hay distancia, solo razones para seguir sintiendo." <br>
-      "Amarte es como respirar: natural, constante, necesario." <br>
-      "No sé si esto es amor… pero no quiero que sea otra cosa." <br>
-      "Desde que llegaste, hasta el silencio suena a ti." </p>
-  </section>
-
-  <div class="reproductor" id="reproductor">
-    <img src="audio/cover.jpg" alt="Portada" id="portada">
-    <div class="titulo" id="titulo-cancion">Es Por Ti<br><small id="artista-cancion">Juanes</small></div>
-    <input class="barra" type="range" value="0" id="progress">
-    <div class="controles">
-      <button id="prev"><i class="fa-solid fa-backward-step"></i></button>
-      <button id="play"><i class="fa-solid fa-play"></i></button>
-      <button id="next"><i class="fa-solid fa-forward-step"></i></button>
-      <div class="volumen">
-        <button id="mute"><i class="fa-solid fa-volume-high"></i></button>
-        <input type="range" min="0" max="1" step="0.01" value="1" id="volRange">
+<body class="dark-mode">
+  <div id="pantalla-inicio">
+    <h2>¿En dónde estás viendo esto?</h2>
+    <div class="dispositivo-opciones">
+      <div>
+        <button class="dispositivo-boton" onclick="seleccionarDispositivo('celular')">
+          <i class="fa-solid fa-mobile-screen"></i>
+        </button>
+        <div class="dispositivo-etiqueta">Celular</div>
+      </div>
+      <div>
+        <button class="dispositivo-boton" onclick="seleccionarDispositivo('pc')">
+          <i class="fa-solid fa-desktop"></i>
+        </button>
+        <div class="dispositivo-etiqueta">PC</div>
       </div>
     </div>
   </div>
 
-  <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-sun"></i></button> <script>
+  <div id="contenido-principal" style="opacity: 0; display: none;">
+    <div id="tiempo-juntos">
+      <span id="tiempo-titulo">Nuestro Tiempo Juntos ♥</span>
+      <div class="tiempo-unidad">
+        <span class="tiempo-numero" id="anios"><span>00</span></span>
+        <span class="tiempo-etiqueta">Años</span>
+      </div>
+      <div class="tiempo-unidad">
+        <span class="tiempo-numero" id="meses"><span>00</span></span>
+        <span class="tiempo-etiqueta">Meses</span>
+      </div>
+      <div class="tiempo-unidad">
+        <span class="tiempo-numero" id="dias"><span>00</span></span>
+        <span class="tiempo-etiqueta">Días</span>
+      </div>
+      <div class="tiempo-unidad">
+        <span class="tiempo-numero" id="horas"><span>00</span></span>
+        <span class="tiempo-etiqueta">Horas</span>
+      </div>
+      <div class="tiempo-unidad">
+        <span class="tiempo-numero" id="minutos"><span>00</span></span>
+        <span class="tiempo-etiqueta">Minutos</span>
+      </div>
+      <div class="tiempo-unidad">
+        <span class="tiempo-numero" id="segundos"><span>00</span></span>
+        <span class="tiempo-etiqueta">Segundos</span>
+      </div>
+    </div>
+
+    <div class="corazones">
+      <i class="fa-solid fa-heart corazon" style="top:10%; left:10%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:20%; left:80%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:60%; left:40%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:30%; left:60%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:50%; left:20%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:15%; left:50%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:70%; left:30%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:40%; left:70%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:80%; left:15%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:5%; left:85%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:25%; left:5%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:35%; left:90%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:75%; left:55%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:45%; left:35%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:85%; left:75%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:55%; left:5%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:5%; left:30%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:90%; left:45%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:65%; left:10%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:10%; left:70%;"></i> 
+    </div>
+
+    <header>
+      <h1>Feliz primer mes</h1>
+      <p>Gracias por este tiempo tan bonito Mariana <i class="fa-solid fa-heart"></i></p>
+      <video src="video/kiss.mp4" autoplay loop muted playsinline></video>
+    </header>
+
+    <button class="triste-btn" onclick="location.href='triste.html'">Cuando te sientas triste, presiona aquí</button>
+
+    <section id="seccion1">
+      <h2>Cómo me enamoré de ti</h2>
+      <p>
+        No sé en qué momento exacto empezó todo. Fue en una partida de Valorant, en Ascent asidjqeq, como cualquier otra noche. Prepickeó Phoenix y le dije a Nathalia: “Uy no, va a trollear fijo.” 
+        Pero luego terminó pickeando Killjoy. Y no sé cómo explicarlo, pero ahí empezó algo. Pequeñito, imperceptible, como una chispa. <br><br> 
+        Jugamos esa partida y terminamos cayéndonos bien, Todos en el grupo fluyeron, pero ella… tenía algo diferente. Esa noche nos quedamos jugando hasta la madrugada. Y no porque el juego estuviera bueno, sino porque su risa, sus comentarios, su forma de mirar el juego, todo eso me mantenía despierto. <br><br> 
+        Después empezamos a hablar por Riot Mobile, mensajes cada tanto, pero cada tanto se volvió cada vez más seguido. Y era raro (en el buen sentido) lo bien que nos 
+        entendíamos. Como si nuestras conversaciones ya tuvieran confianza desde el principio. Como si habláramos con alguien que ya conocíamos de vidas pasadas. <br><br> 
+        La invité a un servidor de Minecraft Y AHI, fue escalando todo. Nos regalábamos cosas dentro del juego (pero se sentían más reales que cualquier otro regalo físico) Le dejaba cofres con flores o animalitos, y no decía nada, solo esperaba que lo viera y sonriera. 
+        Porque aunque no la veía, yo juraba que lo hacía. <br><br> 
+        Después vino Instagram. Más charlas. Más cercanía. Más nosotros. 
+        Recuerdo con esa mezcla de ternura y vergüenza el primer “te quiero” que le dije (el primer te quiero no se lo dije en instagram) Temblaba mientras lo escribía lo juro. 
+        Y peor aún el “creo que me gust... 
+      </p>
+    </section>
+
+    <section id="seccion2">
+      <h2>Nuestro primer mes juntos</h2>
+      <p>
+        Aunque parece poco tiempo, cada día contigo ha sido una aventura. Me haces reír, me haces pensar, y sobre todo, me haces sentir que la vida es mucho más bonita cuando la comparto contigo. Gracias por cada mensaje, cada llamada, cada risa, y cada momento que hemos creado. 
+        Eres una persona increíble, y estoy emocionado por todo lo que nos espera. Feliz primer mes, mi amor. Te quiero muchísimo. <i class="fa-solid fa-heart"></i>
+      </p>
+    </section>
+
+    <section id="seccion3">
+      <h2>Mis promesas para ti</h2>
+      <p>
+        Prometo seguir descubriéndote cada día y enamorarme un poco más de cada detalle tuyo. 
+        Prometo estar para ti en los buenos y malos momentos, para celebrar tus victorias y para apoyarte en tus desafíos. 
+        Prometo que siempre intentaré sacarte una sonrisa, incluso en los días más grises. 
+        Prometo escucharte, entenderte y respetarte, porque tu felicidad es mi prioridad. 
+        Y sobre todo, prometo quererte con todo mi corazón, hoy y siempre.
+      </p>
+    </section>
+
+    <div class="reproductor dark-mode">
+        <img src="https://i.ibb.co/hK2Gg0V/musica.jpg" alt="Portada de la música">
+        <audio id="miAudio" src="music/music.mp3" loop></audio>
+        <div class="titulo">
+            Music for Loving <br> <small>Anónimo</small>
+        </div>
+        <input type="range" id="barraProgreso" class="barra" value="0">
+        <div class="controles">
+            <button id="btnRetroceder"><i class="fa-solid fa-backward-step"></i></button>
+            <button id="btnReproducirPausar"><i class="fa-solid fa-play"></i></button>
+            <button id="btnAvanzar"><i class="fa-solid fa-forward-step"></i></button>
+            <div class="volumen">
+                <i class="fa-solid fa-volume-high"></i>
+                <input type="range" id="volRange" min="0" max="1" step="0.01" value="0.5" class="barra">
+            </div>
+        </div>
+    </div>
+    
+    <button class="modo-btn">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+  </div>
+
+  <script>
+    // Variables y elementos del DOM
     const body = document.body;
-    const modoBtn = document.getElementById('modo-btn');
-    const reproductor = document.getElementById('reproductor');
-    const portada = document.getElementById('portada');
-    const tituloCancion = document.getElementById('titulo-cancion');
-    const artistaCancion = document.getElementById('artista-cancion');
-    const playBtn = document.getElementById('play');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
-    const muteBtn = document.getElementById('mute');
+    const modoBtn = document.querySelector('.modo-btn');
+    const modoIcon = modoBtn.querySelector('i');
+    const miAudio = document.getElementById('miAudio');
+    const btnReproducirPausar = document.getElementById('btnReproducirPausar');
+    const iconoReproducirPausar = btnReproducirPausar.querySelector('i');
+    const barraProgreso = document.getElementById('barraProgreso');
     const volRange = document.getElementById('volRange');
-    const progress = document.getElementById('progress');
+    const reproductor = document.querySelector('.reproductor');
+    let isReproductorMaximized = false; // Estado para el reproductor en celular
+
     const pantallaInicio = document.getElementById('pantalla-inicio');
     const contenidoPrincipal = document.getElementById('contenido-principal');
-    
-    // Referencias a los elementos de los números del contador
-    const aniosElement = document.getElementById('anios');
-    const mesesElement = document.getElementById('meses');
-    const diasElement = document.getElementById('dias');
-    const horasElement = document.getElementById('horas');
-    const minutosElement = document.getElementById('minutos');
-    const segundosElement = document.getElementById('segundos');
 
-
-    const canciones = [
-      {
-        titulo: "Es Por Ti",
-        artista: "Juanes",
-        src: "audio/esporti.mp3",
-        cover: "audio/cover.jpg"
-      },
-      {
-        titulo: "Amor Completo",
-        artista: "Mon Laferte",
-        src: "audio/amorcompleto.mp3",
-        cover: "audio/cover2.jpg"
-      },
-      {
-        titulo: "Compartir",
-        artista: "Carla Morrison",
-        src: "audio/compartir.mp3",
-        cover: "audio/cover3.jpg"
-      }
-    ];
-    let currentSongIndex = 0;
-    let audio = new Audio();
-    let isMuted = false;
+    // Estado del audio
     let isPlaying = false;
-    let isReproductorMaximized = false;
 
-    // Fecha de inicio de la relación: 16 de mayo de 2025, 01:41:33 AM, Hora de Quito (-05:00)
-    // Para que el 15 de junio de 2025 (hora actual) muestre 29 días.
-    const fechaInicioRelacion = new Date('2025-05-16T01:41:33-05:00');
-    
-    // Función para actualizar un elemento con animación de "flip"
-    function updateUnit(element, newValue) {
-        const newText = newValue.toString().padStart(2, '0');
-        const currentSpan = element.querySelector('span');
-
-        if (currentSpan.textContent === newText) {
-            return; // No hay cambio, no animar
-        }
-
-        const newSpan = document.createElement('span');
-        newSpan.textContent = newText;
-        newSpan.classList.add('new'); 
-
-        element.appendChild(newSpan);
-
-        void newSpan.offsetWidth; 
-
-        newSpan.classList.add('animate');
-        currentSpan.classList.add('old', 'animate'); 
-
-        currentSpan.addEventListener('transitionend', () => {
-            currentSpan.remove();
-        }, { once: true }); 
-
-        newSpan.addEventListener('transitionend', () => {
-            newSpan.classList.remove('new');
-            newSpan.classList.remove('animate');
-            // Asegurarse de que solo quede el último span animado visible
-            const spans = element.querySelectorAll('span');
-            spans.forEach((s, i) => {
-              if (i < spans.length - 1) s.remove();
-            });
-        }, { once: true });
-    }
-
-    // Función para obtener el número de días en un mes específico
-    function daysInMonth(year, month) {
-        return new Date(year, month + 1, 0).getDate();
-    }
-
-    // Función principal para actualizar el contador de tiempo
-    function actualizarContadorTiempo() {
-        const ahora = new Date();
-        const inicio = new Date(fechaInicioRelacion); // Copia para no modificar la original
-
-        let anios = 0;
-        let meses = 0;
-        let dias = 0;
-
-        let tempInicio = new Date(inicio);
-        
-        // Calcular años
-        while (tempInicio.getFullYear() < ahora.getFullYear() || 
-               (tempInicio.getFullYear() === ahora.getFullYear() && 
-                (tempInicio.getMonth() < ahora.getMonth() || 
-                 (tempInicio.getMonth() === ahora.getMonth() && tempInicio.getDate() <= ahora.getDate())))) {
-            
-            let nextYear = new Date(tempInicio);
-            nextYear.setFullYear(nextYear.getFullYear() + 1);
-
-            // Ajustar si el día 29 de febrero no existe en el año siguiente
-            if (nextYear.getMonth() === 1 && nextYear.getDate() === 29 && nextYear.getMonth() !== new Date(nextYear.getFullYear(), 1, 29).getMonth()) {
-                nextYear.setDate(1);
-                nextYear.setMonth(2);
-            }
-
-            if (nextYear <= ahora) {
-                anios++;
-                tempInicio = nextYear;
-            } else {
-                break;
-            }
-        }
-
-        // Calcular meses restantes después de los años
-        while (tempInicio.getTime() <= ahora.getTime()) {
-            let nextMonth = new Date(tempInicio);
-            nextMonth.setMonth(nextMonth.getMonth() + 1);
-
-            // Manejar fin de mes (ej: 31 de enero + 1 mes no debería ser 3 de marzo)
-            if (nextMonth.getDate() !== tempInicio.getDate()) {
-                // Si al sumar un mes el día cambia (ej. 31 enero a 28 feb), ajustamos al último día del mes
-                nextMonth = new Date(tempInicio.getFullYear(), tempInicio.getMonth() + 1, daysInMonth(tempInicio.getFullYear(), tempInicio.getMonth() + 1), tempInicio.getHours(), tempInicio.getMinutes(), tempInicio.getSeconds(), tempInicio.getMilliseconds());
-            }
-
-            if (nextMonth <= ahora) {
-                meses++;
-                tempInicio = nextMonth;
-            } else {
-                break;
-            }
-        }
-        
-        // Ajustar los meses y años finales
-        if (meses >= 12) {
-            anios += Math.floor(meses / 12);
-            meses = meses % 12;
-        }
-
-        // Calcular días restantes dentro del mes actual de la relación
-        // Esto es desde `tempInicio` (que ahora es el inicio del "mes de la relación" actual) hasta `ahora`
-        const diffMillisInCurrentMonth = ahora.getTime() - tempInicio.getTime();
-        const diasUTC = Math.floor((Date.UTC(ahora.getFullYear(), ahora.getMonth(), ahora.getDate()) - Date.UTC(tempInicio.getFullYear(), tempInicio.getMonth(), tempInicio.getDate())) / (1000 * 60 * 60 * 24));
-        dias = diasUTC;
-        
-        // Lógica para el título de la pestaña y el "1 Mes" especial
-        if (anios === 0 && meses === 1 && dias === 0) {
-            document.title = "¡Feliz Primer Mes, Mi Amor! ❤️";
-        } else if (document.title !== "Nuestro Primer Mes ❤️") {
-            document.title = "Nuestro Primer Mes ❤️"; // Título secundario si no es el día 1 de un mesario
-        }
-        
-        // Calcular horas, minutos y segundos restantes del día actual
-        const segundosTotalesRestantes = Math.floor((diffMillisInCurrentMonth % (1000 * 60 * 60 * 24)) / 1000);
-        const horas = Math.floor(segundosTotalesRestantes / 3600);
-        const minutos = Math.floor((segundosTotalesRestantes % 3600) / 60);
-        const segundos = segundosTotalesRestantes % 60;
-
-        // Actualizar los elementos con animación
-        updateUnit(aniosElement, anios);
-        updateUnit(mesesElement, meses);
-        updateUnit(diasElement, dias);
-        updateUnit(horasElement, horas);
-        updateUnit(minutosElement, minutos);
-        updateUnit(segundosElement, segundos);
-    }
-
-
-    // Función para cargar una canción
-    function loadSong(index) {
-      const song = canciones[index];
-      audio.src = song.src;
-      portada.src = song.cover;
-      tituloCancion.innerHTML = song.titulo + '<br><small>' + song.artista + '</small>';
-      audio.load();
-      
-      // Si estaba reproduciendo, sigue reproduciendo la nueva
-      if (isPlaying) {
-        audio.play();
-        portada.style.animationPlayState = 'running';
-        playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-      } else {
-        portada.style.animationPlayState = 'paused';
-        playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-      }
-    }
-
-
-    // Establecer volumen inicial al 20% y cargar la primera canción
-    audio.volume = 0.2;
-    volRange.value = 0.2;
-    loadSong(currentSongIndex);
-    
-    // Iniciar el contador y actualizarlo cada segundo
-    // La primera llamada se hace después de que el DOM esté listo
-    document.addEventListener('DOMContentLoaded', () => {
-        // Inicializar los spans internos para la animación
-        aniosElement.innerHTML = '<span>00</span>';
-        mesesElement.innerHTML = '<span>00</span>';
-        diasElement.innerHTML = '<span>00</span>';
-        horasElement.innerHTML = '<span>00</span>';
-        minutosElement.innerHTML = '<span>00</span>';
-        segundosElement.innerHTML = '<span>00</span>';
-
-        actualizarContadorTiempo(); // Llamada inicial
-        setInterval(actualizarContadorTiempo, 1000); // Actualizar cada segundo
-    });
-
-
-    // Event listener para el botón de modo oscuro/claro
+    // Función para alternar modo oscuro/claro
     modoBtn.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
-      reproductor.classList.toggle('dark-mode');
-      // Actualiza el ícono del botón (luna o sol)
-      modoBtn.innerHTML = body.classList.contains('dark-mode') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
-    });
-    // Event listener para el botón de Play/Pause
-    playBtn.addEventListener('click', (event) => {
-      event.stopPropagation();
-      if (isPlaying) {
-        audio.pause();
-        playBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-        portada.style.animationPlayState = 'paused';
+      if (body.classList.contains('dark-mode')) {
+        modoIcon.classList.remove('fa-moon');
+        modoIcon.classList.add('fa-sun');
+        reproductor.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
       } else {
-        audio.play();
-        playBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        portada.style.animationPlayState = 'running';
+        modoIcon.classList.remove('fa-sun');
+        modoIcon.classList.add('fa-moon');
+        reproductor.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    // Cargar modo guardado o establecer oscuro por defecto
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        modoIcon.classList.remove('fa-moon');
+        modoIcon.classList.add('fa-sun');
+        reproductor.classList.add('dark-mode');
+      } else {
+        // Por defecto, se mostrará la pantalla de inicio con fondo negro.
+        // El modo claro (si se elige PC) se aplicará después de la selección.
+      }
+
+      // Iniciar el contador de tiempo al cargar la página
+      const fechaInicio = new Date('2025-05-15T00:00:00'); // Establece la fecha de inicio aquí (Año-Mes-DíaTHora:Minuto:Segundo)
+      actualizarContador(fechaInicio); // Llama inmediatamente para evitar parpadeo inicial
+      setInterval(() => actualizarContador(fechaInicio), 1000);
+
+      // Precargar video y audio
+      const videoElement = document.querySelector('header video');
+      if (videoElement) {
+          videoElement.load();
+      }
+      if (miAudio) {
+          miAudio.load();
+      }
+    });
+
+    // Funcionalidad del reproductor de música
+    btnReproducirPausar.addEventListener('click', () => {
+      if (isPlaying) {
+        miAudio.pause();
+        iconoReproducirPausar.classList.remove('fa-pause');
+        iconoReproducirPausar.classList.add('fa-play');
+      } else {
+        miAudio.play();
+        iconoReproducirPausar.classList.remove('fa-play');
+        iconoReproducirPausar.classList.add('fa-pause');
       }
       isPlaying = !isPlaying;
     });
-    // Event listener para el botón Anterior
-    prevBtn.addEventListener('click', (event) => {
-        event.stopPropagation();
-        currentSongIndex = (currentSongIndex - 1 + canciones.length) % canciones.length;
-        loadSong(currentSongIndex);
-        // Si la canción anterior estaba reproduciéndose, la nueva también lo hará
-        if (isPlaying) {
-            audio.play();
+
+    miAudio.addEventListener('timeupdate', () => {
+      const progreso = (miAudio.currentTime / miAudio.duration) * 100;
+      barraProgreso.value = progreso;
+    });
+
+    barraProgreso.addEventListener('input', () => {
+      const tiempo = (barraProgreso.value / 100) * miAudio.duration;
+      miAudio.currentTime = tiempo;
+    });
+
+    volRange.addEventListener('input', () => {
+      miAudio.volume = volRange.value;
+    });
+
+    // Contador de tiempo juntos
+    function actualizarContador(fechaInicio) {
+        const ahora = new Date();
+        const diferencia = ahora - fechaInicio;
+
+        const segundos = Math.floor(diferencia / 1000);
+        const minutos = Math.floor(segundos / 60);
+        const horas = Math.floor(minutos / 60);
+        const dias = Math.floor(horas / 24);
+        
+        // Calcular años y meses con mayor precisión
+        let anios = ahora.getFullYear() - fechaInicio.getFullYear();
+        let meses = ahora.getMonth() - fechaInicio.getMonth();
+        let diasRestantes = ahora.getDate() - fechaInicio.getDate();
+
+        if (diasRestantes < 0) {
+            meses--;
+            const tempDate = new Date(ahora.getFullYear(), ahora.getMonth(), 0);
+            diasRestantes = tempDate.getDate() - fechaInicio.getDate() + ahora.getDate();
+        }
+
+        if (meses < 0) {
+            anios--;
+            meses += 12;
+        }
+
+        const remSegundos = segundos % 60;
+        const remMinutos = minutos % 60;
+        const remHoras = horas % 24;
+
+        // Función para actualizar y animar números
+        function updateAndAnimate(elementId, newValue) {
+            const element = document.getElementById(elementId);
+            const oldValue = parseInt(element.querySelector('span').textContent);
+
+            if (newValue !== oldValue) {
+                const oldSpan = element.querySelector('span');
+                const newSpan = document.createElement('span');
+                newSpan.textContent = String(newValue).padStart(2, '0');
+                newSpan.classList.add('new');
+
+                element.appendChild(newSpan);
+
+                // Forzar reflow para que la animación funcione
+                void newSpan.offsetWidth;
+
+                oldSpan.classList.add('old', 'animate');
+                newSpan.classList.add('animate');
+
+                oldSpan.addEventListener('transitionend', () => {
+                    oldSpan.remove();
+                }, { once: true });
+            }
+        }
+
+        updateAndAnimate('anios', anios);
+        updateAndAnimate('meses', meses);
+        updateAndAnimate('dias', dias); // Mantener el cálculo de días total para consistencia si se desea, o cambiar a diasRestantes si se prefiere mes/día específico
+        updateAndAnimate('horas', remHoras);
+        updateAndAnimate('minutos', remMinutos);
+        updateAndAnimate('segundos', remSegundos);
+    }
+
+    // Corazones flotantes
+    function crearCorazon() {
+        const corazon = document.createElement('i');
+        corazon.classList.add('fa-solid', 'fa-heart', 'corazon');
+        corazon.style.left = Math.random() * 100 + 'vw';
+        corazon.style.animationDuration = Math.random() * 5 + 5 + 's'; // Duración entre 5 y 10s
+        corazon.style.animationDelay = Math.random() * -5 + 's'; // Retraso para que aparezcan en diferentes momentos
+        corazon.style.fontSize = Math.random() * 1.5 + 1 + 'rem'; // Tamaño entre 1rem y 2.5rem
+        corazon.style.opacity = Math.random() * 0.5 + 0.5; // Opacidad entre 0.5 y 1
+
+        document.querySelector('.corazones').appendChild(corazon);
+
+        corazon.addEventListener('animationend', () => {
+            corazon.remove();
+        });
+    }
+
+    // Generar corazones cada cierto tiempo
+    setInterval(crearCorazon, 300); // Crea un corazón cada 300ms
+
+    // Manejo de la pantalla de bienvenida y selección de dispositivo
+    const dispositivoOpciones = document.querySelector('.dispositivo-opciones');
+    dispositivoOpciones.addEventListener('click', (event) => {
+        const targetButton = event.target.closest('.dispositivo-boton');
+        if (targetButton) {
+            const tipo = targetButton.nextElementSibling.textContent.toLowerCase().includes('celular') ? 'celular' : 'pc';
+            seleccionarDispositivo(tipo);
         }
     });
-    // Event listener para el botón Siguiente
-    nextBtn.addEventListener('click', (event) => {
-        event.stopPropagation();
-        currentSongIndex = (currentSongIndex + 1) % canciones.length;
-        loadSong(currentSongIndex);
-        // Si la canción actual estaba reproduciéndose, la nueva también lo hará
-        if (isPlaying) {
-            audio.play();
-        }
-    });
-    // Event listener para el botón de Mute/Unmute
-    muteBtn.addEventListener('click', (event) => {
-      event.stopPropagation();
-      isMuted = !isMuted;
-      audio.muted = isMuted;
-      muteBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
-    });
-    // Event listener para el slider de volumen
-    volRange.addEventListener('input', (event) => {
-      event.stopPropagation();
-      audio.volume = volRange.value;
-    });
-    // Actualizar la barra de progreso de la canción
-    audio.addEventListener('timeupdate', () => {
-      progress.value = (audio.currentTime / audio.duration) * 100 || 0;
-    });
-    // Permitir arrastrar la barra de progreso para cambiar la posición de la canción
-    progress.addEventListener('input', (event) => {
-      event.stopPropagation();
-      audio.currentTime = (progress.value / 100) * audio.duration;
-    });
-    // Lógica para maximizar/minimizar el reproductor en celular
+
+    // Maximizar el reproductor al tocarlo en celular
     reproductor.addEventListener('click', (event) => {
         if (document.body.classList.contains('celular')) {
             if (!isReproductorMaximized) {
                 reproductor.classList.add('maximized');
                 isReproductorMaximized = true;
+                // Prevenir la propagación para que el clic no minimice inmediatamente
                 event.stopPropagation();
             }
         }
@@ -1230,6 +1160,7 @@
             }
         }
     });
+
     // Función para seleccionar el tipo de dispositivo (PC o Celular)
     function seleccionarDispositivo(tipo) {
       pantallaInicio.classList.add('transicion-lila');
