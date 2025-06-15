@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Feliz primer mes</title>
-  <link rel="icon" href="favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+  <title>Feliz primer mes</title> <link rel="icon" href="favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;700&family=Dancing+Script:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     /* Restablecimiento y estilos base */
@@ -140,7 +139,6 @@
         right: auto;
         font-size: 0.9rem;
         padding: 12px 15px;
-        /* **CORRECCIÓN** Asegurar z-index para celular también */
         z-index: 99;
     }
 
@@ -152,22 +150,56 @@
         right: 20px;
     }
 
+    /* **NUEVO** Estilo del contador en la esquina superior izquierda */
+    #tiempo-juntos {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(8px);
+        padding: 12px 18px;
+        border-radius: 15px;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 1rem;
+        color: #6a5acd; /* Lila oscuro */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 101; /* Asegurar que esté por encima de todo */
+        transition: background 0.7s ease-in-out, color 0.7s ease-in-out, box-shadow 0.3s ease-in-out;
+        white-space: nowrap; /* Evitar que el texto se rompa en varias líneas */
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    body.dark-mode #tiempo-juntos {
+        background: rgba(0, 0, 0, 0.6);
+        color: #ffda66; /* Amarillo cálido */
+        border: 1px solid rgba(0, 0, 0, 0.4);
+    }
+    
+    /* Adaptación para celular */
+    body.celular #tiempo-juntos {
+        top: 15px;
+        left: 15px;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+
     /* Estilo del encabezado */
     header {
       text-align: center;
       padding: 60px 20px 30px; /* Más padding superior para espacio */
+      position: relative; /* Para el contador */
     }
 
     h1 {
-      font-family: 'Pacifico', cursive;
-      /* **CORRECCIÓN** Mayor tamaño para mejor resolución y evitar pixeles */
-      font-size: 4.5rem; /* Aumentado significativamente */
+      font-family: 'Great Vibes', cursive;
+      font-size: 4.8rem; /* Ligeramente más grande aún para destacar con la nueva fuente */
       color: #8a2be2; /* Lila más intenso */
       transition: color 0.7s ease-in-out;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       margin-bottom: 10px; /* Espacio entre título y párrafo */
-      /* **NUEVO** Sombra de texto sutil para definición */
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
@@ -193,13 +225,12 @@
         height: auto;
         margin: 0 auto 40px auto;
         border-radius: 15px;
-        /* **CORRECCIÓN** Ajustar sombra para evitar "bordes negros" */
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Sombra suave sin bordes sólidos */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         display: block;
         transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, filter 0.3s ease-in-out;
-        /* **NUEVO** Propiedad para asegurar que no se vean bordes internos del video si son parte del archivo */
-        background-color: transparent;
+        background-color: transparent; /* Asegurar que no haya color de fondo indeseado */
         border: none; /* Asegurar que no haya border */
+        overflow: hidden;
     }
     header video:hover {
         transform: translateY(-5px);
@@ -221,8 +252,7 @@
       cursor: pointer;
       box-shadow: 0 6px 15px rgba(0,0,0,0.25);
       transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-      /* **CORRECCIÓN** Asegurar que esté siempre al frente */
-      z-index: 100; /* Mayor que el contenido principal y reproductor */
+      z-index: 100; /* Asegurar que esté siempre al frente */
     }
 
     .triste-btn:hover {
@@ -249,7 +279,6 @@
       justify-content: center;
       box-shadow: 0 6px 15px rgba(0,0,0,0.25);
       transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, color 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
-      /* **NUEVO** Z-index para asegurar visibilidad */
       z-index: 100;
     }
 
@@ -281,12 +310,12 @@
 
     .corazon {
       position: absolute;
-      color: rgba(0, 0, 0, 0.1); /* Corazones más sutiles en modo claro */
+      color: rgba(255, 105, 180, 0.15); /* Corazones más rosados y notorios */
       font-size: 1.5rem;
       animation: flotar 10s linear infinite;
     }
     body.dark-mode .corazon {
-        color: rgba(147, 112, 219, 0.3); /* Lila suave en modo oscuro */
+        color: rgba(255, 192, 203, 0.25); /* Rosa más claro en modo oscuro */
     }
 
     /* More diverse heart animations for size and delay */
@@ -338,7 +367,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      z-index: 100;
+      z-index: 99; /* Menor que los botones fijos pero mayor que el contenido */
       cursor: pointer;
     }
 
@@ -650,6 +679,8 @@
 </div>
 
 <div id="contenido-principal" style="opacity: 0; display: none;">
+  <div id="tiempo-juntos"></div>
+
   <div class="corazones">
     <i class="fa-solid fa-heart corazon" style="top:10%; left:10%;"></i>
     <i class="fa-solid fa-heart corazon" style="top:20%; left:80%;"></i>
@@ -788,6 +819,7 @@
     const progress = document.getElementById('progress');
     const pantallaInicio = document.getElementById('pantalla-inicio');
     const contenidoPrincipal = document.getElementById('contenido-principal');
+    const tiempoJuntosElement = document.getElementById('tiempo-juntos'); // Nuevo elemento para el contador de tiempo
 
     const canciones = [
       {
@@ -815,6 +847,70 @@
     let isPlaying = false;
     let isReproductorMaximized = false;
 
+    // **NUEVO** Fecha de inicio de la relación: 16 de mayo de 2025 (formato: YYYY-MM-DDTHH:MM:SS)
+    // Es importante que la hora sea consistente si quieres una precisión exacta desde un punto cero.
+    // Si no se especifica la hora, se asume medianoche UTC o la medianoche local, lo que puede causar pequeñas variaciones.
+    // Puse 00:00:00 (medianoche) del 16 de mayo de 2025.
+    const fechaInicioRelacion = new Date('2025-05-16T00:00:00-05:00'); // Hora y minuto cero en Quito
+
+    // **NUEVO** Función para actualizar el contador de tiempo exacto
+    function actualizarContadorTiempo() {
+        const ahora = new Date();
+        const diferenciaMs = ahora.getTime() - fechaInicioRelacion.getTime();
+
+        // Si la diferencia es negativa (fecha futura), manejarla o mostrar un mensaje.
+        if (diferenciaMs < 0) {
+            tiempoJuntosElement.textContent = "¡Pronto nuestro aniversario!";
+            return;
+        }
+
+        const segundos = Math.floor(diferenciaMs / 1000);
+        const minutos = Math.floor(segundos / 60);
+        const horas = Math.floor(minutos / 60);
+        const dias = Math.floor(horas / 24);
+
+        // Calcular años y meses para una representación más legible
+        // Esto es una aproximación, ya que los meses tienen diferente número de días.
+        // Para mayor precisión, se usaría una librería de fechas como Moment.js o Date-fns.
+        // Para este propósito, una aproximación basta y es más sencilla de implementar.
+        const años = Math.floor(dias / 365.25); // Contempla años bisiestos
+        const meses = Math.floor((dias % 365.25) / 30.44); // Días restantes convertidos a meses promedio
+
+        const diasRestantes = dias % 30; // Días restantes después de calcular meses
+        const horasRestantes = horas % 24;
+        const minutosRestantes = minutos % 60;
+        const segundosRestantes = segundos % 60;
+
+        let textoContador = '';
+        if (años > 0) {
+            textoContador += `${años} año${años !== 1 ? 's' : ''}, `;
+        }
+        if (meses > 0) {
+            textoContador += `${meses} mes${meses !== 1 ? 'es' : ''}, `;
+        }
+        // Si no hay años ni meses, pero ya pasamos un día, muestra los días
+        else if (dias > 0) {
+            textoContador += `${dias} día${dias !== 1 ? 's' : ''}, `;
+        }
+
+
+        // Siempre mostrar horas, minutos y segundos si no es el día cero
+        if (dias > 0 || meses > 0 || años > 0 || segundos > 0) {
+            textoContador += `${horasRestantes.toString().padStart(2, '0')}:${minutosRestantes.toString().padStart(2, '0')}:${segundosRestantes.toString().padStart(2, '0')}`;
+        } else {
+             textoContador = `¡Justo ahora, el inicio de algo hermoso!`; // Mensaje para el punto cero o muy cerca
+        }
+        
+        tiempoJuntosElement.textContent = `Nuestro tiempo: ${textoContador}`;
+
+        // **NUEVO** Cambio el título de la pestaña cuando sea un mes exacto
+        if (años === 0 && meses === 1 && diasRestantes === 0 && horasRestantes === 0 && minutosRestantes === 0 && segundosRestantes === 0) {
+             document.title = "¡Feliz Primer Mes, Mi Amor! ❤️";
+        } else if (document.title !== "Nuestro Primer Mes ❤️") { // Para que no cambie el título cada segundo si ya pasó el mes
+             document.title = "Nuestro Primer Mes ❤️"; // Título secundario después del mes inicial
+        }
+    }
+
 
     // Función para cargar una canción
     function loadSong(index) {
@@ -840,8 +936,10 @@
     audio.volume = 0.2;
     volRange.value = 0.2;
     loadSong(currentSongIndex);
-
-
+    
+    // **NUEVO** Iniciar el contador y actualizarlo cada segundo
+    actualizarContadorTiempo();
+    setInterval(actualizarContadorTiempo, 1000); // Actualizar cada segundo
 
 
     // Event listener para el botón de modo oscuro/claro
