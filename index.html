@@ -58,7 +58,7 @@
         border: 2px solid #2a2a2a;
     }
 
-    /* Estilo del modo oscuro */
+    /* Estilo del modo oscuro (DEFAULT) */
     body.dark-mode {
       /* Degradado oscuro inverso */
       background: linear-gradient(180deg, #1a1a1a 0%, #333333 50%, #4a4a4a 100%);
@@ -158,12 +158,12 @@
         position: fixed;
         top: 20px;
         left: 20px;
-        background: rgba(255, 255, 255, 0.9); /* Más opaco */
+        background: rgba(255, 255, 255, 0.9); /* Más opaco en modo claro */
         backdrop-filter: blur(12px);
         padding: 15px 12px; /* Un poco más de padding para la forma vertical */
         border-radius: 16px;
         font-family: 'Orbitron', sans-serif;
-        color: #6a5acd; /* Lila oscuro */
+        color: #6a5acd; /* Lila oscuro para etiquetas en modo claro */
         box-shadow: 0 6px 18px rgba(0,0,0,0.15); /* Sombra más pronunciada pero elegante */
         z-index: 101;
         transition: background 0.4s ease-in-out, color 0.4s ease-in-out, box-shadow 0.2s ease-in-out, border 0.2s ease-in-out;
@@ -176,7 +176,7 @@
 
     body.dark-mode #tiempo-juntos {
         background: rgba(0, 0, 0, 0.8);
-        color: #ffda66;
+        color: #ffda66; /* Amarillo cálido para etiquetas en modo oscuro */
         border: 1px solid rgba(0, 0, 0, 0.5);
     }
 
@@ -184,7 +184,7 @@
         font-family: 'Quicksand', sans-serif; /* Un toque más suave para el título */
         font-size: 0.85rem;
         font-weight: 700;
-        color: #8a2be2;
+        color: #8a2be2; /* Lila más intenso en modo claro */
         margin-bottom: 8px; /* Espacio antes de los números */
         text-transform: uppercase;
         letter-spacing: 0.5px;
@@ -192,7 +192,7 @@
         white-space: nowrap; /* Evita que el texto se rompa */
     }
     body.dark-mode #tiempo-titulo {
-        color: #ffd700;
+        color: #ffd700; /* Amarillo dorado en modo oscuro */
     }
     
     .tiempo-unidad {
@@ -215,11 +215,11 @@
         justify-content: center;
         align-items: center;
         width: 2.2em; /* Ancho fijo para 2 dígitos */
-        color: #4a4a4a; /* Color oscuro para los números */
+        color: #4a4a4a; /* Color oscuro para los números en modo claro */
         transition: color 0.4s ease-in-out;
     }
     body.dark-mode .tiempo-numero {
-        color: #f0f0f0;
+        color: #f0f0f0; /* Color claro para los números en modo oscuro */
     }
 
     .tiempo-numero span {
@@ -252,13 +252,13 @@
         font-size: 0.65rem; /* Etiquetas aún más pequeñas */
         text-transform: uppercase;
         margin-top: 0px; /* Sin margen superior */
-        color: #888;
+        color: #888; /* Gris suave para etiquetas en modo claro */
         transition: color 0.4s ease-in-out;
         white-space: nowrap;
         opacity: 0.9;
     }
     body.dark-mode .tiempo-etiqueta {
-        color: #bbb;
+        color: #bbb; /* Gris más claro para etiquetas en modo oscuro */
     }
 
     /* Adaptación para celular: el cronómetro debe ser aún más compacto */
@@ -406,7 +406,7 @@
 
     .corazon {
       position: absolute;
-      color: rgba(255, 105, 180, 0.15); /* Corazones más rosados y notorios */
+      color: rgba(255, 105, 180, 0.15); /* Corazones más rosados y notorios en modo claro */
       font-size: 1.5rem;
       animation: flotar 10s linear infinite;
     }
@@ -756,8 +756,7 @@
     }
   </style>
 </head>
-<body>
-     <div id="pantalla-inicio">
+<body class="dark-mode"> <div id="pantalla-inicio">
   <h2>¿En dónde estás viendo esto?</h2>
   <div class="dispositivo-opciones">
     <div>
@@ -925,9 +924,7 @@
     </div>
   </div>
 
-  <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-moon"></i></button>
-
-  <script>
+  <button class="modo-btn" id="modo-btn"><i class="fa-solid fa-sun"></i></button> <script>
     const body = document.body;
     const modoBtn = document.getElementById('modo-btn');
     const reproductor = document.getElementById('reproductor');
@@ -978,8 +975,9 @@
     let isPlaying = false;
     let isReproductorMaximized = false;
 
-    // Fecha de inicio de la relación: 16 de mayo de 2025, 00:00:00 AM, Hora de Quito (-05:00)
-    const fechaInicioRelacion = new Date('2025-05-16T00:00:00-05:00');
+    // Fecha de inicio de la relación: 16 de mayo de 2025, 01:41:33 AM, Hora de Quito (-05:00)
+    // Para que el 15 de junio de 2025 (hora actual) muestre 29 días.
+    const fechaInicioRelacion = new Date('2025-05-16T01:41:33-05:00');
     
     // Función para actualizar un elemento con animación de "flip"
     function updateUnit(element, newValue) {
@@ -1078,7 +1076,8 @@
         // Calcular días restantes dentro del mes actual de la relación
         // Esto es desde `tempInicio` (que ahora es el inicio del "mes de la relación" actual) hasta `ahora`
         const diffMillisInCurrentMonth = ahora.getTime() - tempInicio.getTime();
-        dias = Math.floor(diffMillisInCurrentMonth / (1000 * 60 * 60 * 24));
+        const diasUTC = Math.floor((Date.UTC(ahora.getFullYear(), ahora.getMonth(), ahora.getDate()) - Date.UTC(tempInicio.getFullYear(), tempInicio.getMonth(), tempInicio.getDate())) / (1000 * 60 * 60 * 24));
+        dias = diasUTC;
         
         // Lógica para el título de la pestaña y el "1 Mes" especial
         if (anios === 0 && meses === 1 && dias === 0) {
@@ -1137,7 +1136,7 @@
         diasElement.innerHTML = '<span>00</span>';
         horasElement.innerHTML = '<span>00</span>';
         minutosElement.innerHTML = '<span>00</span>';
-        segundosElement.innerHTML = '<span>00';
+        segundosElement.innerHTML = '<span>00</span>';
 
         actualizarContadorTiempo(); // Llamada inicial
         setInterval(actualizarContadorTiempo, 1000); // Actualizar cada segundo
