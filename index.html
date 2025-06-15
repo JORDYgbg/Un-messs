@@ -10,811 +10,812 @@
   <style>
     /* Restablecimiento y estilos base */
     * {
-      margin: 0; 
-      padding: 0; 
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
     /* Custom text selection color */
     ::selection {
-        background-color: #d2a6fa; /* A soft lilac */ 
-        color: #fff; 
+        background-color: #d2a6fa; /* A soft lilac */
+        color: #fff;
     }
     body.dark-mode ::selection {
-        background-color: #ffda66; /* Warm yellow for dark mode */ 
-        color: #333; 
+        background-color: #ffda66; /* Warm yellow for dark mode */
+        color: #333;
     }
 
     /* Estilo del cuerpo con transiciones mejoradas y suavizado de fuente */
     body {
-      font-family: 'Quicksand', sans-serif; /* Degradado inverso: empieza claro, se oscurece al bajar */ 
-      background: linear-gradient(180deg, #f7e6ff 0%, #d2a6fa 50%, #9370db 100%); 
-      color: #4a4a4a; 
-      transition: background 0.7s ease-in-out, color 0.7s ease-in-out, font-size 0.7s ease-in-out; 
-      overflow-x: hidden; 
-      -webkit-font-smoothing: antialiased; 
-      -moz-osx-font-smoothing: grayscale; 
+      font-family: 'Quicksand', sans-serif;
+      /* Degradado inverso: empieza claro, se oscurece al bajar */
+      background: linear-gradient(180deg, #f7e6ff 0%, #d2a6fa 50%, #9370db 100%);
+      color: #4a4a4a;
+      transition: background 0.7s ease-in-out, color 0.7s ease-in-out, font-size 0.7s ease-in-out;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       /* Scrollbar styling for WebKit browsers */
-      scrollbar-width: thin; 
-      scrollbar-color: #9370db #f1f1f1; 
+      scrollbar-width: thin;
+      scrollbar-color: #9370db #f1f1f1;
     }
     body::-webkit-scrollbar {
-        width: 10px; 
+        width: 10px;
     }
     body::-webkit-scrollbar-track {
-        background: #f1f1f1; 
+        background: #f1f1f1;
     }
     body::-webkit-scrollbar-thumb {
-        background-color: #9370db; 
-        border-radius: 6px; 
-        border: 2px solid #f1f1f1; 
+        background-color: #9370db;
+        border-radius: 6px;
+        border: 2px solid #f1f1f1;
     }
     body.dark-mode::-webkit-scrollbar-track {
-        background: #2a2a2a; 
+        background: #2a2a2a;
     }
     body.dark-mode::-webkit-scrollbar-thumb {
-        background-color: #ffda66; 
-        border: 2px solid #2a2a2a; 
+        background-color: #ffda66;
+        border: 2px solid #2a2a2a;
     }
 
     /* Estilo del modo oscuro (DEFAULT) */
     body.dark-mode {
       /* Degradado oscuro inverso */
       background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 50%, #3e3d4f 100%);
-      color: #f0f0f0; 
+      color: #f0f0f0;
     }
 
     /* Estilos específicos para celular */
     body.celular {
-      font-size: 1.1rem; 
+      font-size: 1.1rem;
     }
 
     body.celular .reproductor {
-      width: 60px; 
-      height: 60px; 
-      padding: 5px; 
-      top: 20px; 
-      right: 20px; 
+      width: 60px;
+      height: 60px;
+      padding: 5px;
+      top: 20px;
+      right: 20px;
       left: auto;
       bottom: auto;
       transform: none;
       overflow: hidden;
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
-      flex-direction: column; 
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     body.celular .reproductor img {
-      width: 50px; 
-      height: 50px; 
-      margin-bottom: 0; 
+      width: 50px;
+      height: 50px;
+      margin-bottom: 0;
     }
 
     body.celular .reproductor .titulo,
     body.celular .reproductor .barra,
     body.celular .reproductor .volumen,
     body.celular .reproductor .controles {
-      display: none; 
-      opacity: 0; 
-      transition: opacity 0.3s ease-out; 
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
     }
 
     body.celular .reproductor.maximized {
-      width: 90%; 
-      height: auto; 
-      padding: 20px; 
-      overflow: visible; 
-      left: 50%; 
-      right: auto; 
-      transform: translateX(-50%); 
-      top: 20px; 
-      bottom: auto; 
-      align-items: stretch; 
+      width: 90%;
+      height: auto;
+      padding: 20px;
+      overflow: visible;
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+      top: 20px;
+      bottom: auto;
+      align-items: stretch;
     }
 
     body.celular .reproductor.maximized img {
-      width: 100px; 
-      height: 100px; 
-      margin-bottom: 10px; 
-      margin-left: auto; 
-      margin-right: auto; 
+      width: 100px;
+      height: 100px;
+      margin-bottom: 10px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     body.celular .reproductor.maximized .titulo,
     body.celular .reproductor.maximized .barra,
     body.celular .reproductor.maximized .volumen,
     body.celular .reproductor.maximized .controles {
-      display: flex; 
-      opacity: 1; 
-      transition-delay: 0.2s; 
+      display: flex;
+      opacity: 1;
+      transition-delay: 0.2s;
     }
     body.celular .reproductor.maximized .titulo {
-        display: block; 
+        display: block;
     }
 
     body.celular .triste-btn {
-        width: calc(50% - 30px); 
-        bottom: 20px; 
-        left: 20px; 
+        width: calc(50% - 30px);
+        bottom: 20px;
+        left: 20px;
         right: auto;
-        font-size: 0.9rem; 
-        padding: 12px 15px; 
-        z-index: 99; 
+        font-size: 0.9rem;
+        padding: 12px 15px;
+        z-index: 99;
     }
 
     body.celular .modo-btn {
-        width: 45px; 
-        height: 45px; 
-        font-size: 18px; 
-        bottom: 20px; 
-        right: 20px; 
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+        bottom: 20px;
+        right: 20px;
     }
 
     /* **CRONÓMETRO VERTICAL, ELEGANTE Y PEQUEÑO** */
     #tiempo-juntos {
-        position: fixed; 
-        top: 20px; 
-        left: 20px; 
-        background: rgba(255, 255, 255, 0.9); /* Más opaco en modo claro */ 
-        backdrop-filter: blur(12px); 
-        padding: 15px 12px; /* Un poco más de padding para la forma vertical */ 
-        border-radius: 16px; 
-        font-family: 'Orbitron', sans-serif; 
-        color: #6a5acd; /* Lila oscuro para etiquetas en modo claro */ 
-        box-shadow: 0 6px 18px rgba(0,0,0,0.15); 
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: rgba(255, 255, 255, 0.9); /* Más opaco en modo claro */
+        backdrop-filter: blur(12px);
+        padding: 15px 12px; /* Un poco más de padding para la forma vertical */
+        border-radius: 16px;
+        font-family: 'Orbitron', sans-serif;
+        color: #6a5acd; /* Lila oscuro para etiquetas en modo claro */
+        box-shadow: 0 6px 18px rgba(0,0,0,0.15);
         /* Sombra más pronunciada pero elegante */
-        z-index: 101; 
-        transition: background 0.4s ease-in-out, color 0.4s ease-in-out, box-shadow 0.2s ease-in-out, border 0.2s ease-in-out; 
-        display: flex; 
-        flex-direction: column; /* Vertical */ 
-        align-items: center; /* Centrar contenido */ 
-        gap: 5px; 
+        z-index: 101;
+        transition: background 0.4s ease-in-out, color 0.4s ease-in-out, box-shadow 0.2s ease-in-out, border 0.2s ease-in-out;
+        display: flex;
+        flex-direction: column; /* Vertical */
+        align-items: center; /* Centrar contenido */
+        gap: 5px;
         /* Espacio entre unidades */
-        border: 1px solid rgba(255, 255, 255, 0.4); 
+        border: 1px solid rgba(255, 255, 255, 0.4);
     }
 
     body.dark-mode #tiempo-juntos {
-        background: rgba(0, 0, 0, 0.8); 
-        color: #ffda66; /* Amarillo cálido para etiquetas en modo oscuro */ 
-        border: 1px solid rgba(0, 0, 0, 0.5); 
+        background: rgba(0, 0, 0, 0.8);
+        color: #ffda66; /* Amarillo cálido para etiquetas en modo oscuro */
+        border: 1px solid rgba(0, 0, 0, 0.5);
     }
 
     #tiempo-titulo {
-        font-family: 'Quicksand', sans-serif; /* Un toque más suave para el título */ 
-        font-size: 0.85rem; 
-        font-weight: 700; 
-        color: #8a2be2; /* Lila más intenso en modo claro */ 
-        margin-bottom: 8px; 
+        font-family: 'Quicksand', sans-serif; /* Un toque más suave para el título */
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #8a2be2; /* Lila más intenso en modo claro */
+        margin-bottom: 8px;
         /* Espacio antes de los números */
-        text-transform: uppercase; 
-        letter-spacing: 0.5px; 
-        transition: color 0.4s ease-in-out; 
-        white-space: nowrap; /* Evita que el texto se rompa */ 
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: color 0.4s ease-in-out;
+        white-space: nowrap; /* Evita que el texto se rompa */
     }
     body.dark-mode #tiempo-titulo {
-        color: #ffd700; /* Amarillo dorado en modo oscuro */ 
+        color: #ffd700; /* Amarillo dorado en modo oscuro */
     }
     
     .tiempo-unidad {
-        display: flex; 
-        flex-direction: column; 
-        align-items: center; 
-        position: relative; 
-        overflow: hidden; 
-        width: 100%; /* Para que las unidades se alineen */ 
-        padding: 2px 0; /* Pequeño padding vertical */ 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        width: 100%; /* Para que las unidades se alineen */
+        padding: 2px 0; /* Pequeño padding vertical */
     }
 
     .tiempo-numero {
-        font-size: 1.4rem; 
-        font-weight: 700; 
-        height: 1.5em; 
-        position: relative; 
-        overflow: hidden; 
-        width: 2.2em; 
-        color: #4a4a4a; 
-        transition: color 0.4s ease-in-out; 
-        display: flex; 
-        justify-content: center; 
-        align-items: center; 
+        font-size: 1.4rem;
+        font-weight: 700;
+        height: 1.5em;
+        position: relative;
+        overflow: hidden;
+        width: 2.2em;
+        color: #4a4a4a;
+        transition: color 0.4s ease-in-out;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     body.dark-mode .tiempo-numero {
-        color: #f0f0f0; /* Color claro para los números en modo oscuro */ 
+        color: #f0f0f0; /* Color claro para los números en modo oscuro */
     }
 
     .tiempo-numero span {
-        display: block; 
-        transition: transform 0.2s cubic-bezier(0.65, 0.05, 0.36, 1) 0s, opacity 0.2s ease-out; /* Más rápido y suave */ 
-        position: absolute; 
-        width: 100%; 
-        text-align: center; 
-        top: 0; 
-        left: 0; 
+        display: block;
+        transition: transform 0.2s cubic-bezier(0.65, 0.05, 0.36, 1) 0s, opacity 0.2s ease-out; /* Más rápido y suave */
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: 0;
+        left: 0;
     }
 
     /* Animación de entrada del nuevo número */
     .tiempo-numero span.new {
-        transform: translateY(100%); 
-        opacity: 0; 
+        transform: translateY(100%);
+        opacity: 0;
     }
     .tiempo-numero span.new.animate {
-        transform: translateY(0); 
-        opacity: 1; 
+        transform: translateY(0);
+        opacity: 1;
     }
 
     /* Animación de salida del número viejo */
     .tiempo-numero span.old.animate {
-        transform: translateY(-100%); 
-        opacity: 0; 
+        transform: translateY(-100%);
+        opacity: 0;
     }
 
     .tiempo-etiqueta {
-        font-size: 0.65rem; /* Etiquetas aún más pequeñas */ 
-        text-transform: uppercase; 
-        margin-top: 0px; /* Sin margen superior */ 
-        color: #888; /* Gris suave para etiquetas en modo claro */ 
-        transition: color 0.4s ease-in-out; 
-        white-space: nowrap; 
-        opacity: 0.9; 
+        font-size: 0.65rem; /* Etiquetas aún más pequeñas */
+        text-transform: uppercase;
+        margin-top: 0px; /* Sin margen superior */
+        color: #888; /* Gris suave para etiquetas en modo claro */
+        transition: color 0.4s ease-in-out;
+        white-space: nowrap;
+        opacity: 0.9;
     }
     body.dark-mode .tiempo-etiqueta {
-        color: #bbb; /* Gris más claro para etiquetas en modo oscuro */ 
+        color: #bbb; /* Gris más claro para etiquetas en modo oscuro */
     }
 
     /* Adaptación para celular: el cronómetro debe ser aún más compacto */
     body.celular #tiempo-juntos {
-        top: 10px; 
-        left: 10px; 
-        padding: 10px 8px; /* Menor padding */ 
-        gap: 3px; /* Más pequeño aún */ 
+        top: 10px;
+        left: 10px;
+        padding: 10px 8px; /* Menor padding */
+        gap: 3px; /* Más pequeño aún */
     }
     body.celular #tiempo-titulo {
-        font-size: 0.7rem; 
-        margin-bottom: 5px; 
+        font-size: 0.7rem;
+        margin-bottom: 5px;
     }
     body.celular .tiempo-numero {
-        font-size: 1.0rem; /* Números aún más pequeños */ 
-        width: 2.5em; /* Ajuste para móviles */ 
+        font-size: 1.0rem; /* Números aún más pequeños */
+        width: 2.5em; /* Ajuste para móviles */
     }
     body.celular .tiempo-etiqueta {
-        font-size: 0.55rem; 
+        font-size: 0.55rem;
     }
 
 
     /* Estilo del encabezado */
     header {
-      text-align: center; 
-      padding: 60px 20px 30px; /* Más padding superior para espacio */ 
-      position: relative; /* Para el contador */ 
+      text-align: center;
+      padding: 60px 20px 30px; /* Más padding superior para espacio */
+      position: relative; /* Para el contador */
     }
 
     h1 {
-      font-family: 'Great Vibes', cursive; 
-      font-size: 4.8rem; /* Ligeramente más grande aún para destacar con la nueva fuente */ 
-      color: #8a2be2; /* Lila más intenso */ 
-      transition: color 0.7s ease-in-out; 
-      -webkit-font-smoothing: antialiased; 
-      -moz-osx-font-smoothing: grayscale; 
-      margin-bottom: 10px; /* Espacio entre título y párrafo */ 
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.1); 
+      font-family: 'Great Vibes', cursive;
+      font-size: 4.8rem; /* Ligeramente más grande aún para destacar con la nueva fuente */
+      color: #8a2be2; /* Lila más intenso */
+      transition: color 0.7s ease-in-out;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      margin-bottom: 10px; /* Espacio entre título y párrafo */
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
     body.dark-mode h1 {
-        color: #ffda66; /* Amarillo más cálido para el modo oscuro */ 
-        text-shadow: 2px 2px 4px rgba(255,255,255,0.1); 
+        color: #ffda66; /* Amarillo más cálido para el modo oscuro */
+        text-shadow: 2px 2px 4px rgba(255,255,255,0.1);
     }
 
     header p {
-      font-size: 1.3rem; /* Párrafo ligeramente más grande */ 
-      color: #666; /* Color de texto más suave */ 
-      -webkit-font-smoothing: antialiased; 
-      -moz-osx-font-smoothing: grayscale; 
-      margin-bottom: 30px; /* Más espacio entre el texto y el video */ 
+      font-size: 1.3rem; /* Párrafo ligeramente más grande */
+      color: #666; /* Color de texto más suave */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      margin-bottom: 30px; /* Más espacio entre el texto y el video */
     }
     body.dark-mode header p {
-        color: #ccc; 
+        color: #ccc;
     }
 
     header video {
-        width: 70%; 
-        max-width: 400px; 
-        height: auto; 
-        margin: 0 auto 40px auto; 
-        border-radius: 15px; 
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
-        display: block; 
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, filter 0.3s ease-in-out; 
-        background-color: transparent; /* Asegurar que no haya color de fondo indeseado */ 
-        border: none; /* Asegurar que no haya border */ 
-        overflow: hidden; 
+        width: 70%;
+        max-width: 400px;
+        height: auto;
+        margin: 0 auto 40px auto;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        display: block;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, filter 0.3s ease-in-out;
+        background-color: transparent; /* Asegurar que no haya color de fondo indeseado */
+        border: none; /* Asegurar que no haya border */
+        overflow: hidden;
     }
     header video:hover {
-        transform: translateY(-5px); 
-        box-shadow: 0 15px 40px rgba(0,0,0,0.3); 
-        filter: brightness(1.05); /* Slightly brighter on hover */ 
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        filter: brightness(1.05); /* Slightly brighter on hover */
     }
 
     /* Botón "Si te sientes triste" */
     .triste-btn {
-      position: fixed; 
-      bottom: 25px; /* Ligeramente más arriba */ 
-      left: 25px; /* Ligeramente más adentro */ 
-      background-color: #ff69b4; /* Rosa */ 
-      border: none; 
-      color: white; 
-      font-size: 1rem; 
-      padding: 15px 25px; 
-      border-radius: 25px; 
-      cursor: pointer; 
-      box-shadow: 0 6px 15px rgba(0,0,0,0.25); 
-      transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
-      z-index: 100; /* Asegurar que esté siempre al frente */ 
+      position: fixed;
+      bottom: 25px; /* Ligeramente más arriba */
+      left: 25px; /* Ligeramente más adentro */
+      background-color: #ff69b4; /* Rosa */
+      border: none;
+      color: white;
+      font-size: 1rem;
+      padding: 15px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      z-index: 100; /* Asegurar que esté siempre al frente */
     }
 
     .triste-btn:hover {
-      background-color: #ff1493; 
-      transform: translateY(-7px); 
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
+      background-color: #ff1493;
+      transform: translateY(-7px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
     /* Botón de cambio de modo oscuro/claro */
     .modo-btn {
-      position: fixed; 
-      bottom: 25px; 
-      right: 25px; 
-      background-color: #9370db; /* Lila más suave */ 
-      border: none; 
-      border-radius: 50%; 
-      width: 55px; /* Ligeramente más grande */ 
-      height: 55px; 
-      font-size: 22px; 
-      color: white; 
-      cursor: pointer; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      box-shadow: 0 6px 15px rgba(0,0,0,0.25); 
-      transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, color 0.4s ease-in-out, box-shadow 0.3s ease-in-out; 
-      z-index: 100; 
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #9370db; /* Lila más suave */
+      border: none;
+      border-radius: 50%;
+      width: 55px; /* Ligeramente más grande */
+      height: 55px;
+      font-size: 22px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, color 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
+      z-index: 100;
     }
 
     .modo-btn:hover {
-      background-color: #6a5acd; /* Lila al pasar el ratón */ 
-      transform: rotate(360deg); 
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
+      background-color: #6a5acd; /* Lila al pasar el ratón */
+      transform: rotate(360deg);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
     body.dark-mode .modo-btn {
-        background-color: #ffdb58; /* Amarillo oro */ 
-        color: #333; 
+        background-color: #ffdb58; /* Amarillo oro */
+        color: #333;
     }
 
     body.dark-mode .modo-btn:hover {
-        background-color: #e0b400; /* Amarillo oscuro al pasar el ratón */ 
+        background-color: #e0b400; /* Amarillo oscuro al pasar el ratón */
     }
 
     /* Animación de corazones flotantes */
     .corazones {
-      position: fixed; 
-      top: 0; 
-      left: 0; 
-      width: 100%; 
-      height: 100%; 
-      pointer-events: none; 
-      z-index: -1; 
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
     }
 
     .corazon {
-      position: absolute; 
-      color: rgba(255, 105, 180, 0.15); /* Corazones más rosados y notorios en modo claro */ 
-      font-size: 1.5rem; 
-      animation: flotar 10s linear infinite; 
+      position: absolute;
+      color: rgba(255, 105, 180, 0.15); /* Corazones más rosados y notorios en modo claro */
+      font-size: 1.5rem;
+      animation: flotar 10s linear infinite;
     }
     body.dark-mode .corazon {
-        color: rgba(255, 192, 203, 0.25); /* Rosa más claro en modo oscuro */ 
+        color: rgba(255, 192, 203, 0.25); /* Rosa más claro en modo oscuro */
     }
 
     /* More diverse heart animations for size and delay */
-    .corazon:nth-child(2n) { animation-duration: 12s; 
-      animation-delay: -2s; 
-      font-size: 1.2rem; 
-      opacity: 0.8; 
+    .corazon:nth-child(2n) { animation-duration: 12s;
+      animation-delay: -2s;
+      font-size: 1.2rem;
+      opacity: 0.8;
     }
-    .corazon:nth-child(3n) { animation-duration: 9s; 
-      animation-delay: -3s; 
-      font-size: 1.8rem; 
-      opacity: 0.9; 
+    .corazon:nth-child(3n) { animation-duration: 9s;
+      animation-delay: -3s;
+      font-size: 1.8rem;
+      opacity: 0.9;
     }
-    .corazon:nth-child(4n) { animation-duration: 11s; 
-      animation-delay: -1s; 
-      font-size: 1.0rem; 
-      opacity: 0.7; 
+    .corazon:nth-child(4n) { animation-duration: 11s;
+      animation-delay: -1s;
+      font-size: 1.0rem;
+      opacity: 0.7;
     }
-    .corazon:nth-child(5n) { animation-duration: 13s; 
-      animation-delay: -4s; 
-      font-size: 2.0rem; 
-      opacity: 1.0; 
+    .corazon:nth-child(5n) { animation-duration: 13s;
+      animation-delay: -4s;
+      font-size: 2.0rem;
+      opacity: 1.0;
     }
-    .corazon:nth-child(6n) { animation-duration: 8s; 
-      animation-delay: -5s; 
-      font-size: 1.3rem; 
-      opacity: 0.85; 
+    .corazon:nth-child(6n) { animation-duration: 8s;
+      animation-delay: -5s;
+      font-size: 1.3rem;
+      opacity: 0.85;
     }
-    .corazon:nth-child(7n) { animation-duration: 10.5s; 
-      animation-delay: -2.5s; 
-      font-size: 1.6rem; 
-      opacity: 0.95; 
+    .corazon:nth-child(7n) { animation-duration: 10.5s;
+      animation-delay: -2.5s;
+      font-size: 1.6rem;
+      opacity: 0.95;
     }
-    .corazon:nth-child(8n) { animation-duration: 9.5s; 
-      animation-delay: -1.5s; 
-      font-size: 1.1rem; 
-      opacity: 0.75; 
+    .corazon:nth-child(8n) { animation-duration: 9.5s;
+      animation-delay: -1.5s;
+      font-size: 1.1rem;
+      opacity: 0.75;
     }
-    .corazon:nth-child(9n) { animation-duration: 14s; 
-      animation-delay: -3.5s; 
-      font-size: 1.9rem; 
-      opacity: 1.0; 
+    .corazon:nth-child(9n) { animation-duration: 14s;
+      animation-delay: -3.5s;
+      font-size: 1.9rem;
+      opacity: 1.0;
     }
-    .corazon:nth-child(10n) { animation-duration: 7s; 
-      animation-delay: -0.5s; 
-      font-size: 1.4rem; 
-      opacity: 0.8; 
+    .corazon:nth-child(10n) { animation-duration: 7s;
+      animation-delay: -0.5s;
+      font-size: 1.4rem;
+      opacity: 0.8;
     }
     /* Added more nth-child rules for better distribution and subtlety */
-    .corazon:nth-child(11n) { animation-duration: 10s; 
-      animation-delay: -0.8s; 
-      font-size: 1.7rem; 
-      opacity: 0.9; 
+    .corazon:nth-child(11n) { animation-duration: 10s;
+      animation-delay: -0.8s;
+      font-size: 1.7rem;
+      opacity: 0.9;
     }
-    .corazon:nth-child(12n) { animation-duration: 11.5s; 
-      animation-delay: -2.8s; 
-      font-size: 1.35rem; 
-      opacity: 0.8; 
+    .corazon:nth-child(12n) { animation-duration: 11.5s;
+      animation-delay: -2.8s;
+      font-size: 1.35rem;
+      opacity: 0.8;
     }
-    .corazon:nth-child(13n) { animation-duration: 9.8s; 
-      animation-delay: -4.2s; 
-      font-size: 1.05rem; 
-      opacity: 0.7; 
+    .corazon:nth-child(13n) { animation-duration: 9.8s;
+      animation-delay: -4.2s;
+      font-size: 1.05rem;
+      opacity: 0.7;
     }
-    .corazon:nth-child(14n) { animation-duration: 12.3s; 
-      animation-delay: -1.2s; 
-      font-size: 2.1rem; 
-      opacity: 1.0; 
+    .corazon:nth-child(14n) { animation-duration: 12.3s;
+      animation-delay: -1.2s;
+      font-size: 2.1rem;
+      opacity: 1.0;
     }
-    .corazon:nth-child(15n) { animation-duration: 8.5s; 
-      animation-delay: -3.7s; 
-      font-size: 1.5rem; 
-      opacity: 0.85; 
+    .corazon:nth-child(15n) { animation-duration: 8.5s;
+      animation-delay: -3.7s;
+      font-size: 1.5rem;
+      opacity: 0.85;
     }
 
     @keyframes flotar {
       from {
-        transform: translateY(100vh) rotate(0deg); 
-        opacity: 0; 
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
       }
-      25% { opacity: 1; 
+      25% { opacity: 1;
       }
-      75% { opacity: 1; 
+      75% { opacity: 1;
       }
       to {
-        transform: translateY(-100vh) rotate(360deg); 
-        opacity: 0; 
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
       }
     }
 
     /* Estilo del reproductor de música (PC por defecto, minimizado) */
     .reproductor {
-      position: fixed; 
-      top: 25px; /* Ligeramente más abajo */ 
-      right: 25px; /* Ligeramente más adentro */ 
-      background: rgba(255,255,255,0.4); 
-      backdrop-filter: blur(12px); 
-      border-radius: 20px; 
-      padding: 15px; 
-      text-align: center; 
-      width: 80px; 
-      height: 80px; 
-      box-shadow: 0 8px 25px rgba(0,0,0,0.25); 
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
-      overflow: hidden; 
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
-      flex-direction: column; 
-      z-index: 99; /* Menor que los botones fijos pero mayor que el contenido */ 
-      cursor: pointer; 
+      position: fixed;
+      top: 25px; /* Ligeramente más abajo */
+      right: 25px; /* Ligeramente más adentro */
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 15px;
+      text-align: center;
+      width: 80px;
+      height: 80px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 99; /* Menor que los botones fijos pero mayor que el contenido */
+      cursor: pointer;
     }
 
     .reproductor.dark-mode {
-      background: rgba(0,0,0,0.6); 
+      background: rgba(0,0,0,0.6);
     }
 
     .reproductor img {
-      width: 60px; 
-      height: 60px; 
-      border-radius: 50%; 
-      margin-bottom: 0; 
-      animation: girar 5s linear infinite; 
-      box-shadow: 0 0 20px rgba(0,0,0,0.2); 
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
-      object-fit: cover; 
-      filter: saturate(1); 
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-bottom: 0;
+      animation: girar 5s linear infinite;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      object-fit: cover;
+      filter: saturate(1);
     }
     .reproductor img:hover {
-        filter: saturate(1.1); /* Slightly more saturated on hover */ 
+        filter: saturate(1.1); /* Slightly more saturated on hover */
     }
 
     .reproductor .titulo,
     .reproductor .barra,
     .reproductor .controles,
     .reproductor .volumen {
-      display: none; 
-      opacity: 0; 
-      transition: opacity 0.3s ease-out; 
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
     }
 
     /* Reproductor maximizado en PC al pasar el ratón */
     .reproductor:hover {
-      width: 260px; 
-      height: auto; 
-      padding: 20px; 
-      overflow: visible; 
-      align-items: stretch; 
-      cursor: default; 
-      box-shadow: 0 12px 30px rgba(0,0,0,0.35); 
+      width: 260px;
+      height: auto;
+      padding: 20px;
+      overflow: visible;
+      align-items: stretch;
+      cursor: default;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
     }
 
     .reproductor:hover img {
-      width: 100px; 
-      height: 100px; 
-      margin-bottom: 10px; 
-      margin-left: auto; 
-      margin-right: auto; 
+      width: 100px;
+      height: 100px;
+      margin-bottom: 10px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .reproductor:hover .titulo,
     .reproductor:hover .barra,
     .reproductor:hover .controles,
     .reproductor:hover .volumen {
-      display: flex; 
-      opacity: 1; 
-      transition-delay: 0.2s; 
+      display: flex;
+      opacity: 1;
+      transition-delay: 0.2s;
     }
     .reproductor:hover .titulo {
-        display: block; 
+        display: block;
     }
     .reproductor:hover .controles {
-        flex-wrap: nowrap; 
+        flex-wrap: nowrap;
     }
 
     @keyframes girar {
-      from { transform: rotate(0deg); 
+      from { transform: rotate(0deg);
       }
-      to { transform: rotate(360deg); 
+      to { transform: rotate(360deg);
       }
     }
 
     .titulo {
-      font-weight: bold; 
-      color: inherit; 
+      font-weight: bold;
+      color: inherit;
     }
     .titulo small {
-        font-weight: normal; 
-        font-size: 0.8em; 
-        color: #888; 
+        font-weight: normal;
+        font-size: 0.8em;
+        color: #888;
     }
     body.dark-mode .titulo small {
-        color: #bbb; 
+        color: #bbb;
     }
 
     .barra {
-      width: 100%; 
-      margin: 10px 0; 
-      -webkit-appearance: none; 
-      height: 8px; /* Barra de progreso más gruesa */ 
-      background: #ccc; 
-      border-radius: 4px; 
-      outline: none; 
-      cursor: pointer; 
+      width: 100%;
+      margin: 10px 0;
+      -webkit-appearance: none;
+      height: 8px; /* Barra de progreso más gruesa */
+      background: #ccc;
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
     }
 
     .barra::-webkit-slider-thumb {
-      -webkit-appearance: none; 
-      width: 18px; /* Pulgar más grande */ 
-      height: 18px; 
-      border-radius: 50%; 
-      background: #8a2be2; /* Lila más intenso */ 
-      cursor: pointer; 
-      box-shadow: 0 0 8px rgba(0,0,0,0.3); /* Sombra en el pulgar */ 
-      border: 1px solid rgba(255,255,255,0.5); 
+      -webkit-appearance: none;
+      width: 18px; /* Pulgar más grande */
+      height: 18px;
+      border-radius: 50%;
+      background: #8a2be2; /* Lila más intenso */
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(0,0,0,0.3); /* Sombra en el pulgar */
+      border: 1px solid rgba(255,255,255,0.5);
     }
     /* Firefox slider thumb styling */
     .barra::-moz-range-thumb {
-        width: 18px; 
-        height: 18px; 
-        border-radius: 50%; 
-        background: #8a2be2; 
-        cursor: pointer; 
-        box-shadow: 0 0 8px rgba(0,0,0,0.3); 
-        border: 1px solid rgba(255,255,255,0.5); 
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #8a2be2;
+        cursor: pointer;
+        box-shadow: 0 0 8px rgba(0,0,0,0.3);
+        border: 1px solid rgba(255,255,255,0.5);
     }
 
     .controles {
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
-      gap: 15px; 
-      margin-top: 10px; 
-      flex-wrap: wrap; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-top: 10px;
+      flex-wrap: wrap;
     }
 
     .controles button {
-      background: none; 
-      border: none; 
-      font-size: 1.6rem; /* Íconos de control más grandes */ 
-      cursor: pointer; 
-      color: inherit; 
-      transition: color 0.3s ease-in-out, transform 0.2s ease-in-out; 
+      background: none;
+      border: none;
+      font-size: 1.6rem; /* Íconos de control más grandes */
+      cursor: pointer;
+      color: inherit;
+      transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
     }
 
     .controles button:hover {
-        color: #8a2be2; 
-        transform: scale(1.15); /* Efecto hover más pronunciado */ 
+        color: #8a2be2;
+        transform: scale(1.15); /* Efecto hover más pronunciado */
     }
     body.dark-mode .controles button:hover {
-        color: #ffda66; 
+        color: #ffda66;
     }
 
     .volumen {
-      display: flex; 
-      align-items: center; 
-      gap: 5px; 
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
 
     #volRange {
-      width: 80px; /* Slider de volumen un poco más ancho */ 
-      background: #ccc; 
+      width: 80px; /* Slider de volumen un poco más ancho */
+      background: #ccc;
     }
     #volRange::-webkit-slider-thumb {
-        background: #8a2be2; 
+        background: #8a2be2;
     }
     /* Firefox volume slider thumb styling */
     #volRange::-moz-range-thumb {
-        background: #8a2be2; 
+        background: #8a2be2;
     }
 
     /* Estilo de las secciones */
     section {
-      padding: 60px 20px; /* Más padding para separar secciones */ 
-      text-align: center; 
-      transition: background 0.7s ease-in-out, color 0.7s ease-in-out; 
-      margin-bottom: 30px; /* Espacio entre secciones */ 
+      padding: 60px 20px; /* Más padding para separar secciones */
+      text-align: center;
+      transition: background 0.7s ease-in-out, color 0.7s ease-in-out;
+      margin-bottom: 30px; /* Espacio entre secciones */
       /* Background más sutil en secciones, que se adapte al nuevo degradado */
-      background: rgba(255,255,255,0.7); 
-      border-radius: 20px; 
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
-      max-width: 900px; 
-      margin-left: auto; 
-      margin-right: auto; 
-      transition: background 0.7s ease-in-out, color 0.7s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out; 
+      background: rgba(255,255,255,0.7);
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      transition: background 0.7s ease-in-out, color 0.7s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
     }
     section:hover {
-        box-shadow: 0 12px 25px rgba(0,0,0,0.15); /* Slightly larger shadow on hover */ 
-        transform: translateY(-3px); /* Subtle lift effect */ 
+        box-shadow: 0 12px 25px rgba(0,0,0,0.15); /* Slightly larger shadow on hover */
+        transform: translateY(-3px); /* Subtle lift effect */
     }
 
     body.dark-mode section {
-        background: rgba(20, 20, 25, 0.75);
+        background: rgba(20, 20, 25, 0.85); /* Slightly darker for dark mode sections */
     }
 
     section h2 {
-      font-family: 'Dancing Script', cursive; 
-      font-size: 2.8rem; 
-      margin-bottom: 25px; 
-      color: #9370db; 
-      transition: color 0.7s ease-in-out; 
-      -webkit-font-smoothing: antialiased; 
-      -moz-osx-font-smoothing: grayscale; 
-      line-height: 1.2; 
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.05); 
-      transition: color 0.7s ease-in-out, text-shadow 0.3s ease-in-out; 
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.8rem;
+      margin-bottom: 25px;
+      color: #9370db;
+      transition: color 0.7s ease-in-out;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.2;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+      transition: color 0.7s ease-in-out, text-shadow 0.3s ease-in-out;
     }
     section h2:hover {
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.1); 
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
     body.dark-mode section h2 {
-        color: #ffd700; 
+        color: #ffd700;
     }
 
     section p {
-      max-width: 700px; 
-      margin: 0 auto; 
-      font-size: 1.15rem; 
-      line-height: 1.7; 
-      color: #555; 
-      text-align: justify; 
-      padding: 0 15px; 
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #555;
+      text-align: justify;
+      padding: 0 15px;
     }
     body.dark-mode section p {
-        color: #e0e0e0; 
+        color: #e0e0e0;
     }
 
     /* Pantalla de bienvenida */
     #pantalla-inicio {
-      position: fixed; 
-      top: 0; 
-      left: 0; 
-      width: 100%; 
-      height: 100%; 
-      background: black; 
-      color: white; 
-      z-index: 9999; 
-      display: flex; 
-      flex-direction: column; 
-      justify-content: center; 
-      align-items: center; 
-      font-family: 'Quicksand', sans-serif; 
-      text-align: center; 
-      padding: 20px; 
-      opacity: 1; 
-      transition: opacity 0.4s ease-in-out, background 0.4s ease-in-out, color 0.4s ease-in-out; 
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      color: white;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Quicksand', sans-serif;
+      text-align: center;
+      padding: 20px;
+      opacity: 1;
+      transition: opacity 0.4s ease-in-out, background 0.4s ease-in-out, color 0.4s ease-in-out;
     }
 
     #pantalla-inicio.hidden {
-        opacity: 0; 
-        pointer-events: none; 
+        opacity: 0;
+        pointer-events: none;
     }
 
     /* Clase para la transición de color de la pantalla de inicio */
     #pantalla-inicio.transicion-lila {
-        background: linear-gradient(135deg, #f7e6ff, #d2a6fa); 
-        color: #4a4a4a; 
+        background: linear-gradient(135deg, #f7e6ff, #d2a6fa);
+        color: #4a4a4a;
     }
 
     .dispositivo-opciones {
-      display: flex; 
-      gap: 50px; 
-      margin-top: 40px; 
+      display: flex;
+      gap: 50px;
+      margin-top: 40px;
     }
 
     .dispositivo-boton {
-      background: white; 
-      color: #8a2be2; /* Iconos en lila */ 
-      width: 90px; 
-      height: 90px; 
-      border-radius: 50%; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      font-size: 2.5rem; 
-      cursor: pointer; 
-      border: none; 
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3); 
-      transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
+      background: white;
+      color: #8a2be2; /* Iconos en lila */
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     }
 
     .dispositivo-boton:hover {
-      transform: scale(1.18); 
-      background-color: #f8f8f8; 
-      box-shadow: 0 12px 25px rgba(0,0,0,0.4); 
+      transform: scale(1.18);
+      background-color: #f8f8f8;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.4);
     }
 
     .dispositivo-etiqueta {
-      margin-top: 10px; 
-      font-size: 1.1rem; 
-      color: white; 
-      transition: color 0.4s ease-in-out; 
+      margin-top: 10px;
+      font-size: 1.1rem;
+      color: white;
+      transition: color 0.4s ease-in-out;
     }
     #pantalla-inicio.transicion-lila .dispositivo-etiqueta {
-        color: #4a4a4a; 
+        color: #4a4a4a;
     }
 
     /* Contenedor principal del contenido para la transición */
     #contenido-principal {
-      transition: opacity 0.4s ease-in-out; 
+      transition: opacity 0.4s ease-in-out;
     }
   </style>
 </head>
@@ -867,26 +868,26 @@
     </div>
 
     <div class="corazones">
-      <i class="fa-solid fa-heart corazon" style="top:10%; left:10%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:20%; left:80%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:60%; left:40%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:30%; left:60%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:50%; left:20%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:15%; left:50%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:70%; left:30%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:40%; left:70%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:80%; left:15%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:5%; left:85%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:25%; left:5%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:35%; left:90%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:75%; left:55%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:45%; left:35%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:85%; left:75%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:55%; left:5%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:5%; left:30%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:90%; left:45%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:65%; left:10%;"></i> 
-      <i class="fa-solid fa-heart corazon" style="top:10%; left:70%;"></i> 
+      <i class="fa-solid fa-heart corazon" style="top:10%; left:10%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:20%; left:80%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:60%; left:40%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:30%; left:60%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:50%; left:20%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:15%; left:50%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:70%; left:30%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:40%; left:70%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:80%; left:15%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:5%; left:85%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:25%; left:5%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:35%; left:90%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:75%; left:55%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:45%; left:35%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:85%; left:75%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:55%; left:5%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:5%; left:30%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:90%; left:45%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:65%; left:10%;"></i>
+      <i class="fa-solid fa-heart corazon" style="top:10%; left:70%;"></i>
     </div>
 
     <header>
@@ -900,23 +901,23 @@
     <section id="seccion1">
       <h2>Cómo me enamoré de ti</h2>
       <p>
-        No sé en qué momento exacto empezó todo. Fue en una partida de Valorant, en Ascent asidjqeq, como cualquier otra noche. Prepickeó Phoenix y le dije a Nathalia: “Uy no, va a trollear fijo.” 
-        Pero luego terminó pickeando Killjoy. Y no sé cómo explicarlo, pero ahí empezó algo. Pequeñito, imperceptible, como una chispa. <br><br> 
-        Jugamos esa partida y terminamos cayéndonos bien, Todos en el grupo fluyeron, pero ella… tenía algo diferente. Esa noche nos quedamos jugando hasta la madrugada. Y no porque el juego estuviera bueno, sino porque su risa, sus comentarios, su forma de mirar el juego, todo eso me mantenía despierto. <br><br> 
-        Después empezamos a hablar por Riot Mobile, mensajes cada tanto, pero cada tanto se volvió cada vez más seguido. Y era raro (en el buen sentido) lo bien que nos 
-        entendíamos. Como si nuestras conversaciones ya tuvieran confianza desde el principio. Como si habláramos con alguien que ya conocíamos de vidas pasadas. <br><br> 
-        La invité a un servidor de Minecraft Y AHI, fue escalando todo. Nos regalábamos cosas dentro del juego (pero se sentían más reales que cualquier otro regalo físico) Le dejaba cofres con flores o animalitos, y no decía nada, solo esperaba que lo viera y sonriera. 
-        Porque aunque no la veía, yo juraba que lo hacía. <br><br> 
-        Después vino Instagram. Más charlas. Más cercanía. Más nosotros. 
-        Recuerdo con esa mezcla de ternura y vergüenza el primer “te quiero” que le dije (el primer te quiero no se lo dije en instagram) Temblaba mientras lo escribía lo juro. 
-        Y peor aún el “creo que me gust... 
+        No sé en qué momento exacto empezó todo. Fue en una partida de Valorant, en Ascent asidjqeq, como cualquier otra noche. Prepickeó Phoenix y le dije a Nathalia: “Uy no, va a trollear fijo.”
+        Pero luego terminó pickeando Killjoy. Y no sé cómo explicarlo, pero ahí empezó algo. Pequeñito, imperceptible, como una chispa. <br><br>
+        Jugamos esa partida y terminamos cayéndonos bien, Todos en el grupo fluyeron, pero ella… tenía algo diferente. Esa noche nos quedamos jugando hasta la madrugada. Y no porque el juego estuviera bueno, sino porque su risa, sus comentarios, su forma de mirar el juego, todo eso me mantenía despierto. <br><br>
+        Después empezamos a hablar por Riot Mobile, mensajes cada tanto, pero cada tanto se volvió cada vez más seguido. Y era raro (en el buen sentido) lo bien que nos
+        entendíamos. Como si nuestras conversaciones ya tuvieran confianza desde el principio. Como si habláramos con alguien que ya conocíamos de vidas pasadas. <br><br>
+        La invité a un servidor de Minecraft Y AHI, fue escalando todo. Nos regalábamos cosas dentro del juego (pero se sentían más reales que cualquier otro regalo físico) Le dejaba cofres con flores o animalitos, y no decía nada, solo esperaba que lo viera y sonriera.
+        Porque aunque no la veía, yo juraba que lo hacía. <br><br>
+        Después vino Instagram. Más charlas. Más cercanía. Más nosotros.
+        Recuerdo con esa mezcla de ternura y vergüenza el primer “te quiero” que le dije (el primer te quiero no se lo dije en instagram) Temblaba mientras lo escribía lo juro.
+        Y peor aún el “creo que me gust...
       </p>
     </section>
 
     <section id="seccion2">
       <h2>Nuestro primer mes juntos</h2>
       <p>
-        Aunque parece poco tiempo, cada día contigo ha sido una aventura. Me haces reír, me haces pensar, y sobre todo, me haces sentir que la vida es mucho más bonita cuando la comparto contigo. Gracias por cada mensaje, cada llamada, cada risa, y cada momento que hemos creado. 
+        Aunque parece poco tiempo, cada día contigo ha sido una aventura. Me haces reír, me haces pensar, y sobre todo, me haces sentir que la vida es mucho más bonita cuando la comparto contigo. Gracias por cada mensaje, cada llamada, cada risa, y cada momento que hemos creado.
         Eres una persona increíble, y estoy emocionado por todo lo que nos espera. Feliz primer mes, mi amor. Te quiero muchísimo. <i class="fa-solid fa-heart"></i>
       </p>
     </section>
@@ -924,17 +925,17 @@
     <section id="seccion3">
       <h2>Mis promesas para ti</h2>
       <p>
-        Prometo seguir descubriéndote cada día y enamorarme un poco más de cada detalle tuyo. 
-        Prometo estar para ti en los buenos y malos momentos, para celebrar tus victorias y para apoyarte en tus desafíos. 
-        Prometo que siempre intentaré sacarte una sonrisa, incluso en los días más grises. 
-        Prometo escucharte, entenderte y respetarte, porque tu felicidad es mi prioridad. 
+        Prometo seguir descubriéndote cada día y enamorarme un poco más de cada detalle tuyo.
+        Prometo estar para ti en los buenos y malos momentos, para celebrar tus victorias y para apoyarte en tus desafíos.
+        Prometo que siempre intentaré sacarte una sonrisa, incluso en los días más grises.
+        Prometo escucharte, entenderte y respetarte, porque tu felicidad es mi prioridad.
         Y sobre todo, prometo quererte con todo mi corazón, hoy y siempre.
       </p>
     </section>
 
     <div class="reproductor dark-mode">
         <img src="https://i.ibb.co/hK2Gg0V/musica.jpg" alt="Portada de la música">
-        <audio id="miAudio" src="music/music.mp3" loop></audio>
+        <audio id="miAudio" src="music/music.mp3" loop preload="auto" muted></audio>
         <div class="titulo">
             Music for Loving <br> <small>Anónimo</small>
         </div>
@@ -975,32 +976,37 @@
     let isPlaying = false;
 
     // Función para alternar modo oscuro/claro
-    modoBtn.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      if (body.classList.contains('dark-mode')) {
-        modoIcon.classList.remove('fa-moon');
-        modoIcon.classList.add('fa-sun');
-        reproductor.classList.add('dark-mode');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        modoIcon.classList.remove('fa-sun');
-        modoIcon.classList.add('fa-moon');
-        reproductor.classList.remove('dark-mode');
-        localStorage.setItem('theme', 'light');
-      }
-    });
+    const toggleDarkMode = () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+            modoIcon.classList.remove('fa-moon');
+            modoIcon.classList.add('fa-sun');
+            reproductor.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            modoIcon.classList.remove('fa-sun');
+            modoIcon.classList.add('fa-moon');
+            reproductor.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light');
+        }
+    };
+    modoBtn.addEventListener('click', toggleDarkMode);
 
     // Cargar modo guardado o establecer oscuro por defecto
     document.addEventListener('DOMContentLoaded', () => {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'dark') {
         body.classList.add('dark-mode');
+        // Ensure icon is correct on load if dark mode is active
         modoIcon.classList.remove('fa-moon');
         modoIcon.classList.add('fa-sun');
         reproductor.classList.add('dark-mode');
       } else {
-        // Por defecto, se mostrará la pantalla de inicio con fondo negro.
-        // El modo claro (si se elige PC) se aplicará después de la selección.
+        // If no theme saved or it's light, ensure light mode is active and icon is moon
+        body.classList.remove('dark-mode');
+        modoIcon.classList.remove('fa-sun');
+        modoIcon.classList.add('fa-moon');
+        reproductor.classList.remove('dark-mode');
       }
 
       // Iniciar el contador de tiempo al cargar la página
@@ -1025,7 +1031,11 @@
         iconoReproducirPausar.classList.remove('fa-pause');
         iconoReproducirPausar.classList.add('fa-play');
       } else {
-        miAudio.play();
+        miAudio.muted = false; // Unmute when user interacts
+        miAudio.play().catch(error => {
+            console.error("Autoplay prevented:", error);
+            // Optionally show a message to the user that audio requires interaction
+        });
         iconoReproducirPausar.classList.remove('fa-play');
         iconoReproducirPausar.classList.add('fa-pause');
       }
@@ -1046,50 +1056,54 @@
       miAudio.volume = volRange.value;
     });
 
-    // Contador de tiempo juntos
+    // Contador de tiempo juntos (Improved)
     function actualizarContador(fechaInicio) {
         const ahora = new Date();
-        const diferencia = ahora - fechaInicio;
+        let diffYears = ahora.getFullYear() - fechaInicio.getFullYear();
+        let diffMonths = ahora.getMonth() - fechaInicio.getMonth();
+        let diffDays = ahora.getDate() - fechaInicio.getDate();
+        let diffHours = ahora.getHours() - fechaInicio.getHours();
+        let diffMinutes = ahora.getMinutes() - fechaInicio.getMinutes();
+        let diffSeconds = ahora.getSeconds() - fechaInicio.getSeconds();
 
-        const segundos = Math.floor(diferencia / 1000);
-        const minutos = Math.floor(segundos / 60);
-        const horas = Math.floor(minutos / 60);
-        const dias = Math.floor(horas / 24);
-        
-        // Calcular años y meses con mayor precisión
-        let anios = ahora.getFullYear() - fechaInicio.getFullYear();
-        let meses = ahora.getMonth() - fechaInicio.getMonth();
-        let diasRestantes = ahora.getDate() - fechaInicio.getDate();
-
-        if (diasRestantes < 0) {
-            meses--;
-            const tempDate = new Date(ahora.getFullYear(), ahora.getMonth(), 0);
-            diasRestantes = tempDate.getDate() - fechaInicio.getDate() + ahora.getDate();
+        // Adjust for negative differences
+        if (diffSeconds < 0) {
+            diffSeconds += 60;
+            diffMinutes--;
+        }
+        if (diffMinutes < 0) {
+            diffMinutes += 60;
+            diffHours--;
+        }
+        if (diffHours < 0) {
+            diffHours += 24;
+            diffDays--;
+        }
+        if (diffDays < 0) {
+            const daysInPrevMonth = new Date(ahora.getFullYear(), ahora.getMonth(), 0).getDate();
+            diffDays += daysInPrevMonth;
+            diffMonths--;
+        }
+        if (diffMonths < 0) {
+            diffMonths += 12;
+            diffYears--;
         }
 
-        if (meses < 0) {
-            anios--;
-            meses += 12;
-        }
-
-        const remSegundos = segundos % 60;
-        const remMinutos = minutos % 60;
-        const remHoras = horas % 24;
-
-        // Función para actualizar y animar números
+        // Function to update and animate numbers
         function updateAndAnimate(elementId, newValue) {
             const element = document.getElementById(elementId);
-            const oldValue = parseInt(element.querySelector('span').textContent);
+            // Get current displayed value (strip leading zeros for comparison)
+            const currentValue = parseInt(element.querySelector('span').textContent, 10);
 
-            if (newValue !== oldValue) {
+            if (newValue !== currentValue) {
                 const oldSpan = element.querySelector('span');
                 const newSpan = document.createElement('span');
-                newSpan.textContent = String(newValue).padStart(2, '0');
+                newSpan.textContent = String(newValue).padStart(2, '0'); // Add leading zero for single digits
                 newSpan.classList.add('new');
 
                 element.appendChild(newSpan);
 
-                // Forzar reflow para que la animación funcione
+                // Force reflow for animation
                 void newSpan.offsetWidth;
 
                 oldSpan.classList.add('old', 'animate');
@@ -1101,12 +1115,12 @@
             }
         }
 
-        updateAndAnimate('anios', anios);
-        updateAndAnimate('meses', meses);
-        updateAndAnimate('dias', dias); // Mantener el cálculo de días total para consistencia si se desea, o cambiar a diasRestantes si se prefiere mes/día específico
-        updateAndAnimate('horas', remHoras);
-        updateAndAnimate('minutos', remMinutos);
-        updateAndAnimate('segundos', remSegundos);
+        updateAndAnimate('anios', diffYears);
+        updateAndAnimate('meses', diffMonths);
+        updateAndAnimate('dias', diffDays);
+        updateAndAnimate('horas', diffHours);
+        updateAndAnimate('minutos', diffMinutes);
+        updateAndAnimate('segundos', diffSeconds);
     }
 
     // Corazones flotantes
@@ -1153,7 +1167,7 @@
     // Minimizar el reproductor al tocar fuera de él en celular
     document.addEventListener('click', (event) => {
         if (document.body.classList.contains('celular') && isReproductorMaximized) {
-            // Si el clic no fue dentro del reproductor, minimízalo
+            // If the click was not inside the player, minimize it
             if (!reproductor.contains(event.target)) {
                 reproductor.classList.remove('maximized');
                 isReproductorMaximized = false;
@@ -1161,11 +1175,21 @@
         }
     });
 
-    // Función para seleccionar el tipo de dispositivo (PC o Celular)
+    // Function to select device type (PC or Mobile)
     function seleccionarDispositivo(tipo) {
       pantallaInicio.classList.add('transicion-lila');
       document.querySelector('#pantalla-inicio h2').style.color = '#4a4a4a';
       Array.from(document.querySelectorAll('.dispositivo-etiqueta')).forEach(el => el.style.color = '#4a4a4a');
+
+      // Play audio here as it's a user interaction
+      miAudio.muted = false; // Unmute
+      miAudio.play().catch(error => {
+          console.error("Audio playback failed on device selection:", error);
+      });
+      isPlaying = true;
+      iconoReproducirPausar.classList.remove('fa-play');
+      iconoReproducirPausar.classList.add('fa-pause');
+
 
       pantallaInicio.classList.add('hidden');
 
@@ -1174,14 +1198,14 @@
         contenidoPrincipal.style.display = 'block';
         setTimeout(() => {
           contenidoPrincipal.style.opacity = '1';
-        }, 10); // Pequeño retraso para asegurar la transición de opacidad
+        }, 10); // Small delay to ensure opacity transition
 
         if (tipo === 'celular') {
           body.classList.add('celular');
         } else {
-          body.classList.remove('celular'); // Asegura que la clase no esté si se selecciona PC
+          body.classList.remove('celular'); // Ensure class is not present if PC is selected
         }
-      }, 400); // Coincide con la duración de la transición de opacidad
+      }, 400); // Matches opacity transition duration
     }
   </script>
 </body>
