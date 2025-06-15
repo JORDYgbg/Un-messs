@@ -93,14 +93,38 @@
       margin-bottom: 0;
     }
 
+    /* In minimized mobile view, only play button is visible, others hidden */
     body.celular .reproductor .titulo,
     body.celular .reproductor .barra,
-    body.celular .reproductor .volumen,
-    body.celular .reproductor .controles {
+    body.celular .reproductor .volumen {
       display: none;
       opacity: 0;
       transition: opacity 0.3s ease-out;
     }
+    body.celular .reproductor .controles { /* Ensure play/pause button is always there for mobile */
+      display: flex;
+      opacity: 1;
+      position: absolute; /* Position over the image */
+      background: rgba(0,0,0,0.4);
+      border-radius: 50%;
+      padding: 5px;
+      line-height: 1;
+    }
+    body.celular .reproductor .controles button {
+        font-size: 1.2rem;
+        padding: 0;
+    }
+    body.celular .reproductor .controles #btnReproducirPausar {
+        font-size: 1.8rem;
+    }
+    body.celular .reproductor .controles #btnRetroceder,
+    body.celular .reproductor .controles #btnAvanzar {
+        display: none; /* Hide next/prev in minimized mobile */
+    }
+    body.celular .reproductor .controles .volumen {
+        display: none;
+    }
+
 
     body.celular .reproductor.maximized {
       width: 90%;
@@ -123,6 +147,7 @@
       margin-right: auto;
     }
 
+    /* When maximized on mobile, all elements become visible */
     body.celular .reproductor.maximized .titulo,
     body.celular .reproductor.maximized .barra,
     body.celular .reproductor.maximized .volumen,
@@ -134,6 +159,18 @@
     body.celular .reproductor.maximized .titulo {
         display: block;
     }
+    body.celular .reproductor.maximized .controles {
+        position: static; /* Reset position */
+        background: none;
+    }
+    body.celular .reproductor.maximized .controles #btnRetroceder,
+    body.celular .reproductor.maximized .controles #btnAvanzar {
+        display: inline-block; /* Show next/prev in maximized mobile */
+    }
+    body.celular .reproductor.maximized .controles .volumen {
+        display: flex;
+    }
+
 
     body.celular .triste-btn {
         width: calc(50% - 30px);
@@ -547,14 +584,38 @@
         filter: saturate(1.1); /* Slightly more saturated on hover */
     }
 
+    /* Default state for PC: only play/pause button is visible */
     .reproductor .titulo,
     .reproductor .barra,
-    .reproductor .controles,
     .reproductor .volumen {
       display: none;
       opacity: 0;
       transition: opacity 0.3s ease-out;
     }
+    .reproductor .controles {
+        display: flex; /* Always show controls for interaction */
+        opacity: 1;
+        position: absolute; /* Position over image */
+        background: rgba(0,0,0,0.4); /* Background for visibility */
+        border-radius: 50%;
+        padding: 5px;
+        line-height: 1;
+    }
+    .reproductor .controles button {
+        font-size: 1.2rem;
+        padding: 0;
+    }
+    .reproductor .controles #btnReproducirPausar {
+        font-size: 1.8rem;
+    }
+    .reproductor .controles #btnRetroceder,
+    .reproductor .controles #btnAvanzar {
+        display: none; /* Hide next/prev in minimized PC */
+    }
+    .reproductor .controles .volumen {
+        display: none;
+    }
+
 
     /* Reproductor maximizado en PC al pasar el ratón */
     .reproductor:hover {
@@ -575,6 +636,7 @@
       margin-right: auto;
     }
 
+    /* When maximized on PC, all elements become visible */
     .reproductor:hover .titulo,
     .reproductor:hover .barra,
     .reproductor:hover .controles,
@@ -588,7 +650,17 @@
     }
     .reproductor:hover .controles {
         flex-wrap: nowrap;
+        position: static; /* Reset position */
+        background: none;
     }
+    .reproductor:hover .controles #btnRetroceder,
+    .reproductor:hover .controles #btnAvanzar {
+        display: inline-block; /* Show next/prev in maximized PC */
+    }
+    .reproductor:hover .controles .volumen {
+        display: flex;
+    }
+
 
     @keyframes girar {
       from { transform: rotate(0deg);
@@ -706,6 +778,7 @@
         transform: translateY(-3px); /* Subtle lift effect */
     }
 
+    /* Adjusted for slightly darker reading sections in dark mode */
     body.dark-mode section {
         background: rgba(20, 20, 25, 0.85); /* Slightly darker for dark mode sections */
     }
@@ -841,14 +914,6 @@
   <div id="contenido-principal" style="opacity: 0; display: none;">
     <div id="tiempo-juntos">
       <span id="tiempo-titulo">Nuestro Tiempo Juntos ♥</span>
-      <div class="tiempo-unidad">
-        <span class="tiempo-numero" id="anios"><span>00</span></span>
-        <span class="tiempo-etiqueta">Años</span>
-      </div>
-      <div class="tiempo-unidad">
-        <span class="tiempo-numero" id="meses"><span>00</span></span>
-        <span class="tiempo-etiqueta">Meses</span>
-      </div>
       <div class="tiempo-unidad">
         <span class="tiempo-numero" id="dias"><span>00</span></span>
         <span class="tiempo-etiqueta">Días</span>
@@ -1043,26 +1108,25 @@
       miAudio.volume = volRange.value;
     });
 
-    // Contador de tiempo juntos (Improved for simplicity and aesthetics)
+    // Contador de tiempo juntos (Simplified for aesthetic display of total elapsed time)
     function actualizarContador(fechaInicio) {
         const ahora = new Date();
         const diferenciaMs = ahora - fechaInicio; // Difference in milliseconds
 
-        const totalSeconds = Math.floor(diferenciaMs / 1000);
-        const totalMinutes = Math.floor(totalSeconds / 60);
-        const totalHours = Math.floor(totalMinutes / 60);
-        const totalDays = Math.floor(totalHours / 24);
+        const totalSegundos = Math.floor(diferenciaMs / 1000);
 
-        // Calculate years and months based on an *average* month/year for display.
-        // This is simpler and more aesthetic for a continuous counter than precise calendar differences.
-        const years = Math.floor(totalDays / 365.25); // Account for leap years
-        const remainingDaysAfterYears = totalDays % 365.25;
-        const months = Math.floor(remainingDaysAfterYears / 30.44); // Average days per month
+        // Calculate and display total elapsed time in Days, Hours, Minutes, Seconds
+        const segundos = totalSegundos % 60;
+        const minutos = Math.floor(totalSegundos / 60) % 60;
+        const horas = Math.floor(totalSegundos / 3600) % 24;
+        const dias = Math.floor(totalSegundos / (3600 * 24)); // Total days
 
-        const days = totalDays; // Display total days for simplicity, or remaining days after months if preferred
-        const hours = totalHours % 24;
-        const minutes = totalMinutes % 60;
-        const seconds = totalSeconds % 60;
+        // You could also calculate years/months from total days if you want to show them somewhere else,
+        // but for a continuous counter display, total days/hours/minutes/seconds is usually preferred for accuracy.
+        // const years = Math.floor(dias / 365.25);
+        // const remainingDaysAfterYears = dias % 365.25;
+        // const months = Math.floor(remainingDaysAfterYears / 30.44);
+
 
         // Function to update and animate numbers
         function updateAndAnimate(elementId, newValue) {
@@ -1091,12 +1155,10 @@
             }
         }
 
-        updateAndAnimate('anios', years);
-        updateAndAnimate('meses', months);
-        updateAndAnimate('dias', days);
-        updateAndAnimate('horas', hours);
-        updateAndAnimate('minutos', minutes);
-        updateAndAnimate('segundos', seconds);
+        updateAndAnimate('dias', dias);
+        updateAndAnimate('horas', horas);
+        updateAndAnimate('minutos', minutos);
+        updateAndAnimate('segundos', segundos);
     }
 
 
