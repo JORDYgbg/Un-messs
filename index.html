@@ -938,6 +938,7 @@
       const iconoVolumen = document.getElementById('iconoVolumen');
       const modoBtn = document.querySelector('.modo-btn');
       let isReproductorMaximized = false; // Estado para el reproductor en móvil
+      let musicPlayerInstance; // Variable para almacenar la instancia del reproductor
 
       // --- Gestión del Modo Oscuro/Claro y Dispositivo ---
       let modoOscuroActivado = true; // Empieza en modo oscuro por defecto
@@ -965,7 +966,6 @@
 
       // Funciones de selección de dispositivo
       window.seleccionarDispositivo = (dispositivo) => {
-        //dispositivoSeleccionado = dispositivo; // This variable is no longer explicitly used globally but 'body.classList' reflects it.
         body.classList.remove('celular', 'pc'); // Limpiar clases existentes
         body.classList.add(dispositivo);
 
@@ -978,6 +978,16 @@
             contenidoPrincipal.style.display = 'block'; // Mostrar contenido principal
             setTimeout(() => {
               contenidoPrincipal.style.opacity = '1'; // Transición de opacidad del contenido principal
+
+              // --- NUEVA FUNCIONALIDAD: Reproducir música al seleccionar dispositivo ---
+              if (musicPlayerInstance) { // Asegurarse de que el reproductor esté inicializado
+                musicPlayerInstance.audio.volume = 0.1; // Establecer volumen al 10%
+                musicPlayerInstance.volRange.value = 0.1; // Actualizar el slider de volumen
+                musicPlayerInstance.setVolume(); // Actualizar icono de volumen
+                musicPlayerInstance.playPauseSong(); // Iniciar reproducción
+              }
+              // --- FIN NUEVA FUNCIONALIDAD ---
+
             }, 50); // Pequeño retraso adicional para asegurar que display:block se aplique
           }, 400); // Este retraso debe coincidir con la duración de la transición CSS de 'opacity' para #pantalla-inicio
         }, 400); // Este retraso debe coincidir con la duración de la transición CSS de 'background' y 'color' para #pantalla-inicio
@@ -1029,22 +1039,22 @@
           // RESTORED ORIGINAL PLAYLIST FROM UN MES.TXT
           this.playlist = [
             {
-              title: "Es Por ti",
+              title: "Es Por Ti",
               artist: "Juanes",
               src: "audio/esporti.mp3",
               cover: "audio/cover.jpg",
-            },
-            {
-              title: "Compartir",
-              artist: "Carla Morrison",
-              src: "audio/compartir.mp3",
-              cover: "audio/cover3.jpg",
             },
             {
               title: "Amor Completo",
               artist: "Mon Laferte",
               src: "audio/amorcompleto.mp3",
               cover: "audio/cover2.jpg",
+            },
+            {
+              title: "Compartir",
+              artist: "Carla Morrison",
+              src: "audio/compartir.mp3",
+              cover: "img/cover3.jpg",
             },
             
           ];
@@ -1075,13 +1085,7 @@
           this.audio.addEventListener('loadedmetadata', () => {
             this.tiempoTotalSpan.textContent = this.formatTime(this.audio.duration);
             this.barraProgreso.max = this.audio.duration;
-            if (this.isPlaying) {
-              this.audio.play();
-              this.portadaDisco.classList.remove('paused'); // Resume animation
-            } else {
-              this.audio.pause();
-              this.portadaDisco.classList.add('paused'); // Ensure it's paused if not playing
-            }
+            // Removed autoplay logic here as it's now handled by seleccionarDispositivo
           }, { once: true }); // Use { once: true } to prevent multiple listeners
         }
 
@@ -1202,7 +1206,8 @@
         }
       }
 
-      const player = new MusicPlayer();
+      // Initialize the player instance
+      musicPlayerInstance = new MusicPlayer();
 
       // --- Generación de Corazones Flotantes (existente) ---
       const crearCorazon = () => {
