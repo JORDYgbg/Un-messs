@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feliz primer mes</title> <link rel="icon" href="favicon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;700&family=Dancing+Script:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;700&family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     /* Restablecimiento y estilos base */
@@ -27,7 +27,8 @@
     /* Estilo del cuerpo con transiciones mejoradas y suavizado de fuente */
     body {
       font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(180deg, #d2a6fa 0%, #f7e6ff 70%); /* Degradado vertical: lila oscuro arriba, más claro abajo */
+      /* **CAMBIO** Degradado inverso: empieza claro, se oscurece al bajar */
+      background: linear-gradient(180deg, #f7e6ff 0%, #d2a6fa 50%, #9370db 100%);
       color: #4a4a4a;
       transition: background 0.7s ease-in-out, color 0.7s ease-in-out, font-size 0.7s ease-in-out;
       overflow-x: hidden;
@@ -58,7 +59,8 @@
 
     /* Estilo del modo oscuro */
     body.dark-mode {
-      background: linear-gradient(180deg, #1a1a1a 0%, #333333 70%); /* Degradado oscuro más sutil */
+      /* **CAMBIO** Degradado oscuro inverso */
+      background: linear-gradient(180deg, #1a1a1a 0%, #333333 50%, #4a4a4a 100%);
       color: #f0f0f0;
     }
 
@@ -150,40 +152,82 @@
         right: 20px;
     }
 
-    /* **NUEVO** Estilo del contador en la esquina superior izquierda */
+    /* **MEJORA** Estilo del contador en la esquina superior izquierda */
     #tiempo-juntos {
         position: fixed;
         top: 20px;
         left: 20px;
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(8px);
-        padding: 12px 18px;
-        border-radius: 15px;
-        font-family: 'Quicksand', sans-serif;
-        font-size: 1rem;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 15px 20px;
+        border-radius: 20px;
+        font-family: 'Orbitron', sans-serif; /* Fuente tecnológica para números */
         color: #6a5acd; /* Lila oscuro */
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.2);
         z-index: 101; /* Asegurar que esté por encima de todo */
-        transition: background 0.7s ease-in-out, color 0.7s ease-in-out, box-shadow 0.3s ease-in-out;
-        white-space: nowrap; /* Evitar que el texto se rompa en varias líneas */
-        text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.4);
+        transition: background 0.7s ease-in-out, color 0.7s ease-in-out, box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+        display: flex; /* Para organizar los bloques de tiempo */
+        gap: 15px; /* Espacio entre los bloques */
+        border: 2px solid rgba(255, 255, 255, 0.6);
     }
 
     body.dark-mode #tiempo-juntos {
-        background: rgba(0, 0, 0, 0.6);
+        background: rgba(0, 0, 0, 0.7);
         color: #ffda66; /* Amarillo cálido */
-        border: 1px solid rgba(0, 0, 0, 0.4);
+        border: 2px solid rgba(0, 0, 0, 0.6);
     }
     
+    .tiempo-unidad {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .tiempo-numero {
+        font-size: 2.5rem; /* Números grandes */
+        font-weight: 700;
+        line-height: 1;
+        position: relative; /* Para la animación de flip */
+        overflow: hidden; /* Oculta la parte que se sale al animar */
+        height: 1em; /* Asegura que la altura sea constante */
+    }
+
+    .tiempo-numero span {
+        display: block;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out; /* Animación suave */
+    }
+
+    /* Clase para la animación de flip */
+    .tiempo-numero.flip span {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    .tiempo-etiqueta {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        margin-top: 5px;
+        color: #888; /* Color de etiqueta más suave */
+        transition: color 0.7s ease-in-out;
+    }
+    body.dark-mode .tiempo-etiqueta {
+        color: #bbb;
+    }
+
     /* Adaptación para celular */
     body.celular #tiempo-juntos {
         top: 15px;
         left: 15px;
-        padding: 8px 12px;
-        font-size: 0.85rem;
+        padding: 10px 15px;
+        gap: 8px; /* Menos espacio entre bloques en celular */
     }
-
+    body.celular .tiempo-numero {
+        font-size: 1.8rem;
+    }
+    body.celular .tiempo-etiqueta {
+        font-size: 0.7rem;
+    }
 
     /* Estilo del encabezado */
     header {
@@ -533,7 +577,8 @@
       text-align: center;
       transition: background 0.7s ease-in-out, color 0.7s ease-in-out;
       margin-bottom: 30px; /* Espacio entre secciones */
-      background: rgba(255,255,255,0.6);
+      /* **CAMBIO** Background más sutil en secciones, que se adapte al nuevo degradado */
+      background: rgba(255,255,255,0.7);
       border-radius: 20px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
       max-width: 900px;
@@ -547,7 +592,7 @@
     }
 
     body.dark-mode section {
-        background: rgba(0,0,0,0.4);
+        background: rgba(0,0,0,0.5); /* Más oscuro en modo oscuro */
     }
 
     section h2 {
@@ -679,7 +724,32 @@
 </div>
 
 <div id="contenido-principal" style="opacity: 0; display: none;">
-  <div id="tiempo-juntos"></div>
+  <div id="tiempo-juntos">
+    <div class="tiempo-unidad">
+      <span class="tiempo-numero" id="anios">00</span>
+      <span class="tiempo-etiqueta">Años</span>
+    </div>
+    <div class="tiempo-unidad">
+      <span class="tiempo-numero" id="meses">00</span>
+      <span class="tiempo-etiqueta">Meses</span>
+    </div>
+    <div class="tiempo-unidad">
+      <span class="tiempo-numero" id="dias">00</span>
+      <span class="tiempo-etiqueta">Días</span>
+    </div>
+    <div class="tiempo-unidad">
+      <span class="tiempo-numero" id="horas">00</span>
+      <span class="tiempo-etiqueta">Horas</span>
+    </div>
+    <div class="tiempo-unidad">
+      <span class="tiempo-numero" id="minutos">00</span>
+      <span class="tiempo-etiqueta">Minutos</span>
+    </div>
+    <div class="tiempo-unidad">
+      <span class="tiempo-numero" id="segundos">00</span>
+      <span class="tiempo-etiqueta">Segundos</span>
+    </div>
+  </div>
 
   <div class="corazones">
     <i class="fa-solid fa-heart corazon" style="top:10%; left:10%;"></i>
@@ -819,7 +889,15 @@
     const progress = document.getElementById('progress');
     const pantallaInicio = document.getElementById('pantalla-inicio');
     const contenidoPrincipal = document.getElementById('contenido-principal');
-    const tiempoJuntosElement = document.getElementById('tiempo-juntos'); // Nuevo elemento para el contador de tiempo
+    
+    // **NUEVO** Referencias a los elementos del contador
+    const aniosElement = document.getElementById('anios');
+    const mesesElement = document.getElementById('meses');
+    const diasElement = document.getElementById('dias');
+    const horasElement = document.getElementById('horas');
+    const minutosElement = document.getElementById('minutos');
+    const segundosElement = document.getElementById('segundos');
+
 
     const canciones = [
       {
@@ -847,64 +925,120 @@
     let isPlaying = false;
     let isReproductorMaximized = false;
 
-    // **NUEVO** Fecha de inicio de la relación: 16 de mayo de 2025 (formato: YYYY-MM-DDTHH:MM:SS)
-    // Es importante que la hora sea consistente si quieres una precisión exacta desde un punto cero.
-    // Si no se especifica la hora, se asume medianoche UTC o la medianoche local, lo que puede causar pequeñas variaciones.
-    // Puse 00:00:00 (medianoche) del 16 de mayo de 2025.
-    const fechaInicioRelacion = new Date('2025-05-16T00:00:00-05:00'); // Hora y minuto cero en Quito
+    // **IMPORTANTE: Fecha de inicio de la relación: 16 de mayo de 2025, 00:00:00 AM, Hora de Quito (-05:00)
+    // Esto significa que el 16 de junio de 2025, a las 00:00:00 AM, será exactamente 1 mes.
+    const fechaInicioRelacion = new Date('2025-05-16T00:00:00-05:00');
 
-    // **NUEVO** Función para actualizar el contador de tiempo exacto
+    // **MEJORA** Función para actualizar el contador de tiempo exacto y animado
     function actualizarContadorTiempo() {
         const ahora = new Date();
         const diferenciaMs = ahora.getTime() - fechaInicioRelacion.getTime();
 
-        // Si la diferencia es negativa (fecha futura), manejarla o mostrar un mensaje.
         if (diferenciaMs < 0) {
-            tiempoJuntosElement.textContent = "¡Pronto nuestro aniversario!";
+            // Si la fecha de inicio es en el futuro, mostrar un mensaje de cuenta regresiva o similar
+            // Por ahora, lo mantenemos simple.
+            aniosElement.textContent = "00";
+            mesesElement.textContent = "00";
+            diasElement.textContent = "00";
+            horasElement.textContent = "00";
+            minutosElement.textContent = "00";
+            segundosElement.textContent = "00";
+            document.getElementById('tiempo-juntos').innerHTML = `
+                <div class="tiempo-unidad"><span class="tiempo-numero">¡Pronto!</span></div>
+            `;
+            document.title = "Preparando la Sorpresa...";
             return;
         }
 
-        const segundos = Math.floor(diferenciaMs / 1000);
-        const minutos = Math.floor(segundos / 60);
-        const horas = Math.floor(minutos / 60);
-        const dias = Math.floor(horas / 24);
+        let segundosTotales = Math.floor(diferenciaMs / 1000);
 
-        // Calcular años y meses para una representación más legible
-        // Esto es una aproximación, ya que los meses tienen diferente número de días.
-        // Para mayor precisión, se usaría una librería de fechas como Moment.js o Date-fns.
-        // Para este propósito, una aproximación basta y es más sencilla de implementar.
-        const años = Math.floor(dias / 365.25); // Contempla años bisiestos
-        const meses = Math.floor((dias % 365.25) / 30.44); // Días restantes convertidos a meses promedio
+        // Cálculos para años y meses precisos (aproximados dado que los meses varían)
+        let anios = 0;
+        let meses = 0;
+        let dias = 0;
 
-        const diasRestantes = dias % 30; // Días restantes después de calcular meses
-        const horasRestantes = horas % 24;
-        const minutosRestantes = minutos % 60;
-        const segundosRestantes = segundos % 60;
-
-        let textoContador = '';
-        if (años > 0) {
-            textoContador += `${años} año${años !== 1 ? 's' : ''}, `;
+        // Calcular los meses y años restantes (lógica más robusta para meses)
+        let tempDate = new Date(fechaInicioRelacion);
+        let currentMonths = 0;
+        while (tempDate < ahora) {
+            tempDate.setMonth(tempDate.getMonth() + 1);
+            if (tempDate <= ahora) {
+                currentMonths++;
+            } else {
+                tempDate.setMonth(tempDate.getMonth() - 1); // Volver al mes anterior
+                break;
+            }
         }
-        if (meses > 0) {
-            textoContador += `${meses} mes${meses !== 1 ? 'es' : ''}, `;
-        }
-        // Si no hay años ni meses, pero ya pasamos un día, muestra los días
-        else if (dias > 0) {
-            textoContador += `${dias} día${dias !== 1 ? 's' : ''}, `;
-        }
+        anios = Math.floor(currentMonths / 12);
+        meses = currentMonths % 12;
 
+        // Calcular los días restantes dentro del mes actual
+        // Esto es la diferencia entre "ahora" y la fecha de inicio del *mes actual* de la relación
+        let inicioMesActual = new Date(fechaInicioRelacion);
+        inicioMesActual.setMonth(fechaInicioRelacion.getMonth() + currentMonths);
+        
+        // Asegurarse de que no nos pasemos del día actual si el día de inicio es mayor
+        if (inicioMesActual.getDate() > ahora.getDate() && ahora.getMonth() === inicioMesActual.getMonth()) {
+            // Esto ocurre si la fecha actual es, por ejemplo, 15 de junio y la fecha de inicio del mes es 16 de junio.
+            // Significa que aún estamos en los "días" del mes anterior, pero el contador de meses ya avanzó.
+            // Si el 16 de mayo fue el día 1, el 15 de junio es el día 31 (29 transcurridos).
+            // Simplificaremos la lógica para el "mesario": si mañana es un mes, hoy son 29 días *desde el inicio del mes 0*.
+            // La fecha '2025-05-16' como día 1. El 16 de junio es el inicio del MES 1.
+            // Por lo tanto, el 15 de junio, es el DÍA 29 del primer mes.
+            
+            // Calculamos los días restantes desde el inicio del último mes completo
+            const diffDias = Math.floor((ahora.getTime() - inicioMesActual.getTime()) / (1000 * 60 * 60 * 24));
+            dias = diffDias; // Esto dará los días transcurridos dentro del *mes actual*.
+            
+            // Si el contador de meses ya avanzó (ej. a 1 mes), pero el día actual es anterior
+            // al día del mes de aniversario, entonces los días deberían contar desde el día de inicio hasta hoy.
+            // Para "mañana es un mes", la lógica es que el día de hoy es el día 29 de su relación.
+            // El día 1 de su relación fue el 16 de mayo.
+            // Los días transcurridos son (hoy - 16 de mayo).
+            dias = Math.floor((ahora.getTime() - fechaInicioRelacion.getTime()) / (1000 * 60 * 60 * 24));
+            // Si meses es 1, y días es 29, significa que han pasado 29 días completos desde el 16 de mayo.
+            // El 16 de junio sería el día 30 transcurrido, y el inicio del primer mes (o el fin del mes 0).
+            // Para el "29 días" que pides si mañana es un mes:
+            if (meses === 0) { // Si aún no hemos completado el primer mes
+                 dias = Math.floor((ahora.getTime() - fechaInicioRelacion.getTime()) / (1000 * 60 * 60 * 24));
+            } else { // Si ya pasaron meses completos, mostrar los días dentro del mes actual
+                 const inicioDelMesActualizado = new Date(fechaInicioRelacion);
+                 inicioDelMesActualizado.setMonth(inicioDelMesActualizado.getMonth() + meses);
+                 dias = Math.floor((ahora.getTime() - inicioDelMesActualizado.getTime()) / (1000 * 60 * 60 * 24));
+            }
 
-        // Siempre mostrar horas, minutos y segundos si no es el día cero
-        if (dias > 0 || meses > 0 || años > 0 || segundos > 0) {
-            textoContador += `${horasRestantes.toString().padStart(2, '0')}:${minutosRestantes.toString().padStart(2, '0')}:${segundosRestantes.toString().padStart(2, '0')}`;
         } else {
-             textoContador = `¡Justo ahora, el inicio de algo hermoso!`; // Mensaje para el punto cero o muy cerca
+            // Esto simplifica el cálculo de días si el día actual es igual o posterior al día de inicio en el mes actual
+            dias = Math.floor((ahora.getTime() - inicioMesActual.getTime()) / (1000 * 60 * 60 * 24));
+        }
+
+        // Resto de cálculos
+        const horas = Math.floor((segundosTotales % (24 * 3600)) / 3600);
+        const minutos = Math.floor((segundosTotales % 3600) / 60);
+        const segundos = segundosTotales % 60;
+
+        // Función para actualizar un elemento con animación
+        function updateUnit(element, newValue) {
+            const currentVal = parseInt(element.textContent);
+            if (currentVal !== newValue) {
+                element.classList.add('flip');
+                setTimeout(() => {
+                    element.textContent = newValue.toString().padStart(2, '0');
+                    element.classList.remove('flip');
+                }, 200); // Duración de la animación
+            }
         }
         
-        tiempoJuntosElement.textContent = `Nuestro tiempo: ${textoContador}`;
+        // Actualizar los elementos con animación
+        updateUnit(aniosElement, anios);
+        updateUnit(mesesElement, meses);
+        updateUnit(diasElement, dias);
+        updateUnit(horasElement, horas);
+        updateUnit(minutosElement, minutos);
+        updateUnit(segundosElement, segundos);
 
         // **NUEVO** Cambio el título de la pestaña cuando sea un mes exacto
-        if (años === 0 && meses === 1 && diasRestantes === 0 && horasRestantes === 0 && minutosRestantes === 0 && segundosRestantes === 0) {
+        if (anios === 0 && meses === 1 && dias === 0 && horas === 0 && minutos === 0 && segundos === 0) {
              document.title = "¡Feliz Primer Mes, Mi Amor! ❤️";
         } else if (document.title !== "Nuestro Primer Mes ❤️") { // Para que no cambie el título cada segundo si ya pasó el mes
              document.title = "Nuestro Primer Mes ❤️"; // Título secundario después del mes inicial
@@ -937,8 +1071,8 @@
     volRange.value = 0.2;
     loadSong(currentSongIndex);
     
-    // **NUEVO** Iniciar el contador y actualizarlo cada segundo
-    actualizarContadorTiempo();
+    // **MEJORA** Iniciar el contador y actualizarlo cada segundo
+    actualizarContadorTiempo(); // Llamada inicial
     setInterval(actualizarContadorTiempo, 1000); // Actualizar cada segundo
 
 
