@@ -732,6 +732,42 @@
         color: #e0e0e0;
     }
 
+    /* Estilos para listas dentro de las secciones */
+    section ul {
+        list-style: none; /* Elimina los puntos predeterminados */
+        padding: 0;
+        margin: 0 auto;
+        max-width: 700px;
+        text-align: left; /* Alinea el texto de la lista a la izquierda */
+    }
+
+    section ul li {
+        font-size: 1.15rem;
+        line-height: 1.7;
+        color: #555;
+        margin-bottom: 10px;
+        padding-left: 20px; /* Espacio para el ícono */
+        position: relative;
+    }
+    body.dark-mode section ul li {
+        color: #e0e0e0;
+    }
+
+    /* Estilo para los íconos de la lista (cambiado a puntos) */
+    section ul li::before {
+        content: '•'; /* Punto como viñeta */
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 1.2em; /* Un poco más grande para el punto */
+        line-height: inherit;
+        color: #8a2be2; /* Color del punto */
+        font-weight: bold;
+    }
+    body.dark-mode section ul li::before {
+        color: #ffda66; /* Color del punto en modo oscuro */
+    }
+
     /* Pantalla de bienvenida */
     #pantalla-inicio {
       position: fixed;
@@ -842,7 +878,12 @@
 
     <section id="seccion1">
       <h2>Cómo me enamoré de ti</h2>
-      <p> No sé en qué momento exacto empezó todo. Fue en una partida de Valorant, en Ascent asidjqeq, como cualquier otra noche. Prepickeó Phoenix y le dije a Nathalia: “Uy no, va a trollear fijo.” Pero luego terminó pickeando Killjoy. Y no sé cómo explicarlo, pero ahí empezó algo. Pequeñito, imperceptible, como una chispa. <br><br> Jugamos esa partida y terminamos cayéndonos bien, Todos en el grupo fluyeron, pero ella… tenía algo diferente. Esa noche nos quedamos jugando hasta la madrugada. Y no porque el juego estuviera bueno, sino porque su risa, sus comentarios, su forma de mirar el juego, todo eso me mantenía despierto. <br><br> Después empezamos a hablar por Riot Mobile, mensajes cada tanto, pero cada tanto se volvió cada vez más seguido. Y era raro (en el buen sentido) lo bien que nos entendíamos. Como si nuestras conversaciones ya tuvieran confianza desde el principio. Como si habláramos con alguien que ya conocíamos de vidas pasadas. <br><br> La invité a un servidor de Minecraft Y AHI, fue escalando todo. Nos regalábamos cosas dentro del juego (pero se sentían más reales que cualquier otro regalo físico) Le dejaba cofres con flores o animalitos, y no decía nada, solo esperaba que lo viera y sonriera. Porque aunque no la veía, yo juraba que lo hacía. <br><br> Después vino Instagram. Más charlas. Más cercanía. Más nosotros. Recuerdo con esa mezcla de ternura y vergüenza el primer “te quiero” que le dije (el primer te quiero no se lo dije en instagram) Temblaba mientras lo escribía lo juro. Y peor aún el “creo que me gust... </p>
+      <p> No sé en qué momento exacto empezó todo, en realidad. Fue una noche cualquiera, sumergido en una partida de Valorant en Ascent. Recuerdo a la perfección ese prepick de Phoenix y mi comentario a Nathalia: "Uy no, va a trollear fijo." Pero luego, tu Killjoy apareció en pantalla y, sin saber cómo explicarlo, algo diminuto, casi imperceptible, una chispa, se encendió. </p>
+      <p> Jugamos esa partida y, más allá del resultado, conectamos de una forma inesperada. Todos en el grupo fluían, claro, pero tú… tenías algo diferente. Esa noche se extendió hasta la madrugada, no por la emoción del juego, sino porque tu risa, tus comentarios ingeniosos y hasta tu forma de encarar cada ronda me mantenían completamente despierto y fascinado. </p>
+      <p> Luego, los mensajes por Riot Mobile. Al principio esporádicos, pero poco a poco se volvieron un constante murmullo de complicidad en mi día a día. Era curioso, y en el mejor de los sentidos, lo bien que nos entendíamos. Parecía que nuestras conversaciones ya poseían una confianza forjada desde siempre, como si nos conociéramos de otras vidas, de otros tiempos. </p>
+      <p> La invitación a mi servidor de Minecraft fue el siguiente capítulo. Y ahí, todo escaló, se profundizó. Nos hacíamos pequeños regalos dentro del juego, objetos que, de alguna forma, se sentían más reales y valiosos que cualquier detalle físico. Te dejaba cofres llenos de flores o de animalitos y, en silencio, esperaba que los descubrieras y sonrieras. Porque, aunque no te veía, juraba que lo hacías. </p>
+      <p> Después llegó Instagram, más charlas, más cercanía, más de "nosotros". Recuerdo con una mezcla de ternura y una pizca de vergüenza el primer **"creo que me gustas"**. Mis manos temblaban mientras lo escribía, lo juro. Tu respuesta me dejó completamente sonrojado, el corazón latiendo con una fuerza que no conocía. También atesoro esos momentos en el Rave, las horas compartidas viendo videos sin rumbo o capítulos de Ladybug. Contigo, hasta lo más simple se volvía una aventura, cada instante se disfrutaba más intensamente. </p>
+      <p> Y fue allí, en medio de la atmósfera vibrante de Rave, donde mi corazón ya no pudo contener más lo que sentía. Con la melodía de **"Es por ti" de Juanes** como testigo silencioso, te abrí mi alma y me declaré. Desde ese día, mi amor, me siento más feliz, más vivo, con una ilusión renovada por construir un futuro a tu lado. Y aunque el camino ha tenido sus pequeños baches, sus desafíos, sé con absoluta certeza que tú, Mariana, vales cada esfuerzo, cada lucha, cada latido. Eres mi lugar favorito. </p>
     </section>
 
     <section id="seccion2">
@@ -852,8 +893,13 @@
 
     <section id="seccion3">
       <h2>Mis promesas para ti</h2>
-      <p> Prometo seguir descubriéndote cada día y enamorarme un poco más de cada detalle tuyo. Prometo estar para ti en los buenos y malos momentos, para celebrar tus victorias y para apoyarte en tus desafíos. Prometo que siempre intentaré sacarte una sonrisa, incluso en los días más grises. Prometo escucharte, entenderte y respetarte, porque tu felicidad es mi prioridad. Y sobre todo, prometo quererte con todo mi corazón, hoy y siempre.
-      </p>
+      <ul>
+        <li>Prometo seguir descubriendo cada faceta de tu ser, enamorándome un poco más de cada detalle, de cada nuevo matiz que te define.</li>
+        <li>Prometo ser tu pilar inquebrantable, estar contigo en cada triunfo para celebrarlo con la alegría más pura, y en cada desafío, ofreciéndote mi apoyo incondicional.</li>
+        <li>Prometo que mi misión será siempre dibujarte una sonrisa, incluso en los días más grises, porque tu alegría ilumina mi mundo.</li>
+        <li>Prometo escucharte con el alma, buscar comprender cada uno de tus pensamientos y sentimientos, y respetar siempre la hermosa persona que eres, porque tu felicidad es el faro que guía mis pasos.</li>
+        <li>Y sobre todo, prometo amarte con la intensidad más sincera y profunda de mi corazón, hoy, mañana y en cada amanecer que el destino nos regale juntos.</li>
+      </ul>
     </section>
 
     <div class="reproductor dark-mode">
@@ -903,11 +949,11 @@
     const btnAvanzar = document.getElementById('btnAvanzar');
     const pantallaInicio = document.getElementById('pantalla-inicio');
     const contenidoPrincipal = document.getElementById('contenido-principal');
-    const tiempoActualElem = document.getElementById('tiempoActual'); // NUEVO: Elemento para tiempo actual
-    const tiempoTotalElem = document.getElementById('tiempoTotal'); // NUEVO: Elemento para tiempo total
+    const tiempoActualElem = document.getElementById('tiempoActual');
+    const tiempoTotalElem = document.getElementById('tiempoTotal');
 
-    let isReproductorMaximized = false; // Estado para el reproductor en celular
-    let isPlaying = false; // Estado del audio
+    let isReproductorMaximized = false;
+    let isPlaying = false;
     const maxHearts = 30; // Define la cantidad máxima de corazones en pantalla
     const hearts = new Set(); // Usamos un Set para gestionar los corazones activos
 
@@ -917,7 +963,7 @@
       { title: "Amor Completo", artist: "Mon Laferte", audioSrc: "audio/amorcompleto.mp3", coverSrc: "audio/cover2.jpg" },
       { title: "Compartir", artist: "Carla Morrison", audioSrc: "audio/compartir.mp3", coverSrc: "audio/cover3.jpg" }
     ];
-    let currentSongIndex = 0; // Inicia con la primera canción de la playlist
+    let currentSongIndex = 0;
 
     // Función para formatear el tiempo (MM:SS)
     function formatTime(seconds) {
@@ -933,13 +979,15 @@
       portadaDisco.src = song.coverSrc;
       tituloCancionElem.textContent = song.title;
       artistaCancionElem.textContent = song.artist;
-      miAudio.load(); // Carga la nueva canción
 
-      // CORRECCIÓN: Reinicia la barra de progreso a 0 al cargar una nueva canción
+      // CORRECCIÓN CLAVE: Reiniciar la barra de progreso a 0% visual y lógicamente
       barraProgreso.value = 0;
-      tiempoActualElem.textContent = '0:00'; // Reinicia el tiempo actual
-      tiempoTotalElem.textContent = '0:00'; // Reinicia el tiempo total temporalmente
-      updateProgressBarBackground(barraProgreso); // Actualiza la barra al cargar la canción
+      tiempoActualElem.textContent = '0:00';
+      // Reinicia el tiempo total temporalmente hasta que se cargue la metadata
+      tiempoTotalElem.textContent = '0:00';
+      updateProgressBarBackground(barraProgreso); // Asegura que el color de la barra esté en 0%
+
+      miAudio.load(); // Carga la nueva canción
 
       // Si ya estaba reproduciéndose, intenta reproducir la nueva canción automáticamente
       if (isPlaying) {
@@ -1090,9 +1138,13 @@
     const corazonesContainer = document.querySelector('.corazones');
     function crearCorazon() {
         if (hearts.size >= maxHearts) {
-            // Si ya tenemos el número máximo de corazones, no creamos más.
-            // Opcional: Podrías remover el más antiguo aquí si quisieras mantener un número fijo rotatorio.
-            return;
+            // Si ya tenemos el número máximo de corazones, elimina el más antiguo.
+            // Esto asegura que la cantidad de corazones sea constante.
+            const oldestHeart = hearts.values().next().value; // Obtiene el primer elemento del Set
+            if (oldestHeart) {
+                oldestHeart.remove();
+                hearts.delete(oldestHeart);
+            }
         }
 
         const corazon = document.createElement('span');
@@ -1116,6 +1168,7 @@
         crearCorazon();
     }
     // Continuar generando corazones a un ritmo constante para reemplazar los que desaparecen
+    // Puedes ajustar este intervalo si quieres que aparezcan más o menos rápido
     setInterval(crearCorazon, 1000); // Crea un nuevo corazón cada 1 segundo (ajusta según la densidad deseada)
 
 
@@ -1126,7 +1179,7 @@
     window.addEventListener('load', () => {
         initializeModeButton(); // Initialize theme button based on localStorage
         loadSong(currentSongIndex); // Load the first song
-        updateProgressBarBackground(barraProgreso); // Ensure progress bar is visually reset
+        // No es necesario actualizar la barra de progreso aquí nuevamente, loadSong ya lo hace
     });
 
 
