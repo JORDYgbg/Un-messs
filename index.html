@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,16 +15,49 @@
       box-sizing: border-box;
     }
 
+    /* **NEW** Custom text selection color */
+    ::selection {
+        background-color: #d2a6fa; /* A soft lilac */
+        color: #fff;
+    }
+    body.dark-mode ::selection {
+        background-color: #ffda66; /* Warm yellow for dark mode */
+        color: #333;
+    }
+
+
     /* Estilo del cuerpo con transiciones mejoradas y suavizado de fuente */
     body {
       font-family: 'Quicksand', sans-serif;
       background: linear-gradient(180deg, #d2a6fa 0%, #f7e6ff 70%); /* Degradado vertical: lila oscuro arriba, más claro abajo */
-      color: #4a4a4a; /* Color de texto más oscuro y profesional */
+      color: #4a4a4a;
       transition: background 0.7s ease-in-out, color 0.7s ease-in-out, font-size 0.7s ease-in-out;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      /* **NEW** Scrollbar styling for WebKit browsers */
+      scrollbar-width: thin;
+      scrollbar-color: #9370db #f1f1f1;
     }
+    body::-webkit-scrollbar {
+        width: 10px;
+    }
+    body::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    body::-webkit-scrollbar-thumb {
+        background-color: #9370db;
+        border-radius: 6px;
+        border: 2px solid #f1f1f1;
+    }
+    body.dark-mode::-webkit-scrollbar-track {
+        background: #2a2a2a;
+    }
+    body.dark-mode::-webkit-scrollbar-thumb {
+        background-color: #ffda66;
+        border: 2px solid #2a2a2a;
+    }
+
 
     /* Estilo del modo oscuro */
     body.dark-mode {
@@ -137,6 +169,7 @@
       margin-bottom: 10px; /* Espacio entre título y párrafo */
     }
 
+
     body.dark-mode h1 {
         color: #ffda66; /* Amarillo más cálido para el modo oscuro */
     }
@@ -154,14 +187,22 @@
 
 
     header video {
-        width: 70%; /* Aún más pequeño */
-        max-width: 400px; /* Nuevo límite máximo */
-        height: auto; /* Mantiene la proporción */
-        margin: 0 auto 40px auto; /* Centra el video y le da más margen inferior */
-        border-radius: 15px; /* Bordes más redondeados */
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Sombra más pronunciada y suave */
-        display: block; /* Para que margin auto funcione */
+        width: 70%;
+        max-width: 400px;
+        height: auto;
+        margin: 0 auto 40px auto;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        display: block;
+        /* **NEW** Subtle hover effect for video */
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, filter 0.3s ease-in-out;
     }
+    header video:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        filter: brightness(1.05); /* Slightly brighter on hover */
+    }
+
 
     /* Botón "Si te sientes triste" */
     .triste-btn {
@@ -173,17 +214,19 @@
       color: white;
       font-size: 1rem;
       padding: 15px 25px;
-      border-radius: 25px; /* Bordes más redondeados */
+      border-radius: 25px;
       cursor: pointer;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.25); /* Sombra más definida */
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
       transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     }
 
+
     .triste-btn:hover {
       background-color: #ff1493;
-      transform: translateY(-7px); /* Efecto de elevación más notable */
+      transform: translateY(-7px);
       box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
+
 
     /* Botón de cambio de modo oscuro/claro */
     .modo-btn {
@@ -195,7 +238,7 @@
       border-radius: 50%;
       width: 55px; /* Ligeramente más grande */
       height: 55px;
-      font-size: 22px; /* Ícono más grande */
+      font-size: 22px;
       color: white;
       cursor: pointer;
       display: flex;
@@ -205,20 +248,24 @@
       transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, color 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
     }
 
+
     .modo-btn:hover {
       background-color: #6a5acd; /* Lila al pasar el ratón */
       transform: rotate(360deg);
       box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
+
     body.dark-mode .modo-btn {
         background-color: #ffdb58; /* Amarillo oro */
         color: #333;
     }
 
+
     body.dark-mode .modo-btn:hover {
         background-color: #e0b400; /* Amarillo oscuro al pasar el ratón */
     }
+
 
     /* Animación de corazones flotantes */
     .corazones {
@@ -231,6 +278,7 @@
       z-index: -1;
     }
 
+
     .corazon {
       position: absolute;
       color: rgba(0, 0, 0, 0.1); /* Corazones más sutiles en modo claro */
@@ -241,15 +289,23 @@
         color: rgba(147, 112, 219, 0.3); /* Lila suave en modo oscuro */
     }
 
-    .corazon:nth-child(2n) { animation-duration: 12s; animation-delay: -2s; font-size: 1.2rem; }
-    .corazon:nth-child(3n) { animation-duration: 9s; animation-delay: -3s; font-size: 1.8rem; }
-    .corazon:nth-child(4n) { animation-duration: 11s; animation-delay: -1s; font-size: 1.0rem; }
-    .corazon:nth-child(5n) { animation-duration: 13s; animation-delay: -4s; font-size: 2.0rem; }
-    .corazon:nth-child(6n) { animation-duration: 8s; animation-delay: -5s; font-size: 1.3rem; }
-    .corazon:nth-child(7n) { animation-duration: 10.5s; animation-delay: -2.5s; font-size: 1.6rem; }
-    .corazon:nth-child(8n) { animation-duration: 9.5s; animation-delay: -1.5s; font-size: 1.1rem; }
-    .corazon:nth-child(9n) { animation-duration: 14s; animation-delay: -3.5s; font-size: 1.9rem; }
-    .corazon:nth-child(10n) { animation-duration: 7s; animation-delay: -0.5s; font-size: 1.4rem; }
+
+    /* **NEW** More diverse heart animations for size and delay */
+    .corazon:nth-child(2n) { animation-duration: 12s; animation-delay: -2s; font-size: 1.2rem; opacity: 0.8; }
+    .corazon:nth-child(3n) { animation-duration: 9s; animation-delay: -3s; font-size: 1.8rem; opacity: 0.9; }
+    .corazon:nth-child(4n) { animation-duration: 11s; animation-delay: -1s; font-size: 1.0rem; opacity: 0.7; }
+    .corazon:nth-child(5n) { animation-duration: 13s; animation-delay: -4s; font-size: 2.0rem; opacity: 1.0; }
+    .corazon:nth-child(6n) { animation-duration: 8s; animation-delay: -5s; font-size: 1.3rem; opacity: 0.85; }
+    .corazon:nth-child(7n) { animation-duration: 10.5s; animation-delay: -2.5s; font-size: 1.6rem; opacity: 0.95; }
+    .corazon:nth-child(8n) { animation-duration: 9.5s; animation-delay: -1.5s; font-size: 1.1rem; opacity: 0.75; }
+    .corazon:nth-child(9n) { animation-duration: 14s; animation-delay: -3.5s; font-size: 1.9rem; opacity: 1.0; }
+    .corazon:nth-child(10n) { animation-duration: 7s; animation-delay: -0.5s; font-size: 1.4rem; opacity: 0.8; }
+    /* Added more nth-child rules for better distribution and subtlety */
+    .corazon:nth-child(11n) { animation-duration: 10s; animation-delay: -0.8s; font-size: 1.7rem; opacity: 0.9; }
+    .corazon:nth-child(12n) { animation-duration: 11.5s; animation-delay: -2.8s; font-size: 1.35rem; opacity: 0.8; }
+    .corazon:nth-child(13n) { animation-duration: 9.8s; animation-delay: -4.2s; font-size: 1.05rem; opacity: 0.7; }
+    .corazon:nth-child(14n) { animation-duration: 12.3s; animation-delay: -1.2s; font-size: 2.1rem; opacity: 1.0; }
+    .corazon:nth-child(15n) { animation-duration: 8.5s; animation-delay: -3.7s; font-size: 1.5rem; opacity: 0.85; }
 
 
     @keyframes flotar {
@@ -265,19 +321,20 @@
       }
     }
 
+
     /* Estilo del reproductor de música (PC por defecto, minimizado) */
     .reproductor {
       position: fixed;
       top: 25px; /* Ligeramente más abajo */
       right: 25px; /* Ligeramente más adentro */
-      background: rgba(255,255,255,0.4); /* Fondo más translúcido */
-      backdrop-filter: blur(12px); /* Blur un poco más fuerte */
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(12px);
       border-radius: 20px;
       padding: 15px;
       text-align: center;
       width: 80px;
       height: 80px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.25); /* Sombra más grande y definida */
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
       transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       overflow: hidden;
       display: flex;
@@ -288,9 +345,11 @@
       cursor: pointer;
     }
 
+
     .reproductor.dark-mode {
-      background: rgba(0,0,0,0.6); /* Fondo más oscuro y translúcido en modo oscuro */
+      background: rgba(0,0,0,0.6);
     }
+
 
     .reproductor img {
       width: 60px;
@@ -298,10 +357,16 @@
       border-radius: 50%;
       margin-bottom: 0;
       animation: girar 5s linear infinite;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2); /* Sombra sutil en la portada */
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
       transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       object-fit: cover;
+      /* **NEW** Subtle hover effect for album cover */
+      filter: saturate(1);
     }
+    .reproductor img:hover {
+        filter: saturate(1.1); /* Slightly more saturated on hover */
+    }
+
 
     .reproductor .titulo,
     .reproductor .barra,
@@ -312,6 +377,7 @@
       transition: opacity 0.3s ease-out;
     }
 
+
     /* Reproductor maximizado en PC al pasar el ratón */
     .reproductor:hover {
       width: 260px;
@@ -320,7 +386,10 @@
       overflow: visible;
       align-items: stretch;
       cursor: default;
+      /* **NEW** Slightly increased shadow on hover */
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
     }
+
 
     .reproductor:hover img {
       width: 100px;
@@ -329,6 +398,7 @@
       margin-left: auto;
       margin-right: auto;
     }
+
 
     .reproductor:hover .titulo,
     .reproductor:hover .barra,
@@ -345,10 +415,12 @@
         flex-wrap: nowrap;
     }
 
+
     @keyframes girar {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
+
 
     .titulo {
       font-weight: bold;
@@ -364,6 +436,8 @@
     }
 
 
+
+
     .barra {
       width: 100%;
       margin: 10px 0;
@@ -375,6 +449,7 @@
       cursor: pointer;
     }
 
+
     .barra::-webkit-slider-thumb {
       -webkit-appearance: none;
       width: 18px; /* Pulgar más grande */
@@ -383,6 +458,18 @@
       background: #8a2be2; /* Lila más intenso */
       cursor: pointer;
       box-shadow: 0 0 8px rgba(0,0,0,0.3); /* Sombra en el pulgar */
+      /* **NEW** Subtle border for the thumb */
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+    /* **NEW** Firefox slider thumb styling */
+    .barra::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #8a2be2;
+        cursor: pointer;
+        box-shadow: 0 0 8px rgba(0,0,0,0.3);
+        border: 1px solid rgba(255,255,255,0.5);
     }
 
     .controles {
@@ -394,6 +481,7 @@
       flex-wrap: wrap;
     }
 
+
     .controles button {
       background: none;
       border: none;
@@ -402,6 +490,7 @@
       color: inherit;
       transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
     }
+
 
     .controles button:hover {
         color: #8a2be2;
@@ -412,11 +501,14 @@
     }
 
 
+
+
     .volumen {
       display: flex;
       align-items: center;
       gap: 5px;
     }
+
 
     #volRange {
       width: 80px; /* Slider de volumen un poco más ancho */
@@ -425,6 +517,11 @@
     #volRange::-webkit-slider-thumb {
         background: #8a2be2;
     }
+    /* **NEW** Firefox volume slider thumb styling */
+    #volRange::-moz-range-thumb {
+        background: #8a2be2;
+    }
+
 
     /* Estilo de las secciones */
     section {
@@ -432,44 +529,62 @@
       text-align: center;
       transition: background 0.7s ease-in-out, color 0.7s ease-in-out;
       margin-bottom: 30px; /* Espacio entre secciones */
-      background: rgba(255,255,255,0.6); /* Fondo translúcido para secciones */
-      border-radius: 20px; /* Bordes redondeados */
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* Sombra suave para "elevar" las secciones */
-      max-width: 900px; /* Limita el ancho de las secciones */
+      background: rgba(255,255,255,0.6);
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      max-width: 900px;
       margin-left: auto;
       margin-right: auto;
+      /* **NEW** Subtle hover effect for sections */
+      transition: background 0.7s ease-in-out, color 0.7s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
     }
+    section:hover {
+        box-shadow: 0 12px 25px rgba(0,0,0,0.15); /* Slightly larger shadow on hover */
+        transform: translateY(-3px); /* Subtle lift effect */
+    }
+
     body.dark-mode section {
         background: rgba(0,0,0,0.4);
     }
 
+
     section h2 {
-      font-family: 'Dancing Script', cursive; /* Nueva fuente elegante para subtítulos */
-      font-size: 2.8rem; /* Tamaño de subtítulos más grande y elegante */
-      margin-bottom: 25px; /* Más espacio debajo del subtítulo */
-      color: #9370db; /* Lila más suave */
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.8rem;
+      margin-bottom: 25px;
+      color: #9370db;
       transition: color 0.7s ease-in-out;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      line-height: 1.2; /* Ajuste de altura de línea */
+      line-height: 1.2;
+      /* **NEW** Subtle text shadow for elegance */
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+      /* **NEW** Transition for text shadow */
+      transition: color 0.7s ease-in-out, text-shadow 0.3s ease-in-out;
     }
+    section h2:hover {
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
 
     body.dark-mode section h2 {
-        color: #ffd700; /* Amarillo dorado en modo oscuro */
+        color: #ffd700;
     }
 
+
     section p {
-      max-width: 700px; /* Párrafos un poco más estrechos para mejor lectura */
+      max-width: 700px;
       margin: 0 auto;
-      font-size: 1.15rem; /* Tamaño de texto de párrafo ligeramente más grande */
-      line-height: 1.7; /* Mayor espacio entre líneas para lectura fácil */
-      color: #555; /* Color de texto más suave */
-      text-align: justify; /* Texto justificado para las secciones de contenido */
-      padding: 0 15px; /* Pequeño padding interno para que no toque los bordes en móvil */
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #555;
+      text-align: justify;
+      padding: 0 15px;
     }
     body.dark-mode section p {
         color: #e0e0e0;
     }
+
 
     /* Pantalla de bienvenida */
     #pantalla-inicio {
@@ -492,10 +607,12 @@
       transition: opacity 0.4s ease-in-out, background 0.4s ease-in-out, color 0.4s ease-in-out;
     }
 
+
     #pantalla-inicio.hidden {
         opacity: 0;
         pointer-events: none;
     }
+
 
     /* Clase para la transición de color de la pantalla de inicio */
     #pantalla-inicio.transicion-lila {
@@ -506,41 +623,45 @@
 
     .dispositivo-opciones {
       display: flex;
-      gap: 50px; /* Más espacio entre botones */
-      margin-top: 40px; /* Más espacio */
+      gap: 50px;
+      margin-top: 40px;
     }
+
 
     .dispositivo-boton {
       background: white;
       color: #8a2be2; /* Iconos en lila */
-      width: 90px; /* Botones más grandes */
+      width: 90px;
       height: 90px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.5rem; /* Icono más grande */
+      font-size: 2.5rem;
       cursor: pointer;
       border: none;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* Sombra más notoria */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     }
 
+
     .dispositivo-boton:hover {
-      transform: scale(1.18); /* Efecto hover más grande */
+      transform: scale(1.18);
       background-color: #f8f8f8;
       box-shadow: 0 12px 25px rgba(0,0,0,0.4);
     }
 
+
     .dispositivo-etiqueta {
-      margin-top: 10px; /* Más espacio */
-      font-size: 1.1rem; /* Texto más grande */
+      margin-top: 10px;
+      font-size: 1.1rem;
       color: white;
       transition: color 0.4s ease-in-out;
     }
     #pantalla-inicio.transicion-lila .dispositivo-etiqueta {
         color: #4a4a4a;
     }
+
 
     /* Contenedor principal del contenido para la transición */
     #contenido-principal {
@@ -602,97 +723,76 @@
   <section id="seccion1">
     <h2>Cómo me enamoré de ti</h2>
     <p>
-      No sé en qué momento exacto empezó todo. Fue en una partida de Valorant, en Ascent asidjqeq, como cualquier otra noche. Prepickeó Phoenix y le dije a Nathalia: “Uy no, va a trollear fijo.” Pero luego terminó pickeando Killjoy. Y no sé cómo explicarlo, pero ahí empezó algo. Pequeñito, imperceptible, como una chispa.
+      No sé en qué momento exacto empezó todo. Fue en una partida de Valorant, en Ascent asidjqeq, como cualquier otra noche. Prepickeó Phoenix y le dije a Nathalia: “Uy no, va a trollear fijo.”  Pero luego terminó pickeando Killjoy. Y no sé cómo explicarlo, pero ahí empezó algo. Pequeñito, imperceptible, como una chispa.
       <br><br>
       Jugamos esa partida y terminamos cayéndonos bien, Todos en el grupo fluyeron, pero ella… tenía algo diferente. Esa noche nos quedamos jugando hasta la madrugada. Y no porque el juego estuviera bueno, sino porque su risa, sus comentarios, su forma de mirar el juego, todo eso me mantenía despierto.
       <br><br>
-      Después empezamos a hablar por Riot Mobile, mensajes cada tanto, pero cada tanto se volvió cada vez más seguido. Y era raro (en el buen sentido) lo bien que nos entendíamos. Como si nuestras conversaciones ya tuvieran confianza desde el principio. Como si habláramos con alguien que ya conocíamos de vidas pasadas.
+      Después empezamos a hablar por Riot Mobile, mensajes cada tanto,  pero cada tanto se volvió cada vez más seguido. Y era raro (en el buen sentido) lo bien que nos entendíamos. Como si nuestras conversaciones ya tuvieran confianza desde el principio. Como si habláramos con alguien que ya conocíamos de vidas pasadas.
       <br><br>
-      La invité a un servidor de Minecraft Y AHI, fue escalando todo. Nos regalábamos cosas dentro del juego (pero se sentían más reales que cualquier otro regalo físico) Le dejaba cofres con flores o animalitos, y no decía nada, solo esperaba que lo viera y sonriera. Porque aunque no la veía, yo juraba que lo hacía.
+      La invité a un servidor de Minecraft Y AHI, fue escalando todo. Nos regalábamos cosas dentro del juego (pero se sentían más reales que cualquier otro regalo físico) Le dejaba cofres con flores o animalitos, y no decía nada, solo esperaba que lo viera y sonriera.  Porque aunque no la veía, yo juraba que lo hacía.
       <br><br>
-      Después vino Instagram. Más charlas. Más cercanía. Más nosotros. Recuerdo con esa mezcla de ternura y vergüenza el primer “te quiero” que le dije (el primer te quiero no se lo dije en instagram) Temblaba mientras lo escribía lo juro. Y peor aún el “creo que me gustas”, porque eso ya era cruzar una línea sin saber si había suelo del otro lado. Pero sí lo había. Porque ella me respondió con esa forma tan bonita de hacerlo sentir fácil. Como si lo estuviera esperando.
+      Después vino Instagram.  Más charlas. Más cercanía. Más nosotros. Recuerdo con esa mezcla de ternura y vergüenza el primer “te quiero” que le dije (el primer te quiero no se lo dije en instagram) Temblaba mientras lo escribía lo juro.  Y peor aún el “creo que me gustas”, porque eso ya era cruzar una línea sin saber si había suelo del otro lado.  Pero sí lo había. Porque ella me respondió con esa forma tan bonita de hacerlo sentir fácil.  Como si lo estuviera esperando.
       <br><br>
-      Veíamos Ladybug juntos en Rave, aunque yo jamás pensé volver a ver algo así. Pero por ella, por ella veía lo que sea. Jugábamos otros juegos solo para tener excusa de pasar tiempo juntos. Y no necesitaba más. Me sentía en casa. Me sentía visto. Me sentía querido.
-      <br><br>
-      Y luego, llegó ese momento. Tenía de fondo “Es por ti” de Juanes, porque sí, cursi, romántico, cliché y todo lo que quieras. Pero era nuestra banda sonora. Le dije que la amaba. Fue como soltar todo lo que llevaba dentro, como una confesión con el corazón en las manos.
-      <br><br>
-      Y cuando me dijo que sí, sonreí. Pero no solo por un rato. Sonreí hasta el día siguiente. Dormí con una sonrisa que me dolía en la cara, pero me curaba el alma.
-      <br><br>
-      Y así fue como me enamoré de una chica que empezó como Killjoy en Ascent. Y terminó siendo la mujer de mis amores, mi compañera, mi futura esposa y mi “te amo” más sincero.
-    </p>
+      Veíamos Ladybug juntos en Rave, aunque yo jamás pensé volver a ver algo así.  Pero por ella, por ella veía lo que sea. Jugábamos otros juegos solo para tener excusa de pasar tiempo juntos.  Y no necesitaba más. Me sentía en casa. Me sentía visto. Me sentía querido.  <br><br>
+      Y luego, llegó ese momento.  Tenía de fondo “Es por ti” de Juanes, porque sí, cursi, romántico, cliché y todo lo que quieras.  Pero era nuestra banda sonora. Le dije que la amaba.  Fue como soltar todo lo que llevaba dentro, como una confesión con el corazón en las manos.  <br><br>
+      Y cuando me dijo que sí, sonreí. Pero no solo por un rato.  Sonreí hasta el día siguiente. Dormí con una sonrisa que me dolía en la cara, pero me curaba el alma.  <br><br>
+      Y así fue como me enamoré de una chica que empezó como Killjoy en Ascent.  Y terminó siendo la mujer de mis amores, mi compañera, mi futura esposa y mi “te amo” más sincero.  </p>
   </section>
+
   <section id="seccion2">
     <h2>Mariana</h2>
     <p>
       Mariana, te pienso y todo se calma,
       como si el mundo aprendiera a flotar.<br>
       No estás en mis ojos, estás en mi alma,
-      y aún sin tocarte, te puedo abrazar.
-      <br>
+      y aún sin tocarte, te puedo abrazar.  <br>
       Hay algo en tus frases, en lo que callas,
       que sabe quedarse, que sabe cuidar.<br>
       No sé si eres magia, destino o murallas,
-      pero eres mi forma de querer de verdad.
-      <br><br>
+      pero eres mi forma de querer de verdad.  <br><br>
       No tienes un rostro en mis pensamientos,
       pero hay una esencia que huele a hogar.<br>
       Estás en mis días, estás en mis tiempos,
-      te siento tan cerca, como si la felicidad no fuera a terminar.
-      <br>
+      te siento tan cerca, como si la felicidad no fuera a terminar.  <br>
       No necesito tenerte presente
       para saber cuánto puedes sanar.<br>
       Eres el verso que escribe mi mente,
-      sin tinta ni libro, con ganas de volar.
-      <br><br>
+      sin tinta ni libro, con ganas de volar.  <br><br>
       Mariana, eres risa que viaja en la brisa,
       refugio invisible, señal sin final.<br>
       Y aunque este amor no se vea a simple vista,
-      late tan fuerte, que es simplemente real.
-      <br>
+      late tan fuerte, que es simplemente real.  <br>
       
     </p>
   </section>
+
   <section id="seccion4">
     <h2>Mis promesas para ti</h2>
     <p>
       Mariana, en este día especial, quiero reafirmarte lo que siento y lo que prometo para nuestro futuro juntos, sin importar las pantallas de por medio:
       <br><br>
-      1. Prometo escucharte siempre: Cada palabra que escribas, cada audio que envíes, cada silencio. Estaré aquí para comprenderte, no solo para oírte.
+      1. Prometo escucharte siempre: Cada palabra que escribas, cada audio que envíes, cada silencio.  Estaré aquí para comprenderte, no solo para oírte.
       <br>
-      2. Prometo apoyarte en cada sueño: Tus metas serán mis metas. Estaré a tu lado, aunque sea a la distancia, para celebrar tus victorias y para darte la fuerza cuando la necesites.
-      <br>
-      3. Prometo ser tu refugio: Cuando el mundo digital o el real te parezca pesado, mi amor y mi presencia virtual serán el lugar donde siempre puedas encontrar paz y consuelo.
-      <br>
-      4. Prometo mantener viva la chispa: Con mensajes inesperados, risas compartidas en llamadas y nuevas "aventuras" en línea, haremos que cada día sea emocionante y que nuestro amor siga floreciendo.
-      <br>
-      5. Prometo amarte sin condiciones: Mi amor por ti será constante, puro y eterno. En los buenos momentos de conexión y en los desafíos de la distancia, siempre con la paciencia y el cariño que mereces.
-      <br><br>
-      Eres el regalo más hermoso que la vida me ha dado.
-    </p>
+      2. Prometo apoyarte en cada sueño: Tus metas serán mis metas.  Estaré a tu lado, aunque sea a la distancia, para celebrar tus victorias y para darte la fuerza cuando la necesites.  <br>
+      3. Prometo ser tu refugio: Cuando el mundo digital o el real te parezca pesado, mi amor y mi presencia virtual serán el lugar donde siempre puedas encontrar paz y consuelo.  <br>
+      4. Prometo mantener viva la chispa: Con mensajes inesperados, risas compartidas en llamadas y nuevas "aventuras" en línea, haremos que cada día sea emocionante y que nuestro amor siga floreciendo.  <br>
+      5. Prometo amarte sin condiciones: Mi amor por ti será constante, puro y eterno.  En los buenos momentos de conexión y en los desafíos de la distancia, siempre con la paciencia y el cariño que mereces.  <br><br>
+      Eres el regalo más hermoso que la vida me ha dado.  </p>
   </section>
+
   <section id="seccion5">
     <h2>Frases que me recuerdan a ti</h2>
     <p>
-      "No necesito verte para sentir que estás conmigo en cada parte de mí."
-      <br>
-      "Hay algo en ti que calma mis tormentas sin decir una palabra."
-      <br>
-      "Te pienso sin buscarte… y aun así te encuentro en todo."
-      <br>
-      "No sé cómo lo haces, pero con cada palabra tuya, me siento en casa."
-      <br>
-      "Estás tan dentro de mí, que a veces dudo si este corazón late por mí… o por ti."
-      <br>
-      "Eres el único pensamiento que no me cansa repetir."
-      <br>
-      "Contigo no hay distancia, solo razones para seguir sintiendo."
-      <br>
-      "Amarte es como respirar: natural, constante, necesario."
-      <br>
-      "No sé si esto es amor… pero no quiero que sea otra cosa."
-      <br>
-      "Desde que llegaste, hasta el silencio suena a ti."
-    </p>
+      "No necesito verte para sentir que estás conmigo en cada parte de mí."  <br>
+      "Hay algo en ti que calma mis tormentas sin decir una palabra."  <br>
+      "Te pienso sin buscarte… y aun así te encuentro en todo."  <br>
+      "No sé cómo lo haces, pero con cada palabra tuya, me siento en casa."  <br>
+      "Estás tan dentro de mí, que a veces dudo si este corazón late por mí… o por ti."  <br>
+      "Eres el único pensamiento que no me cansa repetir."  <br>
+      "Contigo no hay distancia, solo razones para seguir sintiendo."  <br>
+      "Amarte es como respirar: natural, constante, necesario."  <br>
+      "No sé si esto es amor… pero no quiero que sea otra cosa."  <br>
+      "Desde que llegaste, hasta el silencio suena a ti."  </p>
   </section>
 
   <div class="reproductor" id="reproductor">
@@ -720,7 +820,6 @@
     const tituloCancion = document.getElementById('titulo-cancion');
     const artistaCancion = document.getElementById('artista-cancion');
     const playBtn = document.getElementById('play');
-    // const stopBtn = document.getElementById('stop'); // Eliminado
     const prevBtn = document.getElementById('prev');
     const nextBtn = document.getElementById('next');
     const muteBtn = document.getElementById('mute');
@@ -738,23 +837,23 @@
       },
       {
         titulo: "Amor Completo",
-        artista: "Mon Laferte", // Ajusta el artista si es diferente
-        src: "audio/amorcompleto.mp3", /* cite: image_36a297.png */
-        cover: "audio/cover2.jpg" /* cite: image_36a297.png */
+        artista: "Mon Laferte", /* cite: 431 */
+        src: "audio/amorcompleto.mp3", /* cite: 431 */
+        cover: "audio/cover2.jpg" /* cite: 431 */
       },
       {
         titulo: "Compartir",
-        artista: "Carla Morrison", // Ajusta el artista si es diferente
-        src: "audio/compartir.mp3", /* cite: image_36a297.png */
-        cover: "audio/cover3.jpg" /* cite: image_36a297.png */
+        artista: "Carla Morrison", /* cite: 432 */
+        src: "audio/compartir.mp3", /* cite: 432 */
+        cover: "audio/cover3.jpg" /* cite: 432 */
       }
     ];
-
     let currentSongIndex = 0;
     let audio = new Audio();
     let isMuted = false;
     let isPlaying = false;
     let isReproductorMaximized = false;
+
 
     // Función para cargar una canción
     function loadSong(index) {
@@ -762,7 +861,7 @@
       audio.src = song.src;
       portada.src = song.cover;
       tituloCancion.innerHTML = song.titulo + '<br><small>' + song.artista + '</small>';
-      audio.load(); // Carga la nueva canción
+      audio.load();
       
       // Si estaba reproduciendo, sigue reproduciendo la nueva
       if (isPlaying) {
@@ -775,10 +874,13 @@
       }
     }
 
+
     // Establecer volumen inicial al 20% y cargar la primera canción
     audio.volume = 0.2;
     volRange.value = 0.2;
     loadSong(currentSongIndex);
+
+
 
 
     // Event listener para el botón de modo oscuro/claro
@@ -788,7 +890,6 @@
       // Actualiza el ícono del botón (luna o sol)
       modoBtn.innerHTML = body.classList.contains('dark-mode') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
     });
-
     // Event listener para el botón de Play/Pause
     playBtn.addEventListener('click', (event) => {
       event.stopPropagation();
@@ -803,7 +904,6 @@
       }
       isPlaying = !isPlaying;
     });
-
     // Event listener para el botón Anterior
     prevBtn.addEventListener('click', (event) => {
         event.stopPropagation();
@@ -814,7 +914,6 @@
             audio.play();
         }
     });
-
     // Event listener para el botón Siguiente
     nextBtn.addEventListener('click', (event) => {
         event.stopPropagation();
@@ -825,7 +924,6 @@
             audio.play();
         }
     });
-
     // Event listener para el botón de Mute/Unmute
     muteBtn.addEventListener('click', (event) => {
       event.stopPropagation();
@@ -833,24 +931,20 @@
       audio.muted = isMuted;
       muteBtn.innerHTML = isMuted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
     });
-
     // Event listener para el slider de volumen
     volRange.addEventListener('input', (event) => {
       event.stopPropagation();
       audio.volume = volRange.value;
     });
-
     // Actualizar la barra de progreso de la canción
     audio.addEventListener('timeupdate', () => {
       progress.value = (audio.currentTime / audio.duration) * 100 || 0;
     });
-
     // Permitir arrastrar la barra de progreso para cambiar la posición de la canción
     progress.addEventListener('input', (event) => {
       event.stopPropagation();
       audio.currentTime = (progress.value / 100) * audio.duration;
     });
-
     // Lógica para maximizar/minimizar el reproductor en celular
     reproductor.addEventListener('click', (event) => {
         if (document.body.classList.contains('celular')) {
@@ -861,7 +955,6 @@
             }
         }
     });
-
     // Minimizar el reproductor al tocar fuera de él en celular
     document.addEventListener('click', (event) => {
         if (document.body.classList.contains('celular') && isReproductorMaximized) {
@@ -872,7 +965,6 @@
             }
         }
     });
-
     // Función para seleccionar el tipo de dispositivo (PC o Celular)
     function seleccionarDispositivo(tipo) {
       pantallaInicio.classList.add('transicion-lila');
@@ -883,20 +975,18 @@
 
       setTimeout(() => {
         pantallaInicio.style.display = 'none';
-
-        if (tipo === 'celular') {
-          document.body.classList.add('celular');
-        } else {
-          document.body.classList.remove('celular');
-        }
-
         contenidoPrincipal.style.display = 'block';
         setTimeout(() => {
-            contenidoPrincipal.style.opacity = '1';
-        }, 50);
-      }, 400);
+          contenidoPrincipal.style.opacity = '1';
+        }, 10); // Pequeño retraso para asegurar la transición de opacidad
+
+        if (tipo === 'celular') {
+          body.classList.add('celular');
+        } else {
+          body.classList.remove('celular'); // Asegura que la clase no esté si se selecciona PC
+        }
+      }, 400); // Coincide con la duración de la transición de opacidad
     }
   </script>
-</div>
 </body>
 </html>
