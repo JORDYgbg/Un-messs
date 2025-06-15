@@ -15,7 +15,7 @@
       box-sizing: border-box;
     }
 
-    /* **NEW** Custom text selection color */
+    /* Custom text selection color */
     ::selection {
         background-color: #d2a6fa; /* A soft lilac */
         color: #fff;
@@ -24,7 +24,6 @@
         background-color: #ffda66; /* Warm yellow for dark mode */
         color: #333;
     }
-
 
     /* Estilo del cuerpo con transiciones mejoradas y suavizado de fuente */
     body {
@@ -35,7 +34,7 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      /* **NEW** Scrollbar styling for WebKit browsers */
+      /* Scrollbar styling for WebKit browsers */
       scrollbar-width: thin;
       scrollbar-color: #9370db #f1f1f1;
     }
@@ -57,7 +56,6 @@
         background-color: #ffda66;
         border: 2px solid #2a2a2a;
     }
-
 
     /* Estilo del modo oscuro */
     body.dark-mode {
@@ -135,7 +133,6 @@
         display: block;
     }
 
-
     body.celular .triste-btn {
         width: calc(50% - 30px);
         bottom: 20px;
@@ -143,6 +140,8 @@
         right: auto;
         font-size: 0.9rem;
         padding: 12px 15px;
+        /* **CORRECCIÓN** Asegurar z-index para celular también */
+        z-index: 99;
     }
 
     body.celular .modo-btn {
@@ -161,17 +160,20 @@
 
     h1 {
       font-family: 'Pacifico', cursive;
-      font-size: 3.8rem; /* Título un poco más grande para destacar */
+      /* **CORRECCIÓN** Mayor tamaño para mejor resolución y evitar pixeles */
+      font-size: 4.5rem; /* Aumentado significativamente */
       color: #8a2be2; /* Lila más intenso */
       transition: color 0.7s ease-in-out;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       margin-bottom: 10px; /* Espacio entre título y párrafo */
+      /* **NUEVO** Sombra de texto sutil para definición */
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
-
 
     body.dark-mode h1 {
         color: #ffda66; /* Amarillo más cálido para el modo oscuro */
+        text-shadow: 2px 2px 4px rgba(255,255,255,0.1);
     }
 
     header p {
@@ -185,24 +187,25 @@
         color: #ccc;
     }
 
-
     header video {
         width: 70%;
         max-width: 400px;
         height: auto;
         margin: 0 auto 40px auto;
         border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        /* **CORRECCIÓN** Ajustar sombra para evitar "bordes negros" */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Sombra suave sin bordes sólidos */
         display: block;
-        /* **NEW** Subtle hover effect for video */
         transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, filter 0.3s ease-in-out;
+        /* **NUEVO** Propiedad para asegurar que no se vean bordes internos del video si son parte del archivo */
+        background-color: transparent;
+        border: none; /* Asegurar que no haya border */
     }
     header video:hover {
         transform: translateY(-5px);
         box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         filter: brightness(1.05); /* Slightly brighter on hover */
     }
-
 
     /* Botón "Si te sientes triste" */
     .triste-btn {
@@ -218,15 +221,15 @@
       cursor: pointer;
       box-shadow: 0 6px 15px rgba(0,0,0,0.25);
       transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      /* **CORRECCIÓN** Asegurar que esté siempre al frente */
+      z-index: 100; /* Mayor que el contenido principal y reproductor */
     }
-
 
     .triste-btn:hover {
       background-color: #ff1493;
       transform: translateY(-7px);
       box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
-
 
     /* Botón de cambio de modo oscuro/claro */
     .modo-btn {
@@ -246,8 +249,9 @@
       justify-content: center;
       box-shadow: 0 6px 15px rgba(0,0,0,0.25);
       transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, color 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
+      /* **NUEVO** Z-index para asegurar visibilidad */
+      z-index: 100;
     }
-
 
     .modo-btn:hover {
       background-color: #6a5acd; /* Lila al pasar el ratón */
@@ -255,17 +259,14 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
-
     body.dark-mode .modo-btn {
         background-color: #ffdb58; /* Amarillo oro */
         color: #333;
     }
 
-
     body.dark-mode .modo-btn:hover {
         background-color: #e0b400; /* Amarillo oscuro al pasar el ratón */
     }
-
 
     /* Animación de corazones flotantes */
     .corazones {
@@ -278,7 +279,6 @@
       z-index: -1;
     }
 
-
     .corazon {
       position: absolute;
       color: rgba(0, 0, 0, 0.1); /* Corazones más sutiles en modo claro */
@@ -289,8 +289,7 @@
         color: rgba(147, 112, 219, 0.3); /* Lila suave en modo oscuro */
     }
 
-
-    /* **NEW** More diverse heart animations for size and delay */
+    /* More diverse heart animations for size and delay */
     .corazon:nth-child(2n) { animation-duration: 12s; animation-delay: -2s; font-size: 1.2rem; opacity: 0.8; }
     .corazon:nth-child(3n) { animation-duration: 9s; animation-delay: -3s; font-size: 1.8rem; opacity: 0.9; }
     .corazon:nth-child(4n) { animation-duration: 11s; animation-delay: -1s; font-size: 1.0rem; opacity: 0.7; }
@@ -307,7 +306,6 @@
     .corazon:nth-child(14n) { animation-duration: 12.3s; animation-delay: -1.2s; font-size: 2.1rem; opacity: 1.0; }
     .corazon:nth-child(15n) { animation-duration: 8.5s; animation-delay: -3.7s; font-size: 1.5rem; opacity: 0.85; }
 
-
     @keyframes flotar {
       from {
         transform: translateY(100vh) rotate(0deg);
@@ -320,7 +318,6 @@
         opacity: 0;
       }
     }
-
 
     /* Estilo del reproductor de música (PC por defecto, minimizado) */
     .reproductor {
@@ -345,11 +342,9 @@
       cursor: pointer;
     }
 
-
     .reproductor.dark-mode {
       background: rgba(0,0,0,0.6);
     }
-
 
     .reproductor img {
       width: 60px;
@@ -360,13 +355,11 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.2);
       transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       object-fit: cover;
-      /* **NEW** Subtle hover effect for album cover */
       filter: saturate(1);
     }
     .reproductor img:hover {
         filter: saturate(1.1); /* Slightly more saturated on hover */
     }
-
 
     .reproductor .titulo,
     .reproductor .barra,
@@ -377,7 +370,6 @@
       transition: opacity 0.3s ease-out;
     }
 
-
     /* Reproductor maximizado en PC al pasar el ratón */
     .reproductor:hover {
       width: 260px;
@@ -386,10 +378,8 @@
       overflow: visible;
       align-items: stretch;
       cursor: default;
-      /* **NEW** Slightly increased shadow on hover */
       box-shadow: 0 12px 30px rgba(0,0,0,0.35);
     }
-
 
     .reproductor:hover img {
       width: 100px;
@@ -398,7 +388,6 @@
       margin-left: auto;
       margin-right: auto;
     }
-
 
     .reproductor:hover .titulo,
     .reproductor:hover .barra,
@@ -415,12 +404,10 @@
         flex-wrap: nowrap;
     }
 
-
     @keyframes girar {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
-
 
     .titulo {
       font-weight: bold;
@@ -435,9 +422,6 @@
         color: #bbb;
     }
 
-
-
-
     .barra {
       width: 100%;
       margin: 10px 0;
@@ -449,7 +433,6 @@
       cursor: pointer;
     }
 
-
     .barra::-webkit-slider-thumb {
       -webkit-appearance: none;
       width: 18px; /* Pulgar más grande */
@@ -458,10 +441,9 @@
       background: #8a2be2; /* Lila más intenso */
       cursor: pointer;
       box-shadow: 0 0 8px rgba(0,0,0,0.3); /* Sombra en el pulgar */
-      /* **NEW** Subtle border for the thumb */
       border: 1px solid rgba(255,255,255,0.5);
     }
-    /* **NEW** Firefox slider thumb styling */
+    /* Firefox slider thumb styling */
     .barra::-moz-range-thumb {
         width: 18px;
         height: 18px;
@@ -481,7 +463,6 @@
       flex-wrap: wrap;
     }
 
-
     .controles button {
       background: none;
       border: none;
@@ -491,7 +472,6 @@
       transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
     }
 
-
     .controles button:hover {
         color: #8a2be2;
         transform: scale(1.15); /* Efecto hover más pronunciado */
@@ -500,15 +480,11 @@
         color: #ffda66;
     }
 
-
-
-
     .volumen {
       display: flex;
       align-items: center;
       gap: 5px;
     }
-
 
     #volRange {
       width: 80px; /* Slider de volumen un poco más ancho */
@@ -517,11 +493,10 @@
     #volRange::-webkit-slider-thumb {
         background: #8a2be2;
     }
-    /* **NEW** Firefox volume slider thumb styling */
+    /* Firefox volume slider thumb styling */
     #volRange::-moz-range-thumb {
         background: #8a2be2;
     }
-
 
     /* Estilo de las secciones */
     section {
@@ -535,7 +510,6 @@
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
-      /* **NEW** Subtle hover effect for sections */
       transition: background 0.7s ease-in-out, color 0.7s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
     }
     section:hover {
@@ -547,7 +521,6 @@
         background: rgba(0,0,0,0.4);
     }
 
-
     section h2 {
       font-family: 'Dancing Script', cursive;
       font-size: 2.8rem;
@@ -557,20 +530,16 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       line-height: 1.2;
-      /* **NEW** Subtle text shadow for elegance */
       text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
-      /* **NEW** Transition for text shadow */
       transition: color 0.7s ease-in-out, text-shadow 0.3s ease-in-out;
     }
     section h2:hover {
         text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
-
     body.dark-mode section h2 {
         color: #ffd700;
     }
-
 
     section p {
       max-width: 700px;
@@ -584,7 +553,6 @@
     body.dark-mode section p {
         color: #e0e0e0;
     }
-
 
     /* Pantalla de bienvenida */
     #pantalla-inicio {
@@ -607,12 +575,10 @@
       transition: opacity 0.4s ease-in-out, background 0.4s ease-in-out, color 0.4s ease-in-out;
     }
 
-
     #pantalla-inicio.hidden {
         opacity: 0;
         pointer-events: none;
     }
-
 
     /* Clase para la transición de color de la pantalla de inicio */
     #pantalla-inicio.transicion-lila {
@@ -620,13 +586,11 @@
         color: #4a4a4a;
     }
 
-
     .dispositivo-opciones {
       display: flex;
       gap: 50px;
       margin-top: 40px;
     }
-
 
     .dispositivo-boton {
       background: white;
@@ -644,13 +608,11 @@
       transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     }
 
-
     .dispositivo-boton:hover {
       transform: scale(1.18);
       background-color: #f8f8f8;
       box-shadow: 0 12px 25px rgba(0,0,0,0.4);
     }
-
 
     .dispositivo-etiqueta {
       margin-top: 10px;
@@ -661,7 +623,6 @@
     #pantalla-inicio.transicion-lila .dispositivo-etiqueta {
         color: #4a4a4a;
     }
-
 
     /* Contenedor principal del contenido para la transición */
     #contenido-principal {
@@ -723,20 +684,20 @@
   <section id="seccion1">
     <h2>Cómo me enamoré de ti</h2>
     <p>
-      No sé en qué momento exacto empezó todo. Fue en una partida de Valorant, en Ascent asidjqeq, como cualquier otra noche. Prepickeó Phoenix y le dije a Nathalia: “Uy no, va a trollear fijo.”  Pero luego terminó pickeando Killjoy. Y no sé cómo explicarlo, pero ahí empezó algo. Pequeñito, imperceptible, como una chispa.
+      No sé en qué momento exacto empezó todo. Fue en una partida de Valorant, en Ascent asidjqeq, como cualquier otra noche. Prepickeó Phoenix y le dije a Nathalia: “Uy no, va a trollear fijo.” Pero luego terminó pickeando Killjoy. Y no sé cómo explicarlo, pero ahí empezó algo. Pequeñito, imperceptible, como una chispa.
       <br><br>
       Jugamos esa partida y terminamos cayéndonos bien, Todos en el grupo fluyeron, pero ella… tenía algo diferente. Esa noche nos quedamos jugando hasta la madrugada. Y no porque el juego estuviera bueno, sino porque su risa, sus comentarios, su forma de mirar el juego, todo eso me mantenía despierto.
       <br><br>
-      Después empezamos a hablar por Riot Mobile, mensajes cada tanto,  pero cada tanto se volvió cada vez más seguido. Y era raro (en el buen sentido) lo bien que nos entendíamos. Como si nuestras conversaciones ya tuvieran confianza desde el principio. Como si habláramos con alguien que ya conocíamos de vidas pasadas.
+      Después empezamos a hablar por Riot Mobile, mensajes cada tanto, pero cada tanto se volvió cada vez más seguido. Y era raro (en el buen sentido) lo bien que nos entendíamos. Como si nuestras conversaciones ya tuvieran confianza desde el principio. Como si habláramos con alguien que ya conocíamos de vidas pasadas.
       <br><br>
-      La invité a un servidor de Minecraft Y AHI, fue escalando todo. Nos regalábamos cosas dentro del juego (pero se sentían más reales que cualquier otro regalo físico) Le dejaba cofres con flores o animalitos, y no decía nada, solo esperaba que lo viera y sonriera.  Porque aunque no la veía, yo juraba que lo hacía.
+      La invité a un servidor de Minecraft Y AHI, fue escalando todo. Nos regalábamos cosas dentro del juego (pero se sentían más reales que cualquier otro regalo físico) Le dejaba cofres con flores o animalitos, y no decía nada, solo esperaba que lo viera y sonriera. Porque aunque no la veía, yo juraba que lo hacía.
       <br><br>
-      Después vino Instagram.  Más charlas. Más cercanía. Más nosotros. Recuerdo con esa mezcla de ternura y vergüenza el primer “te quiero” que le dije (el primer te quiero no se lo dije en instagram) Temblaba mientras lo escribía lo juro.  Y peor aún el “creo que me gustas”, porque eso ya era cruzar una línea sin saber si había suelo del otro lado.  Pero sí lo había. Porque ella me respondió con esa forma tan bonita de hacerlo sentir fácil.  Como si lo estuviera esperando.
+      Después vino Instagram. Más charlas. Más cercanía. Más nosotros. Recuerdo con esa mezcla de ternura y vergüenza el primer “te quiero” que le dije (el primer te quiero no se lo dije en instagram) Temblaba mientras lo escribía lo juro. Y peor aún el “creo que me gustas”, porque eso ya era cruzar una línea sin saber si había suelo del otro lado. Pero sí lo había. Porque ella me respondió con esa forma tan bonita de hacerlo sentir fácil. Como si lo estuviera esperando.
       <br><br>
-      Veíamos Ladybug juntos en Rave, aunque yo jamás pensé volver a ver algo así.  Pero por ella, por ella veía lo que sea. Jugábamos otros juegos solo para tener excusa de pasar tiempo juntos.  Y no necesitaba más. Me sentía en casa. Me sentía visto. Me sentía querido.  <br><br>
-      Y luego, llegó ese momento.  Tenía de fondo “Es por ti” de Juanes, porque sí, cursi, romántico, cliché y todo lo que quieras.  Pero era nuestra banda sonora. Le dije que la amaba.  Fue como soltar todo lo que llevaba dentro, como una confesión con el corazón en las manos.  <br><br>
-      Y cuando me dijo que sí, sonreí. Pero no solo por un rato.  Sonreí hasta el día siguiente. Dormí con una sonrisa que me dolía en la cara, pero me curaba el alma.  <br><br>
-      Y así fue como me enamoré de una chica que empezó como Killjoy en Ascent.  Y terminó siendo la mujer de mis amores, mi compañera, mi futura esposa y mi “te amo” más sincero.  </p>
+      Veíamos Ladybug juntos en Rave, aunque yo jamás pensé volver a ver algo así. Pero por ella, por ella veía lo que sea. Jugábamos otros juegos solo para tener excusa de pasar tiempo juntos. Y no necesitaba más. Me sentía en casa. Me sentía visto. Me sentía querido. <br><br>
+      Y luego, llegó ese momento. Tenía de fondo “Es por ti” de Juanes, porque sí, cursi, romántico, cliché y todo lo que quieras. Pero era nuestra banda sonora. Le dije que la amaba. Fue como soltar todo lo que llevaba dentro, como una confesión con el corazón en las manos. <br><br>
+      Y cuando me dijo que sí, sonreí. Pero no solo por un rato. Sonreí hasta el día siguiente. Dormí con una sonrisa que me dolía en la cara, pero me curaba el alma. <br><br>
+      Y así fue como me enamoré de una chica que empezó como Killjoy en Ascent. Y terminó siendo la mujer de mis amores, mi compañera, mi futura esposa y mi “te amo” más sincero. </p>
   </section>
 
   <section id="seccion2">
@@ -745,23 +706,23 @@
       Mariana, te pienso y todo se calma,
       como si el mundo aprendiera a flotar.<br>
       No estás en mis ojos, estás en mi alma,
-      y aún sin tocarte, te puedo abrazar.  <br>
+      y aún sin tocarte, te puedo abrazar. <br>
       Hay algo en tus frases, en lo que callas,
       que sabe quedarse, que sabe cuidar.<br>
       No sé si eres magia, destino o murallas,
-      pero eres mi forma de querer de verdad.  <br><br>
+      pero eres mi forma de querer de verdad. <br><br>
       No tienes un rostro en mis pensamientos,
       pero hay una esencia que huele a hogar.<br>
       Estás en mis días, estás en mis tiempos,
-      te siento tan cerca, como si la felicidad no fuera a terminar.  <br>
+      te siento tan cerca, como si la felicidad no fuera a terminar. <br>
       No necesito tenerte presente
       para saber cuánto puedes sanar.<br>
       Eres el verso que escribe mi mente,
-      sin tinta ni libro, con ganas de volar.  <br><br>
+      sin tinta ni libro, con ganas de volar. <br><br>
       Mariana, eres risa que viaja en la brisa,
       refugio invisible, señal sin final.<br>
       Y aunque este amor no se vea a simple vista,
-      late tan fuerte, que es simplemente real.  <br>
+      late tan fuerte, que es simplemente real. <br>
       
     </p>
   </section>
@@ -771,28 +732,28 @@
     <p>
       Mariana, en este día especial, quiero reafirmarte lo que siento y lo que prometo para nuestro futuro juntos, sin importar las pantallas de por medio:
       <br><br>
-      1. Prometo escucharte siempre: Cada palabra que escribas, cada audio que envíes, cada silencio.  Estaré aquí para comprenderte, no solo para oírte.
+      1. Prometo escucharte siempre: Cada palabra que escribas, cada audio que envíes, cada silencio. Estaré aquí para comprenderte, no solo para oírte.
       <br>
-      2. Prometo apoyarte en cada sueño: Tus metas serán mis metas.  Estaré a tu lado, aunque sea a la distancia, para celebrar tus victorias y para darte la fuerza cuando la necesites.  <br>
-      3. Prometo ser tu refugio: Cuando el mundo digital o el real te parezca pesado, mi amor y mi presencia virtual serán el lugar donde siempre puedas encontrar paz y consuelo.  <br>
-      4. Prometo mantener viva la chispa: Con mensajes inesperados, risas compartidas en llamadas y nuevas "aventuras" en línea, haremos que cada día sea emocionante y que nuestro amor siga floreciendo.  <br>
-      5. Prometo amarte sin condiciones: Mi amor por ti será constante, puro y eterno.  En los buenos momentos de conexión y en los desafíos de la distancia, siempre con la paciencia y el cariño que mereces.  <br><br>
-      Eres el regalo más hermoso que la vida me ha dado.  </p>
+      2. Prometo apoyarte en cada sueño: Tus metas serán mis metas. Estaré a tu lado, aunque sea a la distancia, para celebrar tus victorias y para darte la fuerza cuando la necesites. <br>
+      3. Prometo ser tu refugio: Cuando el mundo digital o el real te parezca pesado, mi amor y mi presencia virtual serán el lugar donde siempre puedas encontrar paz y consuelo. <br>
+      4. Prometo mantener viva la chispa: Con mensajes inesperados, risas compartidas en llamadas y nuevas "aventuras" en línea, haremos que cada día sea emocionante y que nuestro amor siga floreciendo. <br>
+      5. Prometo amarte sin condiciones: Mi amor por ti será constante, puro y eterno. En los buenos momentos de conexión y en los desafíos de la distancia, siempre con la paciencia y el cariño que mereces. <br><br>
+      Eres el regalo más hermoso que la vida me ha dado. </p>
   </section>
 
   <section id="seccion5">
     <h2>Frases que me recuerdan a ti</h2>
     <p>
-      "No necesito verte para sentir que estás conmigo en cada parte de mí."  <br>
-      "Hay algo en ti que calma mis tormentas sin decir una palabra."  <br>
-      "Te pienso sin buscarte… y aun así te encuentro en todo."  <br>
-      "No sé cómo lo haces, pero con cada palabra tuya, me siento en casa."  <br>
-      "Estás tan dentro de mí, que a veces dudo si este corazón late por mí… o por ti."  <br>
-      "Eres el único pensamiento que no me cansa repetir."  <br>
-      "Contigo no hay distancia, solo razones para seguir sintiendo."  <br>
-      "Amarte es como respirar: natural, constante, necesario."  <br>
-      "No sé si esto es amor… pero no quiero que sea otra cosa."  <br>
-      "Desde que llegaste, hasta el silencio suena a ti."  </p>
+      "No necesito verte para sentir que estás conmigo en cada parte de mí." <br>
+      "Hay algo en ti que calma mis tormentas sin decir una palabra." <br>
+      "Te pienso sin buscarte… y aun así te encuentro en todo." <br>
+      "No sé cómo lo haces, pero con cada palabra tuya, me siento en casa." <br>
+      "Estás tan dentro de mí, que a veces dudo si este corazón late por mí… o por ti." <br>
+      "Eres el único pensamiento que no me cansa repetir." <br>
+      "Contigo no hay distancia, solo razones para seguir sintiendo." <br>
+      "Amarte es como respirar: natural, constante, necesario." <br>
+      "No sé si esto es amor… pero no quiero que sea otra cosa." <br>
+      "Desde que llegaste, hasta el silencio suena a ti." </p>
   </section>
 
   <div class="reproductor" id="reproductor">
@@ -837,15 +798,15 @@
       },
       {
         titulo: "Amor Completo",
-        artista: "Mon Laferte", /* cite: 431 */
-        src: "audio/amorcompleto.mp3", /* cite: 431 */
-        cover: "audio/cover2.jpg" /* cite: 431 */
+        artista: "Mon Laferte",
+        src: "audio/amorcompleto.mp3",
+        cover: "audio/cover2.jpg"
       },
       {
         titulo: "Compartir",
-        artista: "Carla Morrison", /* cite: 432 */
-        src: "audio/compartir.mp3", /* cite: 432 */
-        cover: "audio/cover3.jpg" /* cite: 432 */
+        artista: "Carla Morrison",
+        src: "audio/compartir.mp3",
+        cover: "audio/cover3.jpg"
       }
     ];
     let currentSongIndex = 0;
