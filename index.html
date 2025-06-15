@@ -868,27 +868,7 @@
     </div>
 
     <div class="corazones">
-      <i class="fa-solid fa-heart corazon" style="top:10%; left:10%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:20%; left:80%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:60%; left:40%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:30%; left:60%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:50%; left:20%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:15%; left:50%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:70%; left:30%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:40%; left:70%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:80%; left:15%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:5%; left:85%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:25%; left:5%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:35%; left:90%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:75%; left:55%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:45%; left:35%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:85%; left:75%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:55%; left:5%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:5%; left:30%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:90%; left:45%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:65%; left:10%;"></i>
-      <i class="fa-solid fa-heart corazon" style="top:10%; left:70%;"></i>
-    </div>
+        </div>
 
     <header>
       <h1>Feliz primer mes</h1>
@@ -975,40 +955,44 @@
     // Estado del audio
     let isPlaying = false;
 
-    // Función para alternar modo oscuro/claro
-    const toggleDarkMode = () => {
-        body.classList.toggle('dark-mode');
-        if (body.classList.contains('dark-mode')) {
+    // Function to initialize the mode button icon
+    const initializeModeButton = () => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
             modoIcon.classList.remove('fa-moon');
             modoIcon.classList.add('fa-sun');
             reproductor.classList.add('dark-mode');
-            localStorage.setItem('theme', 'dark');
         } else {
+            // Default to light mode if no theme saved or it's light
+            body.classList.remove('dark-mode');
             modoIcon.classList.remove('fa-sun');
             modoIcon.classList.add('fa-moon');
             reproductor.classList.remove('dark-mode');
-            localStorage.setItem('theme', 'light');
         }
     };
-    modoBtn.addEventListener('click', toggleDarkMode);
 
-    // Cargar modo guardado o establecer oscuro por defecto
-    document.addEventListener('DOMContentLoaded', () => {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-        body.classList.add('dark-mode');
-        // Ensure icon is correct on load if dark mode is active
+    // Función para alternar modo oscuro/claro
+    const toggleDarkMode = () => {
+      body.classList.toggle('dark-mode');
+      if (body.classList.contains('dark-mode')) {
         modoIcon.classList.remove('fa-moon');
         modoIcon.classList.add('fa-sun');
         reproductor.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
       } else {
-        // If no theme saved or it's light, ensure light mode is active and icon is moon
-        body.classList.remove('dark-mode');
         modoIcon.classList.remove('fa-sun');
         modoIcon.classList.add('fa-moon');
         reproductor.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
       }
+    };
+    modoBtn.addEventListener('click', toggleDarkMode);
 
+    // Cargar modo guardado y inicializar al cargar el DOM
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeModeButton(); // Set initial icon based on theme
+      
       // Iniciar el contador de tiempo al cargar la página
       const fechaInicio = new Date('2025-05-15T00:00:00'); // Establece la fecha de inicio aquí (Año-Mes-DíaTHora:Minuto:Segundo)
       actualizarContador(fechaInicio); // Llama inmediatamente para evitar parpadeo inicial
@@ -1022,6 +1006,9 @@
       if (miAudio) {
           miAudio.load();
       }
+      
+      // Initialize hearts on DOMContentLoaded
+      initializeHearts(20); // Create 20 hearts initially
     });
 
     // Funcionalidad del reproductor de música
@@ -1056,47 +1043,36 @@
       miAudio.volume = volRange.value;
     });
 
-    // Contador de tiempo juntos (Improved)
+    // Contador de tiempo juntos (Improved for simplicity and aesthetics)
     function actualizarContador(fechaInicio) {
         const ahora = new Date();
-        let diffYears = ahora.getFullYear() - fechaInicio.getFullYear();
-        let diffMonths = ahora.getMonth() - fechaInicio.getMonth();
-        let diffDays = ahora.getDate() - fechaInicio.getDate();
-        let diffHours = ahora.getHours() - fechaInicio.getHours();
-        let diffMinutes = ahora.getMinutes() - fechaInicio.getMinutes();
-        let diffSeconds = ahora.getSeconds() - fechaInicio.getSeconds();
+        const diferenciaMs = ahora - fechaInicio; // Difference in milliseconds
 
-        // Adjust for negative differences
-        if (diffSeconds < 0) {
-            diffSeconds += 60;
-            diffMinutes--;
-        }
-        if (diffMinutes < 0) {
-            diffMinutes += 60;
-            diffHours--;
-        }
-        if (diffHours < 0) {
-            diffHours += 24;
-            diffDays--;
-        }
-        if (diffDays < 0) {
-            const daysInPrevMonth = new Date(ahora.getFullYear(), ahora.getMonth(), 0).getDate();
-            diffDays += daysInPrevMonth;
-            diffMonths--;
-        }
-        if (diffMonths < 0) {
-            diffMonths += 12;
-            diffYears--;
-        }
+        const totalSeconds = Math.floor(diferenciaMs / 1000);
+        const totalMinutes = Math.floor(totalSeconds / 60);
+        const totalHours = Math.floor(totalMinutes / 60);
+        const totalDays = Math.floor(totalHours / 24);
+
+        // Calculate years and months based on an *average* month/year for display.
+        // This is simpler and more aesthetic for a continuous counter than precise calendar differences.
+        const years = Math.floor(totalDays / 365.25); // Account for leap years
+        const remainingDaysAfterYears = totalDays % 365.25;
+        const months = Math.floor(remainingDaysAfterYears / 30.44); // Average days per month
+
+        const days = totalDays; // Display total days for simplicity, or remaining days after months if preferred
+        const hours = totalHours % 24;
+        const minutes = totalMinutes % 60;
+        const seconds = totalSeconds % 60;
 
         // Function to update and animate numbers
         function updateAndAnimate(elementId, newValue) {
             const element = document.getElementById(elementId);
             // Get current displayed value (strip leading zeros for comparison)
-            const currentValue = parseInt(element.querySelector('span').textContent, 10);
+            const currentValueSpan = element.querySelector('span');
+            const currentValue = parseInt(currentValueSpan.textContent, 10);
 
             if (newValue !== currentValue) {
-                const oldSpan = element.querySelector('span');
+                const oldSpan = currentValueSpan;
                 const newSpan = document.createElement('span');
                 newSpan.textContent = String(newValue).padStart(2, '0'); // Add leading zero for single digits
                 newSpan.classList.add('new');
@@ -1115,33 +1091,64 @@
             }
         }
 
-        updateAndAnimate('anios', diffYears);
-        updateAndAnimate('meses', diffMonths);
-        updateAndAnimate('dias', diffDays);
-        updateAndAnimate('horas', diffHours);
-        updateAndAnimate('minutos', diffMinutes);
-        updateAndAnimate('segundos', diffSeconds);
+        updateAndAnimate('anios', years);
+        updateAndAnimate('meses', months);
+        updateAndAnimate('dias', days);
+        updateAndAnimate('horas', hours);
+        updateAndAnimate('minutos', minutes);
+        updateAndAnimate('segundos', seconds);
     }
 
-    // Corazones flotantes
-    function crearCorazon() {
+
+    // Corazones flotantes (Fixed to a fixed number of hearts)
+    const numberOfHearts = 20; // Set the desired number of hearts
+    let hearts = []; // Array to store heart elements
+
+    function createSingleHeart() {
         const corazon = document.createElement('i');
         corazon.classList.add('fa-solid', 'fa-heart', 'corazon');
+        
+        // Initial random positioning and animation properties
         corazon.style.left = Math.random() * 100 + 'vw';
-        corazon.style.animationDuration = Math.random() * 5 + 5 + 's'; // Duración entre 5 y 10s
-        corazon.style.animationDelay = Math.random() * -5 + 's'; // Retraso para que aparezcan en diferentes momentos
-        corazon.style.fontSize = Math.random() * 1.5 + 1 + 'rem'; // Tamaño entre 1rem y 2.5rem
-        corazon.style.opacity = Math.random() * 0.5 + 0.5; // Opacidad entre 0.5 y 1
+        corazon.style.animationDuration = Math.random() * 5 + 7 + 's'; // Duration between 7s and 12s
+        corazon.style.animationDelay = Math.random() * -10 + 's'; // Start at various points in animation cycle
+        corazon.style.fontSize = Math.random() * 1.5 + 1.2 + 'rem'; // Size between 1.2rem and 2.7rem
+        corazon.style.opacity = Math.random() * 0.4 + 0.3; // Opacity between 0.3 and 0.7
 
         document.querySelector('.corazones').appendChild(corazon);
 
-        corazon.addEventListener('animationend', () => {
-            corazon.remove();
+        // When animation ends, restart it from bottom
+        corazon.addEventListener('animationiteration', () => {
+            corazon.style.left = Math.random() * 100 + 'vw'; // Reposition horizontally
+            corazon.style.animationDuration = Math.random() * 5 + 7 + 's';
+            corazon.style.animationDelay = '0s'; // Reset delay for immediate restart
+            corazon.style.fontSize = Math.random() * 1.5 + 1.2 + 'rem';
+            corazon.style.opacity = Math.random() * 0.4 + 0.3;
         });
+
+        // For initial hearts, to ensure they don't get stuck if animationend fires instead of iteration
+        corazon.addEventListener('animationend', function handler() {
+            // If animation ends (meaning it completed once), reset and re-add animation
+            this.style.animation = 'none';
+            void this.offsetWidth; // Trigger reflow
+            this.style.animation = `flotar ${Math.random() * 5 + 7}s linear infinite`;
+            this.style.left = Math.random() * 100 + 'vw';
+            this.style.animationDelay = '0s'; // Important to ensure continuous loop
+            this.style.fontSize = Math.random() * 1.5 + 1.2 + 'rem';
+            this.style.opacity = Math.random() * 0.4 + 0.3;
+            this.removeEventListener('animationend', handler); // Remove self to avoid re-triggering this listener
+        });
+
+
+        return corazon;
     }
 
-    // Generar corazones cada cierto tiempo
-    setInterval(crearCorazon, 300); // Crea un corazón cada 300ms
+    function initializeHearts(count) {
+        for (let i = 0; i < count; i++) {
+            hearts.push(createSingleHeart());
+        }
+    }
+
 
     // Manejo de la pantalla de bienvenida y selección de dispositivo
     const dispositivoOpciones = document.querySelector('.dispositivo-opciones');
