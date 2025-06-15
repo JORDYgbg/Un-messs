@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nuestro Primer Mes ❤️</title>
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/833/833472.png" type="image/png">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/833/833472.png" type="image/png"> 
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;700&family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -423,7 +423,7 @@
     .reproductor .titulo,
     .reproductor .barra,
     .reproductor .volumen,
-    .reproductor .controles { /* Also hide controls container */
+    .reproductor .controles { /* Also hide the controls container */
       display: none;
       opacity: 0;
       transition: opacity 0.3s ease-out;
@@ -499,36 +499,69 @@
         color: #bbb;
     }
 
+    /* Estilos para la barra de progreso (más actual y profesional) */
     .barra {
       width: 100%;
       margin: 10px 0;
       -webkit-appearance: none;
-      height: 8px; /* Barra de progreso más gruesa */
-      background: #ccc;
+      height: 8px; /* Altura de la barra */
+      background: #e0e0e0; /* Color base del track sin progreso */
       border-radius: 4px;
       outline: none;
       cursor: pointer;
+      /* Background dinámico para el progreso, se actualiza con JS */
+      background-image: linear-gradient(#8a2be2, #8a2be2); /* Color de progreso */
+      background-repeat: no-repeat;
+      background-size: 0% 100%; /* Inicialmente 0%, se llena con JS */
+      transition: background-color 0.3s ease; /* Transición para modo oscuro */
     }
 
+    body.dark-mode .barra {
+        background: #555; /* Fondo del track en modo oscuro */
+        background-image: linear-gradient(#ffda66, #ffda66); /* Color de progreso en modo oscuro */
+    }
+
+    /* Estilo del "thumb" (indicador de la barra) para WebKit (Chrome, Safari, Edge) */
     .barra::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 18px; /* Pulgar más grande */
+      width: 18px; /* Tamaño del thumb */
       height: 18px;
       border-radius: 50%;
-      background: #8a2be2; /* Lila más intenso */
+      background: #8a2be2; /* Color del thumb */
       cursor: pointer;
-      box-shadow: 0 0 8px rgba(0,0,0,0.3); /* Sombra en el pulgar */
-      border: 1px solid rgba(255,255,255,0.5);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3); /* Sombra más pronunciada */
+      border: 2px solid #fff; /* Borde blanco para el thumb */
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
     }
-    /* Firefox slider thumb styling */
+
+    body.dark-mode .barra::-webkit-slider-thumb {
+        background: #ffda66; /* Color del thumb en modo oscuro */
+        border: 2px solid #333; /* Borde oscuro para el thumb en modo oscuro */
+    }
+
+    .barra::-webkit-slider-thumb:hover {
+        transform: scale(1.1); /* Efecto de crecimiento al pasar el ratón */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    /* Estilo del "thumb" (indicador de la barra) para Firefox */
     .barra::-moz-range-thumb {
         width: 18px;
         height: 18px;
         border-radius: 50%;
         background: #8a2be2;
         cursor: pointer;
-        box-shadow: 0 0 8px rgba(0,0,0,0.3);
-        border: 1px solid rgba(255,255,255,0.5);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        border: 2px solid #fff;
+        transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    }
+    body.dark-mode .barra::-moz-range-thumb {
+        background: #ffda66;
+        border: 2px solid #333;
+    }
+    .barra::-moz-range-thumb:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     }
 
     .controles {
@@ -565,14 +598,25 @@
 
     #volRange {
       width: 80px; /* Slider de volumen un poco más ancho */
-      background: #ccc;
     }
+    /* Estilo específico para el thumb del volumen, siguiendo el nuevo estilo de barra */
     #volRange::-webkit-slider-thumb {
         background: #8a2be2;
+        border: 2px solid #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
-    /* Firefox volume slider thumb styling */
+    body.dark-mode #volRange::-webkit-slider-thumb {
+        background: #ffda66;
+        border: 2px solid #333;
+    }
     #volRange::-moz-range-thumb {
         background: #8a2be2;
+        border: 2px solid #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    body.dark-mode #volRange::-moz-range-thumb {
+        background: #ffda66;
+        border: 2px solid #333;
     }
 
     /* Estilo de las secciones */
@@ -788,7 +832,8 @@
             <button id="btnAvanzar"><i class="fa-solid fa-forward-step"></i></button>
             <div class="volumen">
                 <i class="fa-solid fa-volume-high"></i>
-                <input type="range" id="volRange" min="0" max="1" step="0.01" value="0.15" class="barra"> </div>
+                <input type="range" id="volRange" min="0" max="1" step="0.01" value="0.10" class="barra"> 
+            </div>
         </div>
     </div>
     
@@ -861,6 +906,7 @@
         iconoReproducirPausar.classList.remove('fa-pause');
         iconoReproducirPausar.classList.add('fa-play');
       }
+      updateProgressBarBackground(barraProgreso); // Actualiza la barra al cargar la canción
     }
 
     // Funciones para navegar entre canciones
@@ -922,8 +968,21 @@
         reproductor.classList.remove('dark-mode');
         localStorage.setItem('theme', 'light');
       }
+      // Actualiza el fondo de las barras al cambiar de modo
+      updateProgressBarBackground(barraProgreso);
+      updateProgressBarBackground(volRange);
     };
     modoBtn.addEventListener('click', toggleDarkMode);
+
+    // Función para actualizar el fondo de la barra de progreso/volumen
+    function updateProgressBarBackground(progressBar) {
+        const progress = (progressBar.value - progressBar.min) / (progressBar.max - progressBar.min) * 100;
+        const progressBarColor = body.classList.contains('dark-mode') ? '#ffda66' : '#8a2be2';
+        // Usa un color de track diferente para el volumen si es necesario, o el mismo
+        const trackColor = body.classList.contains('dark-mode') ? '#555' : '#e0e0e0'; 
+        
+        progressBar.style.backgroundImage = `linear-gradient(to right, ${progressBarColor} ${progress}%, ${trackColor} ${progress}%)`;
+    }
 
     // Cargar modo guardado y inicializar al cargar el DOM
     document.addEventListener('DOMContentLoaded', () => {
@@ -935,7 +994,12 @@
           videoElement.load();
       }
       loadSong(currentSongIndex); // Carga la primera canción al inicio
-      miAudio.volume = 0.15; // Establece el volumen inicial al 15%
+      miAudio.volume = 0.10; // Establece el volumen inicial al 10%
+      volRange.value = 0.10; // También actualiza el slider de volumen
+
+      // Inicializar el fondo de las barras al cargar la página
+      updateProgressBarBackground(barraProgreso);
+      updateProgressBarBackground(volRange);
       
       // Initialize hearts on DOMContentLoaded
       initializeHearts(20); // Create 20 hearts initially
@@ -961,6 +1025,9 @@
     miAudio.addEventListener('timeupdate', () => {
       const progreso = (miAudio.currentTime / miAudio.duration) * 100;
       barraProgreso.value = progreso;
+      
+      // Actualiza el fondo de la barra de progreso para simular el llenado
+      updateProgressBarBackground(barraProgreso);
     });
 
     barraProgreso.addEventListener('input', (event) => {
@@ -968,6 +1035,8 @@
       event.stopPropagation();
       const tiempo = (barraProgreso.value / 100) * miAudio.duration;
       miAudio.currentTime = tiempo;
+      // Actualiza el fondo de la barra de progreso mientras se arrastra
+      updateProgressBarBackground(barraProgreso);
     });
     
     // Al finalizar la canción, pasa a la siguiente
@@ -978,6 +1047,8 @@
 
     volRange.addEventListener('input', () => {
       miAudio.volume = volRange.value;
+      // Actualizar el fondo del slider de volumen también para consistencia
+      updateProgressBarBackground(volRange);
     });
 
     // Corazones flotantes (Fixed to a fixed number of hearts)
