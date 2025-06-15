@@ -460,7 +460,7 @@
 
     /* Reproductor maximizado en PC al pasar el ratón */
     .reproductor:hover {
-      width: 260px;
+      width: 280px; /* Ancho ligeramente mayor para acomodar el volumen */
       height: auto;
       padding: 20px;
       overflow: visible;
@@ -646,10 +646,12 @@
         color: #ffda66;
     }
 
+    /* CONTROLES DE VOLUMEN (AHORA DENTRO DE .controles) */
     .volumen {
       display: flex;
       align-items: center;
       gap: 5px;
+      margin-left: 15px; /* Espacio para separar de los botones de control */
     }
 
     /* MEJORA: Estilos para el icono de volumen en hover */
@@ -958,9 +960,9 @@
         <button id="btnAnterior"><i class="fa-solid fa-backward-step"></i></button>
         <button id="btnReproducirPausar"><i class="fa-solid fa-play"></i></button>
         <button id="btnSiguiente"><i class="fa-solid fa-forward-step"></i></button>
+        <div class="volumen">
+          <i id="iconoVolumen" class="fa-solid fa-volume-high"></i> <input type="range" id="volRange" class="barra" min="0" max="100" value="10"> </div>
       </div>
-      <div class="volumen">
-        <i id="iconoVolumen" class="fa-solid fa-volume-high"></i> <input type="range" id="volRange" class="barra" min="0" max="100" value="10"> </div>
     </div>
   </div>
 
@@ -1120,6 +1122,7 @@
           this.audio.addEventListener('loadedmetadata', () => {
             this.tiempoTotalSpan.textContent = this.formatTime(this.audio.duration);
             this.barraProgreso.max = this.audio.duration;
+            this.updateProgressBarGradient(); // Ensure gradient is updated on new song load
             if (this.isPlaying) {
               this.audio.play();
               this.portadaDisco.classList.remove('paused'); // Resume animation
@@ -1157,6 +1160,7 @@
           // If current time is past 3 seconds, restart the song
           if (this.audio.currentTime > 3) {
             this.audio.currentTime = 0;
+            this.updateProgressBarGradient(); // Update gradient when restarting song
           } else {
             this.currentSongIndex = (this.currentSongIndex - 1 + this.playlist.length) % this.playlist.length;
             this.loadSong(this.currentSongIndex);
@@ -1182,19 +1186,25 @@
 
         updateProgressBarGradient() {
             const progress = (this.barraProgreso.value / this.barraProgreso.max) * 100;
-            this.barraProgreso.style.backgroundSize = `${progress}% 100%`;
+            // Asegúrate de que el valor no sea NaN al inicio o cuando la duración es 0
+            if (!isNaN(progress)) {
+                this.barraProgreso.style.backgroundSize = `${progress}% 100%`;
+            } else {
+                this.barraProgreso.style.backgroundSize = `0% 100%`; // Reset to 0 if duration is not available yet
+            }
         }
 
         setProgressBar() {
-          this.audio.currentTime = this.barraProgreso.value;
-          if (!this.isPlaying) {
-            this.audio.play();
-            // Play if user interacts with progress bar when paused
-            this.btnReproducirPausar.querySelector('i').className = 'fa-solid fa-pause';
-            this.portadaDisco.classList.remove('paused');
-            this.isPlaying = true;
-          }
+            this.audio.currentTime = this.barraProgreso.value;
+            // No es necesario llamar a updateProgressBarGradient() aquí, ya se hace en 'input' y 'timeupdate'
+            if (!this.isPlaying) {
+                this.audio.play();
+                this.btnReproducirPausar.querySelector('i').className = 'fa-solid fa-pause';
+                this.portadaDisco.classList.remove('paused');
+                this.isPlaying = true;
+            }
         }
+
 
         // Nueva función para actualizar el icono de volumen
         updateVolumeIcon() {
