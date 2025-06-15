@@ -17,18 +17,17 @@
 
     /* Custom text selection color */
     ::selection {
-        background-color: #d2a6fa; /* A soft lilac */
+        background-color: #d2a6fa;
         color: #fff;
     }
     body.dark-mode ::selection {
-        background-color: #ffda66; /* Warm yellow for dark mode */
+        background-color: #ffda66;
         color: #333;
     }
 
     /* Estilo del cuerpo con transiciones mejoradas y suavizado de fuente */
     body {
       font-family: 'Quicksand', sans-serif;
-      /* Degradado inverso: empieza claro, se oscurece al bajar */
       background: linear-gradient(180deg, #f7e6ff 0%, #d2a6fa 50%, #9370db 100%);
       color: #4a4a4a;
       transition: background 0.7s ease-in-out, color 0.7s ease-in-out, font-size 0.7s ease-in-out;
@@ -95,10 +94,10 @@
 
     /* In minimized mobile view, ALL controls and text are hidden, ONLY disc is visible */
     body.celular .reproductor .titulo,
-    body.celular .reproductor .tiempo, /* Agregado para ocultar el tiempo */
+    body.celular .reproductor .tiempo,
     body.celular .reproductor .barra,
     body.celular .reproductor .volumen,
-    body.celular .reproductor .controles { /* Also hide controls container */
+    body.celular .reproductor .controles {
       display: none;
       opacity: 0;
       transition: opacity 0.3s ease-out;
@@ -127,7 +126,7 @@
 
     /* When maximized on mobile, all elements become visible */
     body.celular .reproductor.maximized .titulo,
-    body.celular .reproductor.maximized .tiempo, /* Agregado para mostrar el tiempo */
+    body.celular .reproductor.maximized .tiempo,
     body.celular .reproductor.maximized .barra,
     body.celular .reproductor.maximized .volumen,
     body.celular .reproductor.maximized .controles {
@@ -161,38 +160,32 @@
     /* Estilo del encabezado */
     header {
       text-align: center;
-      padding: 60px 20px 30px; /* Más padding superior para espacio */
+      padding: 60px 20px 30px;
       position: relative;
-      /* Para el contador */
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 4.8rem; /* Ligeramente más grande aún para destacar con la nueva fuente */
+      font-size: 4.8rem;
       color: #8a2be2;
-      /* Lila más intenso */
       transition: color 0.7s ease-in-out;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       margin-bottom: 10px;
-      /* Espacio entre título y párrafo */
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
     body.dark-mode h1 {
         color: #ffda66;
-        /* Amarillo más cálido para el modo oscuro */
         text-shadow: 2px 2px 4px rgba(255,255,255,0.1);
     }
 
     header p {
       font-size: 1.3rem;
-      /* Párrafo ligeramente más grande */
       color: #666;
-      /* Color de texto más suave */
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      margin-bottom: 30px; /* Más espacio entre el texto y el video */
+      margin-bottom: 30px;
     }
     body.dark-mode header p {
         color: #ccc;
@@ -208,25 +201,21 @@
         display: block;
         transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, filter 0.3s ease-in-out;
         background-color: transparent;
-        /* Asegurar que no haya color de fondo indeseado */
         border: none;
-        /* Asegurar que no haya border */
         overflow: hidden;
     }
     header video:hover {
         transform: translateY(-5px);
         box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        filter: brightness(1.05); /* Slightly brighter on hover */
+        filter: brightness(1.05);
     }
 
     /* Botón "Si te sientes triste" */
     .triste-btn {
       position: fixed;
-      bottom: 25px; /* Ligeramente más arriba */
+      bottom: 25px;
       left: 25px;
-      /* Ligeramente más adentro */
       background-color: #ff69b4;
-      /* Rosa */
       border: none;
       color: white;
       font-size: 1rem;
@@ -236,7 +225,6 @@
       box-shadow: 0 6px 15px rgba(0,0,0,0.25);
       transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
       z-index: 100;
-      /* Asegurar que esté siempre al frente */
     }
 
     .triste-btn:hover {
@@ -250,10 +238,10 @@
       position: fixed;
       bottom: 25px;
       right: 25px;
-      background-color: #9370db; /* Lila más suave */
+      background-color: #9370db;
       border: none;
       border-radius: 50%;
-      width: 55px; /* Ligeramente más grande */
+      width: 55px;
       height: 55px;
       font-size: 22px;
       color: white;
@@ -268,20 +256,17 @@
 
     .modo-btn:hover {
       background-color: #6a5acd;
-      /* Lila al pasar el ratón */
       transform: rotate(360deg);
       box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
     body.dark-mode .modo-btn {
         background-color: #ffdb58;
-        /* Amarillo oro */
         color: #333;
     }
 
     body.dark-mode .modo-btn:hover {
         background-color: #e0b400;
-        /* Amarillo oscuro al pasar el ratón */
     }
 
     /* Animación de corazones flotantes */
@@ -293,18 +278,17 @@
       height: 100%;
       pointer-events: none;
       z-index: -1;
-      overflow: hidden; /* IMPORTANTE: Asegura que los corazones no desborden y no haya barras de scroll */
+      overflow: hidden;
     }
 
     .corazon {
       position: absolute;
-      color: rgba(255, 105, 180, 0.15); /* Corazones más rosados y notorios en modo claro */
+      color: rgba(255, 105, 180, 0.15);
       font-size: 1.5rem;
-      /* CORRECCIÓN: Cambiado a ease-in-out para una animación más suave */
       animation: flotar 10s ease-in-out infinite;
     }
     body.dark-mode .corazon {
-        color: rgba(255, 192, 203, 0.25); /* Rosa más claro en modo oscuro */
+        color: rgba(255, 192, 203, 0.25);
     }
 
     /* More diverse heart animations for size and delay */
@@ -353,7 +337,6 @@
       font-size: 1.4rem;
       opacity: 0.8;
     }
-    /* Added more nth-child rules for better distribution and subtlety */
     .corazon:nth-child(11n) { animation-duration: 10s;
       animation-delay: -0.8s;
       font-size: 1.7rem;
@@ -385,9 +368,10 @@
         transform: translateY(100vh) rotate(0deg);
         opacity: 0;
       }
-      /* CORRECCIÓN: Opacidad ajustada para una aparición/desaparición más suave */
-      20% { opacity: 1; }
-      80% { opacity: 1; }
+      20% { opacity: 1;
+      }
+      80% { opacity: 1;
+      }
       to {
         transform: translateY(-100vh) rotate(360deg);
         opacity: 0;
@@ -397,9 +381,8 @@
     /* Estilo del reproductor de música (PC por defecto, minimizado) */
     .reproductor {
       position: fixed;
-      top: 25px; /* Ligeramente más abajo */
+      top: 25px;
       right: 25px;
-      /* Ligeramente más adentro */
       background: rgba(255,255,255,0.4);
       backdrop-filter: blur(12px);
       border-radius: 20px;
@@ -414,7 +397,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      z-index: 99; /* Menor que los botones fijos pero mayor que el contenido */
+      z-index: 99;
       cursor: pointer;
     }
 
@@ -434,15 +417,15 @@
       filter: saturate(1);
     }
     .reproductor img:hover {
-        filter: saturate(1.1); /* Slightly more saturated on hover */
+        filter: saturate(1.1);
     }
 
     /* Default state for PC: ONLY disc is visible, all other elements hidden */
     .reproductor .titulo,
-    .reproductor .tiempo, /* Ocultar el tiempo */
+    .reproductor .tiempo,
     .reproductor .barra,
     .reproductor .volumen,
-    .reproductor .controles { /* Also hide the controls container */
+    .reproductor .controles {
       display: none;
       opacity: 0;
       transition: opacity 0.3s ease-out;
@@ -469,12 +452,11 @@
 
     /* When maximized on PC hover, all elements become visible */
     .reproductor:hover .titulo,
-    .reproductor:hover .tiempo, /* Mostrar el tiempo */
+    .reproductor:hover .tiempo,
     .reproductor:hover .barra,
     .reproductor:hover .controles,
     .reproductor:hover .volumen {
       display: flex;
-      /* Or block for title */
       opacity: 1;
       transition-delay: 0.2s;
     }
@@ -484,7 +466,6 @@
     .reproductor:hover .controles {
         flex-wrap: nowrap;
         position: static;
-        /* Reset position */
         background: none;
     }
     .reproductor:hover .controles button {
@@ -528,8 +509,8 @@
         width: 100%;
         font-size: 0.85rem;
         color: #666;
-        margin-top: 5px; /* Espacio encima de la barra */
-        margin-bottom: 5px; /* Espacio debajo de la barra */
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
     body.dark-mode .tiempo {
         color: #ccc;
@@ -539,16 +520,16 @@
     .barra {
       width: 100%;
       -webkit-appearance: none;
-      height: 4px; /* Más delgada, como YouTube */
+      height: 4px;
       background: #e0e0e0;
-      border-radius: 2px; /* Bordes más suaves */
+      border-radius: 2px;
       outline: none;
       cursor: pointer;
       background-image: linear-gradient(#8a2be2, #8a2be2);
       background-repeat: no-repeat;
       background-size: 0% 100%;
       transition: background-color 0.3s ease;
-      position: relative; /* Para el thumb al estilo YouTube */
+      position: relative;
     }
 
     body.dark-mode .barra {
@@ -559,16 +540,15 @@
     /* Estilo del "thumb" (indicador de la barra) para WebKit (Chrome, Safari, Edge) */
     .barra::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 12px; /* Tamaño del thumb más pequeño */
+      width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: #8a2be2; /* Color del thumb */
+      background: #8a2be2;
       cursor: pointer;
-      box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Sombra más sutil */
-      border: none; /* Sin borde */
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+      border: none;
       transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-      /* IMPORTANTE: Posicionamiento para que parezca estar en el centro de la barra */
-      margin-top: -4px; /* Mitad de (thumb_height - bar_height) */
+      margin-top: -4px;
       position: relative;
       z-index: 2;
     }
@@ -578,7 +558,7 @@
     }
 
     .barra::-webkit-slider-thumb:hover {
-        transform: scale(1.2); /* Efecto de crecimiento al pasar el ratón */
+        transform: scale(1.2);
         box-shadow: 0 0 8px rgba(0,0,0,0.4);
     }
 
@@ -592,7 +572,6 @@
         box-shadow: 0 0 5px rgba(0,0,0,0.3);
         border: none;
         transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-        /* Firefox handles thumb position differently, often centers automatically */
     }
     body.dark-mode .barra::-moz-range-thumb {
         background: #ffda66;
@@ -608,13 +587,13 @@
       align-items: center;
       gap: 15px;
       margin-top: 10px;
-      flex-wrap: nowrap; /* Prevent wrapping */
+      flex-wrap: nowrap;
     }
 
     .controles button {
       background: none;
       border: none;
-      font-size: 1.6rem; /* Íconos de control más grandes */
+      font-size: 1.6rem;
       cursor: pointer;
       color: inherit;
       transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
@@ -622,7 +601,7 @@
 
     .controles button:hover {
         color: #8a2be2;
-        transform: scale(1.15); /* Efecto hover más pronunciado */
+        transform: scale(1.15);
     }
     body.dark-mode .controles button:hover {
         color: #ffda66;
@@ -640,17 +619,16 @@
     }
 
     .volumen i:hover {
-        color: #8a2be2; /* Lila más intenso */
+        color: #8a2be2;
         transform: scale(1.15);
     }
 
     body.dark-mode .volumen i:hover {
-        color: #ffda66; /* Amarillo cálido para modo oscuro */
+        color: #ffda66;
     }
 
     #volRange {
       width: 80px;
-      /* Slider de volumen un poco más ancho */
     }
     /* Estilo específico para el thumb del volumen, siguiendo el nuevo estilo de barra */
     #volRange::-webkit-slider-thumb {
@@ -673,11 +651,9 @@
     /* Estilo de las secciones */
     section {
       padding: 60px 20px;
-      /* Más padding para separar secciones */
       text-align: center;
       transition: background 0.7s ease-in-out, color 0.7s ease-in-out;
-      margin-bottom: 30px; /* Espacio entre secciones */
-      /* Background más sutil en secciones, que se adapte al nuevo degradado */
+      margin-bottom: 30px;
       background: rgba(255,255,255,0.7);
       border-radius: 20px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
@@ -688,15 +664,12 @@
     }
     section:hover {
         box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-        /* Slightly larger shadow on hover */
         transform: translateY(-3px);
-        /* Subtle lift effect */
     }
 
     /* Adjusted for slightly darker reading sections in dark mode */
     body.dark-mode section {
         background: rgba(20, 20, 25, 0.85);
-        /* Slightly darker for dark mode sections */
     }
 
     section h2 {
@@ -727,18 +700,20 @@
       color: #555;
       text-align: justify;
       padding: 0 15px;
+      text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.05); /* Added text shadow */
     }
     body.dark-mode section p {
         color: #e0e0e0;
+        text-shadow: 0.5px 0.5px 1px rgba(255,255,255,0.05); /* Added text shadow for dark mode */
     }
 
     /* Estilos para listas dentro de las secciones */
     section ul {
-        list-style: none; /* Elimina los puntos predeterminados */
+        list-style: none;
         padding: 0;
         margin: 0 auto;
         max-width: 700px;
-        text-align: left; /* Alinea el texto de la lista a la izquierda */
+        text-align: left;
     }
 
     section ul li {
@@ -746,26 +721,28 @@
         line-height: 1.7;
         color: #555;
         margin-bottom: 10px;
-        padding-left: 20px; /* Espacio para el ícono */
+        padding-left: 20px;
         position: relative;
+        text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.05); /* Added text shadow */
     }
     body.dark-mode section ul li {
         color: #e0e0e0;
+        text-shadow: 0.5px 0.5px 1px rgba(255,255,255,0.05); /* Added text shadow for dark mode */
     }
 
     /* Estilo para los íconos de la lista (cambiado a puntos) */
     section ul li::before {
-        content: '•'; /* Punto como viñeta */
+        content: '•';
         position: absolute;
         left: 0;
         top: 0;
-        font-size: 1.2em; /* Un poco más grande para el punto */
+        font-size: 1.2em;
         line-height: inherit;
-        color: #8a2be2; /* Color del punto */
+        color: #8a2be2;
         font-weight: bold;
     }
     body.dark-mode section ul li::before {
-        color: #ffda66; /* Color del punto en modo oscuro */
+        color: #ffda66;
     }
 
     /* Pantalla de bienvenida */
@@ -791,7 +768,7 @@
 
     #pantalla-inicio.hidden {
         opacity: 0;
-        pointer-events: none; /* Asegura que no se pueda interactuar con ella mientras se desvanece */
+        pointer-events: none;
     }
 
     /* Clase para la transición de color de la pantalla de inicio */
@@ -809,7 +786,6 @@
     .dispositivo-boton {
       background: white;
       color: #8a2be2;
-      /* Iconos en lila */
       width: 90px;
       height: 90px;
       border-radius: 50%;
@@ -866,7 +842,7 @@
 
   <div id="contenido-principal" style="opacity: 0; display: none;">
     <div class="corazones">
-        </div>
+    </div>
 
     <header>
       <h1>Feliz primer mes</h1>
@@ -888,23 +864,23 @@
       <p>Y cuando me dijo que sí, sonreí. Pero no solo por un rato. Sonreí hasta el día siguiente. Dormí con una sonrisa que me dolía en la cara, pero me curaba el alma.</p>
       <p>Y así fue como me enamoré de una chica que empezó como Killjoy en Ascent. Y terminó siendo la mujer de mis amores, mi compañera, mi futura esposa y mi “te amo” más sincero.</p>
     </section>
-    
+
     <section id="poema-mariana">
       <h2>Mariana</h2>
       <p><em>Mariana, te pienso y todo se calma, como si el mundo aprendiera a flotar.<br>
       No estás en mis ojos, estás en mi alma, y aún sin tocarte, te puedo abrazar.<br>
       Hay algo en tus frases, en lo que callas, que sabe quedarse, que sabe cuidar.<br>
       No sé si eres magia, destino o murallas, pero eres mi forma de querer de verdad.</em></p>
-    
+
       <p><em>No tienes un rostro en mis pensamientos, pero hay una esencia que huele a hogar.<br>
       Estás en mis días, estás en mis tiempos, te siento tan cerca, como si la felicidad no fuera a terminar.<br>
       No necesito tenerte presente para saber cuánto puedes sanar.<br>
       Eres el verso que escribe mi mente, sin tinta ni libro, con ganas de volar.</em></p>
-    
+
       <p><em>Mariana, eres risa que viaja en la brisa, refugio invisible, señal sin final.<br>
       Y aunque este amor no se vea a simple vista, late tan fuerte, que es simplemente real.</em></p>
     </section>
-    
+
 
     <section id="seccion2">
       <h2>Nuestro primer mes juntos</h2>
@@ -974,8 +950,8 @@
 
     let isReproductorMaximized = false;
     let isPlaying = false;
-    const maxHearts = 30; // Define la cantidad máxima de corazones en pantalla
-    const hearts = new Set(); // Usamos un Set para gestionar los corazones activos
+    const maxHearts = 30;
+    const hearts = new Set();
 
     // Array de canciones con rutas ajustadas y el orden deseado
     const playlist = [
@@ -999,21 +975,16 @@
       portadaDisco.src = song.coverSrc;
       tituloCancionElem.textContent = song.title;
       artistaCancionElem.textContent = song.artist;
-
-      // CORRECCIÓN CLAVE: Reiniciar la barra de progreso a 0% visual y lógicamente
       barraProgreso.value = 0;
       tiempoActualElem.textContent = '0:00';
-      // Reinicia el tiempo total temporalmente hasta que se cargue la metadata
       tiempoTotalElem.textContent = '0:00';
-      updateProgressBarBackground(barraProgreso); // Asegura que el color de la barra esté en 0%
+      updateProgressBarBackground(barraProgreso);
 
-      miAudio.load(); // Carga la nueva canción
+      miAudio.load();
 
-      // Si ya estaba reproduciéndose, intenta reproducir la nueva canción automáticamente
       if (isPlaying) {
         miAudio.play().catch(error => console.error("Autoplay prevented on song change:", error));
       } else {
-        // Asegúrate de que el ícono sea de "play" si la canción no está sonando
         iconoReproducirPausar.classList.remove('fa-pause');
         iconoReproducirPausar.classList.add('fa-play');
       }
@@ -1023,24 +994,21 @@
     miAudio.addEventListener('loadedmetadata', () => {
       tiempoTotalElem.textContent = formatTime(miAudio.duration);
     });
-
     // Funciones para navegar entre canciones
     function playNextSong() {
       currentSongIndex = (currentSongIndex + 1) % playlist.length;
       loadSong(currentSongIndex);
-      // Si el audio estaba sonando, lo reproduce automáticamente
       if (isPlaying) {
         miAudio.play();
       }
     }
 
+    // Modificación: Rebobinar la canción actual en lugar de ir a la anterior
     function playPreviousSong() {
-      currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
-      loadSong(currentSongIndex);
-      // Si el audio estaba sonando, lo reproduce automáticamente
-      if (isPlaying) {
-        miAudio.play();
-      }
+        miAudio.currentTime = 0; // Reinicia la canción actual
+        if (isPlaying) { // Si estaba sonando, la reproduce desde el inicio
+            miAudio.play();
+        }
     }
 
     // Event Listeners para los botones de navegación
@@ -1050,7 +1018,6 @@
     btnRetroceder.addEventListener('click', () => {
       playPreviousSong();
     });
-
     // Function to initialize the mode button icon
     const initializeModeButton = () => {
       const savedTheme = localStorage.getItem('theme');
@@ -1060,7 +1027,6 @@
         modoIcon.classList.add('fa-sun');
         reproductor.classList.add('dark-mode');
       } else {
-        // Default to light mode if no theme saved or it's light
         body.classList.remove('dark-mode');
         modoIcon.classList.remove('fa-sun');
         modoIcon.classList.add('fa-moon');
@@ -1109,27 +1075,21 @@
       updateProgressBarBackground(barraProgreso);
       tiempoActualElem.textContent = formatTime(miAudio.currentTime);
     });
-
     // Permitir al usuario cambiar el progreso de la canción
     barraProgreso.addEventListener('input', () => {
       const seekTime = (barraProgreso.value / 100) * miAudio.duration;
       miAudio.currentTime = seekTime;
-      // Actualiza el tiempo actual inmediatamente mientras el usuario arrastra
       tiempoActualElem.textContent = formatTime(miAudio.currentTime);
     });
-
     // Control de volumen
     volRange.addEventListener('input', () => {
       miAudio.volume = volRange.value;
       updateProgressBarBackground(volRange);
     });
-
     // Inicializar volumen y barra de volumen al cargar
     miAudio.volume = volRange.value;
     updateProgressBarBackground(volRange);
     updateProgressBarBackground(barraProgreso);
-
-
     // Función para reproducir/pausar
     btnReproducirPausar.addEventListener('click', () => {
       if (miAudio.paused) {
@@ -1144,23 +1104,18 @@
         iconoReproducirPausar.classList.add('fa-play');
       }
     });
-
     // Asegurar que el ícono de play/pause se actualice si el audio termina
     miAudio.addEventListener('ended', () => {
         isPlaying = false;
         iconoReproducirPausar.classList.remove('fa-pause');
         iconoReproducirPausar.classList.add('fa-play');
-        playNextSong(); // Avanza a la siguiente canción automáticamente
+        playNextSong();
     });
-
-
     // Lógica para la generación controlada de corazones
     const corazonesContainer = document.querySelector('.corazones');
     function crearCorazon() {
         if (hearts.size >= maxHearts) {
-            // Si ya tenemos el número máximo de corazones, elimina el más antiguo.
-            // Esto asegura que la cantidad de corazones sea constante.
-            const oldestHeart = hearts.values().next().value; // Obtiene el primer elemento del Set
+            const oldestHeart = hearts.values().next().value;
             if (oldestHeart) {
                 oldestHeart.remove();
                 hearts.delete(oldestHeart);
@@ -1171,15 +1126,14 @@
         corazon.classList.add('corazon');
         corazon.innerHTML = '❤️';
         corazon.style.left = Math.random() * 100 + 'vw';
-        corazon.style.animationDuration = Math.random() * 5 + 7 + 's'; // 7 to 12 seconds
-        corazon.style.animationDelay = Math.random() * -10 + 's'; // Negative delay to start off-screen
+        corazon.style.animationDuration = Math.random() * 5 + 7 + 's';
+        corazon.style.animationDelay = Math.random() * -10 + 's';
         corazonesContainer.appendChild(corazon);
-        hearts.add(corazon); // Añade el corazón al Set
+        hearts.add(corazon);
 
-        // Remove heart after animation to prevent accumulation and clear from Set
         corazon.addEventListener('animationend', () => {
             corazon.remove();
-            hearts.delete(corazon); // Elimina el corazón del Set
+            hearts.delete(corazon);
         });
     }
 
@@ -1188,21 +1142,15 @@
         crearCorazon();
     }
     // Continuar generando corazones a un ritmo constante para reemplazar los que desaparecen
-    // Puedes ajustar este intervalo si quieres que aparezcan más o menos rápido
-    setInterval(crearCorazon, 1000); // Crea un nuevo corazón cada 1 segundo (ajusta según la densidad deseada)
-
+    setInterval(crearCorazon, 1000);
 
     // Cargar la primera canción al inicio
     loadSong(currentSongIndex);
-
     // Initial setup on page load
     window.addEventListener('load', () => {
-        initializeModeButton(); // Initialize theme button based on localStorage
-        loadSong(currentSongIndex); // Load the first song
-        // No es necesario actualizar la barra de progreso aquí nuevamente, loadSong ya lo hace
+        initializeModeButton();
+        loadSong(currentSongIndex);
     });
-
-
     // Lógica para pantalla de inicio y selección de dispositivo
     function seleccionarDispositivo(tipo) {
       // Aplicar cambios visuales de transición inmediatamente
@@ -1212,7 +1160,6 @@
 
       // Añadir la clase 'hidden' para iniciar la transición de opacidad
       pantallaInicio.classList.add('hidden');
-
       // Aplicar la clase de dispositivo inmediatamente para CSS
       if (tipo === 'celular') {
         body.classList.add('celular');
@@ -1222,8 +1169,8 @@
 
       // Después de que la pantalla de inicio haya terminado su transición de desvanecimiento
       setTimeout(() => {
-        pantallaInicio.style.display = 'none'; // Quitarla completamente del flujo del documento
-        contenidoPrincipal.style.display = 'block'; // Mostrar el contenido principal
+        pantallaInicio.style.display = 'none';
+        contenidoPrincipal.style.display = 'block';
 
         // Un pequeño retraso adicional para asegurar que la transición de opacidad del contenido principal se vea
         setTimeout(() => {
@@ -1231,25 +1178,23 @@
 
           // Una vez que el contenido es visible y la interacción del usuario es clara,
           // intentar reproducir el audio. Esto ayuda a cumplir con las políticas de autoplay de los navegadores.
-          miAudio.muted = false; // Desactivar el mute del audio
+          miAudio.muted = false;
           miAudio.play().catch(error => {
               console.error("Audio playback failed on device selection:", error);
           });
-          isPlaying = true; // Actualizar el estado de reproducción
-          iconoReproducirPausar.classList.remove('fa-play'); // Cambiar el ícono a pausa
+          isPlaying = true;
+          iconoReproducirPausar.classList.remove('fa-play');
           iconoReproducirPausar.classList.add('fa-pause');
 
-        }, 10); // Pequeño retraso para la transición de opacidad del contenido principal
+        }, 10);
 
-      }, 400); // Este retraso debe coincidir con la duración de la transición CSS de 'opacity' para #pantalla-inicio
+      }, 400);
     }
 
     // Toggle maximizado/minimizado del reproductor en móvil
     reproductor.addEventListener('click', (event) => {
         // Solo aplicar si estamos en modo celular y no se hizo clic en un control del reproductor
         if (body.classList.contains('celular')) {
-            // Verifica si el clic fue en la imagen de portada o en el contenedor general del reproductor
-            // pero no en los botones o barras interiores.
             const isClickOnControls = event.target.closest('.controles') || event.target.closest('.barra') || event.target.closest('.volumen');
 
             if (!isClickOnControls) {
@@ -1258,11 +1203,9 @@
             }
         }
     });
-
     // Cerrar el reproductor maximizado si se hace clic fuera (solo en celular)
     document.addEventListener('click', (event) => {
         if (body.classList.contains('celular') && isReproductorMaximized) {
-            // Check if the click is outside the reproductor AND it's maximized
             if (!reproductor.contains(event.target)) {
                 reproductor.classList.remove('maximized');
                 isReproductorMaximized = false;
@@ -1271,3 +1214,4 @@
     });
   </script>
 </body>
+</html>
