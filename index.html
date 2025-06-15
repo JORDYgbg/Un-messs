@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nuestro Primer Mes ❤️</title>
-  <link rel="icon" href="audio/favicon.png" type="image/png"> 
+  <link rel="icon" href="favicon.png" type="image/png"> 
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;700&family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -423,7 +423,7 @@
     .reproductor .titulo,
     .reproductor .barra,
     .reproductor .volumen,
-    .reproductor .controles { /* Also hide the controls container */
+    .reproductor .controles { /* Also hide controls container */
       display: none;
       opacity: 0;
       transition: opacity 0.3s ease-out;
@@ -735,7 +735,7 @@
     <header>
       <h1>Feliz primer mes</h1>
       <p>Gracias por este tiempo tan bonito Mariana <i class="fa-solid fa-heart"></i></p>
-      <video src="audio/kiss.mp4" autoplay loop muted playsinline></video>
+      <video src="kiss.mp4" autoplay loop muted playsinline></video>
     </header>
 
     <button class="triste-btn" onclick="location.href='triste.html'">Cuando te sientas triste, presiona aquí</button>
@@ -788,8 +788,7 @@
             <button id="btnAvanzar"><i class="fa-solid fa-forward-step"></i></button>
             <div class="volumen">
                 <i class="fa-solid fa-volume-high"></i>
-                <input type="range" id="volRange" min="0" max="1" step="0.01" value="0.5" class="barra">
-            </div>
+                <input type="range" id="volRange" min="0" max="1" step="0.01" value="0.15" class="barra"> </div>
         </div>
     </div>
     
@@ -821,8 +820,14 @@
     let isReproductorMaximized = false; // Estado para el reproductor en celular
     let isPlaying = false; // Estado del audio
 
-    // Array de canciones con rutas ajustadas a la carpeta 'audio'
+    // Array de canciones con rutas ajustadas y el orden deseado
     const playlist = [
+      {
+        title: "Es por ti",
+        artist: "Juanes",
+        audioSrc: "audio/esporti.mp3",
+        coverSrc: "audio/cover.jpg" // Asegúrate que esta sea la portada correcta para "Es por ti"
+      },
       {
         title: "Amor Completo",
         artist: "Mon Laferte",
@@ -834,16 +839,10 @@
         artist: "Carla Morrison",
         audioSrc: "audio/compartir.mp3",
         coverSrc: "audio/cover3.jpg"
-      },
-      {
-        title: "Esporti",
-        artist: "Anónimo", // Puedes poner el artista real si lo tienes
-        audioSrc: "audio/esporti.mp3",
-        coverSrc: "audio/cover.jpg"
       }
     ];
 
-    let currentSongIndex = 0; // Índice de la canción actual
+    let currentSongIndex = 0; // Inicia con la primera canción de la playlist (que ahora es "Es por ti")
 
     // Función para cargar una canción
     function loadSong(songIndex) {
@@ -868,11 +867,19 @@
     function playNextSong() {
       currentSongIndex = (currentSongIndex + 1) % playlist.length;
       loadSong(currentSongIndex);
+      // Si el audio estaba sonando, lo reproduce automáticamente
+      if (isPlaying) {
+          miAudio.play();
+      }
     }
 
     function playPreviousSong() {
       currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
       loadSong(currentSongIndex);
+      // Si el audio estaba sonando, lo reproduce automáticamente
+      if (isPlaying) {
+          miAudio.play();
+      }
     }
 
     // Event Listeners para los botones de navegación
@@ -928,6 +935,7 @@
           videoElement.load();
       }
       loadSong(currentSongIndex); // Carga la primera canción al inicio
+      miAudio.volume = 0.15; // Establece el volumen inicial al 15%
       
       // Initialize hearts on DOMContentLoaded
       initializeHearts(20); // Create 20 hearts initially
