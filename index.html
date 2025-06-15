@@ -162,31 +162,38 @@
     header {
       text-align: center;
       padding: 60px 20px 30px; /* Más padding superior para espacio */
-      position: relative; /* Para el contador */
+      position: relative;
+      /* Para el contador */
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
       font-size: 4.8rem; /* Ligeramente más grande aún para destacar con la nueva fuente */
-      color: #8a2be2; /* Lila más intenso */
+      color: #8a2be2;
+      /* Lila más intenso */
       transition: color 0.7s ease-in-out;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      margin-bottom: 10px; /* Espacio entre título y párrafo */
+      margin-bottom: 10px;
+      /* Espacio entre título y párrafo */
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
     body.dark-mode h1 {
-        color: #ffda66; /* Amarillo más cálido para el modo oscuro */
+        color: #ffda66;
+        /* Amarillo más cálido para el modo oscuro */
         text-shadow: 2px 2px 4px rgba(255,255,255,0.1);
     }
 
     header p {
-      font-size: 1.3rem; /* Párrafo ligeramente más grande */
-      color: #666; /* Color de texto más suave */
+      font-size: 1.3rem;
+      /* Párrafo ligeramente más grande */
+      color: #666;
+      /* Color de texto más suave */
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      margin-bottom: 30px; /* Más espacio entre el texto y el video */
+      margin-bottom: 30px;
+      /* Más espacio entre el texto y el video */
     }
     body.dark-mode header p {
         color: #ccc;
@@ -201,8 +208,10 @@
         box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         display: block;
         transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, filter 0.3s ease-in-out;
-        background-color: transparent; /* Asegurar que no haya color de fondo indeseado */
-        border: none; /* Asegurar que no haya border */
+        background-color: transparent;
+        /* Asegurar que no haya color de fondo indeseado */
+        border: none;
+        /* Asegurar que no haya border */
         overflow: hidden;
     }
     header video:hover {
@@ -215,8 +224,10 @@
     .triste-btn {
       position: fixed;
       bottom: 25px; /* Ligeramente más arriba */
-      left: 25px; /* Ligeramente más adentro */
-      background-color: #ff69b4; /* Rosa */
+      left: 25px;
+      /* Ligeramente más adentro */
+      background-color: #ff69b4;
+      /* Rosa */
       border: none;
       color: white;
       font-size: 1rem;
@@ -225,7 +236,8 @@
       cursor: pointer;
       box-shadow: 0 6px 15px rgba(0,0,0,0.25);
       transition: background-color 0.4s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-      z-index: 100; /* Asegurar que esté siempre al frente */
+      z-index: 100;
+      /* Asegurar que esté siempre al frente */
     }
 
     .triste-btn:hover {
@@ -256,18 +268,21 @@
     }
 
     .modo-btn:hover {
-      background-color: #6a5acd; /* Lila al pasar el ratón */
+      background-color: #6a5acd;
+      /* Lila al pasar el ratón */
       transform: rotate(360deg);
       box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
     body.dark-mode .modo-btn {
-        background-color: #ffdb58; /* Amarillo oro */
+        background-color: #ffdb58;
+        /* Amarillo oro */
         color: #333;
     }
 
     body.dark-mode .modo-btn:hover {
-        background-color: #e0b400; /* Amarillo oscuro al pasar el ratón */
+        background-color: #e0b400;
+        /* Amarillo oscuro al pasar el ratón */
     }
 
     /* Animación de corazones flotantes */
@@ -279,7 +294,8 @@
       height: 100%;
       pointer-events: none;
       z-index: -1;
-      overflow: hidden; /* IMPORTANTE: Asegura que los corazones no desborden y no haya barras de scroll */
+      overflow: hidden;
+      /* IMPORTANTE: Asegura que los corazones no desborden y no haya barras de scroll */
     }
 
     .corazon {
@@ -290,64 +306,79 @@
       animation: flotar 10s ease-in-out infinite;
     }
     body.dark-mode .corazon {
-        color: rgba(255, 192, 203, 0.25); /* Rosa más claro en modo oscuro */
+        color: rgba(255, 192, 203, 0.25);
+        /* Rosa más claro en modo oscuro */
     }
 
     /* More diverse heart animations for size and delay */
-    .corazon:nth-child(2n) { animation-duration: 12s; animation-delay: -2s;
+    .corazon:nth-child(2n) { animation-duration: 12s;
+      animation-delay: -2s;
       font-size: 1.2rem;
       opacity: 0.8;
     }
-    .corazon:nth-child(3n) { animation-duration: 9s; animation-delay: -3s;
+    .corazon:nth-child(3n) { animation-duration: 9s;
+      animation-delay: -3s;
       font-size: 1.8rem;
       opacity: 0.9;
     }
-    .corazon:nth-child(4n) { animation-duration: 11s; animation-delay: -1s;
+    .corazon:nth-child(4n) { animation-duration: 11s;
+      animation-delay: -1s;
       font-size: 1.0rem;
       opacity: 0.7;
     }
-    .corazon:nth-child(5n) { animation-duration: 13s; animation-delay: -4s;
+    .corazon:nth-child(5n) { animation-duration: 13s;
+      animation-delay: -4s;
       font-size: 2.0rem;
       opacity: 1.0;
     }
-    .corazon:nth-child(6n) { animation-duration: 8s; animation-delay: -5s;
+    .corazon:nth-child(6n) { animation-duration: 8s;
+      animation-delay: -5s;
       font-size: 1.3rem;
       opacity: 0.85;
     }
-    .corazon:nth-child(7n) { animation-duration: 10.5s; animation-delay: -2.5s;
+    .corazon:nth-child(7n) { animation-duration: 10.5s;
+      animation-delay: -2.5s;
       font-size: 1.6rem;
       opacity: 0.95;
     }
-    .corazon:nth-child(8n) { animation-duration: 9.5s; animation-delay: -1.5s;
+    .corazon:nth-child(8n) { animation-duration: 9.5s;
+      animation-delay: -1.5s;
       font-size: 1.1rem;
       opacity: 0.75;
     }
-    .corazon:nth-child(9n) { animation-duration: 14s; animation-delay: -3.5s;
+    .corazon:nth-child(9n) { animation-duration: 14s;
+      animation-delay: -3.5s;
       font-size: 1.9rem;
       opacity: 1.0;
     }
-    .corazon:nth-child(10n) { animation-duration: 7s; animation-delay: -0.5s;
+    .corazon:nth-child(10n) { animation-duration: 7s;
+      animation-delay: -0.5s;
       font-size: 1.4rem;
       opacity: 0.8;
     }
     /* Added more nth-child rules for better distribution and subtlety */
-    .corazon:nth-child(11n) { animation-duration: 10s; animation-delay: -0.8s;
+    .corazon:nth-child(11n) { animation-duration: 10s;
+      animation-delay: -0.8s;
       font-size: 1.7rem;
       opacity: 0.9;
     }
-    .corazon:nth-child(12n) { animation-duration: 11.5s; animation-delay: -2.8s;
+    .corazon:nth-child(12n) { animation-duration: 11.5s;
+      animation-delay: -2.8s;
       font-size: 1.35rem;
       opacity: 0.8;
     }
-    .corazon:nth-child(13n) { animation-duration: 9.8s; animation-delay: -4.2s;
+    .corazon:nth-child(13n) { animation-duration: 9.8s;
+      animation-delay: -4.2s;
       font-size: 1.05rem;
       opacity: 0.7;
     }
-    .corazon:nth-child(14n) { animation-duration: 12.3s; animation-delay: -1.2s;
+    .corazon:nth-child(14n) { animation-duration: 12.3s;
+      animation-delay: -1.2s;
       font-size: 2.1rem;
       opacity: 1.0;
     }
-    .corazon:nth-child(15n) { animation-duration: 8.5s; animation-delay: -3.7s;
+    .corazon:nth-child(15n) { animation-duration: 8.5s;
+      animation-delay: -3.7s;
       font-size: 1.5rem;
       opacity: 0.85;
     }
@@ -358,8 +389,10 @@
         opacity: 0;
       }
       /* CORRECCIÓN: Opacidad ajustada para una aparición/desaparición más suave */
-      20% { opacity: 1; }
-      80% { opacity: 1; }
+      20% { opacity: 1;
+      }
+      80% { opacity: 1;
+      }
       to {
         transform: translateY(-100vh) rotate(360deg);
         opacity: 0;
@@ -370,7 +403,8 @@
     .reproductor {
       position: fixed;
       top: 25px; /* Ligeramente más abajo */
-      right: 25px; /* Ligeramente más adentro */
+      right: 25px;
+      /* Ligeramente más adentro */
       background: rgba(255,255,255,0.4);
       backdrop-filter: blur(12px);
       border-radius: 20px;
@@ -409,7 +443,8 @@
       animation-play-state: paused;
     }
     .reproductor img:hover {
-        filter: saturate(1.1); /* Slightly more saturated on hover */
+        filter: saturate(1.1);
+        /* Slightly more saturated on hover */
     }
 
     /* Default state for PC: ONLY disc is visible, all other elements hidden */
@@ -448,7 +483,8 @@
     .reproductor:hover .barra,
     .reproductor:hover .controles,
     .reproductor:hover .volumen {
-      display: flex; /* Or block for title */
+      display: flex;
+      /* Or block for title */
       opacity: 1;
       transition-delay: 0.2s;
     }
@@ -457,7 +493,8 @@
     }
     .reproductor:hover .controles {
         flex-wrap: nowrap;
-        position: static; /* Reset position */
+        position: static;
+        /* Reset position */
         background: none;
     }
     .reproductor:hover .controles button {
@@ -475,8 +512,10 @@
 
 
     @keyframes girar {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+      from { transform: rotate(0deg);
+      }
+      to { transform: rotate(360deg);
+      }
     }
 
     .titulo {
@@ -499,8 +538,10 @@
         width: 100%;
         font-size: 0.85rem;
         color: #666;
-        margin-top: 5px; /* Espacio encima de la barra */
-        margin-bottom: 5px; /* Espacio debajo de la barra */
+        margin-top: 5px;
+        /* Espacio encima de la barra */
+        margin-bottom: 5px;
+        /* Espacio debajo de la barra */
     }
     body.dark-mode .tiempo {
         color: #ccc;
@@ -512,7 +553,8 @@
       -webkit-appearance: none;
       height: 4px; /* Más delgada, como YouTube */
       background: #e0e0e0;
-      border-radius: 2px; /* Bordes más suaves */
+      border-radius: 2px;
+      /* Bordes más suaves */
       outline: none;
       cursor: pointer;
       background-image: linear-gradient(#8a2be2, #8a2be2);
@@ -533,13 +575,17 @@
       width: 12px; /* Tamaño del thumb más pequeño */
       height: 12px;
       border-radius: 50%;
-      background: #8a2be2; /* Color del thumb */
+      background: #8a2be2;
+      /* Color del thumb */
       cursor: pointer;
-      box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Sombra más sutil */
-      border: none; /* Sin borde */
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+      /* Sombra más sutil */
+      border: none;
+      /* Sin borde */
       transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
       /* IMPORTANTE: Posicionamiento para que parezca estar en el centro de la barra */
-      margin-top: -4px; /* Mitad de (thumb_height - bar_height) */
+      margin-top: -4px;
+      /* Mitad de (thumb_height - bar_height) */
       position: relative;
       z-index: 2;
     }
@@ -549,7 +595,8 @@
     }
 
     .barra::-webkit-slider-thumb:hover {
-        transform: scale(1.2); /* Efecto de crecimiento al pasar el ratón */
+        transform: scale(1.2);
+        /* Efecto de crecimiento al pasar el ratón */
         box-shadow: 0 0 8px rgba(0,0,0,0.4);
     }
 
@@ -613,16 +660,19 @@
     }
 
     .volumen i:hover {
-        color: #8a2be2; /* Lila más intenso */
+        color: #8a2be2;
+        /* Lila más intenso */
         transform: scale(1.15);
     }
 
     body.dark-mode .volumen i:hover {
-        color: #ffda66; /* Amarillo cálido para modo oscuro */
+        color: #ffda66;
+        /* Amarillo cálido para modo oscuro */
     }
 
     #volRange {
-      width: 80px; /* Slider de volumen un poco más ancho */
+      width: 80px;
+      /* Slider de volumen un poco más ancho */
     }
     /* Estilo específico para el thumb del volumen, siguiendo el nuevo estilo de barra */
     #volRange::-webkit-slider-thumb {
@@ -644,7 +694,8 @@
 
     /* Estilo de las secciones */
     section {
-      padding: 60px 20px; /* Más padding para separar secciones */
+      padding: 60px 20px;
+      /* Más padding para separar secciones */
       text-align: center;
       transition: background 0.7s ease-in-out, color 0.7s ease-in-out;
       margin-bottom: 30px; /* Espacio entre secciones */
@@ -658,13 +709,16 @@
       transition: background 0.7s ease-in-out, color 0.7s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
     }
     section:hover {
-        box-shadow: 0 12px 25px rgba(0,0,0,0.15); /* Slightly larger shadow on hover */
-        transform: translateY(-3px); /* Subtle lift effect */
+        box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        /* Slightly larger shadow on hover */
+        transform: translateY(-3px);
+        /* Subtle lift effect */
     }
 
     /* Adjusted for slightly darker reading sections in dark mode */
     body.dark-mode section {
-        background: rgba(20, 20, 25, 0.85); /* Slightly darker for dark mode sections */
+        background: rgba(20, 20, 25, 0.85);
+        /* Slightly darker for dark mode sections */
     }
 
     section h2 {
@@ -702,7 +756,8 @@
 
     /* Estilos para listas dentro de las secciones */
     section ul {
-        list-style: none; /* Elimina los puntos predeterminados */
+        list-style: none;
+        /* Elimina los puntos predeterminados */
         padding: 0;
         margin: 0 auto;
         max-width: 700px;
@@ -723,17 +778,21 @@
 
     /* Estilo para los íconos de la lista (cambiado a puntos) */
     section ul li::before {
-        content: '•'; /* Punto como viñeta */
+        content: '•';
+        /* Punto como viñeta */
         position: absolute;
         left: 0;
         top: 0;
-        font-size: 1.2em; /* Un poco más grande para el punto */
+        font-size: 1.2em;
+        /* Un poco más grande para el punto */
         line-height: inherit;
-        color: #8a2be2; /* Color del punto */
+        color: #8a2be2;
+        /* Color del punto */
         font-weight: bold;
     }
     body.dark-mode section ul li::before {
-        color: #ffda66; /* Color del punto en modo oscuro */
+        color: #ffda66;
+        /* Color del punto en modo oscuro */
     }
 
     /* Pantalla de bienvenida */
@@ -759,7 +818,8 @@
 
     #pantalla-inicio.hidden {
         opacity: 0;
-        pointer-events: none; /* Asegura que no se pueda interactuar con ella mientras se desvanece */
+        pointer-events: none;
+        /* Asegura que no se pueda interactuar con ella mientras se desvanece */
     }
 
     /* Clase para la transición de color de la pantalla de inicio */
@@ -769,38 +829,39 @@
     }
 
     .dispositivo-opciones {
-      display: flex;
-      gap: 50px;
-      margin-top: 40px;
+        display: flex;
+        gap: 50px;
+        margin-top: 40px;
     }
 
     .dispositivo-boton {
-      background: white;
-      color: #8a2be2; /* Iconos en lila */
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      cursor: pointer;
-      border: none;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        background: white;
+        color: #8a2be2;
+        /* Iconos en lila */
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        cursor: pointer;
+        border: none;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     }
 
     .dispositivo-boton:hover {
-      transform: scale(1.18);
-      background-color: #f8f8f8;
-      box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+        transform: scale(1.18);
+        background-color: #f8f8f8;
+        box-shadow: 0 12px 25px rgba(0,0,0,0.4);
     }
 
     .dispositivo-etiqueta {
-      margin-top: 10px;
-      font-size: 1.1rem;
-      color: white;
-      transition: color 0.4s ease-in-out;
+        margin-top: 10px;
+        font-size: 1.1rem;
+        color: white;
+        transition: color 0.4s ease-in-out;
     }
 
     #pantalla-inicio.transicion-lila .dispositivo-etiqueta {
@@ -809,7 +870,7 @@
 
     /* Contenedor principal del contenido para la transición */
     #contenido-principal {
-      transition: opacity 0.4s ease-in-out;
+        transition: opacity 0.4s ease-in-out;
     }
   </style>
 </head>
@@ -866,23 +927,25 @@
 
     <section id="seccion2">
       <h2>Nuestro primer mes juntos</h2>
-      <p> Aunque parece poco tiempo, cada día contigo ha sido una aventura. Me haces reír, me haces pensar, y sobre todo, me haces sentir que la vida es mucho más bonita cuando la comparto contigo. Gracias por cada mensaje, cada llamada, cada risa, y cada momento que hemos creado. Eres una persona increíble, y estoy emocionado por todo lo que nos espera. Feliz primer mes, mi amor. Te quiero muchísimo. <i class="fa-solid fa-heart"></i> </p>
+      <p>
+        Aunque parece poco tiempo, cada día contigo ha sido una aventura. Me haces reír, me haces pensar, y sobre todo, me haces sentir que la vida es mucho más bonita cuando la comparto contigo. Gracias por cada mensaje, cada llamada, cada risa, y cada momento que hemos creado. Eres una persona increíble, y estoy emocionado por todo lo que nos espera. Feliz primer mes, mi amor. Te quiero muchísimo. <i class="fa-solid fa-heart"></i>
+      </p>
     </section>
 
     <section id="seccion3">
-      <h2>Mis promesas para ti</h2>
-      <ul>
-        <li>Prometo seguir descubriendo cada faceta de tu ser, enamorándome un poco más de cada detalle, de cada nuevo matiz que te define.</li>
-        <li>Prometo ser tu pilar inquebrantable, estar contigo en cada triunfo para celebrarlo con la alegría más pura, y en cada desafío, ofreciéndote mi apoyo incondicional.</li>
-        <li>Prometo que mi misión será siempre dibujarte una sonrisa, incluso en los días más grises, porque tu alegría ilumina mi mundo.</li>
-        <li>Prometo escucharte con el alma, buscar comprender cada uno de tus pensamientos y sentimientos, y respetar siempre la hermosa persona que eres, porque tu felicidad es el faro que guía mis pasos.</li>
-        <li>Y sobre todo, prometo amarte con la intensidad más sincera y profunda de mi corazón, hoy, mañana y en cada amanecer que el destino nos regale juntos.</li>
-      </ul>
+        <h2>Mis promesas para ti</h2>
+        <ul>
+            <li>Prometo seguir descubriendo cada faceta de tu ser, enamorándome un poco más de cada detalle, de cada nuevo matiz que te define.</li>
+            <li>Prometo ser tu pilar inquebrantable, estar contigo en cada triunfo para celebrarlo con la alegría más pura, y en cada desafío, ofreciéndote mi apoyo incondicional.</li>
+            <li>Prometo que mi misión será siempre dibujarte una sonrisa, incluso en los días más grises, porque tu alegría ilumina mi mundo.</li>
+            <li>Prometo escucharte con el alma, buscar comprender cada uno de tus pensamientos y sentimientos, y respetar siempre la hermosa persona que eres, porque tu felicidad es el faro que guía mis pasos.</li>
+            <li>Y sobre todo, prometo amarte con la intensidad más sincera y profunda de mi corazón, hoy, mañana y en cada amanecer que el destino nos regale juntos.</li>
+        </ul>
     </section>
 
-    <div class="reproductor dark-mode" id="reproductorMusica">
-      <img id="portadaDisco" src="https://i.imgur.com/k6lP4zD.jpeg" alt="Portada de la música">
-      <audio id="miAudio" loop preload="auto"></audio>
+    <div class="reproductor dark-mode">
+      <img id="portadaDisco" src="" alt="Portada de la música">
+      <audio id="miAudio" src="" loop preload="auto"></audio>
       <div class="titulo">
         <span id="tituloCancion"></span>
         <br>
@@ -898,248 +961,355 @@
         <button id="btnReproducirPausar"><i class="fa-solid fa-play"></i></button>
         <button id="btnSiguiente"><i class="fa-solid fa-forward-step"></i></button>
         <div class="volumen">
-          <i class="fa-solid fa-volume-up" id="iconoVolumen"></i>
-          <input type="range" id="volRange" class="barra" min="0" max="1" step="0.01" value="0.5">
-        </div>
+          <i id="iconoVolumen" class="fa-solid fa-volume-high"></i> <input type="range" id="volRange" class="barra" min="0" max="100" value="10"> </div>
       </div>
     </div>
-
-    <button class="modo-btn" id="modoBtn">
-      <i class="fa-solid fa-moon"></i>
-    </button>
   </div>
 
   <script>
-    const body = document.body;
-    const modoBtn = document.getElementById('modoBtn');
-    const reproductorMusica = document.getElementById('reproductorMusica');
-    const miAudio = document.getElementById('miAudio');
-    const portadaDisco = document.getElementById('portadaDisco');
-    const tituloCancion = document.getElementById('tituloCancion');
-    const artistaCancion = document.getElementById('artistaCancion');
-    const tiempoActualSpan = document.getElementById('tiempoActual');
-    const tiempoTotalSpan = document.getElementById('tiempoTotal');
-    const barraProgreso = document.getElementById('barraProgreso');
-    const btnReproducirPausar = document.getElementById('btnReproducirPausar');
-    const btnAnterior = document.getElementById('btnAnterior');
-    const btnSiguiente = document.getElementById('btnSiguiente');
-    const volRange = document.getElementById('volRange');
-    const iconoVolumen = document.getElementById('iconoVolumen');
-    const pantallaInicio = document.getElementById('pantalla-inicio');
-    const contenidoPrincipal = document.getElementById('contenido-principal');
+    document.addEventListener('DOMContentLoaded', () => {
+      const body = document.body;
+      const pantallaInicio = document.getElementById('pantalla-inicio');
+      const contenidoPrincipal = document.getElementById('contenido-principal');
+      const reproductor = document.querySelector('.reproductor');
+      const portadaDisco = document.getElementById('portadaDisco');
+      const miAudio = document.getElementById('miAudio');
+      const tituloCancion = document.getElementById('tituloCancion');
+      const artistaCancion = document.getElementById('artistaCancion');
+      const barraProgreso = document.getElementById('barraProgreso');
+      const tiempoActualSpan = document.getElementById('tiempoActual');
+      const tiempoTotalSpan = document.getElementById('tiempoTotal');
+      const btnReproducirPausar = document.getElementById('btnReproducirPausar');
+      const btnAnterior = document.getElementById('btnAnterior');
+      const btnSiguiente = document.getElementById('btnSiguiente');
+      const volRange = document.getElementById('volRange');
+      const iconoVolumen = document.getElementById('iconoVolumen');
+      const modoBtn = document.querySelector('.modo-btn');
+      let isReproductorMaximized = false; // Estado para el reproductor en móvil
+      let volumenAnterior = 0.1; // Para guardar el volumen antes de mutear
 
-    const canciones = [
-      {
-        title: "Es Por Ti",
+      // --- Gestión del Modo Oscuro/Claro y Dispositivo ---
+      let modoOscuroActivado = true;
+      // Empieza en modo oscuro por defecto
+
+      // Función para aplicar el modo
+      const aplicarModo = () => {
+        if (modoOscuroActivado) {
+          body.classList.add('dark-mode');
+          reproductor.classList.add('dark-mode');
+          modoBtn.querySelector('i').className = 'fa-solid fa-sun'; // Icono de sol
+        } else {
+          body.classList.remove('dark-mode');
+          reproductor.classList.remove('dark-mode');
+          modoBtn.querySelector('i').className = 'fa-solid fa-moon'; // Icono de luna
+        }
+      };
+      // Listener para el botón de modo
+      if (modoBtn) {
+        modoBtn.addEventListener('click', () => {
+          modoOscuroActivado = !modoOscuroActivado;
+          aplicarModo();
+        });
+      }
+
+      // Funciones de selección de dispositivo
+      window.seleccionarDispositivo = (dispositivo) => {
+        //dispositivoSeleccionado = dispositivo;
+        // This variable is no longer explicitly used globally but 'body.classList' reflects it.
+        body.classList.remove('celular', 'pc');
+        // Limpiar clases existentes
+        body.classList.add(dispositivo);
+        // Transición de la pantalla de inicio
+        pantallaInicio.classList.add('transicion-lila');
+        setTimeout(() => {
+          pantallaInicio.classList.add('hidden');
+          // Retraso para la aparición del contenido principal, coincidiendo con la transición
+          setTimeout(() => {
+            contenidoPrincipal.style.display = 'block'; // Mostrar contenido principal
+            setTimeout(() => {
+              contenidoPrincipal.style.opacity = '1'; // Transición de opacidad del contenido principal
+            }, 50); // Pequeño retraso adicional para asegurar que display:block se aplique
+          }, 400); // Este retraso debe coincidir con la duración de la transición CSS de 'opacity' para #pantalla-inicio
+        }, 400);
+        // Este retraso debe coincidir con la duración de la transición CSS de 'background' y 'color' para #pantalla-inicio
+      };
+      // Toggle maximizado/minimizado del reproductor en móvil
+      reproductor.addEventListener('click', (event) => {
+          // Solo aplicar si estamos en modo celular y no se hizo clic en un control del reproductor
+          if (body.classList.contains('celular')) {
+              // Verifica si el clic fue en la imagen de portada o en el contenedor general del reproductor
+              // pero no en los botones o barras interiores.
+              const isClickOnControls = event.target.closest('.controles') || event.target.closest('.barra') || event.target.closest('.volumen');
+
+              if (!isClickOnControls) {
+                  reproductor.classList.toggle('maximized');
+                  isReproductorMaximized = reproductor.classList.contains('maximized');
+              }
+          }
+      });
+      // Cerrar el reproductor maximizado si se hace clic fuera (solo en celular)
+      document.addEventListener('click', (event) => {
+          if (body.classList.contains('celular') && isReproductorMaximized) {
+              // Check if the click is outside the reproductor AND it's maximized
+              if (!reproductor.contains(event.target)) {
+                  reproductor.classList.remove('maximized');
+                  isReproductorMaximized = false;
+              }
+          }
+      });
+      // --- Inicialización y Funcionalidad del Reproductor de Música ---
+
+      class MusicPlayer {
+        constructor() {
+          this.audio = miAudio;
+          this.portadaDisco = portadaDisco;
+          this.tituloCancionElement = tituloCancion;
+          this.artistaCancionElement = artistaCancion;
+          this.barraProgreso = barraProgreso;
+          this.tiempoActualSpan = tiempoActualSpan;
+          this.tiempoTotalSpan = tiempoTotalSpan;
+          this.btnReproducirPausar = btnReproducirPausar;
+          this.btnAnterior = btnAnterior;
+          this.btnSiguiente = btnSiguiente;
+          this.volRange = volRange;
+          this.iconoVolumen = iconoVolumen;
+          // RESTORED ORIGINAL PLAYLIST FROM UN MES.TXT
+          this.playlist = [
+            {
+              title: "Es Por ti",
               artist: "Juanes",
               src: "audio/esporti.mp3",
               cover: "audio/cover.jpg",
-      },
-      {
-         title: "Amor Completo",
+            },
+            {
+              title: "Compartir",
+              artist: "Carla Morrison",
+              src: "audio/compartir.mp3",
+              cover: "audio/cover3.jpg",
+            },
+            {
+              title: "Amor Completo",
               artist: "Mon Laferte",
               src: "audio/amorcompleto.mp3",
               cover: "audio/cover2.jpg",
-      },
-      {
-        title: "Compartir",
-              artist: "Carla Morrison",
-              src: "audio/compartir.mp3",
-              cover: "img/cover3.jpg",
-      }
-    ];
+            },
+          ];
+          this.currentSongIndex = 0;
+          this.isPlaying = false;
 
-    let indiceCancionActual = 0;
-    let isPlaying = false;
-    let isMinimized = true; // Para controlar el estado del reproductor en móvil
-
-    // Función para cargar la canción
-    function cargarCancion(index) {
-      const cancion = canciones[index];
-      miAudio.src = cancion.src;
-      portadaDisco.src = cancion.portada;
-      tituloCancion.textContent = cancion.titulo;
-      artistaCancion.textContent = cancion.artista;
-      miAudio.load(); // Cargar la canción
-      if (isPlaying) {
-        miAudio.play();
-        portadaDisco.classList.remove('paused');
-      } else {
-        portadaDisco.classList.add('paused');
-      }
-    }
-
-    // Función para reproducir/pausar
-    function togglePlayPause() {
-      if (isPlaying) {
-        miAudio.pause();
-        btnReproducirPausar.innerHTML = '<i class="fa-solid fa-play"></i>';
-        portadaDisco.classList.add('paused');
-      } else {
-        miAudio.play();
-        btnReproducirPausar.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        portadaDisco.classList.remove('paused');
-      }
-      isPlaying = !isPlaying;
-    }
-
-    // Función para siguiente canción
-    function siguienteCancion() {
-      indiceCancionActual = (indiceCancionActual + 1) % canciones.length;
-      cargarCancion(indiceCancionActual);
-      if (isPlaying) {
-        miAudio.play();
-      }
-    }
-
-    // Función para canción anterior
-    function anteriorCancion() {
-      indiceCancionActual = (indiceCancionActual - 1 + canciones.length) % canciones.length;
-      cargarCancion(indiceCancionActual);
-      if (isPlaying) {
-        miAudio.play();
-      }
-    }
-
-    // Actualizar tiempo y barra de progreso
-    miAudio.addEventListener('timeupdate', () => {
-      const tiempoActual = miAudio.currentTime;
-      const duracion = miAudio.duration;
-
-      // Actualizar barra de progreso
-      if (!isNaN(duracion)) {
-        barraProgreso.value = (tiempoActual / duracion) * 100;
-        barraProgreso.style.backgroundSize = `${barraProgreso.value}% 100%`;
-      }
-
-      // Actualizar tiempo actual
-      const minutosActual = Math.floor(tiempoActual / 60);
-      const segundosActual = Math.floor(tiempoActual % 60).toString().padStart(2, '0');
-      tiempoActualSpan.textContent = `${minutosActual}:${segundosActual}`;
-    });
-
-    // Mostrar duración total cuando la metadata esté cargada
-    miAudio.addEventListener('loadedmetadata', () => {
-      const duracion = miAudio.duration;
-      const minutosTotal = Math.floor(duracion / 60);
-      const segundosTotal = Math.floor(duracion % 60).toString().padStart(2, '0');
-      tiempoTotalSpan.textContent = `${minutosTotal}:${segundosTotal}`;
-    });
-
-    // Controlar el progreso con la barra
-    barraProgreso.addEventListener('input', () => {
-      const duracion = miAudio.duration;
-      miAudio.currentTime = (barraProgreso.value / 100) * duracion;
-    });
-
-    // Control de volumen
-    volRange.addEventListener('input', () => {
-      miAudio.volume = volRange.value;
-      if (miAudio.volume === 0) {
-        iconoVolumen.classList.remove('fa-volume-up', 'fa-volume-down');
-        iconoVolumen.classList.add('fa-volume-mute');
-      } else if (miAudio.volume < 0.5) {
-        iconoVolumen.classList.remove('fa-volume-up', 'fa-volume-mute');
-        iconoVolumen.classList.add('fa-volume-down');
-      } else {
-        iconoVolumen.classList.remove('fa-volume-down', 'fa-volume-mute');
-        iconoVolumen.classList.add('fa-volume-up');
-      }
-    });
-
-    // Cambiar a la siguiente canción cuando la actual termine
-    miAudio.addEventListener('ended', () => {
-      siguienteCancion();
-    });
-
-    // Event Listeners para los botones del reproductor
-    btnReproducirPausar.addEventListener('click', togglePlayPause);
-    btnSiguiente.addEventListener('click', siguienteCancion);
-    btnAnterior.addEventListener('click', anteriorCancion);
-
-    // Inicializar el volumen
-    miAudio.volume = volRange.value;
-
-    // Función para crear corazones
-    const crearCorazon = () => {
-      const corazon = document.createElement('i');
-      corazon.classList.add('fa-solid', 'fa-heart', 'corazon');
-      corazon.style.left = Math.random() * 100 + 'vw';
-      corazon.style.animationDuration = Math.random() * 5 + 7 + 's'; // Duración entre 7 y 12 segundos
-      corazon.style.animationDelay = Math.random() * -5 + 's'; // Retraso para que aparezcan en diferentes momentos
-      corazon.style.opacity = Math.random() * 0.5 + 0.5; // Opacidad entre 0.5 y 1
-      corazon.style.fontSize = Math.random() * 1 + 1 + 'rem'; // Tamaño entre 1rem y 2rem
-      document.querySelector('.corazones').appendChild(corazon);
-      corazon.addEventListener('animationend', () => {
-        corazon.remove();
-      });
-    };
-
-    // Generar corazones cada cierto tiempo
-    let corazonInterval;
-
-    // Ajusta los corazones al modo oscuro
-    const observer = new MutationObserver(() => {
-      const corazones = document.querySelectorAll('.corazon');
-      corazones.forEach(corazon => {
-        if (body.classList.contains('dark-mode')) {
-          corazon.style.color = 'rgba(255, 192, 203, 0.25)';
-        } else {
-          corazon.style.color = 'rgba(255, 105, 180, 0.15)';
+          this.init();
         }
+
+        init() {
+          this.loadSong(this.currentSongIndex);
+          this.addEventListeners();
+          this.setInitialVolume(); // Modificado para llamar a la nueva función de volumen
+          aplicarModo(); // Aplicar el modo inicial al cargar
+          this.updateProgressBarGradient();
+          // Inicializar el gradiente de la barra de progreso
+        }
+
+        loadSong(index) {
+          const song = this.playlist[index];
+          this.audio.src = song.src;
+          this.portadaDisco.src = song.cover;
+          this.tituloCancionElement.textContent = song.title;
+          this.artistaCancionElement.textContent = song.artist;
+          this.portadaDisco.classList.add('paused');
+          // Pause animation while loading new song
+
+          // Wait for metadata to load to get duration
+          this.audio.addEventListener('loadedmetadata', () => {
+            this.tiempoTotalSpan.textContent = this.formatTime(this.audio.duration);
+            this.barraProgreso.max = this.audio.duration;
+            this.updateProgressBarGradient(); // Ensure gradient is updated on new song load
+            if (this.isPlaying) {
+              this.audio.play();
+              this.portadaDisco.classList.remove('paused'); // Resume animation
+            } else {
+              this.audio.pause();
+              this.portadaDisco.classList.add('paused'); // Ensure it's paused if not playing
+            }
+          }, { once: true });
+          // Use { once: true } to prevent multiple listeners
+        }
+
+        playPauseSong() {
+          if (this.isPlaying) {
+            this.audio.pause();
+            this.portadaDisco.classList.add('paused');
+            this.btnReproducirPausar.querySelector('i').className = 'fa-solid fa-play';
+          } else {
+            this.audio.play();
+            this.portadaDisco.classList.remove('paused');
+            this.btnReproducirPausar.querySelector('i').className = 'fa-solid fa-pause';
+          }
+          this.isPlaying = !this.isPlaying;
+        }
+
+        nextSong() {
+          this.currentSongIndex = (this.currentSongIndex + 1) % this.playlist.length;
+          this.loadSong(this.currentSongIndex);
+          if (this.isPlaying) {
+            this.audio.play();
+            // Auto-play if it was playing
+          }
+        }
+
+        prevSong() {
+          // If current time is past 3 seconds, restart the song
+          if (this.audio.currentTime > 3) {
+            this.audio.currentTime = 0;
+            this.updateProgressBarGradient(); // Update gradient when restarting song
+          } else {
+            this.currentSongIndex = (this.currentSongIndex - 1 + this.playlist.length) % this.playlist.length;
+            this.loadSong(this.currentSongIndex);
+            if (this.isPlaying) {
+              this.audio.play();
+              // Auto-play if it was playing
+            }
+          }
+        }
+
+        updateProgress() {
+          const currentTime = this.audio.currentTime;
+          const duration = this.audio.duration;
+
+          this.barraProgreso.value = currentTime;
+          this.tiempoActualSpan.textContent = this.formatTime(currentTime);
+          // Update the background-size for the progress bar gradient
+          if (duration) {
+            const progress = (currentTime / duration) * 100;
+            this.barraProgreso.style.backgroundSize = `${progress}% 100%`;
+          }
+        }
+
+        updateProgressBarGradient() {
+            const progress = (this.barraProgreso.value / this.barraProgreso.max) * 100;
+            // Asegúrate de que el valor no sea NaN al inicio o cuando la duración es 0
+            if (!isNaN(progress)) {
+                this.barraProgreso.style.backgroundSize = `${progress}% 100%`;
+            } else {
+                this.barraProgreso.style.backgroundSize = `0% 100%`; // Reset to 0 if duration is not available yet
+            }
+        }
+
+        setProgressBar() {
+            this.audio.currentTime = this.barraProgreso.value;
+            // No es necesario llamar a updateProgressBarGradient() aquí, ya se hace en 'input' y 'timeupdate'
+            if (!this.isPlaying) {
+                this.audio.play();
+                this.btnReproducirPausar.querySelector('i').className = 'fa-solid fa-pause';
+                this.portadaDisco.classList.remove('paused');
+                this.isPlaying = true;
+            }
+        }
+
+
+        // Nueva función para actualizar el icono de volumen
+        updateVolumeIcon() {
+            if (this.audio.muted || this.audio.volume === 0) {
+                this.iconoVolumen.className = 'fa-solid fa-volume-xmark'; // Icono de mute
+            } else if (this.audio.volume < 0.5) {
+                this.iconoVolumen.className = 'fa-solid fa-volume-low'; // Icono de volumen bajo
+            } else {
+                this.iconoVolumen.className = 'fa-solid fa-volume-high'; // Icono de volumen alto
+            }
+        }
+
+        // Modificada la función setVolume
+        setVolume() {
+            this.audio.volume = this.volRange.value / 100; // Divide por 100 porque el rango ahora es de 0 a 100
+            this.audio.muted = false; // Al ajustar el slider, se desmutea
+            this.updateVolumeIcon(); // Actualiza el icono
+        }
+
+        // Modificada la función setInitialVolume
+        setInitialVolume() {
+            this.audio.volume = 0.1; // Establece el volumen inicial en 10%
+            this.volRange.value = 10; // Actualiza el slider visualmente
+            this.updateVolumeIcon(); // Llama a la función para establecer el icono correcto al inicio
+        }
+
+        // Nueva función para alternar mute/unmute
+        toggleMute() {
+            if (this.audio.muted) {
+                this.audio.muted = false;
+                this.audio.volume = volumenAnterior; // Restaura el volumen anterior
+                this.volRange.value = volumenAnterior * 100; // Actualiza el slider
+            } else {
+                volumenAnterior = this.audio.volume; // Guarda el volumen actual
+                this.audio.muted = true;
+                this.volRange.value = 0; // Mueve el slider a cero
+            }
+            this.updateVolumeIcon(); // Actualiza el icono
+        }
+
+        formatTime(seconds) {
+          const minutes = Math.floor(seconds / 60);
+          const remainingSeconds = Math.floor(seconds % 60);
+          return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+        }
+
+        addEventListeners() {
+          this.btnReproducirPausar.addEventListener('click', () => this.playPauseSong());
+          this.btnSiguiente.addEventListener('click', () => this.nextSong());
+          this.btnAnterior.addEventListener('click', () => this.prevSong());
+          this.audio.addEventListener('timeupdate', () => this.updateProgress());
+          this.audio.addEventListener('ended', () => this.nextSong());
+          // Play next song when current ends
+          this.barraProgreso.addEventListener('input', () => {
+            this.updateProgressBarGradient(); // Update gradient as user drags
+          });
+          this.barraProgreso.addEventListener('change', () => this.setProgressBar());
+          this.volRange.addEventListener('input', () => this.setVolume());
+          this.iconoVolumen.addEventListener('click', () => this.toggleMute()); // Evento para el icono de mute
+          // Handle volume slider changing when audio.volume changes (e.g., from mute)
+          this.audio.addEventListener('volumechange', () => {
+              this.volRange.value = this.audio.volume * 100; // Sincroniza el slider con el volumen real del audio
+              this.updateVolumeIcon(); // Actualiza el icono si el volumen cambia por otras razones
+          });
+        }
+      }
+
+      const player = new MusicPlayer();
+      // --- Generación de Corazones Flotantes (existente) ---
+      const crearCorazon = () => {
+        const corazon = document.createElement('i');
+        corazon.classList.add('fa-solid', 'fa-heart', 'corazon');
+        corazon.style.left = Math.random() * 100 + 'vw';
+        corazon.style.animationDuration = Math.random() * 5 + 7 + 's';
+        // Duración entre 7 y 12 segundos
+        corazon.style.animationDelay = Math.random() * -5 + 's';
+        // Retraso para que aparezcan en diferentes momentos
+        corazon.style.opacity = Math.random() * 0.5 + 0.5;
+        // Opacidad entre 0.5 y 1
+        corazon.style.fontSize = Math.random() * 1 + 1 + 'rem';
+        // Tamaño entre 1rem y 2rem
+        document.querySelector('.corazones').appendChild(corazon);
+        corazon.addEventListener('animationend', () => {
+          corazon.remove();
+        });
+      };
+
+      // Generar corazones cada cierto tiempo
+      setInterval(crearCorazon, 300);
+      // Crea un corazón cada 300ms
+
+      // Ajusta los corazones al modo oscuro
+      const observer = new MutationObserver(() => {
+        const corazones = document.querySelectorAll('.corazon');
+        corazones.forEach(corazon => {
+          if (body.classList.contains('dark-mode')) {
+            corazon.style.color = 'rgba(255, 192, 203, 0.25)';
+          } else {
+            corazon.style.color = 'rgba(255, 105, 180, 0.15)';
+          }
+        });
       });
+      observer.observe(body, { attributes: true, attributeFilter: ['class'] });
+
     });
-
-    observer.observe(body, { attributes: true, attributeFilter: ['class'] });
-
-    // Lógica del modo oscuro/claro
-    modoBtn.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      if (body.classList.contains('dark-mode')) {
-        modoBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-        reproductorMusica.classList.add('dark-mode');
-      } else {
-        modoBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-        reproductorMusica.classList.remove('dark-mode');
-      }
-    });
-
-    // Lógica para la pantalla de inicio y selección de dispositivo
-    function seleccionarDispositivo(dispositivo) {
-      pantallaInicio.classList.add('transicion-lila');
-      if (dispositivo === 'celular') {
-        body.classList.add('celular');
-        // Activar/desactivar la maximización/minimización del reproductor en móvil
-        reproductorMusica.addEventListener('click', toggleReproductorMovil);
-      } else {
-        body.classList.remove('celular');
-        // Asegurarse de que el reproductor no tenga la clase maximized en PC
-        reproductorMusica.classList.remove('maximized');
-        reproductorMusica.removeEventListener('click', toggleReproductorMovil);
-      }
-
-      setTimeout(() => {
-        pantallaInicio.classList.add('hidden');
-        contenidoPrincipal.style.display = 'block';
-        setTimeout(() => {
-          contenidoPrincipal.style.opacity = '1';
-          // Iniciar la reproducción de música y corazones después de la transición
-          cargarCancion(indiceCancionActual);
-          miAudio.play();
-          isPlaying = true;
-          btnReproducirPausar.innerHTML = '<i class="fa-solid fa-pause"></i>';
-          portadaDisco.classList.remove('paused');
-          corazonInterval = setInterval(crearCorazon, 300); // Iniciar la creación de corazones
-        }, 400); // Coincide con la transición de opacity
-      }, 800); // Coincide con la transición de background/color
-    }
-
-    // Función para alternar la maximización/minimización del reproductor en móvil
-    function toggleReproductorMovil() {
-      if (body.classList.contains('celular')) {
-        reproductorMusica.classList.toggle('maximized');
-      }
-    }
   </script>
 </body>
 </html>
