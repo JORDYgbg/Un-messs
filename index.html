@@ -95,6 +95,7 @@
 
     /* In minimized mobile view, ALL controls and text are hidden, ONLY disc is visible */
     body.celular .reproductor .titulo,
+    body.celular .reproductor .tiempo, /* Agregado para ocultar el tiempo */
     body.celular .reproductor .barra,
     body.celular .reproductor .volumen,
     body.celular .reproductor .controles { /* Also hide controls container */
@@ -126,6 +127,7 @@
 
     /* When maximized on mobile, all elements become visible */
     body.celular .reproductor.maximized .titulo,
+    body.celular .reproductor.maximized .tiempo, /* Agregado para mostrar el tiempo */
     body.celular .reproductor.maximized .barra,
     body.celular .reproductor.maximized .volumen,
     body.celular .reproductor.maximized .controles {
@@ -291,6 +293,7 @@
       height: 100%;
       pointer-events: none;
       z-index: -1;
+      overflow: hidden; /* IMPORTANTE: Asegura que los corazones no desborden y no haya barras de scroll */
     }
 
     .corazon {
@@ -436,6 +439,7 @@
 
     /* Default state for PC: ONLY disc is visible, all other elements hidden */
     .reproductor .titulo,
+    .reproductor .tiempo, /* Ocultar el tiempo */
     .reproductor .barra,
     .reproductor .volumen,
     .reproductor .controles { /* Also hide the controls container */
@@ -465,6 +469,7 @@
 
     /* When maximized on PC hover, all elements become visible */
     .reproductor:hover .titulo,
+    .reproductor:hover .tiempo, /* Mostrar el tiempo */
     .reproductor:hover .barra,
     .reproductor:hover .controles,
     .reproductor:hover .volumen {
@@ -516,81 +521,85 @@
         color: #bbb;
     }
 
-    /* Estilos para la barra de progreso (más actual y profesional) */
+    /* TIEMPO DE DURACIÓN Y BARRAS (Estilo YouTube) */
+    .tiempo {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-size: 0.85rem;
+        color: #666;
+        margin-top: 5px; /* Espacio encima de la barra */
+        margin-bottom: 5px; /* Espacio debajo de la barra */
+    }
+    body.dark-mode .tiempo {
+        color: #ccc;
+    }
+
+    /* Estilos para la barra de progreso (Estilo YouTube) */
     .barra {
       width: 100%;
-      margin: 10px 0;
       -webkit-appearance: none;
-      height: 8px; /* Altura de la barra */
+      height: 4px; /* Más delgada, como YouTube */
       background: #e0e0e0;
-      /* Color base del track sin progreso */
-      border-radius: 4px;
+      border-radius: 2px; /* Bordes más suaves */
       outline: none;
       cursor: pointer;
-      /* Background dinámico para el progreso, se actualiza con JS */
       background-image: linear-gradient(#8a2be2, #8a2be2);
-      /* Color de progreso */
       background-repeat: no-repeat;
       background-size: 0% 100%;
-      /* Inicialmente 0%, se llena con JS */
       transition: background-color 0.3s ease;
-      /* Transición para modo oscuro */
+      position: relative; /* Para el thumb al estilo YouTube */
     }
 
     body.dark-mode .barra {
         background: #555;
-        /* Fondo del track en modo oscuro */
         background-image: linear-gradient(#ffda66, #ffda66);
-        /* Color de progreso en modo oscuro */
     }
 
     /* Estilo del "thumb" (indicador de la barra) para WebKit (Chrome, Safari, Edge) */
     .barra::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 18px; /* Tamaño del thumb */
-      height: 18px;
+      width: 12px; /* Tamaño del thumb más pequeño */
+      height: 12px;
       border-radius: 50%;
-      background: #8a2be2;
-      /* Color del thumb */
+      background: #8a2be2; /* Color del thumb */
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      /* Sombra más pronunciada */
-      border: 2px solid #fff;
-      /* Borde blanco para el thumb */
+      box-shadow: 0 0 5px rgba(0,0,0,0.3); /* Sombra más sutil */
+      border: none; /* Sin borde */
       transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      /* IMPORTANTE: Posicionamiento para que parezca estar en el centro de la barra */
+      margin-top: -4px; /* Mitad de (thumb_height - bar_height) */
+      position: relative;
+      z-index: 2;
     }
 
     body.dark-mode .barra::-webkit-slider-thumb {
         background: #ffda66;
-        /* Color del thumb en modo oscuro */
-        border: 2px solid #333;
-        /* Borde oscuro para el thumb en modo oscuro */
     }
 
     .barra::-webkit-slider-thumb:hover {
-        transform: scale(1.1);
-        /* Efecto de crecimiento al pasar el ratón */
-        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        transform: scale(1.2); /* Efecto de crecimiento al pasar el ratón */
+        box-shadow: 0 0 8px rgba(0,0,0,0.4);
     }
 
     /* Estilo del "thumb" (indicador de la barra) para Firefox */
     .barra::-moz-range-thumb {
-        width: 18px;
-        height: 18px;
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
         background: #8a2be2;
         cursor: pointer;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        border: 2px solid #fff;
+        box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        border: none;
         transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+        /* Firefox handles thumb position differently, often centers automatically */
     }
     body.dark-mode .barra::-moz-range-thumb {
         background: #ffda66;
-        border: 2px solid #333;
     }
     .barra::-moz-range-thumb:hover {
-        transform: scale(1.1);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        transform: scale(1.2);
+        box-shadow: 0 0 8px rgba(0,0,0,0.4);
     }
 
     .controles {
@@ -646,21 +655,19 @@
     /* Estilo específico para el thumb del volumen, siguiendo el nuevo estilo de barra */
     #volRange::-webkit-slider-thumb {
         background: #8a2be2;
-        border: 2px solid #fff;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        border: none;
+        box-shadow: 0 0 5px rgba(0,0,0,0.3);
     }
     body.dark-mode #volRange::-webkit-slider-thumb {
         background: #ffda66;
-        border: 2px solid #333;
     }
     #volRange::-moz-range-thumb {
         background: #8a2be2;
-        border: 2px solid #fff;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        border: none;
+        box-shadow: 0 0 5px rgba(0,0,0,0.3);
     }
     body.dark-mode #volRange::-moz-range-thumb {
         background: #ffda66;
-        border: 2px solid #333;
     }
 
     /* Estilo de las secciones */
@@ -857,6 +864,10 @@
         <br>
         <small id="artistaCancion"></small>
       </div>
+      <div class="tiempo">
+        <span id="tiempoActual">0:00</span>
+        <span id="tiempoTotal">0:00</span>
+      </div>
       <input type="range" id="barraProgreso" class="barra" value="0">
       <div class="controles">
         <button id="btnRetroceder"><i class="fa-solid fa-backward-step"></i></button>
@@ -892,16 +903,28 @@
     const btnAvanzar = document.getElementById('btnAvanzar');
     const pantallaInicio = document.getElementById('pantalla-inicio');
     const contenidoPrincipal = document.getElementById('contenido-principal');
+    const tiempoActualElem = document.getElementById('tiempoActual'); // NUEVO: Elemento para tiempo actual
+    const tiempoTotalElem = document.getElementById('tiempoTotal'); // NUEVO: Elemento para tiempo total
+
     let isReproductorMaximized = false; // Estado para el reproductor en celular
-    let isPlaying = false;
-    // Estado del audio
+    let isPlaying = false; // Estado del audio
+    const maxHearts = 30; // Define la cantidad máxima de corazones en pantalla
+    const hearts = new Set(); // Usamos un Set para gestionar los corazones activos
+
     // Array de canciones con rutas ajustadas y el orden deseado
     const playlist = [
-      { title: "Es por ti", artist: "Juanes", audioSrc: "audio/esporti.mp3", coverSrc: "audio/cover.jpg" }, // Asegúrate que esta sea la portada correcta para "Es por ti"
+      { title: "Es por ti", artist: "Juanes", audioSrc: "audio/esporti.mp3", coverSrc: "audio/cover.jpg" },
       { title: "Amor Completo", artist: "Mon Laferte", audioSrc: "audio/amorcompleto.mp3", coverSrc: "audio/cover2.jpg" },
       { title: "Compartir", artist: "Carla Morrison", audioSrc: "audio/compartir.mp3", coverSrc: "audio/cover3.jpg" }
     ];
-    let currentSongIndex = 0; // Inicia con la primera canción de la playlist (que ahora es "Es por ti")
+    let currentSongIndex = 0; // Inicia con la primera canción de la playlist
+
+    // Función para formatear el tiempo (MM:SS)
+    function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+    }
 
     // Función para cargar una canción
     function loadSong(songIndex) {
@@ -914,6 +937,9 @@
 
       // CORRECCIÓN: Reinicia la barra de progreso a 0 al cargar una nueva canción
       barraProgreso.value = 0;
+      tiempoActualElem.textContent = '0:00'; // Reinicia el tiempo actual
+      tiempoTotalElem.textContent = '0:00'; // Reinicia el tiempo total temporalmente
+      updateProgressBarBackground(barraProgreso); // Actualiza la barra al cargar la canción
 
       // Si ya estaba reproduciéndose, intenta reproducir la nueva canción automáticamente
       if (isPlaying) {
@@ -923,8 +949,12 @@
         iconoReproducirPausar.classList.remove('fa-pause');
         iconoReproducirPausar.classList.add('fa-play');
       }
-      updateProgressBarBackground(barraProgreso); // Actualiza la barra al cargar la canción
     }
+
+    // Evento 'loadedmetadata' para obtener la duración total de la canción una vez que se carga
+    miAudio.addEventListener('loadedmetadata', () => {
+      tiempoTotalElem.textContent = formatTime(miAudio.duration);
+    });
 
     // Funciones para navegar entre canciones
     function playNextSong() {
@@ -990,7 +1020,7 @@
     };
     modoBtn.addEventListener('click', toggleDarkMode);
 
-    // Función para actualizar el fondo de la barra de progreso
+    // Función para actualizar el fondo de la barra de progreso (para que se vea el progreso)
     function updateProgressBarBackground(barElement) {
         const value = (barElement.value - barElement.min) / (barElement.max - barElement.min) * 100;
         let color1, color2;
@@ -1004,17 +1034,20 @@
         barElement.style.backgroundImage = `linear-gradient(to right, ${color1} 0%, ${color1} ${value}%, ${color2} ${value}%, ${color2} 100%)`;
     }
 
-    // Sincronizar barra de progreso con la reproducción
+    // Sincronizar barra de progreso con la reproducción y actualizar tiempo
     miAudio.addEventListener('timeupdate', () => {
       const progress = (miAudio.currentTime / miAudio.duration) * 100;
       barraProgreso.value = progress;
       updateProgressBarBackground(barraProgreso);
+      tiempoActualElem.textContent = formatTime(miAudio.currentTime);
     });
 
     // Permitir al usuario cambiar el progreso de la canción
     barraProgreso.addEventListener('input', () => {
       const seekTime = (barraProgreso.value / 100) * miAudio.duration;
       miAudio.currentTime = seekTime;
+      // Actualiza el tiempo actual inmediatamente mientras el usuario arrastra
+      tiempoActualElem.textContent = formatTime(miAudio.currentTime);
     });
 
     // Control de volumen
@@ -1053,11 +1086,15 @@
     });
 
 
-    // Heart generation logic (Assuming this is handled by existing JS not fully provided in snippet)
-    // For demonstration, here's a placeholder if hearts are generated dynamically.
-    // If hearts are static HTML, this part is not relevant.
+    // Lógica para la generación controlada de corazones
     const corazonesContainer = document.querySelector('.corazones');
     function crearCorazon() {
+        if (hearts.size >= maxHearts) {
+            // Si ya tenemos el número máximo de corazones, no creamos más.
+            // Opcional: Podrías remover el más antiguo aquí si quisieras mantener un número fijo rotatorio.
+            return;
+        }
+
         const corazon = document.createElement('span');
         corazon.classList.add('corazon');
         corazon.innerHTML = '❤️';
@@ -1065,18 +1102,21 @@
         corazon.style.animationDuration = Math.random() * 5 + 7 + 's'; // 7 to 12 seconds
         corazon.style.animationDelay = Math.random() * -10 + 's'; // Negative delay to start off-screen
         corazonesContainer.appendChild(corazon);
+        hearts.add(corazon); // Añade el corazón al Set
 
-        // Remove heart after animation to prevent accumulation
+        // Remove heart after animation to prevent accumulation and clear from Set
         corazon.addEventListener('animationend', () => {
             corazon.remove();
+            hearts.delete(corazon); // Elimina el corazón del Set
         });
     }
 
-    // Generate a few hearts initially and then continuously
-    for (let i = 0; i < 30; i++) {
+    // Generar un número inicial de corazones
+    for (let i = 0; i < maxHearts; i++) {
         crearCorazon();
     }
-    setInterval(crearCorazon, 1000); // Create a new heart every 1 second (adjust as needed)
+    // Continuar generando corazones a un ritmo constante para reemplazar los que desaparecen
+    setInterval(crearCorazon, 1000); // Crea un nuevo corazón cada 1 segundo (ajusta según la densidad deseada)
 
 
     // Cargar la primera canción al inicio
@@ -1090,7 +1130,7 @@
     });
 
 
-    // CORRECCIÓN PRINCIPAL: Lógica para pantalla de inicio y selección de dispositivo
+    // Lógica para pantalla de inicio y selección de dispositivo
     function seleccionarDispositivo(tipo) {
       // Aplicar cambios visuales de transición inmediatamente
       pantallaInicio.classList.add('transicion-lila');
