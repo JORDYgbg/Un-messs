@@ -782,88 +782,130 @@
       transition: opacity 0.4s ease-in-out;
     }
 
-    /* Contador de Tiempo */
+    /* Contador de Tiempo Mejorado */
     .contador-tiempo {
         position: fixed;
         top: 20px;
         left: 20px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(15px);
+        border-radius: 25px;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        z-index: 100;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.7s ease-in-out;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        background: rgba(255, 255, 255, 0.3);
-        backdrop-filter: blur(10px);
-        padding: 15px 20px;
-        border-radius: 20px;
-        border: 2px solid transparent;
-        background-clip: padding-box;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        font-family: 'Quicksand', sans-serif;
-        color: #4a4a4a;
-        z-index: 100;
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.7s ease-in-out, color 0.7s ease-in-out;
+        align-items: center;
+        max-width: 300px;
     }
 
     .contador-tiempo:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        background: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        background: rgba(255, 255, 255, 0.9);
     }
 
-    .contador-tiempo .contador-texto-fijo {
+    body.dark-mode .contador-tiempo {
+        background: rgba(30, 30, 40, 0.85);
+    }
+
+    body.dark-mode .contador-tiempo:hover {
+        background: rgba(30, 30, 40, 0.9);
+    }
+
+    .contador-texto-fijo {
         font-family: 'Great Vibes', cursive;
-        font-size: 2rem;
-        font-weight: 400;
+        font-size: 2.2rem;
         color: #6a5acd;
         margin-bottom: 15px;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         transition: color 0.7s ease-in-out;
-    }
-
-    .contador-tiempo .tiempo-dinamico {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .contador-tiempo .tiempo-dinamico span {
-        font-family: 'Orbitron', sans-serif;
-        font-size: 1.2rem;
-        color: #8a2be2;
-        transition: color 0.7s ease-in-out;
-        line-height: 1.4;
-    }
-
-    body.dark-mode .contador-tiempo {
-        background: rgba(0, 0, 0, 0.5);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    body.dark-mode .contador-tiempo:hover {
-        background: rgba(0, 0, 0, 0.6);
+        text-align: center;
     }
 
     body.dark-mode .contador-texto-fijo {
         color: #ffda66;
     }
 
-    body.dark-mode .contador-tiempo .tiempo-dinamico span {
+    .tiempo-dinamico {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .tiempo-unidad {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        padding: 10px 15px;
+        min-width: 70px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background 0.7s ease-in-out;
+        animation: pulse 2s infinite alternate;
+    }
+
+    body.dark-mode .tiempo-unidad {
+        background: rgba(50, 50, 60, 0.9);
+    }
+
+    .tiempo-unidad:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .tiempo-valor {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.5rem;
+        color: #8a2be2;
+        transition: color 0.7s ease-in-out;
+    }
+
+    body.dark-mode .tiempo-valor {
         color: #ffd700;
+    }
+
+    .tiempo-etiqueta {
+        font-family: 'Quicksand', sans-serif;
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 5px;
+        transition: color 0.7s ease-in-out;
+    }
+
+    body.dark-mode .tiempo-etiqueta {
+        color: #ccc;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.02); }
     }
 
     body.celular .contador-tiempo {
         top: 10px;
         left: 10px;
-        padding: 10px 15px;
-        border-radius: 15px;
+        padding: 15px;
+        max-width: 90%;
     }
 
-    body.celular .contador-tiempo .contador-texto-fijo {
-        font-size: 1.5rem;
+    body.celular .contador-texto-fijo {
+        font-size: 1.8rem;
         margin-bottom: 10px;
     }
 
-    body.celular .contador-tiempo .tiempo-dinamico span {
-        font-size: 1rem;
+    body.celular .tiempo-unidad {
+        min-width: 60px;
+        padding: 8px 12px;
+    }
+
+    body.celular .tiempo-valor {
+        font-size: 1.2rem;
+    }
+
+    body.celular .tiempo-etiqueta {
+        font-size: 0.8rem;
     }
   </style>
 </head>
@@ -871,8 +913,18 @@
   <div class="contador-tiempo" id="contadorTiempo">
       <span class="contador-texto-fijo">Nuestro tiempo juntos</span>
       <div class="tiempo-dinamico" id="tiempoDinamico">
-          <span id="dias"></span>
-          <!-- Se eliminaron <span id="horas"></span>, <span id="minutos"></span> y <span id="segundos"></span> -->
+          <div class="tiempo-unidad">
+              <span class="tiempo-valor" id="dias">0</span>
+              <div class="tiempo-etiqueta">Días</div>
+          </div>
+          <div class="tiempo-unidad">
+              <span class="tiempo-valor" id="horas">0</span>
+              <div class="tiempo-etiqueta">Horas</div>
+          </div>
+          <div class="tiempo-unidad">
+              <span class="tiempo-valor" id="minutos">0</span>
+              <div class="tiempo-etiqueta">Minutos</div>
+          </div>
       </div>
   </div>
 
@@ -1176,16 +1228,17 @@
     // Cargar la primera canción al iniciar
     loadSong(currentSongIndex);
 
-    // LÓGICA DEL CONTADOR VISUAL FIJO CON PERSISTENCIA
-    const tiempoDinamicoSpan = document.getElementById('tiempoDinamico');
+    // LÓGICA DEL CONTADOR VISUAL MEJORADO CON PERSISTENCIA
     const diasSpan = document.getElementById('dias');
+    const horasSpan = document.getElementById('horas');
+    const minutosSpan = document.getElementById('minutos');
 
     // Función para calcular el tiempo transcurrido desde la última visita
     function getPersistentTime() {
       const savedTime = localStorage.getItem('lastVisitTime');
       const savedSeconds = localStorage.getItem('totalSecondsTogether') || 0;
       const now = new Date().getTime();
-      const baseTime = new Date('2025-05-16T00:00:00-05:00').getTime(); // Fecha base: 16 de mayo de 2025
+      const baseTime = new Date('2025-05-16T23:42:00-05:00').getTime(); // Fecha base: 16 de mayo de 2025, 23:42:00
       if (savedTime) {
         const timeDiff = Math.floor((now - savedTime) / 1000); // Diferencia en segundos desde la última visita
         return parseInt(savedSeconds) + timeDiff;
@@ -1203,13 +1256,20 @@
       localStorage.setItem('lastVisitTime', new Date().getTime());
 
       const days = Math.floor(totalSecondsTogether / (24 * 60 * 60));
-      // Validación para asegurar 30 días el 16 de junio de 2025
+      const hours = Math.floor((totalSecondsTogether % (24 * 60 * 60)) / (60 * 60));
+      const minutes = Math.floor((totalSecondsTogether % (60 * 60)) / 60);
+
+      // Validación para asegurar 30 días, 18 horas, 10 minutos el 16 de junio de 2025 a las 18:02
       const now = new Date();
-      const targetDate = new Date('2025-06-16T23:59:59-05:00');
-      if (now <= targetDate && days > 30) {
-        diasSpan.textContent = `30 días`;
+      const targetDate = new Date('2025-06-16T18:02:00-05:00');
+      if (now <= targetDate && (days > 30 || (days === 30 && (hours > 18 || (hours === 18 && minutes > 10))))) {
+        diasSpan.textContent = `30`;
+        horasSpan.textContent = `18`;
+        minutosSpan.textContent = `10`;
       } else {
-        diasSpan.textContent = `${days} días`;
+        diasSpan.textContent = days;
+        horasSpan.textContent = hours < 10 ? `0${hours}` : hours;
+        minutosSpan.textContent = minutes < 10 ? `0${minutes}` : minutes;
       }
     }
 
