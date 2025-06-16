@@ -811,10 +811,10 @@
 
     .contador-tiempo .contador-texto-fijo {
         font-family: 'Great Vibes', cursive;
-        font-size: 1.5rem;
+        font-size: 2rem; /* Aumentado de 1.5rem a 2rem */
         font-weight: 400;
         color: #6a5acd;
-        margin-bottom: 10px;
+        margin-bottom: 15px; /* Ajuste del margen inferior */
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         transition: color 0.7s ease-in-out;
     }
@@ -858,8 +858,8 @@
     }
 
     body.celular .contador-tiempo .contador-texto-fijo {
-        font-size: 1.2rem;
-        margin-bottom: 8px;
+        font-size: 1.5rem; /* Ajuste para celular */
+        margin-bottom: 10px;
     }
 
     body.celular .contador-tiempo .tiempo-dinamico span {
@@ -874,7 +874,7 @@
           <span id="dias"></span>
           <span id="horas"></span>
           <span id="minutos"></span>
-          <span id="segundos"></span>
+          <!-- Se eliminó <span id="segundos"></span> -->
       </div>
   </div>
 
@@ -902,7 +902,7 @@
       <p>Gracias por este tiempo tan bonito Mariana <i class="fa-solid fa-heart"></i></p>
       <video src="video/kiss.mp4" autoplay loop muted playsinline></video>
     </header>
-    <button class="triste-btn" onclick="location.href='triste.html'">Cuando te sientas triste, presiona aquí</button>
+    <button class="triste-btn" onclick="location.href='triste.html'">Cuando te sientes triste, presiona aquí</button>
     <button class="modo-btn"><i class="fa-solid fa-moon"></i></button>
 
     <div class="reproductor">
@@ -1183,7 +1183,6 @@
     const diasSpan = document.getElementById('dias');
     const horasSpan = document.getElementById('horas');
     const minutosSpan = document.getElementById('minutos');
-    const segundosSpan = document.getElementById('segundos');
 
     // Función para calcular el tiempo transcurrido desde la última visita
     function getPersistentTime() {
@@ -1194,7 +1193,7 @@
         const timeDiff = Math.floor((now - savedTime) / 1000); // Diferencia en segundos
         return parseInt(savedSeconds) + timeDiff;
       }
-      return 2583540; // Valor inicial: 29 días, 21 horas, 39 minutos (2,583,540 segundos)
+      return 79380; // Valor inicial: 22 horas y 3 minutos (79,380 segundos)
     }
 
     let totalSecondsTogether = getPersistentTime();
@@ -1212,15 +1211,15 @@
       const hours = Math.floor(seconds / (60 * 60));
       seconds %= (60 * 60);
       const minutes = Math.floor(seconds / 60);
-      const secs = seconds % 60;
       
-      if (days >= 30) {
-        tiempoDinamicoSpan.innerHTML = '<span>1 mes</span>';
-      } else {
+      if (days >= 1) {
         diasSpan.textContent = `${days} días`;
         horasSpan.textContent = `${hours} horas`;
         minutosSpan.textContent = `${minutes} minutos`;
-        segundosSpan.textContent = `${secs} segundos`;
+      } else {
+        diasSpan.textContent = '';
+        horasSpan.textContent = `${hours} horas`;
+        minutosSpan.textContent = `${minutes} minutos`;
       }
     }
 
