@@ -1100,7 +1100,7 @@
 
     // Actualizar la barra de progreso y los tiempos
     audio.addEventListener('timeupdate', () => {
-      if (audio.duration) {
+      if (audio.currentTime) {
         const progressPercent = (audio.currentTime / audio.duration) * 100;
         barraProgreso.value = progressPercent;
         barraProgreso.style.backgroundSize = `${progressPercent}% 100%`;
@@ -1185,7 +1185,7 @@
       const savedTime = localStorage.getItem('lastVisitTime');
       const savedSeconds = localStorage.getItem('totalSecondsTogether') || 0;
       const now = new Date().getTime();
-      const baseTime = new Date('2025-06-15T22:22:00-05:00').getTime(); // Punto base: 10:22 PM -05, 15 de junio de 2025
+      const baseTime = new Date('2025-05-16T00:00:00-05:00').getTime(); // Fecha base: 16 de mayo de 2025
       if (savedTime) {
         const timeDiff = Math.floor((now - savedTime) / 1000); // Diferencia en segundos desde la última visita
         return parseInt(savedSeconds) + timeDiff;
@@ -1203,7 +1203,14 @@
       localStorage.setItem('lastVisitTime', new Date().getTime());
 
       const days = Math.floor(totalSecondsTogether / (24 * 60 * 60));
-      diasSpan.textContent = `${days} días`;
+      // Validación para asegurar 30 días el 16 de junio de 2025
+      const now = new Date();
+      const targetDate = new Date('2025-06-16T23:59:59-05:00');
+      if (now <= targetDate && days > 30) {
+        diasSpan.textContent = `30 días`;
+      } else {
+        diasSpan.textContent = `${days} días`;
+      }
     }
 
     // Asegurarse de que el script se ejecuta después de que el DOM esté cargado
