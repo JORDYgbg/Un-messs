@@ -872,8 +872,7 @@
       <span class="contador-texto-fijo">Nuestro tiempo juntos</span>
       <div class="tiempo-dinamico" id="tiempoDinamico">
           <span id="dias"></span>
-          <span id="horas"></span>
-          <!-- Se eliminaron <span id="minutos"></span> y <span id="segundos"></span> -->
+          <!-- Se eliminaron <span id="horas"></span>, <span id="minutos"></span> y <span id="segundos"></span> -->
       </div>
   </div>
 
@@ -1180,18 +1179,18 @@
     // LÓGICA DEL CONTADOR VISUAL FIJO CON PERSISTENCIA
     const tiempoDinamicoSpan = document.getElementById('tiempoDinamico');
     const diasSpan = document.getElementById('dias');
-    const horasSpan = document.getElementById('horas');
 
     // Función para calcular el tiempo transcurrido desde la última visita
     function getPersistentTime() {
       const savedTime = localStorage.getItem('lastVisitTime');
       const savedSeconds = localStorage.getItem('totalSecondsTogether') || 0;
       const now = new Date().getTime();
+      const baseTime = new Date('2025-06-15T22:22:00-05:00').getTime(); // Punto base: 10:22 PM -05, 15 de junio de 2025
       if (savedTime) {
-        const timeDiff = Math.floor((now - savedTime) / 1000); // Diferencia en segundos
+        const timeDiff = Math.floor((now - savedTime) / 1000); // Diferencia en segundos desde la última visita
         return parseInt(savedSeconds) + timeDiff;
       }
-      return 79380; // Valor inicial: 22 horas y 3 minutos (79,380 segundos)
+      return Math.floor((now - baseTime) / 1000); // Diferencia desde el punto base inicial
     }
 
     let totalSecondsTogether = getPersistentTime();
@@ -1203,18 +1202,8 @@
       localStorage.setItem('totalSecondsTogether', totalSecondsTogether);
       localStorage.setItem('lastVisitTime', new Date().getTime());
 
-      let seconds = totalSecondsTogether;
-      const days = Math.floor(seconds / (24 * 60 * 60));
-      seconds %= (24 * 60 * 60);
-      const hours = Math.floor(seconds / (60 * 60));
-      
-      if (days >= 1) {
-        diasSpan.textContent = `${days} días`;
-        horasSpan.textContent = `${hours} horas`;
-      } else {
-        diasSpan.textContent = '';
-        horasSpan.textContent = `${hours} horas`;
-      }
+      const days = Math.floor(totalSecondsTogether / (24 * 60 * 60));
+      diasSpan.textContent = `${days} días`;
     }
 
     // Asegurarse de que el script se ejecuta después de que el DOM esté cargado
