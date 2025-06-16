@@ -464,7 +464,7 @@
       border-radius: 2px;
       outline: none;
       cursor: pointer;
-      background-image: linear-gradient(#8a2be2, #8a2be2);
+      background-image: linear-gradient(#8a2be2, #8a2be2); /* Purple in light mode */
       background-repeat: no-repeat;
       background-size: 0% 100%;
       transition: background-color 0.3s ease;
@@ -473,7 +473,7 @@
 
     body.dark-mode .barra {
         background: #555;
-        background-image: linear-gradient(#ffda66, #ffda66);
+        background-image: linear-gradient(#ffda66, #ffda66); /* Yellow in dark mode */
     }
 
     .barra::-webkit-slider-thumb {
@@ -481,7 +481,7 @@
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: #ffda66;
+      background: #ffda66; /* Yellow thumb */
       cursor: pointer;
       box-shadow: 0 0 5px rgba(0,0,0,0.3);
       border: none;
@@ -492,7 +492,7 @@
     }
 
     body.dark-mode .barra::-webkit-slider-thumb {
-        background: #ffda66;
+        background: #ffda66; /* Keep yellow in dark mode */
     }
 
     .barra::-webkit-slider-thumb:hover {
@@ -504,14 +504,14 @@
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        background: #ffda66;
+        background: #ffda66; /* Yellow thumb */
         cursor: pointer;
         box-shadow: 0 0 5px rgba(0,0,0,0.3);
         border: none;
         transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
     }
     body.dark-mode .barra::-moz-range-thumb {
-        background: #ffda66;
+        background: #ffda66; /* Keep yellow in dark mode */
     }
     .barra::-moz-range-thumb:hover {
         transform: scale(1.2);
@@ -569,7 +569,7 @@
       cursor: pointer;
       background-image: linear-gradient(#8a2be2, #8a2be2);
       background-repeat: no-repeat;
-      background-size: 70% 100%;
+      background-size: 10% 100%; /* Reflects initial 10% volume */
     }
 
     body.dark-mode .controles #volRange {
@@ -614,14 +614,6 @@
     .controles #volRange::-moz-range-thumb:hover {
       transform: scale(1.2);
       box-shadow: 0 0 8px rgba(0,0,0,0.4);
-    }
-
-    .controles #btnRepetir.active {
-        color: #8a2be2;
-    }
-
-    body.dark-mode .controles #btnRepetir.active {
-        color: #ffda66;
     }
 
     @keyframes volumePulse {
@@ -913,7 +905,7 @@
     <button class="triste-btn" onclick="location.href='triste.html'">Cuando te sientas triste, presiona aquí</button>
     <button class="modo-btn"><i class="fa-solid fa-moon"></i></button>
 
-    <div class="reproductor dark-mode">
+    <div class="reproductor">
       <img src="img/cover.jpg" alt="Portada de la canción">
       <div class="titulo">
         <span id="tituloCancion"></span><br>
@@ -928,9 +920,8 @@
         <button id="btnAnterior"><i class="fa-solid fa-backward-step"></i></button>
         <button id="btnReproducirPausar"><i class="fa-solid fa-play"></i></button>
         <button id="btnSiguiente"><i class="fa-solid fa-forward-step"></i></button>
-        <button id="btnRepetir"><i class="fa-solid fa-repeat"></i></button>
         <i id="volIcon" class="fa-solid fa-volume-high"></i>
-        <input type="range" id="volRange" min="0" max="1" step="0.01" value="0.7">
+        <input type="range" id="volRange" min="0" max="1" step="0.01" value="0.1">
       </div>
     </div>
 
@@ -972,9 +963,15 @@
       </ul>
     </section>
 
-    <section id="seccion-musica" style="margin-top: 50px;">
-        <h2>Nuestras canciones favoritas</h2>
-        <p>Aquí tienes una selección de canciones que nos recuerdan momentos especiales o simplemente nos encantan. ¡Sube el volumen y disfruta!</p>
+    <section id="frases-amor" style="margin-top: 50px;">
+      <h2>Frases que me recuerdan a ti</h2>
+      <ul>
+          <li>"Te amo no solo por lo que eres, sino por lo que soy cuando estoy contigo." – Elizabeth Barrett Browning</li>
+          <li>"En tu luz, encuentro mi camino; en tu risa, mi hogar." – Pablo Neruda</li>
+          <li>"Eres el sueño que nunca termina, la melodía de mi silencio." – Octavio Paz</li>
+          <li>"Mi alma tiene un vestido de cristal, y tú lo rompes con tu mirada." – Federico García Lorca</li>
+          <li>"Eres la estrella que guía mi noche, el verso que nunca termina." – Rumi</li>
+      </ul>
     </section>
   </div>
 
@@ -999,6 +996,7 @@
         document.body.classList.toggle('dark-mode');
         const isDarkMode = document.body.classList.contains('dark-mode');
         modoBtn.innerHTML = `<i class="fa-solid ${isDarkMode ? 'fa-moon' : 'fa-sun'}"></i>`;
+        document.querySelector('.reproductor').classList.toggle('dark-mode', isDarkMode);
     });
 
     // Referencias a elementos del DOM para el reproductor
@@ -1014,7 +1012,6 @@
     const coverArt = document.querySelector('.reproductor img');
     const btnAnterior = document.getElementById('btnAnterior');
     const btnSiguiente = document.getElementById('btnSiguiente');
-    const btnRepetir = document.getElementById('btnRepetir');
 
     // Lista de reproducción
     const playlist = [
@@ -1040,7 +1037,6 @@
     let currentSongIndex = 0;
     let isPlaying = false;
     let isMuted = false;
-    let isRepeat = false;
 
     // Función para cargar la canción
     function loadSong(songIndex) {
@@ -1078,17 +1074,6 @@
       }
     }
 
-    // Función para retroceder a la canción anterior
-    function playPreviousSong() {
-      currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
-      loadSong(currentSongIndex);
-      if (isPlaying) {
-        audio.play();
-      } else {
-        btnReproducirPausar.innerHTML = '<i class="fa-solid fa-play"></i>';
-      }
-    }
-
     // Añadir event listeners para los botones de control
     if (btnReproducirPausar) {
         btnReproducirPausar.addEventListener('click', togglePlayPause);
@@ -1097,25 +1082,23 @@
         btnSiguiente.addEventListener('click', playNextSong);
     }
     if (btnAnterior) {
-        btnAnterior.addEventListener('click', playPreviousSong);
-    }
-    if (btnRepetir) {
-        btnRepetir.addEventListener('click', () => {
-            isRepeat = !isRepeat;
-            audio.loop = isRepeat;
-            btnRepetir.classList.toggle('active', isRepeat);
+        btnAnterior.addEventListener('click', () => {
+            if (audio.currentTime < 2 && currentSongIndex > 0) {
+                currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
+                loadSong(currentSongIndex);
+            } else {
+                audio.currentTime = 0; // Restart current song
+            }
+            if (isPlaying) {
+                audio.play();
+            } else {
+                btnReproducirPausar.innerHTML = '<i class="fa-solid fa-play"></i>';
+            }
         });
     }
 
-    // Evento 'ended' para manejar fin de canción
-    audio.addEventListener('ended', () => {
-        if (!isRepeat) {
-            playNextSong();
-        } else {
-            audio.currentTime = 0;
-            audio.play();
-        }
-    });
+    // Evento 'ended' para pasar a la siguiente canción automáticamente
+    audio.addEventListener('ended', playNextSong);
 
     // Actualizar la barra de progreso y los tiempos
     audio.addEventListener('timeupdate', () => {
@@ -1168,6 +1151,7 @@
         updateVolumeIcon();
         volRange.style.backgroundSize = `${volRange.value * 100}% 100%`;
       });
+      volRange.value = 0.1; // Set default to 10%
       audio.volume = volRange.value;
       volRange.style.backgroundSize = `${volRange.value * 100}% 100%`;
     }
@@ -1180,7 +1164,7 @@
         volIcon.classList.remove('fa-volume-high', 'fa-volume-low');
         volIcon.classList.add('fa-volume-mute');
       } else {
-        audio.volume = volRange.value || 0.7;
+        audio.volume = volRange.value || 0.1; // Default to 10% if unmuted
         updateVolumeIcon();
       }
       volRange.style.backgroundSize = `${volRange.value * 100}% 100%`;
@@ -1200,7 +1184,7 @@
     const horasSpan = document.getElementById('horas');
     const minutosSpan = document.getElementById('minutos');
     const segundosSpan = document.getElementById('segundos');
-    let totalSecondsTogether = (29 * 24 * 60 * 60) + (19 * 60 * 60) + (20 * 60);
+    let totalSecondsTogether = (20 * 60 * 60) + (12 * 60); // 20 hours + 12 minutes
 
     function updateCounter() {
         totalSecondsTogether++;
