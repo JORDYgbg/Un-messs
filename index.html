@@ -1178,32 +1178,50 @@
     // Cargar la primera canción al iniciar
     loadSong(currentSongIndex);
 
-    // LÓGICA DEL CONTADOR VISUAL FIJO
+    // LÓGICA DEL CONTADOR VISUAL FIJO CON PERSISTENCIA
     const tiempoDinamicoSpan = document.getElementById('tiempoDinamico');
     const diasSpan = document.getElementById('dias');
     const horasSpan = document.getElementById('horas');
     const minutosSpan = document.getElementById('minutos');
     const segundosSpan = document.getElementById('segundos');
-    let totalSecondsTogether = (21 * 60 * 60) + (20 * 60); // 21 hours + 20 minutes
+
+    // Función para calcular el tiempo transcurrido desde la última visita
+    function getPersistentTime() {
+      const savedTime = localStorage.getItem('lastVisitTime');
+      const savedSeconds = localStorage.getItem('totalSecondsTogether') || 0;
+      const now = new Date().getTime();
+      if (savedTime) {
+        const timeDiff = Math.floor((now - savedTime) / 1000); // Diferencia en segundos
+        return parseInt(savedSeconds) + timeDiff;
+      }
+      return 2583540; // Valor inicial: 29 días, 21 horas, 39 minutos (2,583,540 segundos)
+    }
+
+    let totalSecondsTogether = getPersistentTime();
+    localStorage.setItem('totalSecondsTogether', totalSecondsTogether);
+    localStorage.setItem('lastVisitTime', new Date().getTime());
 
     function updateCounter() {
-        totalSecondsTogether++;
-        let seconds = totalSecondsTogether;
-        const days = Math.floor(seconds / (24 * 60 * 60));
-        seconds %= (24 * 60 * 60);
-        const hours = Math.floor(seconds / (60 * 60));
-        seconds %= (60 * 60);
-        const minutes = Math.floor(seconds / 60);
-        const secs = seconds % 60;
-        
-        if (days >= 30) {
-            tiempoDinamicoSpan.innerHTML = '<span>1 mes</span>';
-        } else {
-            diasSpan.textContent = `${days} días`;
-            horasSpan.textContent = `${hours} horas`;
-            minutosSpan.textContent = `${minutes} minutos`;
-            segundosSpan.textContent = `${secs} segundos`;
-        }
+      totalSecondsTogether++;
+      localStorage.setItem('totalSecondsTogether', totalSecondsTogether);
+      localStorage.setItem('lastVisitTime', new Date().getTime());
+
+      let seconds = totalSecondsTogether;
+      const days = Math.floor(seconds / (24 * 60 * 60));
+      seconds %= (24 * 60 * 60);
+      const hours = Math.floor(seconds / (60 * 60));
+      seconds %= (60 * 60);
+      const minutes = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      
+      if (days >= 30) {
+        tiempoDinamicoSpan.innerHTML = '<span>1 mes</span>';
+      } else {
+        diasSpan.textContent = `${days} días`;
+        horasSpan.textContent = `${hours} horas`;
+        minutosSpan.textContent = `${minutes} minutos`;
+        segundosSpan.textContent = `${secs} segundos`;
+      }
     }
 
     // Asegurarse de que el script se ejecuta después de que el DOM esté cargado
