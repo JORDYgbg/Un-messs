@@ -17,11 +17,11 @@
 
     /* Custom text selection color */
     ::selection {
-        background-color: #d2a6fa;
+        background-color: #d2a6fa; /* A soft lilac */
         color: #fff;
     }
     body.dark-mode ::selection {
-        background-color: #ffda66;
+        background-color: #ffda66; /* Warm yellow for dark mode */
         color: #333;
     }
 
@@ -34,7 +34,6 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      /* Scrollbar styling for WebKit browsers */
       scrollbar-width: thin;
       scrollbar-color: #9370db #f1f1f1;
     }
@@ -57,9 +56,8 @@
         border: 2px solid #2a2a2a;
     }
 
-    /* Estilo del modo oscuro (DEFAULT) */
+    /* Estilo del modo oscuro */
     body.dark-mode {
-      /* Degradado oscuro inverso */
       background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 50%, #3e3d4f 100%);
       color: #f0f0f0;
     }
@@ -92,11 +90,9 @@
       margin-bottom: 0;
     }
 
-    /* In minimized mobile view, ALL controls and text are hidden, ONLY disc is visible */
     body.celular .reproductor .titulo,
     body.celular .reproductor .tiempo,
     body.celular .reproductor .barra,
-    body.celular .reproductor .volumen,
     body.celular .reproductor .controles {
       display: none;
       opacity: 0;
@@ -124,11 +120,9 @@
       margin-right: auto;
     }
 
-    /* When maximized on mobile, all elements become visible */
     body.celular .reproductor.maximized .titulo,
     body.celular .reproductor.maximized .tiempo,
     body.celular .reproductor.maximized .barra,
-    body.celular .reproductor.maximized .volumen,
     body.celular .reproductor.maximized .controles {
       display: flex;
       opacity: 1;
@@ -137,7 +131,6 @@
     body.celular .reproductor.maximized .titulo {
         display: block;
     }
-
 
     body.celular .triste-btn {
         width: calc(50% - 30px);
@@ -291,94 +284,35 @@
         color: rgba(255, 192, 203, 0.25);
     }
 
-    /* More diverse heart animations for size and delay */
-    .corazon:nth-child(2n) { animation-duration: 12s;
-      animation-delay: -2s;
-      font-size: 1.2rem;
-      opacity: 0.8;
-    }
-    .corazon:nth-child(3n) { animation-duration: 9s;
-      animation-delay: -3s;
-      font-size: 1.8rem;
-      opacity: 0.9;
-    }
-    .corazon:nth-child(4n) { animation-duration: 11s;
-      animation-delay: -1s;
-      font-size: 1.0rem;
-      opacity: 0.7;
-    }
-    .corazon:nth-child(5n) { animation-duration: 13s;
-      animation-delay: -4s;
-      font-size: 2.0rem;
-      opacity: 1.0;
-    }
-    .corazon:nth-child(6n) { animation-duration: 8s;
-      animation-delay: -5s;
-      font-size: 1.3rem;
-      opacity: 0.85;
-    }
-    .corazon:nth-child(7n) { animation-duration: 10.5s;
-      animation-delay: -2.5s;
-      font-size: 1.6rem;
-      opacity: 0.95;
-    }
-    .corazon:nth-child(8n) { animation-duration: 9.5s;
-      animation-delay: -1.5s;
-      font-size: 1.1rem;
-      opacity: 0.75;
-    }
-    .corazon:nth-child(9n) { animation-duration: 14s;
-      animation-delay: -3.5s;
-      font-size: 1.9rem;
-      opacity: 1.0;
-    }
-    .corazon:nth-child(10n) { animation-duration: 7s;
-      animation-delay: -0.5s;
-      font-size: 1.4rem;
-      opacity: 0.8;
-    }
-    .corazon:nth-child(11n) { animation-duration: 10s;
-      animation-delay: -0.8s;
-      font-size: 1.7rem;
-      opacity: 0.9;
-    }
-    .corazon:nth-child(12n) { animation-duration: 11.5s;
-      animation-delay: -2.8s;
-      font-size: 1.35rem;
-      opacity: 0.8;
-    }
-    .corazon:nth-child(13n) { animation-duration: 9.8s;
-      animation-delay: -4.2s;
-      font-size: 1.05rem;
-      opacity: 0.7;
-    }
-    .corazon:nth-child(14n) { animation-duration: 12.3s;
-      animation-delay: -1.2s;
-      font-size: 2.1rem;
-      opacity: 1.0;
-    }
-    .corazon:nth-child(15n) { animation-duration: 8.5s;
-      animation-delay: -3.7s;
-      font-size: 1.5rem;
-      opacity: 0.85;
-    }
+    .corazon:nth-child(2n) { animation-duration: 12s; animation-delay: -2s; font-size: 1.2rem; opacity: 0.8; }
+    .corazon:nth-child(3n) { animation-duration: 9s; animation-delay: -3s; font-size: 1.8rem; opacity: 0.9; }
+    .corazon:nth-child(4n) { animation-duration: 11s; animation-delay: -1s; font-size: 1.0rem; opacity: 0.7; }
+    .corazon:nth-child(5n) { animation-duration: 13s; animation-delay: -4s; font-size: 2.0rem; opacity: 1.0; }
+    .corazon:nth-child(6n) { animation-duration: 8s; animation-delay: -5s; font-size: 1.3rem; opacity: 0.85; }
+    .corazon:nth-child(7n) { animation-duration: 10.5s; animation-delay: -2.5s; font-size: 1.6rem; opacity: 0.95; }
+    .corazon:nth-child(8n) { animation-duration: 9.5s; animation-delay: -1.5s; font-size: 1.1rem; opacity: 0.75; }
+    .corazon:nth-child(9n) { animation-duration: 14s; animation-delay: -3.5s; font-size: 1.9rem; opacity: 1.0; }
+    .corazon:nth-child(10n) { animation-duration: 7s; animation-delay: -0.5s; font-size: 1.4rem; opacity: 0.8; }
+    .corazon:nth-child(11n) { animation-duration: 10s; animation-delay: -0.8s; font-size: 1.7rem; opacity: 0.9; }
+    .corazon:nth-child(12n) { animation-duration: 11.5s; animation-delay: -2.8s; font-size: 1.35rem; opacity: 0.8; }
+    .corazon:nth-child(13n) { animation-duration: 9.8s; animation-delay: -4.2s; font-size: 1.05rem; opacity: 0.7; }
+    .corazon:nth-child(14n) { animation-duration: 12.3s; animation-delay: -1.2s; font-size: 2.1rem; opacity: 1.0; }
+    .corazon:nth-child(15n) { animation-duration: 8.5s; animation-delay: -3.7s; font-size: 1.5rem; opacity: 0.85; }
 
     @keyframes flotar {
       from {
         transform: translateY(100vh) rotate(0deg);
         opacity: 0;
       }
-      20% { opacity: 1;
-      }
-      80% { opacity: 1;
-      }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
       to {
         transform: translateY(-100vh) rotate(360deg);
         opacity: 0;
       }
     }
 
-    /* Estilo del reproductor de música (PC por defecto, minimizado) */
+    /* Estilo del reproductor de música */
     .reproductor {
       position: fixed;
       top: 25px;
@@ -420,18 +354,15 @@
         filter: saturate(1.1);
     }
 
-    /* Default state for PC: ONLY disc is visible, all other elements hidden */
     .reproductor .titulo,
     .reproductor .tiempo,
     .reproductor .barra,
-    .reproductor .volumen,
     .reproductor .controles {
       display: none;
       opacity: 0;
       transition: opacity 0.3s ease-out;
     }
 
-    /* Reproductor maximizado en PC al pasar el ratón */
     .reproductor:hover {
       width: 260px;
       height: auto;
@@ -450,12 +381,10 @@
       margin-right: auto;
     }
 
-    /* When maximized on PC hover, all elements become visible */
     .reproductor:hover .titulo,
     .reproductor:hover .tiempo,
     .reproductor:hover .barra,
-    .reproductor:hover .controles,
-    .reproductor:hover .volumen {
+    .reproductor:hover .controles {
       display: flex;
       opacity: 1;
       transition-delay: 0.2s;
@@ -481,12 +410,9 @@
         font-size: 1.8rem;
     }
 
-
     @keyframes girar {
-      from { transform: rotate(0deg);
-      }
-      to { transform: rotate(360deg);
-      }
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     .titulo {
@@ -502,7 +428,6 @@
         color: #bbb;
     }
 
-    /* TIEMPO DE DURACIÓN Y BARRAS (Estilo YouTube) */
     .tiempo {
         display: flex;
         justify-content: space-between;
@@ -516,7 +441,6 @@
         color: #ccc;
     }
 
-    /* Estilos para la barra de progreso (Estilo YouTube) */
     .barra {
       width: 100%;
       -webkit-appearance: none;
@@ -537,7 +461,6 @@
         background-image: linear-gradient(#ffda66, #ffda66);
     }
 
-    /* Estilo del "thumb" (indicador de la barra) para WebKit (Chrome, Safari, Edge) */
     .barra::-webkit-slider-thumb {
       -webkit-appearance: none;
       width: 12px;
@@ -562,7 +485,6 @@
         box-shadow: 0 0 8px rgba(0,0,0,0.4);
     }
 
-    /* Estilo del "thumb" (indicador de la barra) para Firefox */
     .barra::-moz-range-thumb {
         width: 12px;
         height: 12px;
@@ -585,7 +507,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 15px;
+      gap: 10px;
       margin-top: 10px;
       flex-wrap: nowrap;
     }
@@ -607,45 +529,86 @@
         color: #ffda66;
     }
 
-    .volumen {
-      display: flex;
-      align-items: center;
-      gap: 5px;
+    .controles #volIcon {
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
     }
 
-    /* MEJORA: Estilos para el icono de volumen en hover */
-    .volumen i {
-        transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    .controles #volIcon:hover {
+      color: #8a2be2;
+      transform: scale(1.15);
     }
 
-    .volumen i:hover {
-        color: #8a2be2;
-        transform: scale(1.15);
+    body.dark-mode .controles #volIcon:hover {
+      color: #ffda66;
     }
 
-    body.dark-mode .volumen i:hover {
-        color: #ffda66;
+    .controles #volRange {
+      width: 60px;
+      -webkit-appearance: none;
+      height: 4px;
+      background: #e0e0e0;
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+      background-image: linear-gradient(#8a2be2, #8a2be2);
+      background-repeat: no-repeat;
+      background-size: 70% 100%;
     }
 
-    #volRange {
-      width: 80px;
+    body.dark-mode .controles #volRange {
+      background: #555;
+      background-image: linear-gradient(#ffda66, #ffda66);
     }
-    /* Estilo específico para el thumb del volumen, siguiendo el nuevo estilo de barra */
-    #volRange::-webkit-slider-thumb {
-        background: #8a2be2;
-        border: none;
-        box-shadow: 0 0 5px rgba(0,0,0,0.3);
+
+    .controles #volRange::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #8a2be2;
+      cursor: pointer;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
     }
-    body.dark-mode #volRange::-webkit-slider-thumb {
-        background: #ffda66;
+
+    body.dark-mode .controles #volRange::-webkit-slider-thumb {
+      background: #ffda66;
     }
-    #volRange::-moz-range-thumb {
-        background: #8a2be2;
-        border: none;
-        box-shadow: 0 0 5px rgba(0,0,0,0.3);
+
+    .controles #volRange::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 8px rgba(0,0,0,0.4);
     }
-    body.dark-mode #volRange::-moz-range-thumb {
-        background: #ffda66;
+
+    .controles #volRange::-moz-range-thumb {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #8a2be2;
+      cursor: pointer;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    }
+
+    body.dark-mode .controles #volRange::-moz-range-thumb {
+      background: #ffda66;
+    }
+
+    .controles #volRange::-moz-range-thumb:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 8px rgba(0,0,0,0.4);
+    }
+
+    @keyframes volumePulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .controles #volIcon.pulse {
+      animation: volumePulse 0.3s ease-in-out;
     }
 
     /* Estilo de las secciones */
@@ -667,7 +630,6 @@
         transform: translateY(-3px);
     }
 
-    /* Adjusted for slightly darker reading sections in dark mode */
     body.dark-mode section {
         background: rgba(20, 20, 25, 0.85);
     }
@@ -700,14 +662,11 @@
       color: #555;
       text-align: justify;
       padding: 0 15px;
-      text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.05); /* Added text shadow */
     }
     body.dark-mode section p {
         color: #e0e0e0;
-        text-shadow: 0.5px 0.5px 1px rgba(255,255,255,0.05); /* Added text shadow for dark mode */
     }
 
-    /* Estilos para listas dentro de las secciones */
     section ul {
         list-style: none;
         padding: 0;
@@ -723,14 +682,11 @@
         margin-bottom: 10px;
         padding-left: 20px;
         position: relative;
-        text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.05); /* Added text shadow */
     }
     body.dark-mode section ul li {
         color: #e0e0e0;
-        text-shadow: 0.5px 0.5px 1px rgba(255,255,255,0.05); /* Added text shadow for dark mode */
     }
 
-    /* Estilo para los íconos de la lista (cambiado a puntos) */
     section ul li::before {
         content: '•';
         position: absolute;
@@ -765,24 +721,19 @@
       opacity: 1;
       transition: opacity 0.4s ease-in-out, background 0.4s ease-in-out, color 0.4s ease-in-out;
     }
-
     #pantalla-inicio.hidden {
-        opacity: 0;
-        pointer-events: none;
+      opacity: 0;
+      pointer-events: none;
     }
-
-    /* Clase para la transición de color de la pantalla de inicio */
     #pantalla-inicio.transicion-lila {
-        background: linear-gradient(135deg, #f7e6ff, #d2a6fa);
-        color: #4a4a4a;
+      background: linear-gradient(135deg, #f7e6ff, #d2a6fa);
+      color: #4a4a4a;
     }
-
     .dispositivo-opciones {
       display: flex;
       gap: 50px;
       margin-top: 40px;
     }
-
     .dispositivo-boton {
       background: white;
       color: #8a2be2;
@@ -798,13 +749,11 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     }
-
     .dispositivo-boton:hover {
       transform: scale(1.18);
       background-color: #f8f8f8;
       box-shadow: 0 12px 25px rgba(0,0,0,0.4);
     }
-
     .dispositivo-etiqueta {
       margin-top: 10px;
       font-size: 1.1rem;
@@ -812,16 +761,108 @@
       transition: color 0.4s ease-in-out;
     }
     #pantalla-inicio.transicion-lila .dispositivo-etiqueta {
-        color: #4a4a4a;
+      color: #4a4a4a;
     }
-
-    /* Contenedor principal del contenido para la transición */
     #contenido-principal {
       transition: opacity 0.4s ease-in-out;
+    }
+
+    /* Contador de Tiempo */
+    .contador-tiempo {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+        padding: 15px 20px;
+        border-radius: 20px;
+        border: 2px solid transparent;
+        background-clip: padding-box;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        font-family: 'Quicksand', sans-serif;
+        color: #4a4a4a;
+        z-index: 100;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.7s ease-in-out, color 0.7s ease-in-out;
+    }
+
+    .contador-tiempo:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        background: rgba(255, 255, 255, 0.4);
+    }
+
+    .contador-tiempo .contador-texto-fijo {
+        font-family: 'Great Vibes', cursive;
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: #6a5acd;
+        margin-bottom: 10px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        transition: color 0.7s ease-in-out;
+    }
+
+    .contador-tiempo .tiempo-dinamico {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .contador-tiempo .tiempo-dinamico span {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.2rem;
+        color: #8a2be2;
+        transition: color 0.7s ease-in-out;
+        line-height: 1.4;
+    }
+
+    body.dark-mode .contador-tiempo {
+        background: rgba(0, 0, 0, 0.5);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    body.dark-mode .contador-tiempo:hover {
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+    body.dark-mode .contador-tiempo .contador-texto-fijo {
+        color: #ffda66;
+    }
+
+    body.dark-mode .contador-tiempo .tiempo-dinamico span {
+        color: #ffd700;
+    }
+
+    body.celular .contador-tiempo {
+        top: 10px;
+        left: 10px;
+        padding: 10px 15px;
+        border-radius: 15px;
+    }
+
+    body.celular .contador-tiempo .contador-texto-fijo {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    body.celular .contador-tiempo .tiempo-dinamico span {
+        font-size: 1rem;
     }
   </style>
 </head>
 <body class="dark-mode">
+  <div class="contador-tiempo" id="contadorTiempo">
+      <span class="contador-texto-fijo">Nuestro tiempo juntos</span>
+      <div class="tiempo-dinamico" id="tiempoDinamico">
+          <span id="dias"></span>
+          <span id="horas"></span>
+          <span id="minutos"></span>
+          <span id="segundos"></span>
+      </div>
+  </div>
+
   <div id="pantalla-inicio">
     <h2>¿En dónde estás viendo esto?</h2>
     <div class="dispositivo-opciones">
@@ -839,18 +880,35 @@
       </div>
     </div>
   </div>
-
   <div id="contenido-principal" style="opacity: 0; display: none;">
-    <div class="corazones">
-    </div>
-
+    <div class="corazones"></div>
     <header>
       <h1>Feliz primer mes</h1>
       <p>Gracias por este tiempo tan bonito Mariana <i class="fa-solid fa-heart"></i></p>
       <video src="video/kiss.mp4" autoplay loop muted playsinline></video>
     </header>
-
     <button class="triste-btn" onclick="location.href='triste.html'">Cuando te sientas triste, presiona aquí</button>
+    <button class="modo-btn"><i class="fa-solid fa-moon"></i></button>
+
+    <div class="reproductor">
+      <img src="img/cover.jpg" alt="Portada de la canción">
+      <div class="titulo">
+        <span id="tituloCancion"></span><br>
+        <small id="artistaCancion"></small>
+      </div>
+      <div class="tiempo">
+        <span id="tiempoActual">0:00</span>
+        <span id="tiempoTotal">0:00</span>
+      </div>
+      <input type="range" class="barra" id="barra-progreso" value="0" min="0" max="100">
+      <div class="controles">
+        <button id="btnAnterior"><i class="fa-solid fa-backward-step"></i></button>
+        <button id="btnReproducirPausar"><i class="fa-solid fa-play"></i></button>
+        <button id="btnSiguiente"><i class="fa-solid fa-forward-step"></i></button>
+        <i id="volIcon" class="fa-solid fa-volume-high"></i>
+        <input type="range" id="volRange" min="0" max="1" step="0.01" value="0.7">
+      </div>
+    </div>
 
     <section id="seccion1">
       <h2>Cómo me enamoré de ti</h2>
@@ -864,353 +922,316 @@
       <p>Y cuando me dijo que sí, sonreí. Pero no solo por un rato. Sonreí hasta el día siguiente. Dormí con una sonrisa que me dolía en la cara, pero me curaba el alma.</p>
       <p>Y así fue como me enamoré de una chica que empezó como Killjoy en Ascent. Y terminó siendo la mujer de mis amores, mi compañera, mi futura esposa y mi “te amo” más sincero.</p>
     </section>
-
     <section id="poema-mariana">
       <h2>Mariana</h2>
-      <p><em>Mariana, te pienso y todo se calma, como si el mundo aprendiera a flotar.<br>
-      No estás en mis ojos, estás en mi alma, y aún sin tocarte, te puedo abrazar.<br>
-      Hay algo en tus frases, en lo que callas, que sabe quedarse, que sabe cuidar.<br>
-      No sé si eres magia, destino o murallas, pero eres mi forma de querer de verdad.</em></p>
-
-      <p><em>No tienes un rostro en mis pensamientos, pero hay una esencia que huele a hogar.<br>
-      Estás en mis días, estás en mis tiempos, te siento tan cerca, como si la felicidad no fuera a terminar.<br>
-      No necesito tenerte presente para saber cuánto puedes sanar.<br>
-      Eres el verso que escribe mi mente, sin tinta ni libro, con ganas de volar.</em></p>
-
-      <p><em>Mariana, eres risa que viaja en la brisa, refugio invisible, señal sin final.<br>
-      Y aunque este amor no se vea a simple vista, late tan fuerte, que es simplemente real.</em></p>
+      <p><em>Mariana, te pienso y todo se calma, como si el mundo aprendiera a flotar.<br> No estás en mis ojos, estás en mi alma, y aún sin tocarte, te puedo abrazar.<br> Hay algo en tus frases, en lo que callas, que sabe quedarse, que sabe cuidar.<br> No sé si eres magia, destino o murallas, pero eres mi forma de querer de verdad.</em></p>
+      <p><em>No tienes un rostro en mis pensamientos, pero hay una esencia que huele a hogar.<br> Estás en mis días, estás en mis tiempos, te siento tan cerca, como si la felicidad no fuera a terminar.<br> No necesito tenerte presente para saber cuánto puedes sanar.<br> Eres el verso que escribe mi mente, sin tinta ni libro, con ganas de volar.</em></p>
+      <p><em>Mariana, eres risa que viaja en la brisa, refugio invisible, señal sin final.<br> Y aunque este amor no se vea a simple vista, late tan fuerte, que es simplemente real.</em></p>
     </section>
-
-
     <section id="seccion2">
       <h2>Nuestro primer mes juntos</h2>
       <p> Aunque parece poco tiempo, cada día contigo ha sido una aventura. Me haces reír, me haces pensar, y sobre todo, me haces sentir que la vida es mucho más bonita cuando la comparto contigo. Gracias por cada mensaje, cada llamada, cada risa, y cada momento que hemos creado. Eres una persona increíble, y estoy emocionado por todo lo que nos espera. Feliz primer mes, mi amor. Te quiero muchísimo. <i class="fa-solid fa-heart"></i> </p>
     </section>
-
     <section id="seccion3">
       <h2>Mis promesas para ti</h2>
       <ul>
-        <li>Prometo seguir descubriendo cada faceta de tu ser, enamorándome un poco más de cada detalle, de cada nuevo matiz que te define.</li>
-        <li>Prometo ser tu pilar inquebrantable, estar contigo en cada triunfo para celebrarlo con la alegría más pura, y en cada desafío, ofreciéndote mi apoyo incondicional.</li>
-        <li>Prometo que mi misión será siempre dibujarte una sonrisa, incluso en los días más grises, porque tu alegría ilumina mi mundo.</li>
-        <li>Prometo escucharte con el alma, buscar comprender cada uno de tus pensamientos y sentimientos, y respetar siempre la hermosa persona que eres, porque tu felicidad es el faro que guía mis pasos.</li>
-        <li>Y sobre todo, prometo amarte con la intensidad más sincera y profunda de mi corazón, hoy, mañana y en cada amanecer que el destino nos regale juntos.</li>
+        <li>Prometo seguir descubriendo cada faceta de tu ser, enamorándome un poco más de cada detalle.</li>
+        <li>Prometo escucharte siempre, incluso cuando no digas nada, y entender tus silencios.</li>
+        <li>Prometo ser tu refugio en los días grises y tu sol en los días de alegría.</li>
+        <li>Prometo seguir eligiéndote cada día, en cada decisión, en cada amanecer.</li>
+        <li>Prometo amarte con la misma intensidad que siento hoy, y ver crecer nuestro amor con el tiempo.</li>
+        <li>Prometo apoyarte en tus sueños y celebrar tus victorias como si fueran mías.</li>
+        <li>Prometo ser la persona en la que siempre puedas confiar, tu mejor amigo y tu eterno enamorado.</li>
+        <li>Prometo recordar siempre que somos un equipo, y que juntos podemos con todo.</li>
+        <li>Prometo darte mi mejor versión y seguir creciendo a tu lado.</li>
+        <li>Prometo cada día crear nuevos recuerdos, más bonitos, más nuestros.</li>
       </ul>
     </section>
 
-    <div class="reproductor dark-mode">
-      <img id="portadaDisco" src="" alt="Portada de la música">
-      <audio id="miAudio" src="" loop preload="auto"></audio>
-      <div class="titulo">
-        <span id="tituloCancion"></span>
-        <br>
-        <small id="artistaCancion"></small>
-      </div>
-      <div class="tiempo">
-        <span id="tiempoActual">0:00</span>
-        <span id="tiempoTotal">0:00</span>
-      </div>
-      <input type="range" id="barraProgreso" class="barra" value="0">
-      <div class="controles">
-        <button id="btnRetroceder"><i class="fa-solid fa-backward-step"></i></button>
-        <button id="btnReproducirPausar"><i class="fa-solid fa-play"></i></button>
-        <button id="btnAvanzar"><i class="fa-solid fa-forward-step"></i></button>
-        <div class="volumen">
-          <i class="fa-solid fa-volume-high"></i>
-          <input type="range" id="volRange" min="0" max="1" step="0.01" value="0.10" class="barra">
-        </div>
-      </div>
-    </div>
-
-    <button class="modo-btn">
-      <i class="fa-solid fa-moon"></i>
-    </button>
+    <section id="seccion-musica" style="margin-top: 50px;">
+        <h2>Nuestras canciones favoritas</h2>
+        <p>Aquí tienes una selección de canciones que nos recuerdan momentos especiales o simplemente nos encantan. ¡Sube el volumen y disfruta!</p>
+    </section>
   </div>
 
   <script>
-    // Variables y elementos del DOM
-    const body = document.body;
+    // Generar corazones flotantes
+    function generarCorazones() {
+        const corazonesContainer = document.querySelector('.corazones');
+        for (let i = 0; i < 15; i++) {
+            const corazon = document.createElement('div');
+            corazon.classList.add('corazon');
+            corazon.innerHTML = '❤️';
+            corazon.style.left = `${Math.random() * 100}%`;
+            corazon.style.animationDelay = `-${Math.random() * 10}s`;
+            corazonesContainer.appendChild(corazon);
+        }
+    }
+    generarCorazones();
+
+    // Toggle modo claro/oscuro
     const modoBtn = document.querySelector('.modo-btn');
-    const modoIcon = modoBtn.querySelector('i');
-    const miAudio = document.getElementById('miAudio');
+    modoBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        modoBtn.innerHTML = `<i class="fa-solid ${isDarkMode ? 'fa-moon' : 'fa-sun'}"></i>`;
+    });
+
+    // Referencias a elementos del DOM para el reproductor
+    const audio = window.audio || new Audio();
     const btnReproducirPausar = document.getElementById('btnReproducirPausar');
-    const iconoReproducirPausar = btnReproducirPausar.querySelector('i');
-    const barraProgreso = document.getElementById('barraProgreso');
+    const barraProgreso = document.getElementById('barra-progreso');
+    const tiempoActualSpan = document.getElementById('tiempoActual');
+    const tiempoTotalSpan = document.getElementById('tiempoTotal');
     const volRange = document.getElementById('volRange');
-    const reproductor = document.querySelector('.reproductor');
-    const portadaDisco = document.getElementById('portadaDisco');
-    const tituloCancionElem = document.getElementById('tituloCancion');
-    const artistaCancionElem = document.getElementById('artistaCancion');
-    const btnRetroceder = document.getElementById('btnRetroceder');
-    const btnAvanzar = document.getElementById('btnAvanzar');
-    const pantallaInicio = document.getElementById('pantalla-inicio');
-    const contenidoPrincipal = document.getElementById('contenido-principal');
-    const tiempoActualElem = document.getElementById('tiempoActual');
-    const tiempoTotalElem = document.getElementById('tiempoTotal');
+    const volIcon = document.getElementById('volIcon');
+    const tituloCancionSpan = document.getElementById('tituloCancion');
+    const artistaCancionSpan = document.getElementById('artistaCancion');
+    const coverArt = document.querySelector('.reproductor img');
+    const btnAnterior = document.getElementById('btnAnterior');
+    const btnSiguiente = document.getElementById('btnSiguiente');
 
-    let isReproductorMaximized = false;
-    let isPlaying = false;
-    const maxHearts = 30;
-    const hearts = new Set();
-
-    // Array de canciones con rutas ajustadas y el orden deseado
+    // Lista de reproducción
     const playlist = [
-      { title: "Es por ti", artist: "Juanes", audioSrc: "audio/esporti.mp3", coverSrc: "audio/cover.jpg" },
-      { title: "Amor Completo", artist: "Mon Laferte", audioSrc: "audio/amorcompleto.mp3", coverSrc: "audio/cover2.jpg" },
-      { title: "Compartir", artist: "Carla Morrison", audioSrc: "audio/compartir.mp3", coverSrc: "audio/cover3.jpg" }
+      {
+        title: 'Es Por Ti',
+        artist: 'Juanes',
+        src: 'audio/esporti.mp3',
+        cover: 'audio/cover.jpg'
+      },
+      {
+        title: 'Amor Completo',
+        artist: 'Mon Laferte',
+        src: 'audio/amorcompleto.mp3',
+        cover: 'audio/cover2.jpg'
+      },
+      {
+        title: 'Compartir',
+        artist: 'Carla Morrison',
+        src: 'audio/sebatian-contigo.mp3',
+        cover: 'audio/cover3.jpg'
+      }
     ];
     let currentSongIndex = 0;
+    let isPlaying = false;
+    let isMuted = false;
 
-    // Función para formatear el tiempo (MM:SS)
-    function formatTime(seconds) {
-      const minutes = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60);
-      return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-    }
-
-    // Función para cargar una canción
+    // Función para cargar la canción
     function loadSong(songIndex) {
       const song = playlist[songIndex];
-      miAudio.src = song.audioSrc;
-      portadaDisco.src = song.coverSrc;
-      tituloCancionElem.textContent = song.title;
-      artistaCancionElem.textContent = song.artist;
+      audio.src = song.src;
+      tituloCancionSpan.textContent = song.title;
+      artistaCancionSpan.textContent = song.artist;
+      coverArt.src = song.cover;
+      audio.load();
       barraProgreso.value = 0;
-      tiempoActualElem.textContent = '0:00';
-      tiempoTotalElem.textContent = '0:00';
-      updateProgressBarBackground(barraProgreso);
-
-      miAudio.load();
-
-      if (isPlaying) {
-        miAudio.play().catch(error => console.error("Autoplay prevented on song change:", error));
-      } else {
-        iconoReproducirPausar.classList.remove('fa-pause');
-        iconoReproducirPausar.classList.add('fa-play');
-      }
+      barraProgreso.style.backgroundSize = '0% 100%';
+      tiempoActualSpan.textContent = '0:00';
     }
 
-    // Evento 'loadedmetadata' para obtener la duración total de la canción una vez que se carga
-    miAudio.addEventListener('loadedmetadata', () => {
-      tiempoTotalElem.textContent = formatTime(miAudio.duration);
-    });
-    // Funciones para navegar entre canciones
+    // Función para reproducir o pausar
+    function togglePlayPause() {
+      if (isPlaying) {
+        audio.pause();
+        btnReproducirPausar.innerHTML = '<i class="fa-solid fa-play"></i>';
+      } else {
+        audio.play();
+        btnReproducirPausar.innerHTML = '<i class="fa-solid fa-pause"></i>';
+      }
+      isPlaying = !isPlaying;
+    }
+
+    // Función para avanzar a la siguiente canción
     function playNextSong() {
       currentSongIndex = (currentSongIndex + 1) % playlist.length;
       loadSong(currentSongIndex);
       if (isPlaying) {
-        miAudio.play();
+        audio.play();
+      } else {
+        btnReproducirPausar.innerHTML = '<i class="fa-solid fa-play"></i>';
       }
     }
 
-    // Modificación: Rebobinar la canción actual en lugar de ir a la anterior
+    // Función para retroceder a la canción anterior
     function playPreviousSong() {
-        miAudio.currentTime = 0; // Reinicia la canción actual
-        if (isPlaying) { // Si estaba sonando, la reproduce desde el inicio
-            miAudio.play();
-        }
+      currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
+      loadSong(currentSongIndex);
+      if (isPlaying) {
+        audio.play();
+      } else {
+        btnReproducirPausar.innerHTML = '<i class="fa-solid fa-play"></i>';
+      }
     }
 
-    // Event Listeners para los botones de navegación
-    btnAvanzar.addEventListener('click', () => {
-      playNextSong();
-    });
-    btnRetroceder.addEventListener('click', () => {
-      playPreviousSong();
-    });
-    // Function to initialize the mode button icon
-    const initializeModeButton = () => {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-        body.classList.add('dark-mode');
-        modoIcon.classList.remove('fa-moon');
-        modoIcon.classList.add('fa-sun');
-        reproductor.classList.add('dark-mode');
-      } else {
-        body.classList.remove('dark-mode');
-        modoIcon.classList.remove('fa-sun');
-        modoIcon.classList.add('fa-moon');
-        reproductor.classList.remove('dark-mode');
-      }
-    };
-
-    // Función para alternar modo oscuro/claro
-    const toggleDarkMode = () => {
-      body.classList.toggle('dark-mode');
-      if (body.classList.contains('dark-mode')) {
-        modoIcon.classList.remove('fa-moon');
-        modoIcon.classList.add('fa-sun');
-        reproductor.classList.add('dark-mode');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        modoIcon.classList.remove('fa-sun');
-        modoIcon.classList.add('fa-moon');
-        reproductor.classList.remove('dark-mode');
-        localStorage.setItem('theme', 'light');
-      }
-      // Actualiza el fondo de las barras al cambiar de modo
-      updateProgressBarBackground(barraProgreso);
-      updateProgressBarBackground(volRange);
-    };
-    modoBtn.addEventListener('click', toggleDarkMode);
-
-    // Función para actualizar el fondo de la barra de progreso (para que se vea el progreso)
-    function updateProgressBarBackground(barElement) {
-        const value = (barElement.value - barElement.min) / (barElement.max - barElement.min) * 100;
-        let color1, color2;
-        if (body.classList.contains('dark-mode')) {
-            color1 = '#ffda66';
-            color2 = '#555';
-        } else {
-            color1 = '#8a2be2';
-            color2 = '#e0e0e0';
-        }
-        barElement.style.backgroundImage = `linear-gradient(to right, ${color1} 0%, ${color1} ${value}%, ${color2} ${value}%, ${color2} 100%)`;
+    // Añadir event listeners para los botones de control
+    if (btnReproducirPausar) {
+        btnReproducirPausar.addEventListener('click', togglePlayPause);
+    }
+    if (btnSiguiente) {
+        btnSiguiente.addEventListener('click', playNextSong);
+    }
+    if (btnAnterior) {
+        btnAnterior.addEventListener('click', playPreviousSong);
     }
 
-    // Sincronizar barra de progreso con la reproducción y actualizar tiempo
-    miAudio.addEventListener('timeupdate', () => {
-      const progress = (miAudio.currentTime / miAudio.duration) * 100;
-      barraProgreso.value = progress;
-      updateProgressBarBackground(barraProgreso);
-      tiempoActualElem.textContent = formatTime(miAudio.currentTime);
+    // Evento 'ended' para pasar a la siguiente canción automáticamente
+    audio.loop = false;
+    audio.addEventListener('ended', playNextSong);
+
+    // Actualizar la barra de progreso y los tiempos
+    audio.addEventListener('timeupdate', () => {
+      if (audio.duration) {
+        const progressPercent = (audio.currentTime / audio.duration) * 100;
+        barraProgreso.value = progressPercent;
+        barraProgreso.style.backgroundSize = `${progressPercent}% 100%`;
+
+        let currentMinutes = Math.floor(audio.currentTime / 60);
+        let currentSeconds = Math.floor(audio.currentTime % 60);
+        if (currentSeconds < 10) currentSeconds = `0${currentSeconds}`;
+        tiempoActualSpan.textContent = `${currentMinutes}:${currentSeconds}`;
+      }
     });
-    // Permitir al usuario cambiar el progreso de la canción
+
+    audio.addEventListener('loadedmetadata', () => {
+      let totalMinutes = Math.floor(audio.duration / 60);
+      let totalSeconds = Math.floor(audio.duration % 60);
+      if (totalSeconds < 10) totalSeconds = `0${totalSeconds}`;
+      tiempoTotalSpan.textContent = `${totalMinutes}:${totalSeconds}`;
+      barraProgreso.value = 0;
+      barraProgreso.style.backgroundSize = '0% 100%';
+    });
+
+    // Control de arrastre de la barra de progreso
     barraProgreso.addEventListener('input', () => {
-      const seekTime = (barraProgreso.value / 100) * miAudio.duration;
-      miAudio.currentTime = seekTime;
-      tiempoActualElem.textContent = formatTime(miAudio.currentTime);
+      const seekTime = (barraProgreso.value / 100) * audio.duration;
+      audio.currentTime = seekTime;
     });
+
     // Control de volumen
-    volRange.addEventListener('input', () => {
-      miAudio.volume = volRange.value;
-      updateProgressBarBackground(volRange);
-    });
-    // Inicializar volumen y barra de volumen al cargar
-    miAudio.volume = volRange.value;
-    updateProgressBarBackground(volRange);
-    updateProgressBarBackground(barraProgreso);
-    // Función para reproducir/pausar
-    btnReproducirPausar.addEventListener('click', () => {
-      if (miAudio.paused) {
-        miAudio.play().catch(error => console.error("Audio playback failed on play click:", error));
-        isPlaying = true;
-        iconoReproducirPausar.classList.remove('fa-play');
-        iconoReproducirPausar.classList.add('fa-pause');
+    function updateVolumeIcon() {
+      if (audio.volume === 0 || isMuted) {
+        volIcon.classList.remove('fa-volume-high', 'fa-volume-low');
+        volIcon.classList.add('fa-volume-mute');
+      } else if (audio.volume <= 0.5) {
+        volIcon.classList.remove('fa-volume-high', 'fa-volume-mute');
+        volIcon.classList.add('fa-volume-low');
       } else {
-        miAudio.pause();
-        isPlaying = false;
-        iconoReproducirPausar.classList.remove('fa-pause');
-        iconoReproducirPausar.classList.add('fa-play');
+        volIcon.classList.remove('fa-volume-low', 'fa-volume-mute');
+        volIcon.classList.add('fa-volume-high');
       }
-    });
-    // Asegurar que el ícono de play/pause se actualice si el audio termina
-    miAudio.addEventListener('ended', () => {
-        isPlaying = false;
-        iconoReproducirPausar.classList.remove('fa-pause');
-        iconoReproducirPausar.classList.add('fa-play');
-        playNextSong();
-    });
-    // Lógica para la generación controlada de corazones
-    const corazonesContainer = document.querySelector('.corazones');
-    function crearCorazon() {
-        if (hearts.size >= maxHearts) {
-            const oldestHeart = hearts.values().next().value;
-            if (oldestHeart) {
-                oldestHeart.remove();
-                hearts.delete(oldestHeart);
-            }
-        }
-
-        const corazon = document.createElement('span');
-        corazon.classList.add('corazon');
-        corazon.innerHTML = '❤️';
-        corazon.style.left = Math.random() * 100 + 'vw';
-        corazon.style.animationDuration = Math.random() * 5 + 7 + 's';
-        corazon.style.animationDelay = Math.random() * -10 + 's';
-        corazonesContainer.appendChild(corazon);
-        hearts.add(corazon);
-
-        corazon.addEventListener('animationend', () => {
-            corazon.remove();
-            hearts.delete(corazon);
-        });
     }
 
-    // Generar un número inicial de corazones
-    for (let i = 0; i < maxHearts; i++) {
-        crearCorazon();
+    if (volRange) {
+      volRange.addEventListener('input', () => {
+        audio.volume = volRange.value;
+        volIcon.classList.add('pulse');
+        setTimeout(() => volIcon.classList.remove('pulse'), 300);
+        updateVolumeIcon();
+        volRange.style.backgroundSize = `${volRange.value * 100}% 100%`;
+      });
+      audio.volume = volRange.value;
+      volRange.style.backgroundSize = `${volRange.value * 100}% 100%`;
     }
-    // Continuar generando corazones a un ritmo constante para reemplazar los que desaparecen
-    setInterval(crearCorazon, 1000);
 
-    // Cargar la primera canción al inicio
+    volIcon.addEventListener('click', () => {
+      isMuted = !isMuted;
+      if (isMuted) {
+        audio.volume = 0;
+        volRange.value = 0;
+        volIcon.classList.remove('fa-volume-high', 'fa-volume-low');
+        volIcon.classList.add('fa-volume-mute');
+      } else {
+        audio.volume = volRange.value || 0.7;
+        updateVolumeIcon();
+      }
+      volRange.style.backgroundSize = `${volRange.value * 100}% 100%`;
+      volIcon.classList.add('pulse');
+      setTimeout(() => volIcon.classList.remove('pulse'), 300);
+    });
+
+    // Inicializar el icono de volumen
+    updateVolumeIcon();
+
+    // Cargar la primera canción al iniciar
     loadSong(currentSongIndex);
-    // Initial setup on page load
-    window.addEventListener('load', () => {
-        initializeModeButton();
-        loadSong(currentSongIndex);
-    });
-    // Lógica para pantalla de inicio y selección de dispositivo
-    function seleccionarDispositivo(tipo) {
-      // Aplicar cambios visuales de transición inmediatamente
-      pantallaInicio.classList.add('transicion-lila');
-      document.querySelector('#pantalla-inicio h2').style.color = '#4a4a4a';
-      Array.from(document.querySelectorAll('.dispositivo-etiqueta')).forEach(el => el.style.color = '#4a4a4a');
 
-      // Añadir la clase 'hidden' para iniciar la transición de opacidad
-      pantallaInicio.classList.add('hidden');
-      // Aplicar la clase de dispositivo inmediatamente para CSS
-      if (tipo === 'celular') {
-        body.classList.add('celular');
-      } else {
-        body.classList.remove('celular');
-      }
+    // LÓGICA DEL CONTADOR VISUAL FIJO
+    const tiempoDinamicoSpan = document.getElementById('tiempoDinamico');
+    const diasSpan = document.getElementById('dias');
+    const horasSpan = document.getElementById('horas');
+    const minutosSpan = document.getElementById('minutos');
+    const segundosSpan = document.getElementById('segundos');
+    let totalSecondsTogether = (29 * 24 * 60 * 60) + (19 * 60 * 60) + (20 * 60);
 
-      // Después de que la pantalla de inicio haya terminado su transición de desvanecimiento
-      setTimeout(() => {
-        pantallaInicio.style.display = 'none';
-        contenidoPrincipal.style.display = 'block';
-
-        // Un pequeño retraso adicional para asegurar que la transición de opacidad del contenido principal se vea
-        setTimeout(() => {
-          contenidoPrincipal.style.opacity = '1';
-
-          // Una vez que el contenido es visible y la interacción del usuario es clara,
-          // intentar reproducir el audio. Esto ayuda a cumplir con las políticas de autoplay de los navegadores.
-          miAudio.muted = false;
-          miAudio.play().catch(error => {
-              console.error("Audio playback failed on device selection:", error);
-          });
-          isPlaying = true;
-          iconoReproducirPausar.classList.remove('fa-play');
-          iconoReproducirPausar.classList.add('fa-pause');
-
-        }, 10);
-
-      }, 400);
+    function updateCounter() {
+        totalSecondsTogether++;
+        let seconds = totalSecondsTogether;
+        const days = Math.floor(seconds / (24 * 60 * 60));
+        seconds %= (24 * 60 * 60);
+        const hours = Math.floor(seconds / (60 * 60));
+        seconds %= (60 * 60);
+        const minutes = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        
+        if (days >= 30) {
+            tiempoDinamicoSpan.innerHTML = '<span>1 mes</span>';
+        } else {
+            diasSpan.textContent = `${days} días`;
+            horasSpan.textContent = `${hours} horas`;
+            minutosSpan.textContent = `${minutes} minutos`;
+            segundosSpan.textContent = `${secs} segundos`;
+        }
     }
 
-    // Toggle maximizado/minimizado del reproductor en móvil
-    reproductor.addEventListener('click', (event) => {
-        // Solo aplicar si estamos en modo celular y no se hizo clic en un control del reproductor
-        if (body.classList.contains('celular')) {
-            const isClickOnControls = event.target.closest('.controles') || event.target.closest('.barra') || event.target.closest('.volumen');
+    // Asegurarse de que el script se ejecuta después de que el DOM esté cargado
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const pantallaInicio = document.getElementById('pantalla-inicio');
+      const contenidoPrincipal = document.getElementById('contenido-principal');
+      const body = document.body;
+      let isReproductorMaximized = false;
 
-            if (!isClickOnControls) {
-                reproductor.classList.toggle('maximized');
-                isReproductorMaximized = reproductor.classList.contains('maximized');
-            }
+      // Seleccionar dispositivo
+      window.seleccionarDispositivo = (tipo) => {
+        if (tipo === 'celular') {
+          body.classList.add('celular');
+        } else {
+          body.classList.remove('celular');
         }
-    });
-    // Cerrar el reproductor maximizado si se hace clic fuera (solo en celular)
-    document.addEventListener('click', (event) => {
-        if (body.classList.contains('celular') && isReproductorMaximized) {
-            if (!reproductor.contains(event.target)) {
-                reproductor.classList.remove('maximized');
-                isReproductorMaximized = false;
-            }
-        }
+        pantallaInicio.classList.add('transicion-lila');
+        setTimeout(() => {
+          pantallaInicio.classList.add('hidden');
+          contenidoPrincipal.style.display = 'block';
+          setTimeout(() => {
+            contenidoPrincipal.style.opacity = '1';
+          }, 400);
+        }, 400);
+      };
+
+      // Toggle maximizado/minimizado del reproductor en móvil
+      const reproductor = document.querySelector('.reproductor');
+      reproductor.addEventListener('click', (event) => {
+          if (body.classList.contains('celular')) {
+              const isClickOnControls = event.target.closest('.controles') || event.target.closest('.barra');
+              if (!isClickOnControls) {
+                  reproductor.classList.toggle('maximized');
+                  isReproductorMaximized = reproductor.classList.contains('maximized');
+              }
+          }
+      });
+
+      // Cerrar el reproductor maximizado si se hace clic fuera (solo en celular)
+      document.addEventListener('click', (event) => {
+          if (body.classList.contains('celular') && isReproductorMaximized) {
+              if (!reproductor.contains(event.target)) {
+                  reproductor.classList.remove('maximized');
+                  isReproductorMaximized = false;
+              }
+          }
+      });
+
+      // Iniciar el contador de tiempo
+      updateCounter();
+      setInterval(updateCounter, 1000);
     });
   </script>
 </body>
