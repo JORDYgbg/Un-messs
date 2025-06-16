@@ -17,15 +17,15 @@
 
     /* Custom text selection color */
     ::selection {
-        background-color: #d2a6fa; /* A soft lilac */
+        background-color: #d2a6fa;
         color: #fff;
     }
     body.dark-mode ::selection {
-        background-color: #ffda66; /* Warm yellow for dark mode */
+        background-color: #ffda66;
         color: #333;
     }
 
-    /* Estilo del cuerpo con transiciones mejoradas y suavizado de fuente */
+    /* Estilo del cuerpo */
     body {
       font-family: 'Quicksand', sans-serif;
       background: linear-gradient(180deg, #f7e6ff 0%, #d2a6fa 50%, #9370db 100%);
@@ -569,7 +569,7 @@
       cursor: pointer;
       background-image: linear-gradient(#8a2be2, #8a2be2);
       background-repeat: no-repeat;
-      background-size: 10% 100%; /* Reflects initial 10% volume */
+      background-size: 10% 100%;
     }
 
     body.dark-mode .controles #volRange {
@@ -782,149 +782,163 @@
       transition: opacity 0.4s ease-in-out;
     }
 
-    /* Contador de Tiempo Mejorado */
-    .contador-tiempo {
+    /* Cielo de Estrellas */
+    .cielo-estrellas {
         position: fixed;
         top: 20px;
         left: 20px;
+        width: 200px;
+        height: 100px;
         background: rgba(255, 255, 255, 0.85);
         backdrop-filter: blur(15px);
-        border-radius: 25px;
-        padding: 20px;
+        border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         z-index: 100;
+        overflow: hidden;
         transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.7s ease-in-out;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        max-width: 300px;
     }
 
-    .contador-tiempo:hover {
+    .cielo-estrellas:hover {
         transform: translateY(-5px);
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
         background: rgba(255, 255, 255, 0.9);
     }
 
-    body.dark-mode .contador-tiempo {
+    body.dark-mode .cielo-estrellas {
         background: rgba(30, 30, 40, 0.85);
     }
 
-    body.dark-mode .contador-tiempo:hover {
+    body.dark-mode .cielo-estrellas:hover {
         background: rgba(30, 30, 40, 0.9);
     }
 
-    .contador-texto-fijo {
-        font-family: 'Great Vibes', cursive;
-        font-size: 2.2rem;
-        color: #6a5acd;
-        margin-bottom: 15px;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        transition: color 0.7s ease-in-out;
-        text-align: center;
+    .cielo-estrellas canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
     }
 
-    body.dark-mode .contador-texto-fijo {
+    .cielo-titulo {
+        position: absolute;
+        top: 5px;
+        left: 0;
+        right: 0;
+        font-family: 'Great Vibes', cursive;
+        font-size: 1.2rem;
+        color: #6a5acd;
+        text-align: center;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        transition: color 0.7s ease-in-out;
+    }
+
+    body.dark-mode .cielo-titulo {
         color: #ffda66;
     }
 
-    .tiempo-dinamico {
-        display: flex;
-        gap: 10px;
+    /* Modal para los mensajes */
+    .modal-estrella {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 200;
         justify-content: center;
-        flex-wrap: wrap;
+        align-items: center;
+        backdrop-filter: blur(5px);
     }
 
-    .tiempo-unidad {
+    .modal-contenido {
         background: rgba(255, 255, 255, 0.9);
-        border-radius: 10px;
-        padding: 10px 15px;
-        min-width: 70px;
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        padding: 20px;
+        max-width: 400px;
+        width: 90%;
         text-align: center;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background 0.7s ease-in-out;
-        animation: pulse 2s infinite alternate;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease-in-out;
+        transform: scale(0.8);
     }
 
-    body.dark-mode .tiempo-unidad {
-        background: rgba(50, 50, 60, 0.9);
+    .modal-contenido.mostrar {
+        transform: scale(1);
     }
 
-    .tiempo-unidad:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    body.dark-mode .modal-contenido {
+        background: rgba(30, 30, 40, 0.9);
     }
 
-    .tiempo-valor {
-        font-family: 'Orbitron', sans-serif;
-        font-size: 1.5rem;
-        color: #8a2be2;
-        transition: color 0.7s ease-in-out;
-    }
-
-    body.dark-mode .tiempo-valor {
-        color: #ffd700;
-    }
-
-    .tiempo-etiqueta {
+    .modal-contenido p {
         font-family: 'Quicksand', sans-serif;
-        font-size: 0.9rem;
-        color: #666;
-        margin-top: 5px;
-        transition: color 0.7s ease-in-out;
+        font-size: 1.1rem;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 20px;
     }
 
-    body.dark-mode .tiempo-etiqueta {
-        color: #ccc;
+    body.dark-mode .modal-contenido p {
+        color: #e0e0e0;
     }
 
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        100% { transform: scale(1.02); }
+    .modal-contenido button {
+        background: #8a2be2;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
     }
 
-    body.celular .contador-tiempo {
+    body.dark-mode .modal-contenido button {
+        background: #ffda66;
+        color: #333;
+    }
+
+    .modal-contenido button:hover {
+        background: #6a5acd;
+        transform: scale(1.05);
+    }
+
+    body.dark-mode .modal-contenido button:hover {
+        background: #e0b400;
+    }
+
+    body.celular .cielo-estrellas {
+        width: 150px;
+        height: 75px;
         top: 10px;
         left: 10px;
+    }
+
+    body.celular .cielo-titulo {
+        font-size: 1rem;
+    }
+
+    body.celular .modal-contenido {
+        width: 95%;
         padding: 15px;
-        max-width: 90%;
     }
 
-    body.celular .contador-texto-fijo {
-        font-size: 1.8rem;
-        margin-bottom: 10px;
-    }
-
-    body.celular .tiempo-unidad {
-        min-width: 60px;
-        padding: 8px 12px;
-    }
-
-    body.celular .tiempo-valor {
-        font-size: 1.2rem;
-    }
-
-    body.celular .tiempo-etiqueta {
-        font-size: 0.8rem;
+    body.celular .modal-contenido p {
+        font-size: 1rem;
     }
   </style>
 </head>
 <body class="dark-mode">
-  <div class="contador-tiempo" id="contadorTiempo">
-      <span class="contador-texto-fijo">Nuestro tiempo juntos</span>
-      <div class="tiempo-dinamico" id="tiempoDinamico">
-          <div class="tiempo-unidad">
-              <span class="tiempo-valor" id="dias">0</span>
-              <div class="tiempo-etiqueta">Días</div>
-          </div>
-          <div class="tiempo-unidad">
-              <span class="tiempo-valor" id="horas">0</span>
-              <div class="tiempo-etiqueta">Horas</div>
-          </div>
-          <div class="tiempo-unidad">
-              <span class="tiempo-valor" id="minutos">0</span>
-              <div class="tiempo-etiqueta">Minutos</div>
-          </div>
+  <!-- Cielo de Estrellas -->
+  <div class="cielo-estrellas">
+      <span class="cielo-titulo">Nuestras estrellas</span>
+      <canvas id="cieloCanvas"></canvas>
+  </div>
+  <div class="modal-estrella" id="modalEstrella">
+      <div class="modal-contenido">
+          <p id="mensajeEstrella"></p>
+          <button onclick="cerrarModal()">Cerrar</button>
       </div>
   </div>
 
@@ -1047,6 +1061,8 @@
         const isDarkMode = document.body.classList.contains('dark-mode');
         modoBtn.innerHTML = `<i class="fa-solid ${isDarkMode ? 'fa-moon' : 'fa-sun'}"></i>`;
         document.querySelector('.reproductor').classList.toggle('dark-mode', isDarkMode);
+        // Actualizar el cielo de estrellas al cambiar de modo
+        initCieloEstrellas();
     });
 
     // Referencias a elementos del DOM para el reproductor
@@ -1137,7 +1153,7 @@
                 currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
                 loadSong(currentSongIndex);
             } else {
-                audio.currentTime = 0; // Restart current song
+                audio.currentTime = 0;
             }
             if (isPlaying) {
                 audio.play();
@@ -1201,7 +1217,7 @@
         updateVolumeIcon();
         volRange.style.backgroundSize = `${volRange.value * 100}% 100%`;
       });
-      volRange.value = 0.1; // Set default to 10%
+      volRange.value = 0.1;
       audio.volume = volRange.value;
       volRange.style.backgroundSize = `${volRange.value * 100}% 100%`;
     }
@@ -1214,7 +1230,7 @@
           volIcon.classList.remove('fa-volume-high', 'fa-volume-low');
           volIcon.classList.add('fa-volume-mute');
       } else {
-          audio.volume = volRange.value || 0.1; // Restore previous volume or 10% default
+          audio.volume = volRange.value || 0.1;
           updateVolumeIcon();
       }
       volRange.style.backgroundSize = `${volRange.value * 100}% 100%`;
@@ -1228,106 +1244,166 @@
     // Cargar la primera canción al iniciar
     loadSong(currentSongIndex);
 
-    // LÓGICA DEL CONTADOR VISUAL MEJORADO CON PERSISTENCIA
-    const diasSpan = document.getElementById('dias');
-    const horasSpan = document.getElementById('horas');
-    const minutosSpan = document.getElementById('minutos');
+    // LÓGICA DEL CIELO DE ESTRELLAS
+    const cieloCanvas = document.getElementById('cieloCanvas');
+    const ctx = cieloCanvas.getContext('2d');
+    const modalEstrella = document.getElementById('modalEstrella');
+    const mensajeEstrella = document.getElementById('mensajeEstrella');
+    const modalContenido = modalEstrella.querySelector('.modal-contenido');
 
-    // Función para calcular el tiempo transcurrido desde la última visita
-    function getPersistentTime() {
-      const savedTime = localStorage.getItem('lastVisitTime');
-      const savedSeconds = localStorage.getItem('totalSecondsTogether') || 0;
-      const now = new Date().getTime();
-      const baseTime = new Date('2025-05-16T23:42:00-05:00').getTime(); // Fecha base: 16 de mayo de 2025, 23:42:00
-      if (savedTime) {
-        const timeDiff = Math.floor((now - savedTime) / 1000); // Diferencia en segundos desde la última visita
-        return parseInt(savedSeconds) + timeDiff;
-      }
-      return Math.floor((now - baseTime) / 1000); // Diferencia desde el punto base inicial
+    // Mensajes para las estrellas
+    const mensajesEstrellas = [
+        'La noche en que jugamos Valorant en Ascent y tu risa se convirtió en mi melodía favorita.',
+        'El primer “te quiero” que tembló en mi corazón antes de escribirlo, porque ya eras todo para mí.',
+        'Eres mi estrella más brillante, Mariana, y cada día contigo ilumina mi mundo.',
+        'Cuando vimos Ladybug juntos, supe que cualquier momento contigo se siente como magia.',
+        'Deseo que nuestro amor siga creciendo, como un cielo lleno de estrellas infinitas.',
+        'Gracias por este primer mes, mi amor; cada estrella aquí lleva tu nombre.'
+    ];
+
+    let estrellas = [];
+    let isDarkMode = document.body.classList.contains('dark-mode');
+
+    function resizeCanvas() {
+        cieloCanvas.width = cieloCanvas.parentElement.offsetWidth;
+        cieloCanvas.height = cieloCanvas.parentElement.offsetHeight;
     }
 
-    let totalSecondsTogether = getPersistentTime();
-    localStorage.setItem('totalSecondsTogether', totalSecondsTogether);
-    localStorage.setItem('lastVisitTime', new Date().getTime());
-
-    function updateCounter() {
-      totalSecondsTogether++;
-      localStorage.setItem('totalSecondsTogether', totalSecondsTogether);
-      localStorage.setItem('lastVisitTime', new Date().getTime());
-
-      const days = Math.floor(totalSecondsTogether / (24 * 60 * 60));
-      const hours = Math.floor((totalSecondsTogether % (24 * 60 * 60)) / (60 * 60));
-      const minutes = Math.floor((totalSecondsTogether % (60 * 60)) / 60);
-
-      // Validación para asegurar 30 días, 18 horas, 10 minutos el 16 de junio de 2025 a las 18:02
-      const now = new Date();
-      const targetDate = new Date('2025-06-16T18:02:00-05:00');
-      if (now <= targetDate && (days > 30 || (days === 30 && (hours > 18 || (hours === 18 && minutes > 10))))) {
-        diasSpan.textContent = `30`;
-        horasSpan.textContent = `18`;
-        minutosSpan.textContent = `10`;
-      } else {
-        diasSpan.textContent = days;
-        horasSpan.textContent = hours < 10 ? `0${hours}` : hours;
-        minutosSpan.textContent = minutes < 10 ? `0${minutes}` : minutes;
-      }
+    function crearEstrellas() {
+        estrellas = [];
+        const numEstrellas = 10;
+        for (let i = 0; i < numEstrellas; i++) {
+            estrellas.push({
+                x: Math.random() * cieloCanvas.width,
+                y: Math.random() * (cieloCanvas.height - 20) + 20,
+                radius: Math.random() * 2 + 1,
+                opacity: Math.random() * 0.5 + 0.5,
+                mensajeIndex: Math.floor(Math.random() * mensajesEstrellas.length)
+            });
+        }
     }
+
+    function dibujarCielo() {
+        ctx.clearRect(0, 0, cieloCanvas.width, cieloCanvas.height);
+        // Fondo degradado
+        const gradient = ctx.createLinearGradient(0, 0, 0, cieloCanvas.height);
+        if (isDarkMode) {
+            gradient.addColorStop(0, '#1a1a2a');
+            gradient.addColorStop(1, '#3e3d4f');
+        } else {
+            gradient.addColorStop(0, '#d2a6fa');
+            gradient.addColorStop(1, '#9370db');
+        }
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, cieloCanvas.width, cieloCanvas.height);
+
+        // Dibujar estrellas
+        estrellas.forEach(estrella => {
+            ctx.beginPath();
+            ctx.arc(estrella.x, estrella.y, estrella.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${estrella.opacity})`;
+            ctx.fill();
+            ctx.closePath();
+        });
+    }
+
+    function animarCielo() {
+        estrellas.forEach(estrella => {
+            estrella.opacity = 0.5 + Math.sin(Date.now() * 0.002 + estrella.x) * 0.3;
+        });
+        dibujarCielo();
+        requestAnimationFrame(animarCielo);
+    }
+
+    function initCieloEstrellas() {
+        isDarkMode = document.body.classList.contains('dark-mode');
+        resizeCanvas();
+        crearEstrellas();
+        dibujarCielo();
+        animarCielo();
+    }
+
+    cieloCanvas.addEventListener('click', (e) => {
+        const rect = cieloCanvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const estrellaClicada = estrellas.find(estrella => {
+            const dx = x - estrella.x;
+            const dy = y - estrella.y;
+            return Math.sqrt(dx * dx + dy * dy) < estrella.radius + 5;
+        });
+
+        if (estrellaClicada) {
+            mensajeEstrella.textContent = mensajesEstrellas[estrellaClicada.mensajeIndex];
+            modalEstrella.style.display = 'flex';
+            setTimeout(() => modalContenido.classList.add('mostrar'), 50);
+            // Regenerar estrellas para nueva interacción
+            crearEstrellas();
+        }
+    });
+
+    window.cerrarModal = () => {
+        modalContenido.classList.remove('mostrar');
+        setTimeout(() => modalEstrella.style.display = 'none', 300);
+    };
+
+    window.addEventListener('resize', resizeCanvas);
 
     // Asegurarse de que el script se ejecuta después de que el DOM esté cargado
     document.addEventListener('DOMContentLoaded', (event) => {
-      const pantallaInicio = document.getElementById('pantalla-inicio');
-      const contenidoPrincipal = document.getElementById('contenido-principal');
-      const body = document.body;
-      let isReproductorMaximized = false;
+        const pantallaInicio = document.getElementById('pantalla-inicio');
+        const contenidoPrincipal = document.getElementById('contenido-principal');
+        const body = document.body;
+        let isReproductorMaximized = false;
 
-      // Seleccionar dispositivo
-      window.seleccionarDispositivo = (tipo) => {
-          if (tipo === 'celular') {
-              body.classList.add('celular');
-          } else {
-              body.classList.remove('celular');
-          }
-          pantallaInicio.classList.add('transicion-lila');
-          setTimeout(() => {
-              pantallaInicio.classList.add('hidden');
-              contenidoPrincipal.style.display = 'block';
-              setTimeout(() => {
-                  contenidoPrincipal.style.opacity = '1';
-                  currentSongIndex = 0;
-                  loadSong(currentSongIndex);
-                  audio.play().then(() => {
-                      isPlaying = true;
-                      btnReproducirPausar.innerHTML = '<i class="fa-solid fa-pause"></i>';
-                  }).catch(error => console.error('Autoplay failed:', error));
-              }, 400);
-          }, 400);
-      };
+        // Iniciar el cielo de estrellas
+        initCieloEstrellas();
 
-      // Toggle maximizado/minimizado del reproductor en móvil
-      const reproductor = document.querySelector('.reproductor');
-      reproductor.addEventListener('click', (event) => {
-          if (body.classList.contains('celular')) {
-              const isClickOnControls = event.target.closest('.controles') || event.target.closest('.barra');
-              if (!isClickOnControls) {
-                  reproductor.classList.toggle('maximized');
-                  isReproductorMaximized = reproductor.classList.contains('maximized');
-              }
-          }
-      });
+        // Seleccionar dispositivo
+        window.seleccionarDispositivo = (tipo) => {
+            if (tipo === 'celular') {
+                body.classList.add('celular');
+            } else {
+                body.classList.remove('celular');
+            }
+            pantallaInicio.classList.add('transicion-lila');
+            setTimeout(() => {
+                pantallaInicio.classList.add('hidden');
+                contenidoPrincipal.style.display = 'block';
+                setTimeout(() => {
+                    contenidoPrincipal.style.opacity = '1';
+                    currentSongIndex = 0;
+                    loadSong(currentSongIndex);
+                    audio.play().then(() => {
+                        isPlaying = true;
+                        btnReproducirPausar.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                    }).catch(error => console.error('Autoplay failed:', error));
+                }, 400);
+            }, 400);
+        };
 
-      // Cerrar el reproductor maximizado si se hace clic fuera (solo en celular)
-      document.addEventListener('click', (event) => {
-          if (body.classList.contains('celular') && isReproductorMaximized) {
-              if (!reproductor.contains(event.target)) {
-                  reproductor.classList.remove('maximized');
-                  isReproductorMaximized = false;
-              }
-          }
-      });
+        // Toggle maximizado/minimizado del reproductor en móvil
+        const reproductor = document.querySelector('.reproductor');
+        reproductor.addEventListener('click', (event) => {
+            if (body.classList.contains('celular')) {
+                const isClickOnControls = event.target.closest('.controles') || event.target.closest('.barra');
+                if (!isClickOnControls) {
+                    reproductor.classList.toggle('maximized');
+                    isReproductorMaximized = reproductor.classList.contains('maximized');
+                }
+            }
+        });
 
-      // Iniciar el contador de tiempo
-      updateCounter();
-      setInterval(updateCounter, 1000);
+        // Cerrar el reproductor maximizado si se hace clic fuera (solo en celular)
+        document.addEventListener('click', (event) => {
+            if (body.classList.contains('celular') && isReproductorMaximized) {
+                if (!reproductor.contains(event.target)) {
+                    reproductor.classList.remove('maximized');
+                    isReproductorMaximized = false;
+                }
+            }
+        });
     });
   </script>
 </body>
