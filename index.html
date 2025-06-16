@@ -782,61 +782,113 @@
       transition: opacity 0.4s ease-in-out;
     }
 
-    /* Cielo de Estrellas */
-    .cielo-estrellas {
+    /* Corazón animado */
+    .corazon-animado {
         position: fixed;
         top: 20px;
         left: 20px;
-        width: 300px;
-        height: 150px;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(15px);
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        width: 60px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         z-index: 100;
-        overflow: hidden;
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.7s ease-in-out;
+        transition: transform 0.3s ease-in-out, background 0.7s ease-in-out, box-shadow 0.3s ease-in-out;
+        cursor: pointer;
     }
 
-    .cielo-estrellas:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    .corazon-animado:hover {
+        transform: scale(1.1);
         background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
 
-    body.dark-mode .cielo-estrellas {
-        background: rgba(30, 30, 40, 0.85);
+    body.dark-mode .corazon-animado {
+        background: rgba(30, 30, 40, 0.7);
     }
 
-    body.dark-mode .cielo-estrellas:hover {
+    body.dark-mode .corazon-animado:hover {
         background: rgba(30, 30, 40, 0.9);
     }
 
-    .cielo-estrellas canvas {
-        width: 100%;
-        height: 100%;
-        display: block;
+    .corazon-animado svg {
+        width: 50px;
+        height: 50px;
+        fill: rgba(255, 105, 180, 0.3);
+        stroke: #9370db;
+        stroke-width: 2;
+        animation: latido 2s ease-in-out infinite;
+        transition: stroke 0.7s ease-in-out;
     }
 
-    .cielo-titulo {
+    body.dark-mode .corazon-animado svg {
+        stroke: #ffda66;
+        fill: rgba(255, 192, 203, 0.3);
+    }
+
+    @keyframes latido {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+
+    .corazon-titulo {
         position: absolute;
-        top: 5px;
-        left: 0;
-        right: 0;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
         font-family: 'Great Vibes', cursive;
-        font-size: 1.5rem;
-        color: #6a5acd;
-        text-align: center;
+        font-size: 1.2rem;
+        color: #9370db;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        transition: color 0.7s ease-in-out;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out, color 0.7s ease-in-out;
     }
 
-    body.dark-mode .cielo-titulo {
+    .corazon-animado:hover .corazon-titulo {
+        opacity: 1;
+    }
+
+    body.dark-mode .corazon-titulo {
         color: #ffda66;
     }
 
+    .corazon-destellos {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    .destello {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background: #ff69b4;
+        border-radius: 50%;
+        opacity: 0;
+        animation: destello 1s ease-out forwards;
+    }
+
+    body.dark-mode .destello {
+        background: #ffda66;
+    }
+
+    @keyframes destello {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+
     /* Modal para los mensajes */
-    .modal-estrella {
+    .modal-corazon {
         display: none;
         position: fixed;
         top: 0;
@@ -861,6 +913,7 @@
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         transition: transform 0.3s ease-in-out;
         transform: scale(0.8);
+        border: 2px solid #9370db;
     }
 
     .modal-contenido.mostrar {
@@ -869,11 +922,12 @@
 
     body.dark-mode .modal-contenido {
         background: rgba(30, 30, 40, 0.9);
+        border-color: #ffda66;
     }
 
     .modal-contenido p {
-        font-family: 'Quicksand', sans-serif;
-        font-size: 1.1rem;
+        font-family: 'Dancing Script', cursive;
+        font-size: 1.3rem;
         color: #555;
         line-height: 1.6;
         margin-bottom: 20px;
@@ -908,15 +962,21 @@
         background: #e0b400;
     }
 
-    body.celular .cielo-estrellas {
-        width: 200px;
-        height: 100px;
+    body.celular .corazon-animado {
+        width: 50px;
+        height: 50px;
         top: 10px;
         left: 10px;
     }
 
-    body.celular .cielo-titulo {
-        font-size: 1.2rem;
+    body.celular .corazon-animado svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    body.celular .corazon-titulo {
+        font-size: 1rem;
+        top: -15px;
     }
 
     body.celular .modal-contenido {
@@ -925,19 +985,22 @@
     }
 
     body.celular .modal-contenido p {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
   </style>
 </head>
 <body class="dark-mode">
-  <!-- Cielo de Estrellas -->
-  <div class="cielo-estrellas">
-      <span class="cielo-titulo">Nuestras estrellas</span>
-      <canvas id="cieloCanvas"></canvas>
+  <!-- Corazón animado -->
+  <div class="corazon-animado" id="corazonAnimado">
+      <span class="corazon-titulo">Nuestro amor</span>
+      <svg viewBox="0 0 24 24">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3c3.08 0 5.5 2.42 5.5 5.5 0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
+      <div class="corazon-destellos" id="corazonDestellos"></div>
   </div>
-  <div class="modal-estrella" id="modalEstrella">
+  <div class="modal-corazon" id="modalCorazon">
       <div class="modal-contenido">
-          <p id="mensajeEstrella"></p>
+          <p id="mensajeCorazon"></p>
           <button onclick="cerrarModal()">Cerrar</button>
       </div>
   </div>
@@ -1061,8 +1124,6 @@
         const isDarkMode = document.body.classList.contains('dark-mode');
         modoBtn.innerHTML = `<i class="fa-solid ${isDarkMode ? 'fa-moon' : 'fa-sun'}"></i>`;
         document.querySelector('.reproductor').classList.toggle('dark-mode', isDarkMode);
-        // Actualizar el cielo de estrellas al cambiar de modo
-        initCieloEstrellas();
     });
 
     // Referencias a elementos del DOM para el reproductor
@@ -1244,149 +1305,45 @@
     // Cargar la primera canción al iniciar
     loadSong(currentSongIndex);
 
-    // LÓGICA DEL CIELO DE ESTRELLAS
-    const cieloCanvas = document.getElementById('cieloCanvas');
-    const ctx = cieloCanvas.getContext('2d');
-    const modalEstrella = document.getElementById('modalEstrella');
-    const mensajeEstrella = document.getElementById('mensajeEstrella');
-    const modalContenido = modalEstrella.querySelector('.modal-contenido');
+    // LÓGICA DEL CORAZÓN ANIMADO
+    const corazonAnimado = document.getElementById('corazonAnimado');
+    const corazonDestellos = document.getElementById('corazonDestellos');
+    const modalCorazon = document.getElementById('modalCorazon');
+    const mensajeCorazon = document.getElementById('mensajeCorazon');
+    const modalContenido = modalCorazon.querySelector('.modal-contenido');
 
-    // Mensajes para las estrellas
-    const mensajesEstrellas = [
-        'La noche en que jugamos Valorant en Ascent y tu risa se convirtió en mi melodía favorita.',
-        'El primer “te quiero” que tembló en mi corazón antes de escribirlo, porque ya eras todo para mí.',
-        'Eres mi estrella más brillante, Mariana, y cada día contigo ilumina mi mundo.',
-        'Cuando vimos Ladybug juntos, supe que cualquier momento contigo se siente como magia.',
-        'Deseo que nuestro amor siga creciendo, como un cielo lleno de estrellas infinitas.',
-        'Gracias por este primer mes, mi amor; cada estrella aquí lleva tu nombre.'
-    ];
+    // Mensaje fijo
+    const mensajeFijo = 'TE AMO MARIANA AAAAAAAAA, LA VIDA ES MUY BONITA GRACIAS A TI :D';
 
-    // GIFs de amor
-    const gifsAmor = [
-        'https://media.giphy.com/media/3ohzdRoOp1FUY2ONkA/giphy.gif',
-        'https://media.tenor.com/images/9f0b8e8f7b7b7b7b7b7b7b7b7b7b7b7b/tenor.gif',
-        'https://media.giphy.com/media/12jHn7s8OaE8M/giphy.gif',
-        'https://media.tenor.com/images/8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c/tenor.gif',
-        'https://media.giphy.com/media/26tPplGW6fgoMZmVQ/giphy.gif'
-    ];
-
-    let estrellas = [];
-    let isDarkMode = document.body.classList.contains('dark-mode');
-    let gifImages = [];
-
-    function resizeCanvas() {
-        cieloCanvas.width = cieloCanvas.parentElement.offsetWidth;
-        cieloCanvas.height = cieloCanvas.parentElement.offsetHeight;
+    function generarDestellos() {
+        const destello = document.createElement('div');
+        destello.classList.add('destello');
+        destello.style.left = `${Math.random() * 50 + 5}px`;
+        destello.style.top = `${Math.random() * 50 + 5}px`;
+        corazonDestellos.appendChild(destello);
+        setTimeout(() => destello.remove(), 1000);
     }
 
-    function crearEstrellas() {
-        estrellas = [];
-        const numEstrellas = 20;
-        for (let i = 0; i < numEstrellas; i++) {
-            const isGif = i < gifsAmor.length; // Las primeras 5 estrellas son GIFs
-            estrellas.push({
-                x: Math.random() * cieloCanvas.width,
-                y: Math.random() * (cieloCanvas.height - 30) + 30,
-                radius: isGif ? 7.5 : Math.random() * 2 + 1, // GIFs más grandes
-                opacity: Math.random() * 0.5 + 0.5,
-                mensajeIndex: Math.floor(Math.random() * mensajesEstrellas.length),
-                isGif: isGif,
-                gifIndex: isGif ? i : null
-            });
-        }
+    function initCorazonAnimado() {
+        // Generar destellos cada 2 segundos
+        setInterval(generarDestellos, 2000);
     }
 
-    function cargarGifs() {
-        gifImages = [];
-        gifsAmor.forEach(url => {
-            const img = new Image();
-            img.src = url;
-            img.crossOrigin = 'anonymous';
-            img.onload = () => {
-                gifImages.push(img);
-                if (gifImages.length === gifsAmor.length) {
-                    dibujarCielo();
-                }
-            };
-            img.onerror = () => {
-                console.warn(`No se pudo cargar el GIF: ${url}`);
-                gifImages.push(null); // Placeholder en caso de error
-            };
-        });
-    }
-
-    function dibujarCielo() {
-        ctx.clearRect(0, 0, cieloCanvas.width, cieloCanvas.height);
-        // Fondo degradado
-        const gradient = ctx.createLinearGradient(0, 0, 0, cieloCanvas.height);
-        if (isDarkMode) {
-            gradient.addColorStop(0, '#1a1a2a');
-            gradient.addColorStop(1, '#3e3d4f');
-        } else {
-            gradient.addColorStop(0, '#d2a6fa');
-            gradient.addColorStop(1, '#9370db');
-        }
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, cieloCanvas.width, cieloCanvas.height);
-
-        // Dibujar estrellas y GIFs
-        estrellas.forEach(estrella => {
-            ctx.globalAlpha = estrella.opacity;
-            if (estrella.isGif && gifImages[estrella.gifIndex]) {
-                ctx.drawImage(gifImages[estrella.gifIndex], estrella.x - estrella.radius, estrella.y - estrella.radius, estrella.radius * 2, estrella.radius * 2);
-            } else {
-                ctx.beginPath();
-                ctx.arc(estrella.x, estrella.y, estrella.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, 1)`;
-                ctx.fill();
-                ctx.closePath();
-            }
-            ctx.globalAlpha = 1;
-        });
-    }
-
-    function animarCielo() {
-        estrellas.forEach(estrella => {
-            estrella.opacity = 0.5 + Math.sin(Date.now() * 0.002 + estrella.x) * 0.3;
-        });
-        dibujarCielo();
-        requestAnimationFrame(animarCielo);
-    }
-
-    function initCieloEstrellas() {
-        isDarkMode = document.body.classList.contains('dark-mode');
-        resizeCanvas();
-        cargarGifs();
-        crearEstrellas();
-        animarCielo();
-    }
-
-    cieloCanvas.addEventListener('click', (e) => {
-        const rect = cieloCanvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const estrellaClicada = estrellas.find(estrella => {
-            const dx = x - estrella.x;
-            const dy = y - estrella.y;
-            return Math.sqrt(dx * dx + dy * dy) < estrella.radius + 5;
-        });
-
-        if (estrellaClicada) {
-            mensajeEstrella.textContent = mensajesEstrellas[estrellaClicada.mensajeIndex];
-            modalEstrella.style.display = 'flex';
-            setTimeout(() => modalContenido.classList.add('mostrar'), 50);
-            // Regenerar estrellas para nueva interacción
-            crearEstrellas();
+    corazonAnimado.addEventListener('click', () => {
+        // Mostrar siempre el mensaje fijo
+        mensajeCorazon.textContent = mensajeFijo;
+        modalCorazon.style.display = 'flex';
+        setTimeout(() => modalContenido.classList.add('mostrar'), 50);
+        // Generar más destellos al hacer clic
+        for (let i = 0; i < 5; i++) {
+            setTimeout(generarDestellos, i * 100);
         }
     });
 
     window.cerrarModal = () => {
         modalContenido.classList.remove('mostrar');
-        setTimeout(() => modalEstrella.style.display = 'none', 300);
+        setTimeout(() => modalCorazon.style.display = 'none', 300);
     };
-
-    window.addEventListener('resize', resizeCanvas);
 
     // Asegurarse de que el script se ejecuta después de que el DOM esté cargado
     document.addEventListener('DOMContentLoaded', (event) => {
@@ -1395,8 +1352,8 @@
         const body = document.body;
         let isReproductorMaximized = false;
 
-        // Iniciar el cielo de estrellas
-        initCieloEstrellas();
+        // Iniciar el corazón animado
+        initCorazonAnimado();
 
         // Seleccionar dispositivo
         window.seleccionarDispositivo = (tipo) => {
