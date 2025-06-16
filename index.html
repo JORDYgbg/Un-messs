@@ -1159,13 +1159,13 @@
     volIcon.addEventListener('click', () => {
       isMuted = !isMuted;
       if (isMuted) {
-        audio.volume = 0;
-        volRange.value = 0;
-        volIcon.classList.remove('fa-volume-high', 'fa-volume-low');
-        volIcon.classList.add('fa-volume-mute');
+          audio.volume = 0;
+          volRange.value = 0;
+          volIcon.classList.remove('fa-volume-high', 'fa-volume-low');
+          volIcon.classList.add('fa-volume-mute');
       } else {
-        audio.volume = volRange.value || 0.1; // Default to 10% if unmuted
-        updateVolumeIcon();
+          audio.volume = volRange.value || 0.1; // Restore to previous volume or 10% default
+          updateVolumeIcon();
       }
       volRange.style.backgroundSize = `${volRange.value * 100}% 100%`;
       volIcon.classList.add('pulse');
@@ -1184,7 +1184,7 @@
     const horasSpan = document.getElementById('horas');
     const minutosSpan = document.getElementById('minutos');
     const segundosSpan = document.getElementById('segundos');
-    let totalSecondsTogether = (20 * 60 * 60) + (12 * 60); // 20 hours + 12 minutes
+    let totalSecondsTogether = (20 * 60 * 60) + (34 * 60); // 20 hours + 34 minutes
 
     function updateCounter() {
         totalSecondsTogether++;
