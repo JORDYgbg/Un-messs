@@ -787,8 +787,8 @@
         position: fixed;
         top: 20px;
         left: 20px;
-        width: 200px;
-        height: 100px;
+        width: 300px;
+        height: 150px;
         background: rgba(255, 255, 255, 0.85);
         backdrop-filter: blur(15px);
         border-radius: 15px;
@@ -824,7 +824,7 @@
         left: 0;
         right: 0;
         font-family: 'Great Vibes', cursive;
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         color: #6a5acd;
         text-align: center;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -909,14 +909,14 @@
     }
 
     body.celular .cielo-estrellas {
-        width: 150px;
-        height: 75px;
+        width: 200px;
+        height: 100px;
         top: 10px;
         left: 10px;
     }
 
     body.celular .cielo-titulo {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 
     body.celular .modal-contenido {
@@ -1261,8 +1261,18 @@
         'Gracias por este primer mes, mi amor; cada estrella aquí lleva tu nombre.'
     ];
 
+    // GIFs de amor
+    const gifsAmor = [
+        'https://media.giphy.com/media/3ohzdRoOp1FUY2ONkA/giphy.gif',
+        'https://media.tenor.com/images/9f0b8e8f7b7b7b7b7b7b7b7b7b7b7b7b/tenor.gif',
+        'https://media.giphy.com/media/12jHn7s8OaE8M/giphy.gif',
+        'https://media.tenor.com/images/8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c/tenor.gif',
+        'https://media.giphy.com/media/26tPplGW6fgoMZmVQ/giphy.gif'
+    ];
+
     let estrellas = [];
     let isDarkMode = document.body.classList.contains('dark-mode');
+    let gifImages = [];
 
     function resizeCanvas() {
         cieloCanvas.width = cieloCanvas.parentElement.offsetWidth;
@@ -1271,16 +1281,38 @@
 
     function crearEstrellas() {
         estrellas = [];
-        const numEstrellas = 10;
+        const numEstrellas = 20;
         for (let i = 0; i < numEstrellas; i++) {
+            const isGif = i < gifsAmor.length; // Las primeras 5 estrellas son GIFs
             estrellas.push({
                 x: Math.random() * cieloCanvas.width,
-                y: Math.random() * (cieloCanvas.height - 20) + 20,
-                radius: Math.random() * 2 + 1,
+                y: Math.random() * (cieloCanvas.height - 30) + 30,
+                radius: isGif ? 7.5 : Math.random() * 2 + 1, // GIFs más grandes
                 opacity: Math.random() * 0.5 + 0.5,
-                mensajeIndex: Math.floor(Math.random() * mensajesEstrellas.length)
+                mensajeIndex: Math.floor(Math.random() * mensajesEstrellas.length),
+                isGif: isGif,
+                gifIndex: isGif ? i : null
             });
         }
+    }
+
+    function cargarGifs() {
+        gifImages = [];
+        gifsAmor.forEach(url => {
+            const img = new Image();
+            img.src = url;
+            img.crossOrigin = 'anonymous';
+            img.onload = () => {
+                gifImages.push(img);
+                if (gifImages.length === gifsAmor.length) {
+                    dibujarCielo();
+                }
+            };
+            img.onerror = () => {
+                console.warn(`No se pudo cargar el GIF: ${url}`);
+                gifImages.push(null); // Placeholder en caso de error
+            };
+        });
     }
 
     function dibujarCielo() {
@@ -1297,13 +1329,19 @@
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, cieloCanvas.width, cieloCanvas.height);
 
-        // Dibujar estrellas
+        // Dibujar estrellas y GIFs
         estrellas.forEach(estrella => {
-            ctx.beginPath();
-            ctx.arc(estrella.x, estrella.y, estrella.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${estrella.opacity})`;
-            ctx.fill();
-            ctx.closePath();
+            ctx.globalAlpha = estrella.opacity;
+            if (estrella.isGif && gifImages[estrella.gifIndex]) {
+                ctx.drawImage(gifImages[estrella.gifIndex], estrella.x - estrella.radius, estrella.y - estrella.radius, estrella.radius * 2, estrella.radius * 2);
+            } else {
+                ctx.beginPath();
+                ctx.arc(estrella.x, estrella.y, estrella.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, 1)`;
+                ctx.fill();
+                ctx.closePath();
+            }
+            ctx.globalAlpha = 1;
         });
     }
 
@@ -1318,8 +1356,8 @@
     function initCieloEstrellas() {
         isDarkMode = document.body.classList.contains('dark-mode');
         resizeCanvas();
+        cargarGifs();
         crearEstrellas();
-        dibujarCielo();
         animarCielo();
     }
 
