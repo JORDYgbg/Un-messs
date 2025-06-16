@@ -298,6 +298,21 @@
     .corazon:nth-child(13n) { animation-duration: 9.8s; animation-delay: -4.2s; font-size: 1.05rem; opacity: 0.7; }
     .corazon:nth-child(14n) { animation-duration: 12.3s; animation-delay: -1.2s; font-size: 2.1rem; opacity: 1.0; }
     .corazon:nth-child(15n) { animation-duration: 8.5s; animation-delay: -3.7s; font-size: 1.5rem; opacity: 0.85; }
+    .corazon:nth-child(16n) { animation-duration: 10s; animation-delay: -1.5s; font-size: 1.6rem; opacity: 0.9; }
+    .corazon:nth-child(17n) { animation-duration: 11s; animation-delay: -2.5s; font-size: 1.3rem; opacity: 0.8; }
+    .corazon:nth-child(18n) { animation-duration: 9s; animation-delay: -3.5s; font-size: 1.8rem; opacity: 1.0; }
+    .corazon:nth-child(19n) { animation-duration: 12s; animation-delay: -0.5s; font-size: 1.2rem; opacity: 0.7; }
+    .corazon:nth-child(20n) { animation-duration: 13s; animation-delay: -4.5s; font-size: 2.0rem; opacity: 0.95; }
+    .corazon:nth-child(21n) { animation-duration: 8s; animation-delay: -2.0s; font-size: 1.4rem; opacity: 0.85; }
+    .corazon:nth-child(22n) { animation-duration: 10.5s; animation-delay: -3.0s; font-size: 1.7rem; opacity: 0.9; }
+    .corazon:nth-child(23n) { animation-duration: 9.5s; animation-delay: -1.0s; font-size: 1.1rem; opacity: 0.75; }
+    .corazon:nth-child(24n) { animation-duration: 14s; animation-delay: -2.0s; font-size: 1.9rem; opacity: 1.0; }
+    .corazon:nth-child(25n) { animation-duration: 7s; animation-delay: -0.5s; font-size: 1.5rem; opacity: 0.8; }
+    .corazon:nth-child(26n) { animation-duration: 11.5s; animation-delay: -3.5s; font-size: 1.6rem; opacity: 0.9; }
+    .corazon:nth-child(27n) { animation-duration: 10s; animation-delay: -1.5s; font-size: 1.3rem; opacity: 0.85; }
+    .corazon:nth-child(28n) { animation-duration: 12.5s; animation-delay: -2.5s; font-size: 1.8rem; opacity: 0.95; }
+    .corazon:nth-child(29n) { animation-duration: 8.5s; animation-delay: -4.0s; font-size: 1.2rem; opacity: 0.7; }
+    .corazon:nth-child(30n) { animation-duration: 13.5s; animation-delay: -0.5s; font-size: 2.1rem; opacity: 1.0; }
 
     @keyframes flotar {
       from {
@@ -466,7 +481,7 @@
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: #8a2be2;
+      background: #ffda66;
       cursor: pointer;
       box-shadow: 0 0 5px rgba(0,0,0,0.3);
       border: none;
@@ -489,7 +504,7 @@
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        background: #8a2be2;
+        background: #ffda66;
         cursor: pointer;
         box-shadow: 0 0 5px rgba(0,0,0,0.3);
         border: none;
@@ -599,6 +614,14 @@
     .controles #volRange::-moz-range-thumb:hover {
       transform: scale(1.2);
       box-shadow: 0 0 8px rgba(0,0,0,0.4);
+    }
+
+    .controles #btnRepetir.active {
+        color: #8a2be2;
+    }
+
+    body.dark-mode .controles #btnRepetir.active {
+        color: #ffda66;
     }
 
     @keyframes volumePulse {
@@ -890,7 +913,7 @@
     <button class="triste-btn" onclick="location.href='triste.html'">Cuando te sientas triste, presiona aquí</button>
     <button class="modo-btn"><i class="fa-solid fa-moon"></i></button>
 
-    <div class="reproductor">
+    <div class="reproductor dark-mode">
       <img src="img/cover.jpg" alt="Portada de la canción">
       <div class="titulo">
         <span id="tituloCancion"></span><br>
@@ -905,6 +928,7 @@
         <button id="btnAnterior"><i class="fa-solid fa-backward-step"></i></button>
         <button id="btnReproducirPausar"><i class="fa-solid fa-play"></i></button>
         <button id="btnSiguiente"><i class="fa-solid fa-forward-step"></i></button>
+        <button id="btnRepetir"><i class="fa-solid fa-repeat"></i></button>
         <i id="volIcon" class="fa-solid fa-volume-high"></i>
         <input type="range" id="volRange" min="0" max="1" step="0.01" value="0.7">
       </div>
@@ -958,7 +982,7 @@
     // Generar corazones flotantes
     function generarCorazones() {
         const corazonesContainer = document.querySelector('.corazones');
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 30; i++) {
             const corazon = document.createElement('div');
             corazon.classList.add('corazon');
             corazon.innerHTML = '❤️';
@@ -990,6 +1014,7 @@
     const coverArt = document.querySelector('.reproductor img');
     const btnAnterior = document.getElementById('btnAnterior');
     const btnSiguiente = document.getElementById('btnSiguiente');
+    const btnRepetir = document.getElementById('btnRepetir');
 
     // Lista de reproducción
     const playlist = [
@@ -1008,13 +1033,14 @@
       {
         title: 'Compartir',
         artist: 'Carla Morrison',
-        src: 'audio/sebatian-contigo.mp3',
+        src: 'audio/compartir.mp3',
         cover: 'audio/cover3.jpg'
       }
     ];
     let currentSongIndex = 0;
     let isPlaying = false;
     let isMuted = false;
+    let isRepeat = false;
 
     // Función para cargar la canción
     function loadSong(songIndex) {
@@ -1073,10 +1099,23 @@
     if (btnAnterior) {
         btnAnterior.addEventListener('click', playPreviousSong);
     }
+    if (btnRepetir) {
+        btnRepetir.addEventListener('click', () => {
+            isRepeat = !isRepeat;
+            audio.loop = isRepeat;
+            btnRepetir.classList.toggle('active', isRepeat);
+        });
+    }
 
-    // Evento 'ended' para pasar a la siguiente canción automáticamente
-    audio.loop = false;
-    audio.addEventListener('ended', playNextSong);
+    // Evento 'ended' para manejar fin de canción
+    audio.addEventListener('ended', () => {
+        if (!isRepeat) {
+            playNextSong();
+        } else {
+            audio.currentTime = 0;
+            audio.play();
+        }
+    });
 
     // Actualizar la barra de progreso y los tiempos
     audio.addEventListener('timeupdate', () => {
@@ -1192,19 +1231,25 @@
 
       // Seleccionar dispositivo
       window.seleccionarDispositivo = (tipo) => {
-        if (tipo === 'celular') {
-          body.classList.add('celular');
-        } else {
-          body.classList.remove('celular');
-        }
-        pantallaInicio.classList.add('transicion-lila');
-        setTimeout(() => {
-          pantallaInicio.classList.add('hidden');
-          contenidoPrincipal.style.display = 'block';
+          if (tipo === 'celular') {
+              body.classList.add('celular');
+          } else {
+              body.classList.remove('celular');
+          }
+          pantallaInicio.classList.add('transicion-lila');
           setTimeout(() => {
-            contenidoPrincipal.style.opacity = '1';
+              pantallaInicio.classList.add('hidden');
+              contenidoPrincipal.style.display = 'block';
+              setTimeout(() => {
+                  contenidoPrincipal.style.opacity = '1';
+                  currentSongIndex = 0;
+                  loadSong(currentSongIndex);
+                  audio.play().then(() => {
+                      isPlaying = true;
+                      btnReproducirPausar.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                  }).catch(error => console.error('Autoplay failed:', error));
+              }, 400);
           }, 400);
-        }, 400);
       };
 
       // Toggle maximizado/minimizado del reproductor en móvil
