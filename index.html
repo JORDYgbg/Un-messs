@@ -1214,7 +1214,7 @@
     const horasSpan = document.getElementById('horas');
     const minutosSpan = document.getElementById('minutos');
     const segundosSpan = document.getElementById('segundos');
-    let totalSecondsTogether = (20 * 60 * 60) + (34 * 60); // 20 hours + 34 minutes
+    let totalSecondsTogether = (21 * 60 * 60) + (20 * 60); // 21 hours + 20 minutes
 
     function updateCounter() {
         totalSecondsTogether++;
@@ -1267,7 +1267,7 @@
       };
 
       // Toggle maximizado/minimizado del reproductor en móvil
-      const reproductor = document.queryselector('.reproductor');
+      const reproductor = document.querySelector('.reproductor');
       reproductor.addEventListener('click', (event) => {
           if (body.classList.contains('celular')) {
               const isClickOnControls = event.target.closest('.controles') || event.target.closest('.barra');
