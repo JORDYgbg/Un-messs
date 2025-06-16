@@ -332,14 +332,14 @@
       position: fixed;
       top: 25px;
       right: 25px;
-      background: rgba(255,255,255,0.4);
+      background: linear-gradient(180deg, #f7e6ff 0%, #d2a6fa 50%, #9370db 100%);
       backdrop-filter: blur(12px);
       border-radius: 20px;
       padding: 15px;
       text-align: center;
       width: 80px;
       height: 80px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
       transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       overflow: hidden;
       display: flex;
@@ -351,7 +351,41 @@
     }
 
     .reproductor.dark-mode {
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .reproductor.dark-mode .titulo small {
+      color: #bbb;
+    }
+
+    .reproductor.dark-mode .tiempo {
+      color: #ccc;
+    }
+
+    .reproductor.dark-mode .barra {
+      background: #555;
+      background-image: linear-gradient(#ffda66, #ffda66);
+    }
+
+    .reproductor.dark-mode .controles button:hover {
+      color: #ffda66;
+    }
+
+    .reproductor.dark-mode .controles #volIcon:hover {
+      color: #ffda66;
+    }
+
+    .reproductor.dark-mode .controles #volRange {
+      background: #555;
+      background-image: linear-gradient(#ffda66, #ffda66);
+    }
+
+    .reproductor.dark-mode .controles #volRange::-webkit-slider-thumb {
+      background: #ffda66;
+    }
+
+    .reproductor.dark-mode .controles #volRange::-moz-range-thumb {
+      background: #ffda66;
     }
 
     .reproductor img {
@@ -360,7 +394,7 @@
       border-radius: 50%;
       margin-bottom: 0;
       animation: girar 5s linear infinite;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
       transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       object-fit: cover;
       filter: saturate(1);
@@ -379,13 +413,14 @@
     }
 
     .reproductor:hover {
+      background: linear-gradient(180deg, #f7e6ff 0%, #d2a6fa 50%, #9370db 100%);
       width: 260px;
       height: auto;
       padding: 20px;
       overflow: visible;
       align-items: stretch;
       cursor: default;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
     }
 
     .reproductor:hover img {
@@ -439,9 +474,6 @@
         font-size: 0.8em;
         color: #888;
     }
-    body.dark-mode .titulo small {
-        color: #bbb;
-    }
 
     .tiempo {
         display: flex;
@@ -451,9 +483,6 @@
         color: #666;
         margin-top: 5px;
         margin-bottom: 5px;
-    }
-    body.dark-mode .tiempo {
-        color: #ccc;
     }
 
     .barra {
@@ -1164,7 +1193,7 @@
           volIcon.classList.remove('fa-volume-high', 'fa-volume-low');
           volIcon.classList.add('fa-volume-mute');
       } else {
-          audio.volume = volRange.value || 0.1; // Restore to previous volume or 10% default
+          audio.volume = volRange.value || 0.1; // Restore previous volume or 10% default
           updateVolumeIcon();
       }
       volRange.style.backgroundSize = `${volRange.value * 100}% 100%`;
