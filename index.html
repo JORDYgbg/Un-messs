@@ -10,14 +10,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 
   <style>
-    /* Restablecimiento y estilos base */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    /* Custom text selection color */
     ::selection {
         background-color: #d2a6fa;
         color: #fff;
@@ -27,7 +25,6 @@
         color: #333;
     }
 
-    /* Estilo del cuerpo */
     body {
       font-family: 'Quicksand', sans-serif;
       background: linear-gradient(180deg, #f7e6ff 0%, #d2a6fa 50%, #9370db 100%);
@@ -58,13 +55,11 @@
         border: 2px solid #2a2a2a;
     }
 
-    /* Estilo del modo oscuro */
     body.dark-mode {
       background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 50%, #3e3d4f 100%);
       color: #f0f0f0;
     }
 
-    /* Estilos específicos para celular */
     body.celular {
       font-size: 1.1rem;
     }
@@ -152,7 +147,6 @@
         right: 20px;
     }
 
-    /* Estilo del encabezado */
     header {
       text-align: center;
       padding: 60px 20px 30px;
@@ -205,7 +199,6 @@
         filter: brightness(1.05);
     }
 
-    /* Botón "Si te sientes triste" */
     .triste-btn {
       position: fixed;
       bottom: 25px;
@@ -228,7 +221,6 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
-    /* Botón de cambio de modo oscuro/claro */
     .modo-btn {
       position: fixed;
       bottom: 25px;
@@ -264,7 +256,6 @@
         background-color: #e0b400;
     }
 
-    /* Animación de corazones flotantes */
     .corazones {
       position: fixed;
       top: 0;
@@ -329,7 +320,6 @@
       }
     }
 
-    /* Estilo del reproductor de música */
     .reproductor {
       position: fixed;
       top: 25px;
@@ -628,7 +618,6 @@
       animation: volumePulse 0.3s ease-in-out;
     }
 
-    /* Estilo de las secciones */
     section {
       padding: 60px 20px;
       text-align: center;
@@ -718,7 +707,6 @@
         color: #ffda66;
     }
 
-    /* Pantalla de bienvenida */
     #pantalla-inicio {
       position: fixed;
       top: 0;
@@ -784,7 +772,6 @@
       transition: opacity 0.4s ease-in-out;
     }
 
-    /* Corazón animado */
     .corazon-animado {
         position: fixed;
         top: 20px;
@@ -888,8 +875,6 @@
             opacity: 0;
         }
     }
-
-    /* Modal para los mensajes */
     .modal-corazon {
         display: none;
         position: fixed;
@@ -996,7 +981,6 @@
   </style>
 </head>
 <body class="dark-mode">
-  <!-- Corazón animado -->
   <div class="corazon-animado" id="corazonAnimado">
       <span class="corazon-titulo"></span>
       <svg viewBox="0 0 24 24">
@@ -1123,7 +1107,6 @@
     }
     generarCorazones();
 
-    // Toggle modo claro/oscuro
     const modoBtn = document.querySelector('.modo-btn');
     modoBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
@@ -1131,8 +1114,6 @@
         modoBtn.innerHTML = `<i class="fa-solid ${isDarkMode ? 'fa-moon' : 'fa-sun'}"></i>`;
         document.querySelector('.reproductor').classList.toggle('dark-mode', isDarkMode);
     });
-
-    // Referencias a elementos del DOM para el reproductor
     const audio = window.audio || new Audio();
     const btnReproducirPausar = document.getElementById('btnReproducirPausar');
     const barraProgreso = document.getElementById('barra-progreso');
@@ -1146,7 +1127,6 @@
     const btnAnterior = document.getElementById('btnAnterior');
     const btnSiguiente = document.getElementById('btnSiguiente');
 
-    // Lista de reproducción
     const playlist = [
       {
         title: 'Es Por Ti',
@@ -1171,7 +1151,6 @@
     let isPlaying = false;
     let isMuted = false;
 
-    // Función para cargar la canción
     function loadSong(songIndex) {
       const song = playlist[songIndex];
       audio.src = song.src;
@@ -1184,7 +1163,6 @@
       tiempoActualSpan.textContent = '0:00';
     }
 
-    // Función para reproducir o pausar
     function togglePlayPause() {
       if (isPlaying) {
         audio.pause();
@@ -1196,7 +1174,6 @@
       isPlaying = !isPlaying;
     }
 
-    // Función para avanzar a la siguiente canción
     function playNextSong() {
       currentSongIndex = (currentSongIndex + 1) % playlist.length;
       loadSong(currentSongIndex);
@@ -1207,7 +1184,6 @@
       }
     }
 
-    // Añadir event listeners para los botones de control
     if (btnReproducirPausar) {
         btnReproducirPausar.addEventListener('click', togglePlayPause);
     }
@@ -1230,10 +1206,8 @@
         });
     }
 
-    // Evento 'ended' para pasar a la siguiente canción automáticamente
     audio.addEventListener('ended', playNextSong);
 
-    // Actualizar la barra de progreso y los tiempos
     audio.addEventListener('timeupdate', () => {
       if (audio.currentTime) {
         const progressPercent = (audio.currentTime / audio.duration) * 100;
@@ -1256,13 +1230,11 @@
       barraProgreso.style.backgroundSize = '0% 100%';
     });
 
-    // Control de arrastre de la barra de progreso
     barraProgreso.addEventListener('input', () => {
       const seekTime = (barraProgreso.value / 100) * audio.duration;
       audio.currentTime = seekTime;
     });
 
-    // Control de volumen
     function updateVolumeIcon() {
       if (audio.volume === 0 || isMuted) {
         volIcon.classList.remove('fa-volume-high', 'fa-volume-low');
@@ -1305,20 +1277,16 @@
       setTimeout(() => volIcon.classList.remove('pulse'), 300);
     });
 
-    // Inicializar el icono de volumen
     updateVolumeIcon();
 
-    // Cargar la primera canción al iniciar
     loadSong(currentSongIndex);
 
-    // LÓGICA DEL CORAZÓN ANIMADO
     const corazonAnimado = document.getElementById('corazonAnimado');
     const corazonDestellos = document.getElementById('corazonDestellos');
     const modalCorazon = document.getElementById('modalCorazon');
     const mensajeCorazon = document.getElementById('mensajeCorazon');
     const modalContenido = modalCorazon.querySelector('.modal-contenido');
 
-    // Mensaje fijo
     const mensajeFijo = 'TE AMO MARIANA AAAAAAAAA, LA VIDA ES MUY BONITA GRACIAS A TI :D';
 
     function generarDestellos() {
@@ -1331,16 +1299,13 @@
     }
 
     function initCorazonAnimado() {
-        // Generar destellos cada 2 segundos
         setInterval(generarDestellos, 2000);
     }
 
     corazonAnimado.addEventListener('click', () => {
-        // Mostrar siempre el mensaje fijo
         mensajeCorazon.textContent = mensajeFijo;
         modalCorazon.style.display = 'flex';
         setTimeout(() => modalContenido.classList.add('mostrar'), 50);
-        // Generar más destellos al hacer clic
         for (let i = 0; i < 5; i++) {
             setTimeout(generarDestellos, i * 100);
         }
@@ -1351,17 +1316,14 @@
         setTimeout(() => modalCorazon.style.display = 'none', 300);
     };
 
-    // Asegurarse de que el script se ejecuta después de que el DOM esté cargado
     document.addEventListener('DOMContentLoaded', (event) => {
         const pantallaInicio = document.getElementById('pantalla-inicio');
         const contenidoPrincipal = document.getElementById('contenido-principal');
         const body = document.body;
         let isReproductorMaximized = false;
 
-        // Iniciar el corazón animado
         initCorazonAnimado();
 
-        // Seleccionar dispositivo
         window.seleccionarDispositivo = (tipo) => {
             if (tipo === 'celular') {
                 body.classList.add('celular');
@@ -1384,7 +1346,6 @@
             }, 400);
         };
 
-        // Toggle maximizado/minimizado del reproductor en móvil
         const reproductor = document.querySelector('.reproductor');
         reproductor.addEventListener('click', (event) => {
             if (body.classList.contains('celular')) {
@@ -1396,7 +1357,6 @@
             }
         });
 
-        // Cerrar el reproductor maximizado si se hace clic fuera (solo en celular)
         document.addEventListener('click', (event) => {
             if (body.classList.contains('celular') && isReproductorMaximized) {
                 if (!reproductor.contains(event.target)) {
